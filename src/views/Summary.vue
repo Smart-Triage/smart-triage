@@ -6,6 +6,15 @@
     </div>
     <div>Birth number: {{ currentPatient.birthNumber }}</div>
     <div>Phone number: {{ currentPatient.phoneNumber }}</div>
+    <div>
+      <div v-for="step in formSteps" :key="step.order">
+        {{ step.question }} -
+        <span v-if="typeof step.answer == 'boolean'">{{
+          step.answer === true ? 'ANO' : 'NE'
+        }}</span>
+        <span v-else> {{ step.answer }}</span>
+      </div>
+    </div>
 
     <PatientQRCode :patient="currentPatient"></PatientQRCode>
     <hr />
@@ -30,8 +39,16 @@ export default {
     PatientQRCode
   },
   computed: {
-    ...mapState('patients', ['patients']),
-    ...mapGetters('patients', ['currentPatient'])
+    ...mapState('patients', ['patients', 'formSteps']),
+    ...mapGetters('patients', ['currentPatient']),
+    stepAnswers() {
+      return this.formSteps.map(step => {
+        return {
+          ...step,
+          answer: this.currentPatient.answers[step.order]
+        }
+      })
+    }
   },
   mounted() {
     if (this.currentPatient === undefined) {
