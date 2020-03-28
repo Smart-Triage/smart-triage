@@ -9,5 +9,8 @@ module.exports = {
     workboxOptions: {
       swSrc: path.join('public', 'service-worker.js')
     }
+  },
+  configureWebpack: {
+    devServer: { host: '127.0.0.1' }
   }
 }

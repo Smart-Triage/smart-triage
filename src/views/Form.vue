@@ -4,44 +4,68 @@
       placeholder="First name"
       class="form-input"
       type="text"
-      :value="productNameToCreate"
-      @input="setProductNameToCreate($event.target.value)"
-      @keypress.enter="triggerAddProductAction"
+      :value="currentPatientFirstName"
+      @input="setCurrentPatientFirstName($event.target.value)"
     />
 
     <input
       placeholder="Last name"
       class="form-input"
       type="text"
-      :value="productNameToCreate"
-      @input="setProductNameToCreate($event.target.value)"
-      @keypress.enter="triggerAddProductAction"
+      :value="currentPatientLastName"
+      @input="setCurrentPatientLastName($event.target.value)"
     />
 
     <input
       placeholder="Birth number"
       class="form-input"
       type="text"
-      :value="productNameToCreate"
-      @input="setProductNameToCreate($event.target.value)"
-      @keypress.enter="triggerAddProductAction"
+      :value="currentPatientBirthNumber"
+      @input="setCurrentPatientBirthNumber($event.target.value)"
     />
 
     <input
       placeholder="Phone number"
       class="form-input"
       type="tel"
-      :value="productNameToCreate"
-      @input="setProductNameToCreate($event.target.value)"
-      @keypress.enter="triggerAddProductAction"
+      :value="currentPatientPhoneNumber"
+      @input="setCurrentPatientPhoneNumber($event.target.value)"
     />
 
-    <router-link class="link" to="/form2">Next</router-link>
+    {{ currentPatientFirstName }}
+
+    <router-link class="link" to="/summary">Next</router-link>
   </form>
 </template>
 
 <script>
-export default {}
+import { mapState, mapActions, mapMutations } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState('patients', [
+      'patients',
+      'currentPatientId',
+      'currentPatientFirstName',
+      'currentPatientLastName',
+      'currentPatientBirthNumber',
+      'currentPatientPhoneNumber'
+    ])
+  },
+  destroyed() {
+    this.createNewPatient()
+  },
+  methods: {
+    ...mapActions('patients', ['createNewPatient']),
+    ...mapMutations('patients', [
+      'setCurrentPatientId',
+      'setCurrentPatientFirstName',
+      'setCurrentPatientLastName',
+      'setCurrentPatientBirthNumber',
+      'setCurrentPatientPhoneNumber'
+    ])
+  }
+}
 </script>
 
 <style scoped>

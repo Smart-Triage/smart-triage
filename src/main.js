@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import UUID from 'vue-uuid'
 
 import App from './App.vue'
 import router from './router'
@@ -9,6 +10,8 @@ import '@/firebase/init'
 import '@/firebase/authentication'
 import '@/misc/handle-apple-install-prompt'
 import 'pwacompat'
+
+Vue.use(UUID)
 
 Vue.config.productionTip = false
 

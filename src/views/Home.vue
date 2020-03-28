@@ -2,14 +2,20 @@
   <div class="page-wrapper">
     <h1 class="home-page-title">{{ appTitle }}</h1>
 
-    <router-link class="link" to="/form">Begin</router-link>
+    <PatientList></PatientList>
+
+    <router-link class="link" to="/form">Add patient</router-link>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import PatientList from '../components/PatientList'
 
 export default {
+  components: {
+    PatientList
+  },
   head() {
     return {
       title: {
