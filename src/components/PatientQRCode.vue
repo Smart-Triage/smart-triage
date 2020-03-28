@@ -1,36 +1,35 @@
 <template>
   <div>
-    <div id="qrcode" style="width:200px; height:200px; margin-top:15px;"></div>
+    <qrcode-vue
+      class="qrcode"
+      :value="stringyfiedPatient"
+      size="400"
+      level="H"
+    ></qrcode-vue>
   </div>
 </template>
 
 <script>
+import QrcodeVue from 'qrcode.vue'
+
 export default {
+  components: { QrcodeVue },
   props: {
     patient: {
       type: Object,
       required: true
     }
   },
-  mounted() {
-    const qrcode = new window.QRCode(document.getElementById('qrcode'), {
-      width: 200,
-      height: 200
-    })
-
-    const formatedPatientString = Object.keys(this.patient)
-      .filter(key => key !== 'id')
-      .reduce((arr, key) => {
-        arr.push(this.patient[key])
-        return arr
-      }, [])
-      .join('-')
-
-    console.log(formatedPatientString)
-
-    qrcode.makeCode(formatedPatientString)
+  computed: {
+    stringyfiedPatient() {
+      return JSON.stringify(this.patient)
+    }
   }
 }
 </script>
 
-<style></style>
+<style scoped>
+.qrcode {
+  margin: 1rem;
+}
+</style>

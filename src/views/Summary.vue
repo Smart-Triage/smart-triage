@@ -1,9 +1,11 @@
 <template>
   <div v-if="currentPatient" class="container">
     <h1>Summary</h1>
-    <div>{{ currentPatient.firstName + ' ' + currentPatient.lastName }}</div>
-    <div>{{ currentPatient.birthNumber }}</div>
-    <div>{{ currentPatient.phoneNumber }}</div>
+    <div>
+      Name: {{ currentPatient.firstName + ' ' + currentPatient.lastName }}
+    </div>
+    <div>Birth number: {{ currentPatient.birthNumber }}</div>
+    <div>Phone number: {{ currentPatient.phoneNumber }}</div>
 
     <PatientQRCode :patient="currentPatient"></PatientQRCode>
     <hr />
@@ -39,4 +41,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
