@@ -6,7 +6,8 @@
       </h1>
       <img src="@/assets/img/form-page-top.png" alt="" />
     </div>
-    <form class="container" @submit="formSubmit">
+    <Stepper></Stepper>
+    <!--<form class="container" @submit="formSubmit">
       <div>
         <label class="floating-label">First name</label>
         <input
@@ -69,14 +70,16 @@
         />
       </div>
       <button type="submit" class="link btn-primary">Next</button>
-    </form>
+    </form>-->
   </div>
 </template>
 
 <script>
 import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
+import Stepper from '../components/Stepper'
 
 export default {
+  components: { Stepper },
   computed: {
     ...mapState('patients', ['patients']),
     ...mapGetters('patients', ['currentPatient'])

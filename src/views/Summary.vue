@@ -10,9 +10,9 @@
     <PatientQRCode :patient="currentPatient"></PatientQRCode>
     <hr />
 
-    <div>
-      <router-link to="/home" class="link">Save</router-link>
-      <router-link to="/send" class="link">Send</router-link>
+    <div class="buttons">
+      <button class="link" @click="edit">Edit</button>
+      <router-link to="/send" class="link send">Send</router-link>
     </div>
   </div>
   <div v-else>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 import PatientQRCode from '../components/PatientQRCode'
 
 export default {
@@ -36,6 +36,15 @@ export default {
   mounted() {
     if (this.currentPatient === undefined) {
       this.$router.push('/home')
+    } else {
+      this.currentPatient.finished = true
+    }
+  },
+  methods: {
+    ...mapMutations('patients', ['setCurrentPatientValueByKey']),
+    edit() {
+      this.setCurrentPatientValueByKey({ key: 'visitedSteps', value: ['1'] })
+      this.$router.push('/form')
     }
   }
 }
@@ -43,6 +52,12 @@ export default {
 
 <style scoped>
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttons {
   display: flex;
   flex-direction: column;
   align-items: center;

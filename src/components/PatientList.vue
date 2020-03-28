@@ -30,7 +30,10 @@ export default {
   },
   methods: {
     ...mapActions('patients', ['deletePatientById']),
-    ...mapMutations('patients', ['setCurrentPatientId']),
+    ...mapMutations('patients', [
+      'setCurrentPatientId',
+      'setCurrentPacientFormStep'
+    ]),
     deletePatient(e, patient) {
       e.stopPropagation()
       // eslint-disable-next-line no-alert
@@ -41,7 +44,8 @@ export default {
     },
     selectPatient(patient) {
       this.setCurrentPatientId(patient.id)
-      this.$router.push('/form')
+      if (patient.finished) this.$router.push('/summary')
+      else this.$router.push('/form')
     }
   }
 }

@@ -40,6 +40,11 @@ export default {
 
 <style lang="scss">
 @import '@/theme/variables.scss';
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   height: 100vh;
 }
