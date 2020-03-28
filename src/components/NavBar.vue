@@ -5,7 +5,7 @@
       <span class="site-name title-desktop">{{ appTitle }}</span>
       <span class="site-name title-mobile">{{ appShortTitle }}</span>
     </router-link>
-    <div class="links">
+    <!-- <div class="links">
       <nav class="nav-links">
         <div class="nav-item">
           <router-link to="/products">Products</router-link>
@@ -29,7 +29,7 @@
         :src="user.photoURL"
         alt="Avatar"
       />
-    </div>
+    </div> -->
   </header>
 </template>
 

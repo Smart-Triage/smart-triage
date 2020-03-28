@@ -39,6 +39,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@/theme/variables.scss';
+
 body {
   margin: 0;
 
@@ -87,5 +89,19 @@ body {
       }
     }
   }
+}
+
+.link {
+  display: inline-block;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: $vue-color;
+  padding: 0.8rem 1.6rem;
+  border-radius: 4px;
+  transition: background-color 0.1s ease;
+  box-sizing: border-box;
+  text-decoration: none;
+  width: fit-content;
+  font-weight: 500;
 }
 </style>
