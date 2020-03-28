@@ -97,6 +97,7 @@ body {
   color: #fff;
   background-color: $vue-color;
   padding: 0.8rem 1.6rem;
+  margin: 0.2rem;
   border-radius: 4px;
   transition: background-color 0.1s ease;
   box-sizing: border-box;

@@ -4,12 +4,12 @@
 
     <PatientList></PatientList>
 
-    <router-link class="link" to="/form">Add patient</router-link>
+    <button class="link" @click="createPatient">Add patient</button>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import PatientList from '../components/PatientList'
 
 export default {
@@ -30,7 +30,14 @@ export default {
       ]
     }
   },
-  computed: mapState('app', ['appTitle'])
+  computed: mapState('app', ['appTitle']),
+  methods: {
+    ...mapActions('patients', ['createNewPatient']),
+    async createPatient() {
+      await this.createNewPatient()
+      this.$router.push('/form')
+    }
+  }
 }
 </script>
 

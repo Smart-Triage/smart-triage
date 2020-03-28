@@ -5,19 +5,30 @@ export default {
    * Create a product for current loggedin user
    */
   createNewPatient: async ({ state, commit }) => {
-    const newPatient = {
-      id: uuidv4(),
-      firstName: state.currentPatientFirstName,
-      lastName: state.currentPatientLastName,
-      birthNumber: state.currentPatientBirthNumber,
-      phoneNumber: state.currentPatientPhoneNumber
-    }
-    commit('createNewPatient', newPatient)
-    commit('setCurrentPatientId', null)
+    return new Promise(resolve => {
+      console.log(Object.keys(state.patients[state.patients.length - 1]))
+      if (
+        state.patients.length === 0 ||
+        (state.patients.length >= 1 &&
+          Object.keys(state.patients[state.patients.length - 1]).length > 1)
+      ) {
+        console.log('creating new patient')
+        const newPatient = {
+          id: uuidv4()
+        }
+        commit('createNewPatient', newPatient)
+        commit('setCurrentPatientId', newPatient.id)
+      }
+      resolve()
+    })
   },
 
   deletePatientById: async ({ commit }, patientId) => {
     commit('removePatientById', patientId)
+  },
+
+  clearCurrentPatient: async ({ commit }) => {
+    commit('setCurrentPatientId', '')
   }
 
   // /**

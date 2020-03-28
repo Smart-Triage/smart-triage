@@ -1,26 +1,52 @@
 <template>
   <div>
-    <div v-for="patient in patients" :key="patient.id">
-      {{ patient.firstName + ' ' + patient.lastName }}
+    <div
+      v-for="patient in patients"
+      :key="patient.id"
+      class="patient-item"
+      @click="selectPatient(patient)"
+    >
+      <span
+        v-if="patient.lastName === undefined || patient.lastName === undefined"
+        >[Unfinished]</span
+      >
+      <span v-else>{{ patient.firstName + ' ' + patient.lastName }}</span>
       {{ patient.birthNumber }}
       {{ patient.phoneNumber }}
-      <button @click="deletePatientById(patient.id)">Delete</button>
+      <button @click="deletePatient($event, patient)">Delete</button>
       <hr />
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   computed: {
     ...mapState('patients', ['patients'])
   },
   methods: {
-    ...mapActions('patients', ['deletePatientById'])
+    ...mapActions('patients', ['deletePatientById']),
+    ...mapMutations('patients', ['setCurrentPatientId']),
+    deletePatient(e, patient) {
+      e.stopPropagation()
+      // eslint-disable-next-line no-alert
+      const r = window.confirm(
+        `Delete patient ${patient.firstName} ${patient.lastName}?`
+      )
+      if (r === true) this.deletePatientById(patient.id)
+    },
+    selectPatient(patient) {
+      this.setCurrentPatientId(patient.id)
+      this.$router.push('/form')
+    }
   }
 }
 </script>
 
-<style></style>
+<style scoped>
+.patient-item {
+  cursor: pointer;
+}
+</style>

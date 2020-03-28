@@ -1,69 +1,86 @@
 <template>
-  <form class="container">
+  <form class="container" @submit="formSubmit">
     <input
       placeholder="First name"
       class="form-input"
       type="text"
-      :value="currentPatientFirstName"
-      @input="setCurrentPatientFirstName($event.target.value)"
+      :value="currentPatient.firstName"
+      required
+      @input="
+        setCurrentPatientValueByKey({
+          key: 'firstName',
+          value: $event.target.value
+        })
+      "
     />
 
     <input
       placeholder="Last name"
       class="form-input"
       type="text"
-      :value="currentPatientLastName"
-      @input="setCurrentPatientLastName($event.target.value)"
+      :value="currentPatient.lastName"
+      required
+      @input="
+        setCurrentPatientValueByKey({
+          key: 'lastName',
+          value: $event.target.value
+        })
+      "
     />
 
     <input
       placeholder="Birth number"
       class="form-input"
       type="text"
-      :value="currentPatientBirthNumber"
-      @input="setCurrentPatientBirthNumber($event.target.value)"
+      :value="currentPatient.birthNumber"
+      required
+      @input="
+        setCurrentPatientValueByKey({
+          key: 'birthNumber',
+          value: $event.target.value
+        })
+      "
     />
 
     <input
       placeholder="Phone number"
       class="form-input"
       type="tel"
-      :value="currentPatientPhoneNumber"
-      @input="setCurrentPatientPhoneNumber($event.target.value)"
+      :value="currentPatient.phoneNumber"
+      required
+      @input="
+        setCurrentPatientValueByKey({
+          key: 'phoneNumber',
+          value: $event.target.value
+        })
+      "
     />
 
-    {{ currentPatientFirstName }}
+    {{ currentPatient }}
 
-    <router-link class="link" to="/summary">Next</router-link>
+    <button type="submit" class="link">Next</button>
   </form>
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations, mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapState('patients', [
-      'patients',
-      'currentPatientId',
-      'currentPatientFirstName',
-      'currentPatientLastName',
-      'currentPatientBirthNumber',
-      'currentPatientPhoneNumber'
-    ])
-  },
-  destroyed() {
-    this.createNewPatient()
+    ...mapState('patients', ['patients']),
+    ...mapGetters('patients', ['currentPatient'])
   },
   methods: {
-    ...mapActions('patients', ['createNewPatient']),
-    ...mapMutations('patients', [
-      'setCurrentPatientId',
-      'setCurrentPatientFirstName',
-      'setCurrentPatientLastName',
-      'setCurrentPatientBirthNumber',
-      'setCurrentPatientPhoneNumber'
-    ])
+    ...mapActions('patients', [
+      'createNewPatient',
+      'clearCurrentPatient',
+      'deletePatientById'
+    ]),
+    ...mapMutations('patients', ['setCurrentPatientValueByKey']),
+    formSubmit(e) {
+      e.preventDefault()
+      this.$router.push('/summary')
+    }
   }
 }
 </script>

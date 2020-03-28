@@ -1,6 +1,9 @@
 import { find } from 'lodash'
 
 export default {
+  currentPatient: state =>
+    find(state.patients, patient => patient.id === state.currentPatientId),
+
   /**
    * Get patient by id
    */
