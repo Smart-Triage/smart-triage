@@ -2,7 +2,9 @@
   <div id="app">
     <nav-bar></nav-bar>
     <div class="main-wrapper">
-      <router-view />
+      <transition name="view">
+        <router-view />
+      </transition>
     </div>
 
     <new-content-available-toastr
@@ -52,7 +54,6 @@ body {
   margin: 0;
   height: 100vh;
   background-color: $bg-color;
-
 
   a {
     font-weight: 500;
@@ -127,5 +128,29 @@ body {
   text-decoration: none;
   width: fit-content;
   font-weight: 500;
+}
+
+.view-enter-active,
+.view-leave-active {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+}
+.view-enter-active {
+  transition-delay: 0.5s;
+}
+.view-enter {
+  opacity: 0;
+  transform: translateX(+100px);
+}
+.view-enter-to {
+  opacity: 1;
+  transform: translateX(0px);
+}
+.view-leave {
+  opacity: 1;
+  transform: translateX(0px);
+}
+.view-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
 }
 </style>
