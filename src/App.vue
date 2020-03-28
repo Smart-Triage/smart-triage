@@ -41,11 +41,11 @@ export default {
 <style lang="scss">
 @import '@/theme/variables.scss';
 html {
-  height: 100%;
+ height: calc(100vh - 3.6rem);;
 }
 body {
   margin: 0;
-  height: 100%;
+  height: calc(100vh - 3.6rem);;
   background-color: $bg-color;
 
   a {
