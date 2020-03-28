@@ -268,12 +268,15 @@ export default {
 <style scoped lang="scss">
 @import '@/theme/variables.scss';
 
+.container {
+  min-height: 50vh;
+}
+
 .step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: white;
-  padding: 1rem;
+  padding: 2rem 1rem;
 }
 
 .buttons {

@@ -10,7 +10,7 @@
 
       <PatientList></PatientList>
 
-      <button class="link home-page-btn" @click="createPatient">
+      <button class="link btn-primary" @click="createPatient">
         Add patient
       </button>
     </div>
@@ -57,12 +57,14 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/theme/variables.scss';
+@import '@/theme/general.scss';
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: calc(100vh - 3.6rem);
+  height: 100vh;
 
   .home-page-top-img {
     display: flex;
@@ -91,18 +93,13 @@ export default {
       font-size: 1.75em;
       color: $main-text-color;
     }
-
-    .btn-primary {
-      background-color: $primary-color;
-      border-radius: 2em;
-      border: none;
-    }
   }
 
   .home-page-bottom-link {
     display: flex;
     flex: 2;
     align-items: flex-end;
+
     .home-page-link {
       text-decoration: none;
       color: $main-text-color;

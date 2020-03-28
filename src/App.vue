@@ -46,16 +46,29 @@ export default {
 }
 
 html {
-  height: calc(100vh - 3.6rem);
+  height: 100vh;
 }
 body {
   margin: 0;
-  height: calc(100vh - 3.6rem);
+  height: 100vh;
   background-color: $bg-color;
 
   a {
     font-weight: 500;
     text-decoration: none;
+  }
+
+  hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid;
+    border-color: $secondary-text-color;
+    padding: 0;
+  }
+
+  .navbar {
+    display: none;
   }
 
   #app {
@@ -85,9 +98,7 @@ body {
     }
 
     .main-wrapper {
-      margin-top: 3.6rem;
-      overflow: hidden;
-      height: calc(100vh - 3.6rem);
+      height: 100vh;
 
       .page-wrapper {
         width: 60%;
