@@ -11,9 +11,9 @@ export default {
         (state.patients.length >= 1 &&
           Object.keys(state.patients[state.patients.length - 1]).length > 1)
       ) {
-        console.log('creating new patient')
         const newPatient = {
-          id: uuidv4()
+          id: uuidv4(),
+          answers: {}
         }
         commit('createNewPatient', newPatient)
         commit('setCurrentPatientId', newPatient.id)

@@ -11,15 +11,12 @@ export default {
     (state.currentPatientId = patientId),
 
   setCurrentPatientValueByKey: (state, { key, value }) => {
-    console.log(key, value)
     const p = find(
       state.patients,
       patient => patient.id === state.currentPatientId
     )
-    console.log('before: ', p)
 
     p[key] = value
-    console.log('after: ', p)
 
     return (find(
       state.patients,

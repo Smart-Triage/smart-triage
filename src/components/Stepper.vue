@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div
-      v-for="step in steps"
+      v-for="step in formSteps"
       :key="step.order"
       class="step"
       :class="{ hidden: step.order !== currentStepNum }"
@@ -11,10 +11,14 @@
       </p>
       <p class="question">{{ step.question }}</p>
 
-      <div
-        v-if="step.answerType === 'boolean'"
-        class="boolean-answer-button btn-secondary"
-      >
+      <div v-if="step.order === '0'">
+        <PatientForm
+          v-if="currentStepNum === '0'"
+          @next="next(null)"
+        ></PatientForm>
+      </div>
+
+      <div v-if="step.answerType === 'boolean'" class="boolean-answer-button">
         <button
           :class="{ 'answer-active': step.answer === false }"
           @click="next(false)"
@@ -39,7 +43,7 @@
           step="0.5"
           class="slider"
         />
-        <button @click="next(true)">Další</button>
+        <button @click="next(temperatureValue)">Další</button>
       </div>
 
       <div v-if="step.answerType === 'one-of'" class="one-of-answer">
@@ -72,7 +76,7 @@
       <button v-if="!isFirst" class="prev" @click="prev()">Previous</button>
       <div class="spacer"></div>
       <button
-        v-if="!isLast && currentStep.answer !== undefined"
+        v-if="!isLast && currentPatient.answers[currentStepNum] !== undefined"
         class="next"
         @click="next(null)"
       >
@@ -83,130 +87,41 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
+import PatientForm from './PatientForm'
 
 export default {
+  components: { PatientForm },
   data: () => ({
-    currentStepNum: '1',
-    visitedSteps: ['1'],
-    steps: [
-      {
-        order: '1',
-        question: 'Měřil/a jste si v poslední době teplotu?',
-        answerType: 'boolean',
-        nextIfPositive: '1.1',
-        nextIfNegative: '1.2'
-      },
-      {
-        order: '1.1',
-        question: 'Zadejte teplotu',
-        answerType: 'slider',
-        next: '2',
-        pointsIfPositive: 3
-      },
-      {
-        order: '1.2',
-        question: 'Pociťoval/a jste zvýšené projevy teploty?',
-        answerType: 'boolean',
-        next: '2',
-        pointsIfPositive: 2
-      },
-      {
-        order: '2',
-        question: 'Měl/a jste v poslední době kašel?',
-        answerType: 'boolean',
-        nextIfPositive: '2.1',
-        nextIfNegative: '3'
-      },
-      {
-        order: '2.1',
-        question: 'Vlhký nebo suchý kašel?',
-        answerType: 'one-of',
-        options: [
-          {
-            text: 'Vlhký',
-            value: 'vlhky'
-          },
-          {
-            text: 'Suchý',
-            value: 'suchy'
-          }
-        ],
-        next: '3',
-        pointsIfPositive: 2,
-        pointsIfNegative: 2
-      },
-      {
-        order: '3',
-        question:
-          'Měl/a jste v poslední době nezvyklý pocit tíhy na hrudi nebo dušnost?',
-        answerType: 'boolean',
-        pointsIfPositive: 2,
-        next: '4'
-      },
-      {
-        order: '4',
-        question:
-          'Měl/a jste v poslední době nezvykou únavu, třesavku nebo zimnici?',
-        answerType: 'boolean',
-        pointsIfPositive: 1,
-        next: '5'
-      },
-      {
-        order: '5',
-        question: 'Vyberte příznaky, které jste během poslední doby měli:',
-        answerType: 'checkbox',
-        options: [
-          { text: 'Rýma', value: 'ryma' },
-          { text: 'Bolest v krku', value: 'bolest-v-krku' },
-          {
-            text: 'Bolest svalů nebo kloubů',
-            value: 'bolest-svalu-nebo-kloubu'
-          },
-          { text: 'Ztráta chuti nebo čichu', value: 'ztrata-chuti-nebo-cichu' }
-        ],
-        next: '6'
-      },
-      {
-        order: '6',
-        question: 'Byl/a jste v poslední době v zahraničí?',
-        answerType: 'boolean',
-        nextIfPositive: '6.1',
-        nextIfNegative: '7'
-      },
-      {
-        order: '7',
-        question: 'Navštívil Vás někdo v posledních 14 dnech?',
-        answerType: 'boolean',
-        next: 'end'
-      }
-    ],
+    currentStepNum: '0',
+    visitedSteps: ['0'],
     temperatureValue: 36.5
   }),
   computed: {
+    ...mapState('patients', ['formSteps']),
     ...mapGetters('patients', ['currentPatient']),
     currentStep() {
-      return this.steps.find(step => step.order === this.currentStepNum)
+      return this.formSteps.find(step => step.order === this.currentStepNum)
     },
     isLast() {
       return this.currentStepNum === '7'
     },
     isFirst() {
-      return this.currentStepNum === '1'
+      return this.currentStepNum === '0'
     }
   },
   mounted() {
     if (!this.currentPatient.visitedSteps) {
       this.setCurrentPatientValueByKey({
         key: 'visitedSteps',
-        value: ['1']
+        value: ['0']
       })
     } else if (this.currentPatient.visitedSteps.indexOf('end') > -1) {
-      this.visitedSteps = ['1']
-      this.currentStepNum = '1'
+      this.visitedSteps = ['0']
+      this.currentStepNum = '0'
       this.setCurrentPatientValueByKey({
         key: 'visitedSteps',
-        value: ['1']
+        value: ['0']
       })
     } else {
       this.visitedSteps = this.currentPatient.visitedSteps
@@ -230,13 +145,13 @@ export default {
     next(answer) {
       if (answer === null) {
         this.currentStepNum =
-          (this.currentStep.answer === true
+          (this.currentPatient.answers[this.currentStepNum] === true
             ? this.currentStep.nextIfPositive
             : this.currentStep.nextIfNegative) || this.currentStep.next
       } else {
         switch (typeof answer) {
           case 'boolean':
-            this.currentStep.answer = answer
+            this.currentPatient.answers[this.currentStepNum] = answer
             if (answer === true)
               this.currentStepNum =
                 this.currentStep.nextIfPositive || this.currentStep.next
@@ -246,9 +161,21 @@ export default {
                 this.currentStep.nextIfNegative || this.currentStep.next
             break
 
+          case 'number':
           case 'string':
-            this.currentStep.answer = answer
+            this.currentPatient.answers[this.currentStepNum] = answer
             this.currentStepNum = this.currentStep.next
+            break
+
+          case 'object':
+            if (Array.isArray(answer)) {
+              const checkedOptions = answer
+                .filter(option => option.isChecked === true)
+                .map(option => option.value)
+
+              this.currentPatient.answers[this.currentStepNum] = checkedOptions
+              this.currentStepNum = this.currentStep.next
+            }
             break
 
           default:
@@ -256,7 +183,6 @@ export default {
             break
         }
       }
-
       this.visitedSteps.push(this.currentStepNum)
       this.setCurrentPatientValueByKey({
         key: 'visitedSteps',
@@ -368,8 +294,5 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  div {
-  }
 }
 </style>
