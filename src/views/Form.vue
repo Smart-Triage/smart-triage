@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <div class="home-page-top-img">
       <h1 class="page-title">
         Vytváření účtu
@@ -100,7 +100,7 @@ export default {
 @import '@/theme/variables.scss';
 
 .page-title {
-  margin: 1.5em 0 1em 0;
+  margin: 1.5em 0;
   font-weight: 600;
   font-size: 1.5em;
   line-height: 1em;
@@ -118,21 +118,30 @@ export default {
   }
 }
 
+.main-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   display: flex;
   flex-direction: column;
+  align-self: flex-end;
+  width: 100vw;
   align-items: center;
   margin: 0 auto;
   background-color: white;
   border-radius: 2em 2em 0 0;
-  height: 100vh;
+  max-width: 400px;
+  padding: 0 0 2em 0;
 }
 
 .container div {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2em;
+  margin: 2em 0;
 }
 
 .floating-label {

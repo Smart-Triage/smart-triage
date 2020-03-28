@@ -10,7 +10,7 @@
 
       <PatientList></PatientList>
 
-      <button class="link home-page-btn" @click="createPatient">
+      <button class="link btn-primary" @click="createPatient">
         Add patient
       </button>
     </div>
@@ -62,7 +62,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: calc(100vh - 3.6rem);
+  height: 100vh;
 
   .home-page-top-img {
     display: flex;
