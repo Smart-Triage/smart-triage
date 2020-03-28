@@ -6,9 +6,15 @@
       class="step"
       :class="{ hidden: step.order !== currentStepNum }"
     >
-      {{ step.question }}
+      <p class="directions">
+        Nyní prosím zodpovězte několik otázek ohledně Vašeho zdraví.
+      </p>
+      <p class="question">{{ step.question }}</p>
 
-      <div v-if="step.answerType === 'boolean'" class="boolean-answer-button">
+      <div
+        v-if="step.answerType === 'boolean'"
+        class="boolean-answer-button btn-secondary"
+      >
         <button
           :class="{ 'answer-active': step.answer === false }"
           @click="next(false)"
@@ -289,6 +295,23 @@ export default {
   padding: 1rem;
 }
 
+.boolean-answer-button,
+.slider-answer-slider,
+.one-of-answer {
+  button {
+    font-size: 1.1em;
+    background-color: $light-button-color;
+    border-radius: 2em;
+    border: none;
+    padding: 0.8em 2em;
+    margin: 0.5em;
+  }
+
+  button:hover {
+    background-color: $dark-button-color;
+  }
+}
+
 .hidden {
   display: none;
 }
@@ -325,5 +348,28 @@ export default {
 .answer-active {
   background-color: $primary-color;
   color: white;
+}
+
+.question {
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 600;
+  padding: 1em 0.5em;
+}
+
+.directions {
+  text-align: center;
+  font-size: 0.8em;
+  padding: 1em 3em 0 3em;
+}
+
+.checkbox-answer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  div {
+  }
 }
 </style>
