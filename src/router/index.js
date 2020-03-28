@@ -48,6 +48,17 @@ const router = new Router({
         authNotRequired: true
       }
     },
+    {
+      path: '/employee',
+      name: 'employee',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-employee" */ '@/views/Employee.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
     // {
     //   path: '/check-login',
     //   name: 'check-login',
