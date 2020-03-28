@@ -93,8 +93,6 @@ body {
     }
 
     .main-wrapper {
-      // margin-top: 3.6rem;
-      // height: calc(100vh - 3.6rem);
       height: 100vh;
 
       .page-wrapper {

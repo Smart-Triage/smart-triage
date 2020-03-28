@@ -98,76 +98,62 @@ export default {
 
 <style scoped lang="scss">
 @import '@/theme/variables.scss';
-
-.page-title {
-  margin: 1.5em 0;
-  font-weight: 600;
-  font-size: 1.5em;
-  line-height: 1em;
-  color: $main-text-color;
-}
-
-.home-page-top-img {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 2;
-  img {
-    margin: 0 0 2em 0;
-  }
-}
+@import '@/theme/general.scss';
 
 .main-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
-}
 
-.container {
-  display: flex;
-  flex-direction: column;
-  align-self: flex-end;
-  width: 100vw;
-  align-items: center;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 2em 2em 0 0;
-  max-width: 400px;
-  padding: 0 0 2em 0;
-}
+  .home-page-top-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+    img {
+      margin: 0 0 2em 0;
+    }
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    width: 100vw;
+    align-items: center;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 2em 2em 0 0;
+    max-width: 400px;
+    padding: 0 0 2em 0;
 
-.container div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 2em 0;
-}
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2em 0;
 
-.floating-label {
-  display: flex;
-  align-self: flex-start;
-  margin: 0.5rem 0.5rem 0 0.5rem;
-  padding-left: 5px;
-  font-size: 0.9em;
-  font-weight: 600;
-  color: $secondary-text-color;
-}
+      .floating-label {
+        display: flex;
+        align-self: flex-start;
+        margin: 0.5rem 0.5rem 0 0.5rem;
+        padding-left: 5px;
+        font-size: 0.9em;
+        font-weight: 600;
+        color: $secondary-text-color;
+      }
 
-.form-input {
-  margin: 0 0.5rem 1rem 0.5rem;
-  padding-left: 5px;
-  height: 2rem;
-  width: 20rem;
-  outline: none;
-  font: inherit;
-  border-width: 0 0 1px 0;
-  border-color: $secondary-text-color;
-}
-
-.btn-primary {
-  background-color: $primary-color;
-  border-radius: 2em;
-  border: none;
+      .form-input {
+        margin: 0 0.5rem 1rem 0.5rem;
+        padding-left: 5px;
+        height: 2rem;
+        width: 20rem;
+        outline: none;
+        font: inherit;
+        border-width: 0 0 1px 0;
+        border-color: $secondary-text-color;
+      }
+    }
+  }
 }
 </style>

@@ -57,6 +57,8 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/theme/variables.scss';
+@import '@/theme/general.scss';
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
@@ -91,18 +93,13 @@ export default {
       font-size: 1.75em;
       color: $main-text-color;
     }
-
-    .btn-primary {
-      background-color: $primary-color;
-      border-radius: 2em;
-      border: none;
-    }
   }
 
   .home-page-bottom-link {
     display: flex;
     flex: 2;
     align-items: flex-end;
+
     .home-page-link {
       text-decoration: none;
       color: $main-text-color;
