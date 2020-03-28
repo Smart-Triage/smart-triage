@@ -3,7 +3,7 @@
     <qrcode-vue
       class="qrcode"
       :value="stringyfiedPatient"
-      size="400"
+      size="300"
       level="H"
     ></qrcode-vue>
   </div>

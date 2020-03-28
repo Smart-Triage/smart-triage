@@ -40,12 +40,17 @@ export default {
 
 <style lang="scss">
 @import '@/theme/variables.scss';
+
+* {
+  box-sizing: border-box;
+}
+
 html {
- height: calc(100vh - 3.6rem);
+  height: calc(100vh - 3.6rem);
 }
 body {
   margin: 0;
-  height: calc(100vh - 3.6rem);;
+  height: calc(100vh - 3.6rem);
   background-color: $bg-color;
 
   a {
