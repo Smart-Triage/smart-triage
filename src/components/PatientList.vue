@@ -7,12 +7,14 @@
       @click="selectPatient(patient)"
     >
       <span
-        v-if="patient.lastName === undefined || patient.lastName === undefined"
+        v-if="patient.firstName === undefined || patient.lastName === undefined"
         >[Unfinished]</span
       >
       <span v-else>{{ patient.firstName + ' ' + patient.lastName }}</span>
-      {{ patient.birthNumber }}
-      {{ patient.phoneNumber }}
+      <!-- <div>
+        {{ patient.birthNumber }}
+      </div>
+      <div>{{ patient.phoneNumber }}</div> -->
       <button @click="deletePatient($event, patient)">Delete</button>
       <hr />
     </div>

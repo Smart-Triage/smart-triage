@@ -56,8 +56,6 @@
       "
     />
 
-    {{ currentPatient }}
-
     <button type="submit" class="link">Next</button>
   </form>
 </template>

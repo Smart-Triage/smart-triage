@@ -6,7 +6,6 @@ export default {
    */
   createNewPatient: async ({ state, commit }) => {
     return new Promise(resolve => {
-      console.log(Object.keys(state.patients[state.patients.length - 1]))
       if (
         state.patients.length === 0 ||
         (state.patients.length >= 1 &&
