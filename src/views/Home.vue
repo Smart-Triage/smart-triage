@@ -15,7 +15,9 @@
       </button>
     </div>
     <div class="home-page-bottom-link">
-      <router-link class="home-page-link" to="/how-it-works">How it works?</router-link>
+      <router-link class="home-page-link" to="/how-it-works"
+        >How it works?</router-link
+      >
     </div>
   </div>
 </template>
@@ -60,7 +62,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  height: 100%;
 
   .home-page-top-img {
     display: flex;
