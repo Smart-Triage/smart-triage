@@ -1,72 +1,76 @@
 <template>
-  <form class="container" @submit="formSubmit">
+  <div>
     <div class="home-page-top-img">
-      <img src="@/assets/img/home-page-welcome-img.png" alt="" />
+      <h1 class="page-title">
+        Vytváření účtu
+      </h1>
+      <img src="@/assets/img/form-page-top.png" alt="" />
     </div>
+    <form class="container" @submit="formSubmit">
+      <div>
+        <label class="floating-label">First name</label>
+        <input
+          placeholder=""
+          class="form-input"
+          type="text"
+          :value="currentPatient.firstName"
+          required
+          @input="
+            setCurrentPatientValueByKey({
+              key: 'firstName',
+              value: $event.target.value
+            })
+          "
+        />
 
-    <div>
-      <label class="floating-label">First name</label>
-      <input
-        placeholder=""
-        class="form-input"
-        type="text"
-        :value="currentPatient.firstName"
-        required
-        @input="
-          setCurrentPatientValueByKey({
-            key: 'firstName',
-            value: $event.target.value
-          })
-        "
-      />
+        <label class="floating-label">Last name</label>
+        <input
+          placeholder=""
+          class="form-input"
+          type="text"
+          :value="currentPatient.lastName"
+          required
+          @input="
+            setCurrentPatientValueByKey({
+              key: 'lastName',
+              value: $event.target.value
+            })
+          "
+        />
 
-      <label class="floating-label">Last name</label>
-      <input
-        placeholder=""
-        class="form-input"
-        type="text"
-        :value="currentPatient.lastName"
-        required
-        @input="
-          setCurrentPatientValueByKey({
-            key: 'lastName',
-            value: $event.target.value
-          })
-        "
-      />
+        <label class="floating-label">Birth number</label>
+        <input
+          placeholder=""
+          class="form-input"
+          type="text"
+          :value="currentPatient.birthNumber"
+          required
+          @input="
+            setCurrentPatientValueByKey({
+              key: 'birthNumber',
+              value: $event.target.value
+            })
+          "
+        />
 
-      <label class="floating-label">Birth number</label>
-      <input
-        placeholder=""
-        class="form-input"
-        type="text"
-        :value="currentPatient.birthNumber"
-        required
-        @input="
-          setCurrentPatientValueByKey({
-            key: 'birthNumber',
-            value: $event.target.value
-          })
-        "
-      />
-
-      <label class="floating-label">Phone number</label>
-      <input
-        placeholder=""
-        class="form-input"
-        type="tel"
-        :value="currentPatient.phoneNumber"
-        required
-        @input="
-          setCurrentPatientValueByKey({
-            key: 'phoneNumber',
-            value: $event.target.value
-          })
-        "
-      />
-    </div>
-    <button type="submit" class="link btn-primary">Next</button>
-  </form>
+        <label class="floating-label">Phone number</label>
+        <input
+          placeholder=""
+          class="form-input"
+          type="tel"
+          :value="currentPatient.phoneNumber"
+          required
+          @input="
+            setCurrentPatientValueByKey({
+              key: 'phoneNumber',
+              value: $event.target.value
+            })
+          "
+        />
+      </div>
+      <button type="submit" class="link btn-primary">Next</button>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -94,6 +98,26 @@ export default {
 
 <style scoped lang="scss">
 @import '@/theme/variables.scss';
+
+.page-title {
+  margin: 1.5em 0 1em 0;
+  font-weight: 600;
+  font-size: 1.5em;
+  line-height: 1em;
+  color: $main-text-color;
+}
+
+.home-page-top-img {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 2;
+  img {
+    margin: 0 0 2em 0;
+  }
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -108,6 +132,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2em;
 }
 
 .floating-label {
