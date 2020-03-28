@@ -41,7 +41,7 @@ export default {
 <style lang="scss">
 @import '@/theme/variables.scss';
 html {
- height: calc(100vh - 3.6rem);;
+ height: calc(100vh - 3.6rem);
 }
 body {
   margin: 0;
@@ -81,7 +81,7 @@ body {
 
     .main-wrapper {
       margin-top: 3.6rem;
-      // padding: 20px;
+      overflow: hidden;
       height: calc(100vh - 3.6rem);
 
       .page-wrapper {

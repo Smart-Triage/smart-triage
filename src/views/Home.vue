@@ -92,9 +92,10 @@ export default {
       color: $main-text-color;
     }
 
-    .home-page-btn {
+    .btn-primary {
       background-color: $primary-color;
       border-radius: 2em;
+      border: none;
     }
   }
 
