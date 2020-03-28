@@ -40,9 +40,13 @@ export default {
 
 <style lang="scss">
 @import '@/theme/variables.scss';
-
+html {
+  height: 100%;
+}
 body {
   margin: 0;
+  height: 100%;
+  background-color: $bg-color;
 
   a {
     font-weight: 500;
@@ -76,8 +80,9 @@ body {
     }
 
     .main-wrapper {
-      margin-top: 3.6rem;
-      padding: 20px;
+      // margin-top: 3.6rem;
+      // padding: 20px;
+      height: 100vh;
 
       .page-wrapper {
         width: 60%;
