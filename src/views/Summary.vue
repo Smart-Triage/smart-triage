@@ -43,7 +43,7 @@ export default {
   methods: {
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
     edit() {
-      this.setCurrentPatientValueByKey({ key: 'visitedSteps', value: ['1'] })
+      this.setCurrentPatientValueByKey({ key: 'visitedSteps', value: ['0'] })
       this.$router.push('/form')
     }
   }

@@ -8,6 +8,13 @@
     >
       {{ step.question }}
 
+      <div v-if="step.order === '0'">
+        <PatientForm
+          v-if="currentStepNum === '0'"
+          @next="next(null)"
+        ></PatientForm>
+      </div>
+
       <div v-if="step.answerType === 'boolean'" class="boolean-answer-button">
         <button
           :class="{ 'answer-active': step.answer === false }"
@@ -78,12 +85,20 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+import PatientForm from './PatientForm'
 
 export default {
+  components: { PatientForm },
   data: () => ({
-    currentStepNum: '1',
-    visitedSteps: ['1'],
+    currentStepNum: '0',
+    visitedSteps: ['0'],
     steps: [
+      {
+        order: '0',
+        question: 'Patient personal details',
+        answerType: 'form',
+        next: '1'
+      },
       {
         order: '1',
         question: 'Měřil/a jste si v poslední době teplotu?',
@@ -165,8 +180,7 @@ export default {
         order: '6',
         question: 'Byl/a jste v poslední době v zahraničí?',
         answerType: 'boolean',
-        nextIfPositive: '6.1',
-        nextIfNegative: '7'
+        next: '7'
       },
       {
         order: '7',
@@ -186,21 +200,21 @@ export default {
       return this.currentStepNum === '7'
     },
     isFirst() {
-      return this.currentStepNum === '1'
+      return this.currentStepNum === '0'
     }
   },
   mounted() {
     if (!this.currentPatient.visitedSteps) {
       this.setCurrentPatientValueByKey({
         key: 'visitedSteps',
-        value: ['1']
+        value: ['0']
       })
     } else if (this.currentPatient.visitedSteps.indexOf('end') > -1) {
-      this.visitedSteps = ['1']
-      this.currentStepNum = '1'
+      this.visitedSteps = ['0']
+      this.currentStepNum = '0'
       this.setCurrentPatientValueByKey({
         key: 'visitedSteps',
-        value: ['1']
+        value: ['0']
       })
     } else {
       this.visitedSteps = this.currentPatient.visitedSteps
@@ -240,6 +254,7 @@ export default {
                 this.currentStep.nextIfNegative || this.currentStep.next
             break
 
+          case 'object':
           case 'string':
             this.currentStep.answer = answer
             this.currentStepNum = this.currentStep.next
