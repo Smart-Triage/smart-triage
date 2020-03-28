@@ -73,7 +73,7 @@
       <button v-if="!isFirst" class="prev" @click="prev()">Previous</button>
       <div class="spacer"></div>
       <button
-        v-if="!isLast && currentStep.answer !== undefined"
+        v-if="!isLast && currentPatient.answers[currentStepNum] !== undefined"
         class="next"
         @click="next(null)"
       >
@@ -142,13 +142,12 @@ export default {
     next(answer) {
       if (answer === null) {
         this.currentStepNum =
-          (this.currentStep.answer === true
+          (this.currentPatient.answers[this.currentStepNum] === true
             ? this.currentStep.nextIfPositive
             : this.currentStep.nextIfNegative) || this.currentStep.next
       } else {
         switch (typeof answer) {
           case 'boolean':
-            this.currentStep.answer = answer
             this.currentPatient.answers[this.currentStepNum] = answer
             if (answer === true)
               this.currentStepNum =
@@ -161,7 +160,6 @@ export default {
 
           case 'number':
           case 'string':
-            this.currentStep.answer = answer
             this.currentPatient.answers[this.currentStepNum] = answer
             this.currentStepNum = this.currentStep.next
             break
@@ -172,7 +170,6 @@ export default {
                 .filter(option => option.isChecked === true)
                 .map(option => option.value)
 
-              this.currentStep.answer = checkedOptions
               this.currentPatient.answers[this.currentStepNum] = checkedOptions
               this.currentStepNum = this.currentStep.next
             }
