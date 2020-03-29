@@ -1,97 +1,85 @@
 <template>
-  <div v-if="dataIsReady" class="container">
+  <div v-if="dataIsReady">
     <div
       v-for="step in formSteps"
       :key="step.order"
       class="step"
       :class="{ hidden: step.order !== currentStepNum }"
     >
-      <p class="directions">
-        Nyní prosím zodpovězte několik otázek ohledně Vašeho zdraví.
-      </p>
-      <p class="question">{{ step.question }}</p>
-
-      <div v-if="step.order === '0'">
-        <PatientForm
-          v-if="currentStepNum === '0'"
-          @next="next(null)"
-        ></PatientForm>
+      <div v-if="step.order === '0'" class="home-page-top-img">
+        <h1 class="page-title">Vytváření účtu</h1>
+        <img src="@/assets/img/form-page-top.png" alt />
       </div>
-
-      <div v-if="step.answerType === 'boolean'" class="boolean-answer-button">
-        <button
-          :class="{ 'answer-active': step.answer === false }"
-          @click="next(false)"
-        >
-          No
-        </button>
-        <button
-          :class="{ 'answer-active': step.answer === true }"
-          @click="next(true)"
-        >
-          Yes
-        </button>
+      <div v-if="step.order !== '0'" class="home-page-top-img">
+        <h1 class="page-title">Dotazník</h1>
+        <img src="@/assets/img/form-page-top.png" alt />
       </div>
+      <div class="container">
+        <p
+          v-if="step.order !== '0'"
+          class="directions"
+        >Nyní prosím zodpovězte několik otázek ohledně Vašeho zdraví.</p>
+        <p class="question">{{ step.question }}</p>
 
-      <div v-if="step.answerType === 'slider'" class="slider-answer-slider">
-        <div>{{ temperatureValue }}</div>
-        <input
-          v-model="temperatureValue"
-          type="range"
-          min="36.5"
-          max="42"
-          step="0.5"
-          class="slider"
-        />
-        <button @click="next(temperatureValue)">Další</button>
-      </div>
+        <div v-if="step.order === '0'">
+          <PatientForm v-if="currentStepNum === '0'" @next="next(null)"></PatientForm>
+        </div>
 
-      <div v-if="step.answerType === 'one-of'" class="one-of-answer">
-        <button
-          v-for="option in step.options"
-          :key="option.value"
-          :class="{ 'answer-active': step.answer === option.value }"
-          @click="next(option.value)"
-        >
-          {{ option.text }}
-        </button>
-      </div>
+        <div v-if="step.answerType === 'boolean'" class="boolean-answer-button">
+          <button :class="{ 'answer-active': step.answer === false }" @click="next(false)">No</button>
+          <button :class="{ 'answer-active': step.answer === true }" @click="next(true)">Yes</button>
+        </div>
 
-      <div
-        v-if="currentStepNum == '5' && step.answerType === 'checkbox'"
-        class="checkbox-answer"
-      >
-        <div
-          v-for="option in step.options"
-          :key="currentPatient + option.value"
-        >
-          <label :for="option.value">{{ option.text }}</label>
+        <div v-if="step.answerType === 'slider'" class="slider-answer-slider">
+          <div>{{ temperatureValue }}</div>
           <input
-            :id="option.value"
-            v-model="
+            v-model="temperatureValue"
+            type="range"
+            min="36.5"
+            max="42"
+            step="0.5"
+            class="slider"
+          />
+          <button @click="next(temperatureValue)">Další</button>
+        </div>
+
+        <div v-if="step.answerType === 'one-of'" class="one-of-answer">
+          <button
+            v-for="option in step.options"
+            :key="option.value"
+            :class="{ 'answer-active': step.answer === option.value }"
+            @click="next(option.value)"
+          >{{ option.text }}</button>
+        </div>
+
+        <div v-if="currentStepNum == '5' && step.answerType === 'checkbox'" class="checkbox-answer">
+          <div v-for="option in step.options" :key="currentPatient + option.value">
+            <label :for="option.value">{{ option.text }}</label>
+            <input
+              :id="option.value"
+              v-model="
               currentPatient.answers[currentStepNum].find(
                 op => op.value === option.value
               ).isChecked
             "
-            :value="option.value"
-            type="checkbox"
-          />
+              :value="option.value"
+              type="checkbox"
+            />
+          </div>
+
+          <button @click="next(step.options)">Další</button>
         </div>
-
-        <button @click="next(step.options)">Další</button>
       </div>
-    </div>
 
-    <div class="buttons">
-      <button v-if="!isFirst" class="prev" @click="prev()">Previous</button>
-      <div class="spacer"></div>
-      <button
-        v-if="currentPatient.answers[currentStepNum] !== undefined"
-        class="next"
-        @click="next(null)"
-      >
-        {{ isLast ? 'Sumary' : 'Next' }}
-      </button>
+      <div class="buttons">
+        <button v-if="!isFirst" class="prev" @click="prev()">Previous</button>
+        <div class="spacer"></div>
+        <button
+          v-if="currentPatient.answers[currentStepNum] !== undefined"
+          class="next"
+          @click="next(null)"
+        >{{ isLast ? 'Sumary' : 'Next' }}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -222,6 +210,7 @@ export default {
 
 <style scoped lang="scss">
 @import '@/theme/variables.scss';
+@import '@/theme/general.scss';
 
 .container {
   min-height: 50vh;
@@ -326,5 +315,22 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.main-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .home-page-top-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+    img {
+      margin: 0 0 2em 0;
+    }
+  }
 }
 </style>
