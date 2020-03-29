@@ -6,7 +6,17 @@
       class="step"
       :class="{ hidden: step.order !== currentStepNum }"
     >
-      <!-- <div class="top-buttons">Buttons</div> -->
+      <div class="top-buttons">
+        <router-link class="close" to="/home"
+          ><ion-icon name="close" size="large"></ion-icon
+        ></router-link>
+        <router-link
+          v-if="currentPatient.finished"
+          class="skip-to-summary"
+          to="/summary"
+          >Skip to summary</router-link
+        >
+      </div>
       <div v-if="step.order === '0'" class="home-page-top-img">
         <h1 class="page-title">Personal details</h1>
         <img src="@/assets/img/form-page-top.png" alt />
@@ -320,8 +330,21 @@ export default {
 }
 
 .top-buttons {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   padding: 1rem 2rem;
+
+  .close {
+    color: black;
+  }
+
+  .skip-to-summary {
+    color: white;
+    background-color: $secondary-color;
+    padding: 0.5rem 1rem;
+    border-radius: 5rem;
+  }
 }
 
 .step {
