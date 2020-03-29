@@ -132,10 +132,10 @@ body {
 
 .view-enter-active,
 .view-leave-active {
-  transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease;
 }
 .view-enter-active {
-  transition-delay: 0.5s;
+  transition-delay: 0.2s;
 }
 .view-enter {
   opacity: 0;
