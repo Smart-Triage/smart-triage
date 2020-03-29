@@ -18,14 +18,14 @@
       <div v-if="patients.length === 0" class="main-action">
         <button class="link btn-primary" @click="createPatient">
           <ion-icon name="person-add-outline"></ion-icon>
-          <span class="main-action-text">Begin</span>
+          <span class="main-action-button-text">Begin</span>
         </button>
       </div>
       <div v-else class="main-action">
         <p>Not going alone?</p>
         <button class="link btn-primary" @click="createPatient">
           <ion-icon name="person-add-outline"></ion-icon>
-          Fill for another person
+          <span class="main-action-button-text">Fill for another person</span>
         </button>
       </div>
     </div>
@@ -140,7 +140,7 @@ ion-icon {
         display: flex;
         justify-content: center;
 
-        .main-action-text {
+        .main-action-button-text {
           margin-left: 1rem;
         }
       }
