@@ -8,12 +8,7 @@
         type="text"
         :value="currentPatient.firstName"
         required
-        @input="
-          setCurrentPatientValueByKey({
-            key: 'firstName',
-            value: $event.target.value
-          })
-        "
+        @input="setPatientValueByKey('firstName', $event.target.value)"
       />
 
       <label class="floating-label">Last name</label>
@@ -23,12 +18,7 @@
         type="text"
         :value="currentPatient.lastName"
         required
-        @input="
-          setCurrentPatientValueByKey({
-            key: 'lastName',
-            value: $event.target.value
-          })
-        "
+        @input="setPatientValueByKey('lastName', $event.target.value)"
       />
 
       <label class="floating-label">Birth number</label>
@@ -38,12 +28,7 @@
         type="text"
         :value="currentPatient.birthNumber"
         required
-        @input="
-          setCurrentPatientValueByKey({
-            key: 'birthNumber',
-            value: $event.target.value
-          })
-        "
+        @input="setPatientValueByKey('birthNumber', $event.target.value)"
       />
 
       <label class="floating-label">Phone number</label>
@@ -53,12 +38,7 @@
         type="tel"
         :value="currentPatient.phoneNumber"
         required
-        @input="
-          setCurrentPatientValueByKey({
-            key: 'phoneNumber',
-            value: $event.target.value
-          })
-        "
+        @input="setPatientValueByKey('phoneNumber', $event.target.value)"
       />
     </div>
     <button type="submit" class="link btn-primary">Next</button>
@@ -77,6 +57,16 @@ export default {
     formSubmit(e) {
       e.preventDefault()
       this.$emit('next')
+    },
+    setPatientValueByKey(key, value) {
+      this.setCurrentPatientValueByKey({
+        key,
+        value: value
+          .replace(/\s\s+/g, ' ') // replace multiple whitespaces with only one
+          .split(' ')
+          .join('')
+          .trim()
+      })
     }
   }
 }
