@@ -103,7 +103,22 @@
                 "
                 :value="option.value"
                 type="checkbox"
+                class="hideCheckbox"
               />
+              <ion-icon
+                v-if="
+                  answers[currentStepNum].find(op => op.value === option.value)
+                    .isChecked
+                "
+                name="checkbox"
+              ></ion-icon>
+              <ion-icon
+                v-if="
+                  !answers[currentStepNum].find(op => op.value === option.value)
+                    .isChecked
+                "
+                name="checkbox-outline"
+              ></ion-icon>
               <label :for="option.value">{{ option.text }}</label>
             </div>
 
@@ -310,6 +325,14 @@ export default {
 @import '@/theme/variables.scss';
 @import '@/theme/general.scss';
 
+.hideCheckbox {
+  // position: absolute;
+  // opacity: 0;
+  // cursor: pointer;
+  // height: 0;
+  // width: 0;
+}
+
 .container {
   min-height: 50vh;
   display: flex;
@@ -450,9 +473,15 @@ export default {
   .checkbox-wrapper {
     display: flex;
     align-items: center;
-    width: 100%;
-    padding: 0.2rem;
-    margin: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem 1em;
+    margin: 1rem 0;
+    background: white;
+    border-radius: 10rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
     label {
       margin-left: 0.5rem;
