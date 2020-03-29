@@ -58,6 +58,12 @@ body {
   a {
     font-weight: 500;
     text-decoration: none;
+    color: black;
+  }
+
+  button {
+    background-color: initial;
+    border: initial;
   }
 
   hr {

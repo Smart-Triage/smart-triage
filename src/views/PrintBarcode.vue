@@ -1,10 +1,20 @@
 <template>
-  <div>
-    <router-link class="link" to="/employee">Back</router-link>
+  <div class="container">
+    <router-link to="/employee"
+      ><ion-icon name="arrow-back-outline" size="large"></ion-icon
+    ></router-link>
 
     <!-- RENDERING HELPERS -->
     <svg id="barcode"></svg>
     <canvas id="canvas" width="600" height="150"></canvas>
+
+    <h1>Print this barcode</h1>
+
+    <p>How to print?</p>
+    <p>
+      Long press on barcode image and select 'Download' or 'Share' directly to
+      printer app
+    </p>
 
     <!-- THE IMAGE -->
     <div id="png-container"></div>
@@ -124,6 +134,10 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  height: 100%;
+}
+
 #canvas,
 #barcode {
   display: none;
