@@ -2,7 +2,7 @@
   <div id="app">
     <nav-bar></nav-bar>
     <div class="main-wrapper">
-      <transition name="view">
+      <transition name="view" mode="out-in">
         <router-view />
       </transition>
     </div>
@@ -134,17 +134,11 @@ body {
 .view-leave-active {
   transition: opacity 0.2s ease-in-out, transform 0.2s ease;
 }
-.view-enter-active {
-  transition-delay: 0.2s;
-}
 .view-enter {
   opacity: 0;
   transform: translateX(+100px);
 }
-.view-enter-to {
-  opacity: 1;
-  transform: translateX(0px);
-}
+.view-enter-to,
 .view-leave {
   opacity: 1;
   transform: translateX(0px);
@@ -152,5 +146,20 @@ body {
 .view-leave-to {
   opacity: 0;
   transform: translateX(-100px);
+}
+
+.unroll-enter-active,
+.unroll-leave-active {
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease;
+}
+.unroll-enter,
+.unroll-leave-to {
+  opacity: 0;
+  transform: scaleY(1);
+}
+.unroll-enter-to,
+.unroll-leave {
+  opacity: 1;
+  transform: scaleY(0);
 }
 </style>

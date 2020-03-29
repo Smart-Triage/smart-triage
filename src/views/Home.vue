@@ -5,15 +5,20 @@
     </div>
 
     <div class="home-page-center">
-      <p class="home-page-welcome">Vítejte v</p>
-      <h1 class="home-page-title">{{ appTitle }}</h1>
+      <p class="home-page-welcome">COVID-19</p>
+      <h1 class="home-page-title">Patient admission</h1>
+
+      <p class="home-page-info">
+        Please fill this form before comming to the hospital to speed up your
+        admission
+      </p>
 
       <PatientList class="patient-list"></PatientList>
 
       <div v-if="patients.length === 0" class="main-action">
         <button class="link btn-primary" @click="createPatient">
           <ion-icon name="person-add-outline"></ion-icon>
-          Begin
+          <span class="main-action-text">Begin</span>
         </button>
       </div>
       <div v-else class="main-action">
@@ -112,12 +117,28 @@ export default {
       color: $main-text-color;
     }
 
+    .home-page-info {
+      margin-top: 2rem;
+    }
+
     .patient-list {
-      margin-top: 4rem;
+      margin-top: 2rem;
     }
 
     .main-action {
-      margin-top: 4rem;
+      p {
+        margin: 8px 0;
+      }
+
+      button {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+
+        .main-action-text {
+          margin-left: 1rem;
+        }
+      }
     }
   }
 

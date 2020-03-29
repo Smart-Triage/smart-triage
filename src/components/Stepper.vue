@@ -6,103 +6,116 @@
       class="step"
       :class="{ hidden: step.order !== currentStepNum }"
     >
+      <!-- <div class="top-buttons">Buttons</div> -->
       <div v-if="step.order === '0'" class="home-page-top-img">
-        <h1 class="page-title">Vytváření účtu</h1>
+        <h1 class="page-title">Personal details</h1>
         <img src="@/assets/img/form-page-top.png" alt />
       </div>
       <div v-if="step.order !== '0'" class="home-page-top-img">
         <h1 class="page-title">Dotazník</h1>
         <img src="@/assets/img/form-page-top.png" alt />
       </div>
-      <div class="container">
-        <p v-if="step.order !== '0'" class="directions">
-          Nyní prosím zodpovězte několik otázek ohledně Vašeho zdraví.
-        </p>
-        <p class="question">{{ step.question }}</p>
 
-        <div v-if="step.order === '0'">
-          <PatientForm
-            v-if="currentStepNum === '0'"
-            @next="next(null)"
-          ></PatientForm>
-        </div>
+      <transition name="view" mode="out-in">
+        <div class="container">
+          <p v-if="step.order !== '0'" class="directions">
+            Nyní prosím zodpovězte několik otázek ohledně Vašeho zdraví.
+          </p>
+          <p v-if="currentStepNum !== '0'" class="question">
+            {{ step.question }}
+          </p>
 
-        <div v-if="step.answerType === 'boolean'" class="boolean-answer-button">
-          <button
-            :class="{ 'button-active': answers[currentStepNum] == false }"
-            @click="next(false)"
-          >
-            No
-          </button>
-          <button
-            :class="{ 'button-active': answers[currentStepNum] == true }"
-            @click="next(true)"
-          >
-            Yes
-          </button>
-        </div>
-
-        <div v-if="step.answerType === 'slider'" class="slider-answer-slider">
-          <div>{{ temperatureValue }}</div>
-          <input
-            v-model="temperatureValue"
-            type="range"
-            min="36.5"
-            max="42"
-            step="0.5"
-            class="slider"
-          />
-          <button @click="next(temperatureValue)">Další</button>
-        </div>
-
-        <div v-if="step.answerType === 'one-of'" class="one-of-answer">
-          <button
-            v-for="option in step.options"
-            :key="option.value"
-            :class="{
-              'button-active': answers[currentStepNum] === option.value
-            }"
-            @click="next(option.value)"
-          >
-            {{ option.text }}
-          </button>
-        </div>
-
-        <div
-          v-if="currentStepNum == '5' && step.answerType === 'checkbox'"
-          class="checkbox-answer"
-        >
-          <div
-            v-for="option in step.options"
-            :key="currentPatient + option.value"
-          >
-            <label :for="option.value">{{ option.text }}</label>
-            <input
-              :id="option.value"
-              v-model="
-                answers[currentStepNum].find(op => op.value === option.value)
-                  .isChecked
-              "
-              :value="option.value"
-              type="checkbox"
-            />
+          <div v-if="step.order === '0'">
+            <PatientForm
+              v-if="currentStepNum === '0'"
+              @next="next(null)"
+            ></PatientForm>
           </div>
 
-          <button @click="next(step.options)">Další</button>
-        </div>
-      </div>
+          <div
+            v-if="step.answerType === 'boolean'"
+            class="boolean-answer-button"
+          >
+            <button
+              :class="{ 'button-active': answers[currentStepNum] == false }"
+              @click="next(false)"
+            >
+              No
+            </button>
+            <button
+              :class="{ 'button-active': answers[currentStepNum] == true }"
+              @click="next(true)"
+            >
+              Yes
+            </button>
+          </div>
 
-      <div class="buttons">
-        <button v-if="!isFirst" class="prev" @click="prev()">Previous</button>
-        <div class="spacer"></div>
-        <button
-          v-if="currentPatient.answers[currentStepNum] !== undefined"
-          class="next"
-          @click="next(null)"
-        >
-          {{ isLast ? 'Sumary' : 'Next' }}
-        </button>
-      </div>
+          <div v-if="step.answerType === 'slider'" class="slider-answer-slider">
+            <div>{{ temperatureValue }}</div>
+            <input
+              v-model="temperatureValue"
+              type="range"
+              min="36.5"
+              max="42"
+              step="0.5"
+              class="slider"
+            />
+            <button @click="next(temperatureValue)">Next</button>
+          </div>
+
+          <div v-if="step.answerType === 'one-of'" class="one-of-answer">
+            <button
+              v-for="option in step.options"
+              :key="option.value"
+              :class="{
+                'button-active': answers[currentStepNum] === option.value
+              }"
+              @click="next(option.value)"
+            >
+              {{ option.text }}
+            </button>
+          </div>
+
+          <div
+            v-if="currentStepNum == '5' && step.answerType === 'checkbox'"
+            class="checkbox-answer"
+          >
+            <div
+              v-for="option in step.options"
+              :key="currentPatient + option.value"
+              class="checkbox-wrapper"
+            >
+              <input
+                :id="option.value"
+                v-model="
+                  answers[currentStepNum].find(op => op.value === option.value)
+                    .isChecked
+                "
+                :value="option.value"
+                type="checkbox"
+              />
+              <label :for="option.value">{{ option.text }}</label>
+            </div>
+
+            <button @click="next(step.options)">Další</button>
+          </div>
+
+          <div class="spacer"></div>
+          <div v-if="currentStepNum !== '0'" class="buttons">
+            <button v-if="!isFirst" class="icon-button prev" @click="prev()">
+              <ion-icon name="chevron-back-outline" size="large"></ion-icon>
+            </button>
+            <div class="spacer"></div>
+            <button
+              v-if="currentPatient.answers[currentStepNum] !== undefined"
+              class="icon-button next"
+              @click="next(null)"
+            >
+              <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -134,13 +147,23 @@ export default {
       return this.currentStepNum === '0'
     }
   },
+  watch: {
+    $route(to) {
+      // Watch for url changes, and view correct step based on URL hash value
+      const stepNumFromhash = to.hash.substr(1).trim()
+      if (stepNumFromhash.length >= 1) this.currentStepNum = stepNumFromhash
+      else this.currentStepNum = '0'
+    }
+  },
   mounted() {
     if (!this.currentPatient.visitedSteps) {
+      // If visitedSteps are not defined set te default value ['0']
       this.setCurrentPatientValueByKey({
         key: 'visitedSteps',
         value: ['0']
       })
     } else if (this.currentPatient.visitedSteps.indexOf('end') > -1) {
+      // Comming back to form after finishing, show form from beginning
       this.visitedSteps = ['0']
       this.currentStepNum = '0'
       this.setCurrentPatientValueByKey({
@@ -148,6 +171,7 @@ export default {
         value: ['0']
       })
     } else {
+      // clone visitedStepos from vuex store
       this.visitedSteps = cloneDeep(this.currentPatient.visitedSteps)
       this.currentStepNum = cloneDeep(
         this.currentPatient.visitedSteps[
@@ -155,7 +179,9 @@ export default {
         ]
       )
     }
+
     if (!this.currentPatient.answers) {
+      // If answers are not defined for current patient (first time in form), prepopulate the object with default values
       this.answers = {}
       this.formSteps.forEach(step => {
         switch (step.answerType) {
@@ -180,10 +206,14 @@ export default {
         })
       })
     } else {
+      // Answers are defined, clone then locally to this.answers
       Object.keys(this.currentPatient.answers).forEach(
         key => (this.answers[key] = cloneDeep(this.currentPatient.answers[key]))
       )
     }
+
+    // Set correct hash in URL
+    this.$router.replace(`#${this.currentStepNum}`)
 
     this.dataIsReady = true
   },
@@ -203,12 +233,14 @@ export default {
     },
     next(answer) {
       if (answer === null) {
+        // Navigating by clicking Next button, keep the last saved value for this step
         this.currentStepNum = cloneDeep(
           (this.currentPatient.answers[this.currentStepNum] === true
             ? this.currentStep.nextIfPositive
             : this.currentStep.nextIfNegative) || this.currentStep.next
         )
       } else {
+        // Navigating by selecting an answer, save the answer to store
         switch (typeof answer) {
           case 'boolean':
             this.answers[this.currentStepNum] = answer
@@ -241,20 +273,24 @@ export default {
             this.currentStepNum = cloneDeep(this.currentStep.next)
             break
         }
+        // Save to vuex store
         this.setCurrentPatientValueByKey({
           key: 'answers',
           value: cloneDeep(this.answers)
         })
       }
+      // Add this steps to visited steps
       this.visitedSteps.push(cloneDeep(this.currentStepNum))
+      // Update visited step in vuex store
       this.setCurrentPatientValueByKey({
         key: 'visitedSteps',
         value: cloneDeep(this.visitedSteps)
       })
 
-      if (this.currentStepNum === 'end') {
-        this.$router.push('/summary')
-      }
+      // When on last step navigate to summary
+      if (this.currentStepNum === 'end') this.$router.push('/summary')
+      // Else update hash in URL with correct step number
+      else this.$router.push(`#${this.currentStepNum}`)
     }
   }
 }
@@ -269,19 +305,31 @@ export default {
   display: flex;
   flex-direction: column;
   align-self: flex-end;
+  justify-content: space-between;
   width: 100vw;
   align-items: center;
   margin: 0 auto;
   background-color: white;
   border-radius: 2em 2em 0 0;
-  max-width: 400px;
+  max-width: 600px;
   padding: 0 0 2em 0;
+
+  .spacer {
+    flex-grow: 1;
+  }
+}
+
+.top-buttons {
+  width: 100%;
+  padding: 1rem 2rem;
 }
 
 .step {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
+  min-height: 100vh;
 }
 
 .buttons {
@@ -289,14 +337,18 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  position: absolute;
-  bottom: 0;
   padding: 1rem;
+
+  .next,
+  .prev {
+    padding: 1rem;
+  }
 }
 
 .boolean-answer-button,
 .slider-answer-slider,
-.one-of-answer {
+.one-of-answer,
+.checkbox-answer {
   button {
     font-size: 1.1em;
     background-color: $light-button-color;
@@ -371,6 +423,18 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.2rem;
+    margin: 0.5rem 0;
+
+    label {
+      margin-left: 0.5rem;
+    }
+  }
 }
 
 .main-container {

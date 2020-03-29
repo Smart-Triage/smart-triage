@@ -1,25 +1,39 @@
 <template>
   <div v-if="currentPatient" class="container">
     <button
-    :class="{ changecolor: !patientInfoHidden }"
+      :class="{ changecolor: !patientInfoHidden }"
+      class="btn-secondary accordion-button"
       @click="patientInfoHidden = !patientInfoHidden"
-      class="btn-secondary"
     >
+      <div class="spacer"></div>
       Patient info
+      <ion-icon
+        :name="
+          patientInfoHidden ? 'chevron-down-outline' : 'chevron-up-outline'
+        "
+      ></ion-icon>
     </button>
-    <div class="info-container" :class="{ hideInfo: patientInfoHidden }" >
-      <p>
-        Name: {{ currentPatient.firstName + ' ' + currentPatient.lastName }}
-      </p>
-      <p>Birth number: {{ currentPatient.birthNumber }}</p>
-      <p>Phone number: {{ currentPatient.phoneNumber }}</p>
-    </div>
+    <transition name="unroll">
+      <div class="info-container" :class="{ hideInfo: patientInfoHidden }">
+        <p>
+          Name: {{ currentPatient.firstName + ' ' + currentPatient.lastName }}
+        </p>
+        <p>Birth number: {{ currentPatient.birthNumber }}</p>
+        <p>Phone number: {{ currentPatient.phoneNumber }}</p>
+      </div>
+    </transition>
     <button
-    :class="{ changecolor: !patientSymptomsHidden }"
+      :class="{ changecolor: !patientSymptomsHidden }"
+      class="btn-secondary accordion-button"
       @click="patientSymptomsHidden = !patientSymptomsHidden"
-      class="btn-secondary"
     >
+      <div class="spacer"></div>
       Symptomy
+      <ion-icon
+        :name="
+          patientSymptomsHidden ? 'chevron-down-outline' : 'chevron-up-outline'
+        "
+      ></ion-icon>
     </button>
     <div :class="{ hideInfo: patientSymptomsHidden }" class="info-container">
       <div v-for="step in formStepsToShow" :key="step.order">
@@ -74,20 +88,31 @@ export default {
 @import '@/theme/variables.scss';
 @import '@/theme/general.scss';
 
+.accordion-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+
+  .spacer {
+    width: 18px;
+  }
+}
+
 .btn-secondary {
-    font-size: 1.1em;
-    background-color: #EDF1F9;
-    border-radius: 2em;
-    border: none;
-    padding: 0.8em 2em;
-    margin: 0.5em 2em;
-    width: calc(100% - 2em);
+  font-size: 1.1em;
+  background-color: #edf1f9;
+  border-radius: 2em;
+  border: none;
+  padding: 0.8em 2em;
+  margin: 0.5em 2em;
+  width: calc(100% - 2em);
 }
 
 .hideInfo {
   overflow: hidden;
   height: 0;
-  padding: 0 !important; 
+  padding: 0 !important;
 }
 
 .symptoms-container {
@@ -113,6 +138,6 @@ export default {
 }
 .changecolor {
   background-color: $secondary-color;
-  color: #EDF1F9;
+  color: #edf1f9;
 }
 </style>
