@@ -18,6 +18,9 @@
       <router-link class="home-page-link" to="/how-it-works"
         >How it works?</router-link
       >
+      <router-link class="home-page-link" to="/about"
+        >About this app</router-link
+      >
     </div>
   </div>
 </template>
@@ -106,6 +109,8 @@ export default {
       font-weight: 400;
       align-self: flex-end;
       margin-bottom: 1em;
+      margin-left: 3rem;
+      margin-right: 3rem;
     }
   }
 }
