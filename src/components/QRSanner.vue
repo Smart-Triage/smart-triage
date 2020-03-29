@@ -2,7 +2,36 @@
   <div>
     <p v-if="error" class="error">Error: {{ error }}</p>
 
-    <qrcode-stream @decode="onDecode" @init="onInit" />
+    <qrcode-stream @decode="onDecode" @init="onInit">
+      <div class="qr-border">
+        <svg viewBox="0 0 100 100">
+          <path
+            d="M25,2 L2,2 L2,25"
+            fill="none"
+            stroke="black"
+            stroke-width="1"
+          />
+          <path
+            d="M2,75 L2,98 L25,98"
+            fill="none"
+            stroke="black"
+            stroke-width="1"
+          />
+          <path
+            d="M75,98 L98,98 L98,75"
+            fill="none"
+            stroke="black"
+            stroke-width="1"
+          />
+          <path
+            d="M98,25 L98,2 L75,2"
+            fill="none"
+            stroke="black"
+            stroke-width="1"
+          />
+        </svg>
+      </div>
+    </qrcode-stream>
   </div>
 </template>
 
@@ -87,9 +116,22 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .error {
   font-weight: bold;
   color: red;
+}
+
+.qr-border {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    height: 80%;
+    width: 80%;
+  }
 }
 </style>
