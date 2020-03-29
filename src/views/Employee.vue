@@ -1,36 +1,47 @@
 <template>
   <div class="container">
     <div v-if="scanning" class="scanner-view">
-      <button @click="scan(false)">
+      <button @click="showEmployeeHomepage">
         <ion-icon name="arrow-back-outline" size="large"></ion-icon>
       </button>
       <QRScanner @patient="addPatient"></QRScanner>
     </div>
 
     <div
-      v-if="!scanning && !showingConfirmationQR && currentPatient"
-      class="summary-view"
+      v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
+      class="header-info"
     >
-      <h1>Patient summary</h1>
-      <PatientSummary></PatientSummary>
-
-      <!-- <router-link
-      class="link"
-      to="print-barcode"
-      >Print barcode</router-link
-    > -->
+      <h1>Triage</h1>
+      <p>Welcome to the employee application for the triage of patients</p>
+      <p>Tap scan next patient to begin</p>
     </div>
 
-    <button
-      v-if="!showingConfirmationQR && confirmedPatient && !scanning"
-      class="btn-primary show-confirmation-btn"
-      @click="viewConfirmationQR(true)"
-    >
-      Show confirmation code
-    </button>
+    <div v-if="showPatientSummary && currentPatient" class="summary-view">
+      <div class="top-buttons">
+        <button class="icon-button" @click="showEmployeeHomepage">
+          <ion-icon name="close-outline" size="large"></ion-icon>
+        </button>
+      </div>
+      <h1>Patient summary</h1>
+      <PatientSummary :employee="true"></PatientSummary>
+
+      <!-- <router-link
+      class="link icon-button"
+      to="print-barcode"
+      ><ion-icon name="barcode-outline"></ion-icon><div class="button-text">Print barcode</div></router-link
+    > -->
+      <button
+        class="btn-primary show-confirmation-btn icon-button"
+        @click="viewConfirmationQR"
+      >
+        <ion-icon name="checkmark-outline"></ion-icon>
+        <div class="button-text">Confirm pacient info</div>
+      </button>
+    </div>
+
     <div v-if="showingConfirmationQR" class="confirmation-view">
       <div class="top-buttons">
-        <button @click="viewConfirmationQR(false)">
+        <button @click="viewPatientSummary">
           <ion-icon name="arrow-back-outline" size="large"></ion-icon>
         </button>
       </div>
@@ -41,16 +52,20 @@
         size="300"
         level="H"
       ></qrcode-vue>
+      <button class="link btn-primary" @click="showEmployeeHomepage">
+        Close patient
+      </button>
     </div>
 
     <div class="spacer"></div>
 
     <button
-      v-if="!scanning && !showingConfirmationQR"
-      class="btn-primary scan-next-pacient"
-      @click="scan(true)"
+      v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
+      class="btn-primary scan-next-pacient icon-button"
+      @click="scan"
     >
-      Scan next patient
+      <ion-icon name="scan-outline"></ion-icon>
+      <div class="button-text">Scan next patient</div>
     </button>
   </div>
 </template>
@@ -70,18 +85,21 @@ export default {
   data: () => ({
     scanning: false,
     showingConfirmationQR: false,
-    scannedAtLeastOnce: false
+    scannedAtLeastOnce: false,
+    showPatientSummary: false
   }),
   computed: {
     ...mapGetters('patients', ['currentPatient']),
     confirmedPatient() {
-      return JSON.stringify({
-        ...this.currentPatient,
-        confirmation: {
-          confirmedBy: 'HOSPITAL_EMPLOYEE_NAME',
-          time: new Date()
-        }
-      })
+      if (this.currentPatient)
+        return JSON.stringify({
+          ...this.currentPatient,
+          confirmation: {
+            confirmedBy: 'HOSPITAL_EMPLOYEE_NAME',
+            timestamp: new Date()
+          }
+        })
+      return null
     }
   },
   watch: {
@@ -92,14 +110,22 @@ export default {
         case 'scanning':
           this.scanning = true
           this.showingConfirmationQR = false
+          this.showPatientSummary = false
           break
         case 'confirmation-qr-code':
           this.showingConfirmationQR = true
+          this.scanning = false
+          this.showPatientSummary = false
+          break
+        case 'patient-summary':
+          this.showPatientSummary = true
+          this.showingConfirmationQR = false
           this.scanning = false
           break
         default:
           this.showingConfirmationQR = false
           this.scanning = false
+          this.showPatientSummary = false
           break
       }
     }
@@ -113,6 +139,9 @@ export default {
       case 'confirmation-qr-code':
         this.showingConfirmationQR = true
         break
+      case 'patient-summary':
+        this.showPatientSummary = true
+        break
       default:
         break
     }
@@ -123,24 +152,25 @@ export default {
       this.scanning = false
       this.scannedAtLeastOnce = true
       this.updateOrAddPatient(patient)
+      this.viewPatientSummary()
     },
-    scan(val) {
-      if (val) {
-        this.scanning = true
-        this.$router.push('#scanning')
-      } else {
-        this.scanning = false
-        this.$router.push('')
-      }
+    showEmployeeHomepage() {
+      this.scanning = false
+      this.showingConfirmationQR = false
+      this.showPatientSummary = false
+      this.$router.push('')
     },
-    viewConfirmationQR(val) {
-      if (val) {
-        this.showingConfirmationQR = true
-        this.$router.push('#confirmation-qr-code')
-      } else {
-        this.showingConfirmationQR = false
-        this.$router.push('')
-      }
+    scan() {
+      this.scanning = true
+      this.$router.push('#scanning')
+    },
+    viewConfirmationQR() {
+      this.showingConfirmationQR = true
+      this.$router.push('#confirmation-qr-code')
+    },
+    viewPatientSummary() {
+      this.showPatientSummary = true
+      this.$router.push('#patient-summary')
     }
   }
 }
@@ -164,6 +194,13 @@ export default {
   width: 100%;
 }
 
+.header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
 .summary-view,
 .confirmation-view {
   display: flex;
@@ -172,15 +209,21 @@ export default {
 }
 
 .show-confirmation-btn {
+  cursor: pointer;
   font-size: 1.1rem;
-  background-color: $secondary-color;
+  background-color: $primary-color;
   color: white;
-  padding: 0.8rem 1.2rem;
+  padding: 0.8rem 1.5rem 0.8rem 1.2rem;
 }
 
 .scan-next-pacient {
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 2rem;
   padding: 0.8rem 1.2rem;
+  color: white;
+
+  .button-text {
+    font-size: 1rem;
+  }
 }
 </style>

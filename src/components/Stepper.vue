@@ -376,6 +376,11 @@ export default {
   align-items: center;
   height: 100%;
   min-height: 100vh;
+  @supports (-webkit-appearance: none) {
+    .os-android & {
+      min-height: calc(100vh - 56px);
+    }
+  }
 }
 
 .buttons {
@@ -490,7 +495,13 @@ export default {
 }
 
 .main-container {
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
+  @supports (-webkit-appearance: none) {
+    .os-android & {
+      min-height: calc(100vh - 56px);
+    }
+  }
   display: flex;
   flex-direction: column;
 

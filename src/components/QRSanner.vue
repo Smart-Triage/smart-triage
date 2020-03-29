@@ -66,6 +66,8 @@ export default {
           'phoneNumber',
           'answers'
         ]
+        const optionalKeys = ['confirmation']
+
         requiredKeys.forEach(key => {
           if (incommingKeys.indexOf(key) === -1)
             throw Error(`Error: Missing key "${key}" in JSON`)
@@ -83,7 +85,11 @@ export default {
 
         // Remove keys, we don't need
         Object.keys(patient).forEach(key => {
-          if (requiredKeys.indexOf(key) === -1) delete patient[key]
+          if (
+            requiredKeys.indexOf(key) === -1 &&
+            optionalKeys.indexOf(key) === -1
+          )
+            delete patient[key]
         })
 
         // Emit valid patient object

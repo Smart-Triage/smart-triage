@@ -11,7 +11,8 @@ Vue.use(Vuex)
 /* If you don't know about Vuex, please refer to https://vuex.vuejs.org/ */
 
 const vuexLocal = new VuexPersistence({
-  storage: window.localStorage
+  storage: window.localStorage,
+  reducer: state => ({ patients: state.patients })
 })
 
 export default new Vuex.Store({

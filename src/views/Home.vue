@@ -90,7 +90,13 @@ ion-icon {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
+  @supports (-webkit-appearance: none) {
+    .os-android & {
+      min-height: calc(100vh - 56px);
+    }
+  }
 
   .home-page-top-img {
     display: flex;

@@ -48,12 +48,25 @@ export default {
 }
 
 html {
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
+  @supports (-webkit-appearance: none) {
+    .os-android & {
+      min-height: calc(100vh - 56px);
+    }
+  }
 }
 body {
   margin: 0;
-  height: 100vh;
   background-color: $bg-color;
+
+  height: 100%;
+  min-height: 100vh;
+  @supports (-webkit-appearance: none) {
+    .os-android & {
+      min-height: calc(100vh - 56px);
+    }
+  }
 
   a {
     font-weight: 500;
@@ -107,7 +120,13 @@ body {
     }
 
     .main-wrapper {
-      height: 100vh;
+      height: 100%;
+      min-height: 100vh;
+      @supports (-webkit-appearance: none) {
+        .os-android & {
+          min-height: calc(100vh - 56px);
+        }
+      }
 
       .page-wrapper {
         width: 60%;
@@ -167,5 +186,14 @@ body {
 .unroll-leave {
   opacity: 1;
   transform: scaleY(0);
+}
+
+.icon-button {
+  display: flex;
+  cursor: pointer;
+
+  .button-text {
+    margin-left: 1rem;
+  }
 }
 </style>

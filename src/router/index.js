@@ -49,11 +49,22 @@ const router = new Router({
       }
     },
     {
-      path: '/qr-code',
-      name: 'qr-code',
+      path: '/patient-qr-code',
+      name: 'patient-qr-code',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-summary" */ '@/views/QRCode.vue'
+          /* webpackChunkName: "client-chunk-summary" */ '@/views/PacientQRCode.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
+      path: '/scan-confirmation-qr-code',
+      name: 'scan-confirmation-qr-code',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-summary" */ '@/views/ScanConfirmationQRCode.vue'
         ),
       meta: {
         authNotRequired: true
@@ -142,6 +153,13 @@ const router = new Router({
     { path: '*', redirect: '/home' }
   ]
 })
+
+/* Wait fir VuexPersistence to restore the store */
+const waitForStorageToBeReady = async (to, from, next) => {
+  await store.restored
+  next()
+}
+router.beforeEach(waitForStorageToBeReady)
 
 /**
  * Handle user redirections

@@ -22,11 +22,14 @@ export default {
   },
 
   updateOrAddPatient: async ({ state, commit }, patient) => {
-    if (state.patients.find(p => p.id === patient.id))
-      commit('updatePatient', patient)
-    else commit('createNewPatient', patient)
+    return new Promise(resolve => {
+      if (state.patients.find(p => p.id === patient.id))
+        commit('updatePatient', patient)
+      else commit('createNewPatient', patient)
 
-    commit('setCurrentPatientId', patient.id)
+      commit('setCurrentPatientId', patient.id)
+      resolve()
+    })
   },
 
   deletePatientById: async ({ commit }, patientId) => {

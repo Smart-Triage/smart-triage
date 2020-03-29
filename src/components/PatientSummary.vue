@@ -1,5 +1,16 @@
 <template>
   <div v-if="currentPatient" class="container">
+    <div
+      v-if="
+        currentPatient.confirmation &&
+          currentPatient.confirmation.confirmedBy.length > 1 &&
+          currentPatient.confirmation.timestamp
+      "
+      class="is-confirmed"
+    >
+      <div>Confirmed by {{ currentPatient.confirmation.confirmedBy }}</div>
+      <div>{{ currentPatient.confirmation.timestamp }}</div>
+    </div>
     <button
       :class="{ changecolor: !patientInfoHidden }"
       class="btn-secondary accordion-button"
@@ -24,12 +35,15 @@
           currentPatient.firstName + ' ' + currentPatient.lastName
         }}</span>
         <hr class="dividerInfo" />
-        <p><b>number</b></p>
+        <p><b>Birth number</b></p>
         <span>{{ currentPatient.birthNumber }}</span>
         <hr class="dividerInfo" />
         <p><b>Phone number</b></p>
         <span>{{ currentPatient.phoneNumber }}</span>
         <hr class="dividerInfo" />
+        <button v-if="!employee" class="edit-btn" @click="edit('0')">
+          Edit
+        </button>
       </div>
     </transition>
     <button
@@ -74,16 +88,20 @@
         <span v-else>{{ currentPatient.answers[step.order] }}</span>
         <hr class="dividerInfo" />
       </div>
+      <button v-if="!employee" class="edit-btn" @click="edit('1')">
+        Edit
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
+  props: { employee: { type: Boolean, default: false } },
   data: () => ({
-    patientInfoHidden: true,
+    patientInfoHidden: false,
     patientSymptomsHidden: true
   }),
   computed: {
@@ -97,6 +115,16 @@ export default {
           stepsToShow.push(step)
       })
       return stepsToShow
+    }
+  },
+  methods: {
+    ...mapMutations('patients', ['setCurrentPatientValueByKey']),
+    edit(stepNum) {
+      this.setCurrentPatientValueByKey({
+        key: 'visitedSteps',
+        value: [stepNum]
+      })
+      this.$router.push('/form')
     }
   }
 }
@@ -125,6 +153,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  position: relative;
+  z-index: 20;
 
   .spacer {
     width: 18px;
@@ -162,7 +192,6 @@ ion-icon {
 
 .info-container {
   transform: translateY(-50px);
-  z-index: -10;
   display: flex;
   flex-direction: column;
   max-width: 400px;
@@ -172,5 +201,16 @@ ion-icon {
   padding: 3em 2em 2em 2em;
   width: calc(100% - 2em);
   border-radius: 1.1em;
+}
+
+.edit-btn {
+  cursor: pointer;
+  font-size: 1em;
+  background-color: $secondary-color;
+  color: white;
+  border-radius: 2em;
+  padding: 0.8em 4em;
+  width: fit-content;
+  margin: 0 auto;
 }
 </style>

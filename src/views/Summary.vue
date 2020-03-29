@@ -1,6 +1,12 @@
 <template>
   <div v-if="currentPatient" class="container">
     <div class="top-sumary">
+      <!-- <div class="top-buttons">
+        <button @click="edit">Edit</button>
+        <button @click="deletePatient">
+          Remove
+        </button>
+      </div> -->
       <h1 class="page-title">Summary</h1>
       <img src="@/assets/img/home-page-welcome-img.png" alt="" />
     </div>
@@ -9,19 +15,14 @@
     <hr />
 
     <div class="buttons">
-      <div>
-        <button class="link btn-primary" @click="deletePatient">
-          Remove this person
-        </button>
-        <button class="link btn-primary" @click="edit">Edit this person</button>
-
-      </div>
-        <router-link to="/home" class="link btn-primary"
-          >Add another person</router-link
-        >
-      <router-link to="/qr-code" class="link btn-primary"
-        >Show QR code</router-link
-      >
+      <router-link to="/home" class="link btn-primary icon-button"
+        ><ion-icon name="person-add-outline"></ion-icon>
+        <div class="button-text">Add another person</div>
+      </router-link>
+      <router-link to="/patient-qr-code" class="link btn-primary icon-button">
+        <ion-icon name="qr-code-outline"></ion-icon>
+        <div class="button-text">Show QR code</div>
+      </router-link>
     </div>
   </div>
   <div v-else>
@@ -58,10 +59,6 @@ export default {
   methods: {
     ...mapActions('patients', ['deletePatientById']),
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
-    edit() {
-      this.setCurrentPatientValueByKey({ key: 'visitedSteps', value: ['0'] })
-      this.$router.push('/form')
-    },
     deletePatient(e) {
       e.stopPropagation()
       // eslint-disable-next-line no-alert
@@ -82,12 +79,30 @@ export default {
 @import '@/theme/variables.scss';
 @import '@/theme/general.scss';
 
-
-
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.top-buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+
+  button {
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    background-color: $light-button-color;
+    border-radius: 2em;
+    border: none;
+  }
 }
 
 .buttons {
