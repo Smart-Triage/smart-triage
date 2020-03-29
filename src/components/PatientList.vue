@@ -14,42 +14,34 @@
           "
           class="patient-name"
         >
-          [Unfinished]
+          _
         </div>
         <div v-else class="patient-name">
           {{ patient.firstName + ' ' + patient.lastName }}
         </div>
       </div>
-      <ion-icon name="arrow-forward-outline"></ion-icon>
-
-      <!-- <div class="patient-item-actions">
-        <button @click="deletePatient($event, patient)">Remove</button>
-      </div> -->
+      <div class="patient-item-right">
+        <span>{{
+          patient.finished === true ? 'Finished' : 'Not finished'
+        }}</span>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   computed: {
     ...mapState('patients', ['patients'])
   },
   methods: {
-    ...mapActions('patients', ['deletePatientById']),
     ...mapMutations('patients', [
       'setCurrentPatientId',
       'setCurrentPacientFormStep'
     ]),
-    deletePatient(e, patient) {
-      e.stopPropagation()
-      // eslint-disable-next-line no-alert
-      const r = window.confirm(
-        `Delete patient ${patient.firstName} ${patient.lastName}?`
-      )
-      if (r === true) this.deletePatientById(patient.id)
-    },
     selectPatient(patient) {
       this.setCurrentPatientId(patient.id)
       if (patient.finished) this.$router.push('/summary')
@@ -80,6 +72,14 @@ export default {
     display: flex;
 
     .patient-name {
+      margin-left: 1rem;
+    }
+  }
+
+  .patient-item-right {
+    display: flex;
+
+    ion-icon {
       margin-left: 1rem;
     }
   }

@@ -15,19 +15,31 @@
         <img src="@/assets/img/form-page-top.png" alt />
       </div>
       <div class="container">
-        <p
-          v-if="step.order !== '0'"
-          class="directions"
-        >Nyní prosím zodpovězte několik otázek ohledně Vašeho zdraví.</p>
+        <p v-if="step.order !== '0'" class="directions">
+          Nyní prosím zodpovězte několik otázek ohledně Vašeho zdraví.
+        </p>
         <p class="question">{{ step.question }}</p>
 
         <div v-if="step.order === '0'">
-          <PatientForm v-if="currentStepNum === '0'" @next="next(null)"></PatientForm>
+          <PatientForm
+            v-if="currentStepNum === '0'"
+            @next="next(null)"
+          ></PatientForm>
         </div>
 
         <div v-if="step.answerType === 'boolean'" class="boolean-answer-button">
-          <button :class="{ 'answer-active': step.answer === false }" @click="next(false)">No</button>
-          <button :class="{ 'answer-active': step.answer === true }" @click="next(true)">Yes</button>
+          <button
+            :class="{ 'button-active': answers[currentStepNum] == false }"
+            @click="next(false)"
+          >
+            No
+          </button>
+          <button
+            :class="{ 'button-active': answers[currentStepNum] == true }"
+            @click="next(true)"
+          >
+            Yes
+          </button>
         </div>
 
         <div v-if="step.answerType === 'slider'" class="slider-answer-slider">
@@ -47,21 +59,30 @@
           <button
             v-for="option in step.options"
             :key="option.value"
-            :class="{ 'answer-active': step.answer === option.value }"
+            :class="{
+              'button-active': answers[currentStepNum] === option.value
+            }"
             @click="next(option.value)"
-          >{{ option.text }}</button>
+          >
+            {{ option.text }}
+          </button>
         </div>
 
-        <div v-if="currentStepNum == '5' && step.answerType === 'checkbox'" class="checkbox-answer">
-          <div v-for="option in step.options" :key="currentPatient + option.value">
+        <div
+          v-if="currentStepNum == '5' && step.answerType === 'checkbox'"
+          class="checkbox-answer"
+        >
+          <div
+            v-for="option in step.options"
+            :key="currentPatient + option.value"
+          >
             <label :for="option.value">{{ option.text }}</label>
             <input
               :id="option.value"
               v-model="
-              currentPatient.answers[currentStepNum].find(
-                op => op.value === option.value
-              ).isChecked
-            "
+                answers[currentStepNum].find(op => op.value === option.value)
+                  .isChecked
+              "
               :value="option.value"
               type="checkbox"
             />
@@ -78,7 +99,9 @@
           v-if="currentPatient.answers[currentStepNum] !== undefined"
           class="next"
           @click="next(null)"
-        >{{ isLast ? 'Sumary' : 'Next' }}</button>
+        >
+          {{ isLast ? 'Sumary' : 'Next' }}
+        </button>
       </div>
     </div>
   </div>
@@ -86,6 +109,7 @@
 
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import { cloneDeep } from 'lodash'
 import PatientForm from './PatientForm'
 
 export default {
@@ -94,7 +118,8 @@ export default {
     currentStepNum: '0',
     visitedSteps: ['0'],
     temperatureValue: 36.5,
-    dataIsReady: false
+    dataIsReady: false,
+    answers: {}
   }),
   computed: {
     ...mapState('patients', ['formSteps']),
@@ -123,21 +148,23 @@ export default {
         value: ['0']
       })
     } else {
-      this.visitedSteps = this.currentPatient.visitedSteps
-      this.currentStepNum = this.currentPatient.visitedSteps[
-        this.currentPatient.visitedSteps.length - 1
-      ]
+      this.visitedSteps = cloneDeep(this.currentPatient.visitedSteps)
+      this.currentStepNum = cloneDeep(
+        this.currentPatient.visitedSteps[
+          this.currentPatient.visitedSteps.length - 1
+        ]
+      )
     }
     if (!this.currentPatient.answers) {
-      this.currentPatient.answers = {}
+      this.answers = {}
       this.formSteps.forEach(step => {
         switch (step.answerType) {
           case 'checkbox':
-            this.currentPatient.answers[step.order] = []
+            this.answers[step.order] = []
             console.log(step.options)
 
             step.options.forEach(option => {
-              this.currentPatient.answers[step.order].push({
+              this.answers[step.order].push({
                 value: option.value,
                 isChecked: false
               })
@@ -146,9 +173,17 @@ export default {
           default:
             break
         }
+
+        this.setCurrentPatientValueByKey({
+          key: 'answers',
+          value: cloneDeep(this.answers)
+        })
       })
+    } else {
+      Object.keys(this.currentPatient.answers).forEach(
+        key => (this.answers[key] = cloneDeep(this.currentPatient.answers[key]))
+      )
     }
-    console.log(this.currentPatient)
 
     this.dataIsReady = true
   },
@@ -158,54 +193,63 @@ export default {
       if (this.visitedSteps.length === 0) return
 
       this.visitedSteps.pop()
-      this.currentStepNum = this.visitedSteps[this.visitedSteps.length - 1]
+      this.currentStepNum = cloneDeep(
+        this.visitedSteps[this.visitedSteps.length - 1]
+      )
       this.setCurrentPatientValueByKey({
         key: 'visitedSteps',
-        value: this.visitedSteps
+        value: cloneDeep(this.visitedSteps)
       })
     },
     next(answer) {
       if (answer === null) {
-        this.currentStepNum =
+        this.currentStepNum = cloneDeep(
           (this.currentPatient.answers[this.currentStepNum] === true
             ? this.currentStep.nextIfPositive
             : this.currentStep.nextIfNegative) || this.currentStep.next
+        )
       } else {
         switch (typeof answer) {
           case 'boolean':
-            this.currentPatient.answers[this.currentStepNum] = answer
+            this.answers[this.currentStepNum] = answer
             if (answer === true)
-              this.currentStepNum =
+              this.currentStepNum = cloneDeep(
                 this.currentStep.nextIfPositive || this.currentStep.next
+              )
 
             if (answer === false)
-              this.currentStepNum =
+              this.currentStepNum = cloneDeep(
                 this.currentStep.nextIfNegative || this.currentStep.next
+              )
             break
 
           case 'number':
-            this.currentPatient.answers[this.currentStepNum] = answer
-            this.currentStepNum = this.currentStep.next
+            this.answers[this.currentStepNum] = answer
+            this.currentStepNum = cloneDeep(this.currentStep.next)
             break
 
           case 'string':
-            this.currentPatient.answers[this.currentStepNum] = answer
+            this.answers[this.currentStepNum] = answer
               .replace(/\s\s+/g, ' ') // replace multiple whitespaces with only one
               .split(' ')
               .join('')
               .trim()
-            this.currentStepNum = this.currentStep.next
+            this.currentStepNum = cloneDeep(this.currentStep.next)
             break
 
           default:
-            this.currentStepNum = this.currentStep.next
+            this.currentStepNum = cloneDeep(this.currentStep.next)
             break
         }
+        this.setCurrentPatientValueByKey({
+          key: 'answers',
+          value: cloneDeep(this.answers)
+        })
       }
-      this.visitedSteps.push(this.currentStepNum)
+      this.visitedSteps.push(cloneDeep(this.currentStepNum))
       this.setCurrentPatientValueByKey({
         key: 'visitedSteps',
-        value: this.visitedSteps
+        value: cloneDeep(this.visitedSteps)
       })
 
       if (this.currentStepNum === 'end') {
@@ -260,6 +304,10 @@ export default {
     border: none;
     padding: 0.8em 2em;
     margin: 0.5em;
+  }
+
+  .button-active {
+    background-color: $primary-color;
   }
 
   button:hover {

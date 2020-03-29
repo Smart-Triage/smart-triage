@@ -7,9 +7,12 @@
     <hr />
 
     <div class="buttons">
+      <button @click="deletePatient">
+        Remove this person
+      </button>
       <button class="link" @click="edit">Edit</button>
       <router-link to="/qr-code" class="link">Show QR code</router-link>
-      <router-link to="/home" class="link">Next patient</router-link>
+      <router-link to="/home" class="link">Next person</router-link>
     </div>
   </div>
   <div v-else>
@@ -19,7 +22,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 import PatientSummary from '../components/PatientSummary'
 
 export default {
@@ -40,14 +43,27 @@ export default {
     if (this.currentPatient === undefined) {
       this.$router.push('/home')
     } else {
-      this.currentPatient.finished = true
+      this.setCurrentPatientValueByKey({ key: 'finished', value: true })
     }
   },
   methods: {
+    ...mapActions('patients', ['deletePatientById']),
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
     edit() {
       this.setCurrentPatientValueByKey({ key: 'visitedSteps', value: ['0'] })
       this.$router.push('/form')
+    },
+    deletePatient(e) {
+      e.stopPropagation()
+      // eslint-disable-next-line no-alert
+      const r = window.confirm(
+        `Delete patient ${this.currentPatient.firstName} ${this.currentPatient.lastName}?`
+      )
+      if (r === true) {
+        this.deletePatientById(this.currentPatient.id).then(() => {
+          this.$router.push('/home')
+        })
+      }
     }
   }
 }

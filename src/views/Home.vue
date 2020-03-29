@@ -10,7 +10,13 @@
 
       <PatientList class="patient-list"></PatientList>
 
-      <div class="main-action">
+      <div v-if="patients.length === 0" class="main-action">
+        <button class="link btn-primary" @click="createPatient">
+          <ion-icon name="person-add-outline"></ion-icon>
+          Begin
+        </button>
+      </div>
+      <div v-else class="main-action">
         <p>Not going alone?</p>
         <button class="link btn-primary" @click="createPatient">
           <ion-icon name="person-add-outline"></ion-icon>
@@ -51,7 +57,10 @@ export default {
       ]
     }
   },
-  computed: mapState('app', ['appTitle']),
+  computed: {
+    ...mapState('app', ['appTitle']),
+    ...mapState('patients', ['patients'])
+  },
   methods: {
     ...mapActions('patients', ['createNewPatient']),
     async createPatient() {
