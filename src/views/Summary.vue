@@ -1,27 +1,15 @@
 <template>
   <div v-if="currentPatient" class="container">
     <h1>Summary</h1>
-    <div>
-      Name: {{ currentPatient.firstName + ' ' + currentPatient.lastName }}
-    </div>
-    <div>Birth number: {{ currentPatient.birthNumber }}</div>
-    <div>Phone number: {{ currentPatient.phoneNumber }}</div>
-    <div>
-      <div v-for="step in formSteps" :key="step.order">
-        {{ step.question }} -
-        <span v-if="typeof step.answer == 'boolean'">{{
-          step.answer === true ? 'ANO' : 'NE'
-        }}</span>
-        <span v-else> {{ step.answer }}</span>
-      </div>
-    </div>
 
-    <PatientQRCode :patient="currentPatient"></PatientQRCode>
+    <PatientSummary></PatientSummary>
+
     <hr />
 
     <div class="buttons">
       <button class="link" @click="edit">Edit</button>
-      <router-link to="/send" class="link send">Send</router-link>
+      <router-link to="/qr-code" class="link">Show QR code</router-link>
+      <router-link to="/home" class="link">Next patient</router-link>
     </div>
   </div>
   <div v-else>
@@ -32,14 +20,12 @@
 
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
-import PatientQRCode from '../components/PatientQRCode'
+import PatientSummary from '../components/PatientSummary'
 
 export default {
-  components: {
-    PatientQRCode
-  },
+  components: { PatientSummary },
   computed: {
-    ...mapState('patients', ['patients', 'formSteps']),
+    ...mapState('patients', ['patients']),
     ...mapGetters('patients', ['currentPatient']),
     stepAnswers() {
       return this.formSteps.map(step => {

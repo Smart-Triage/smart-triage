@@ -1,12 +1,15 @@
 <template>
   <div class="container">
-    <button v-if="!scan" @click="scan = true">Scan patient info</button>
-    <QRScanner v-if="scan" @result="parseQRResult"></QRScanner>
-    <PatientSummary v-if="patient" :patient="patient"></PatientSummary>
+    <QRScanner v-if="scanning" @patient="addPatient"></QRScanner>
+    <PatientSummary
+      v-if="!scanning && scannedAtLeastOnce && currentPatient"
+    ></PatientSummary>
+    <button v-if="!scanning" @click="scanning = true">Scan next patient</button>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 import QRScanner from '../components/QRSanner'
 import PatientSummary from '../components/PatientSummary'
 
@@ -16,21 +19,18 @@ export default {
     PatientSummary
   },
   data: () => ({
-    scan: false,
-    patient: null
+    scanning: false,
+    scannedAtLeastOnce: false
   }),
+  computed: {
+    ...mapGetters('patients', ['currentPatient'])
+  },
   methods: {
-    parseQRResult(result) {
-      this.scan = false
-
-      const splitResult = result.split('-')
-
-      this.patient = {
-        firstName: splitResult[0],
-        lastName: splitResult[1],
-        birthNumber: splitResult[2],
-        phoneNumber: splitResult[3]
-      }
+    ...mapActions('patients', ['updateOrAddPatient']),
+    addPatient(patient) {
+      this.scanning = false
+      this.scannedAtLeastOnce = true
+      this.updateOrAddPatient(patient)
     }
   }
 }

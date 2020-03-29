@@ -49,6 +49,17 @@ const router = new Router({
       }
     },
     {
+      path: '/qr-code',
+      name: 'qr-code',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-summary" */ '@/views/QRCode.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
       path: '/employee',
       name: 'employee',
       component: () =>

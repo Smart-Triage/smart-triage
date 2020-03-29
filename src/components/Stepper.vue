@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="dataIsReady" class="container">
     <div
       v-for="step in formSteps"
       :key="step.order"
@@ -57,12 +57,22 @@
         </button>
       </div>
 
-      <div v-if="step.answerType === 'checkbox'" class="checkbox-answer">
-        <div v-for="option in step.options" :key="option.value">
+      <div
+        v-if="currentStepNum == '5' && step.answerType === 'checkbox'"
+        class="checkbox-answer"
+      >
+        <div
+          v-for="option in step.options"
+          :key="currentPatient + option.value"
+        >
           <label :for="option.value">{{ option.text }}</label>
           <input
             :id="option.value"
-            v-model="option.isChecked"
+            v-model="
+              currentPatient.answers[currentStepNum].find(
+                op => op.value === option.value
+              ).isChecked
+            "
             :value="option.value"
             type="checkbox"
           />
@@ -76,11 +86,11 @@
       <button v-if="!isFirst" class="prev" @click="prev()">Previous</button>
       <div class="spacer"></div>
       <button
-        v-if="!isLast && currentPatient.answers[currentStepNum] !== undefined"
+        v-if="currentPatient.answers[currentStepNum] !== undefined"
         class="next"
         @click="next(null)"
       >
-        Next
+        {{ isLast ? 'Sumary' : 'Next' }}
       </button>
     </div>
   </div>
@@ -95,7 +105,8 @@ export default {
   data: () => ({
     currentStepNum: '0',
     visitedSteps: ['0'],
-    temperatureValue: 36.5
+    temperatureValue: 36.5,
+    dataIsReady: false
   }),
   computed: {
     ...mapState('patients', ['formSteps']),
@@ -129,6 +140,29 @@ export default {
         this.currentPatient.visitedSteps.length - 1
       ]
     }
+    if (!this.currentPatient.answers) {
+      this.currentPatient.answers = {}
+      this.formSteps.forEach(step => {
+        switch (step.answerType) {
+          case 'checkbox':
+            this.currentPatient.answers[step.order] = []
+            console.log(step.options)
+
+            step.options.forEach(option => {
+              this.currentPatient.answers[step.order].push({
+                value: option.value,
+                isChecked: false
+              })
+            })
+            break
+          default:
+            break
+        }
+      })
+    }
+    console.log(this.currentPatient)
+
+    this.dataIsReady = true
   },
   methods: {
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
@@ -165,17 +199,6 @@ export default {
           case 'string':
             this.currentPatient.answers[this.currentStepNum] = answer
             this.currentStepNum = this.currentStep.next
-            break
-
-          case 'object':
-            if (Array.isArray(answer)) {
-              const checkedOptions = answer
-                .filter(option => option.isChecked === true)
-                .map(option => option.value)
-
-              this.currentPatient.answers[this.currentStepNum] = checkedOptions
-              this.currentStepNum = this.currentStep.next
-            }
             break
 
           default:

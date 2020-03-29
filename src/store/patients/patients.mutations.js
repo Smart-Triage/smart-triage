@@ -24,6 +24,12 @@ export default {
     )[key] = value)
   },
 
+  updatePatient: (state, patient) => {
+    const index = state.patients.findIndex(p => p.id === patient.id)
+    state.patients.splice(index, 1)
+    return state.patients.push(patient)
+  },
+
   removePatientById: (state, patientId) => {
     const index = state.patients.findIndex(patient => patient.id === patientId)
     state.patients.splice(index, 1)
