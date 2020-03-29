@@ -5,21 +5,31 @@
       class="btn-secondary accordion-button"
       @click="patientInfoHidden = !patientInfoHidden"
     >
-      <div class="spacer"></div>
+         <ion-icon name="person-outline"></ion-icon>
       Patient info
       <ion-icon
+      class="iconAccordion"
         :name="
           patientInfoHidden ? 'chevron-down-outline' : 'chevron-up-outline'
         "
       ></ion-icon>
     </button>
     <transition name="unroll">
-      <div class="info-container" :class="{ hideInfo: patientInfoHidden }">
-        <p>
-          Name: {{ currentPatient.firstName + ' ' + currentPatient.lastName }}
-        </p>
-        <p>Birth number: {{ currentPatient.birthNumber }}</p>
-        <p>Phone number: {{ currentPatient.phoneNumber }}</p>
+      <div
+        class="info-container questionInfo"
+        :class="{ hideInfo: patientInfoHidden }"
+      >
+        <p><b>Name</b></p>
+        <span>{{
+          currentPatient.firstName + ' ' + currentPatient.lastName
+        }}</span>
+        <hr class="dividerInfo" />
+        <p><b>number</b></p>
+        <span>{{ currentPatient.birthNumber }}</span>
+        <hr class="dividerInfo" />
+        <p><b>Phone number</b></p>
+        <span>{{ currentPatient.phoneNumber }}</span>
+        <hr class="dividerInfo" />
       </div>
     </transition>
     <button
@@ -27,7 +37,8 @@
       class="btn-secondary accordion-button"
       @click="patientSymptomsHidden = !patientSymptomsHidden"
     >
-      <div class="spacer"></div>
+      <ion-icon name="thermometer-outline"></ion-icon>
+
       Symptomy
       <ion-icon
         :name="
@@ -36,8 +47,14 @@
       ></ion-icon>
     </button>
     <div :class="{ hideInfo: patientSymptomsHidden }" class="info-container">
-      <div v-for="step in formStepsToShow" :key="step.order">
-        <p>{{ step.question }} -</p>
+      <div
+        v-for="step in formStepsToShow"
+        :key="step.order"
+        class="questionInfo"
+      >
+        <p>
+          <b>{{ step.question }}</b>
+        </p>
         <span v-if="step.answerType === 'boolean'">{{
           currentPatient.answers[step.order] === true ? 'ANO' : 'NE'
         }}</span>
@@ -55,6 +72,7 @@
           >
         </span>
         <span v-else>{{ currentPatient.answers[step.order] }}</span>
+        <hr class="dividerInfo" />
       </div>
     </div>
   </div>
@@ -88,6 +106,20 @@ export default {
 @import '@/theme/variables.scss';
 @import '@/theme/general.scss';
 
+.dividerInfo {
+  border-color: $secondary-color;
+  z-index: 10;
+}
+
+.questionInfo {
+  p {
+    color: $secondary-color;
+  }
+  span {
+    color: black;
+  }
+}
+
 .accordion-button {
   display: flex;
   justify-content: space-between;
@@ -99,9 +131,14 @@ export default {
   }
 }
 
+ion-icon {
+  font-size: 1.3em;
+}
+
 .btn-secondary {
   font-size: 1.1em;
-  background-color: #edf1f9;
+  background-color: $secondary-color;
+  color: #edf1f9;
   border-radius: 2em;
   border: none;
   padding: 0.8em 2em;
@@ -135,9 +172,5 @@ export default {
   padding: 3em 2em 0.8em 2em;
   width: calc(100% - 2em);
   border-radius: 1.1em;
-}
-.changecolor {
-  background-color: $secondary-color;
-  color: #edf1f9;
 }
 </style>

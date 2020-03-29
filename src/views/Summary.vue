@@ -81,6 +81,9 @@ export default {
 <style lang="scss" scoped>
 @import '@/theme/variables.scss';
 @import '@/theme/general.scss';
+
+
+
 .container {
   display: flex;
   flex-direction: column;
