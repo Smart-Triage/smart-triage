@@ -356,10 +356,12 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
+  align-content: center;
 
   .close {
     color: black;
+    align-self: center;
   }
 
   .skip-to-summary {

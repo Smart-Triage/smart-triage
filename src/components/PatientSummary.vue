@@ -2,17 +2,21 @@
   <div v-if="currentPatient" class="container">
     <button
       :class="{ changecolor: !patientInfoHidden }"
-      class="btn-secondary accordion-button"
+      class="patient-item"
       @click="patientInfoHidden = !patientInfoHidden"
     >
-      <ion-icon name="person-outline"></ion-icon>
-      Patient info
-      <ion-icon
-        class="iconAccordion"
-        :name="
-          patientInfoHidden ? 'chevron-down-outline' : 'chevron-up-outline'
-        "
-      ></ion-icon>
+      <div class="patient-item-left">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>Patient info</span>
+      </div>
+      <div class="patient-item-right">
+        <ion-icon
+          class="iconAccordion"
+          :name="
+            patientInfoHidden ? 'chevron-down-outline' : 'chevron-up-outline'
+          "
+        ></ion-icon>
+      </div>
     </button>
     <transition name="unroll">
       <div
@@ -34,17 +38,22 @@
     </transition>
     <button
       :class="{ changecolor: !patientSymptomsHidden }"
-      class="btn-secondary accordion-button"
+      class="patient-item"
       @click="patientSymptomsHidden = !patientSymptomsHidden"
     >
-      <ion-icon name="thermometer-outline"></ion-icon>
-
-      Symptomy
-      <ion-icon
-        :name="
-          patientSymptomsHidden ? 'chevron-down-outline' : 'chevron-up-outline'
-        "
-      ></ion-icon>
+      <div class="patient-item-left">
+        <ion-icon name="thermometer-outline"></ion-icon>
+        <span>Symptomy</span>
+      </div>
+      <div class="patient-item-right">
+        <ion-icon
+          :name="
+            patientSymptomsHidden
+              ? 'chevron-down-outline'
+              : 'chevron-up-outline'
+          "
+        ></ion-icon>
+      </div>
     </button>
     <div :class="{ hideInfo: patientSymptomsHidden }" class="info-container">
       <div
@@ -135,17 +144,6 @@ ion-icon {
   font-size: 1.3em;
 }
 
-.btn-secondary {
-  font-size: 1.1em;
-  background-color: $secondary-color;
-  color: #edf1f9;
-  border-radius: 2em;
-  border: none;
-  padding: 0.8em 2em;
-  margin: 0.5em 2em;
-  width: calc(100% - 2em);
-}
-
 .hideInfo {
   overflow: hidden;
   height: 0;
@@ -172,5 +170,40 @@ ion-icon {
   padding: 3em 2em 2em 2em;
   width: calc(100% - 2em);
   border-radius: 1.1em;
+}
+
+.patient-item {
+  width: calc(100% - 2em);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 1rem;
+  margin: 0.5em 1em;
+  background: $secondary-color;
+  color: white;
+  border-radius: 10rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  font-size: 1em;
+
+  .patient-item-left {
+    display: flex;
+    margin-left: 0.5em;
+    align-items: center;
+    span {
+      margin-left: 0.8em;
+    }
+    .patient-name {
+      margin-left: 0.5rem;
+    }
+  }
+
+  .patient-item-right {
+    display: flex;
+    align-items: center;
+    ion-icon {
+      margin-left: 1rem;
+    }
+  }
 }
 </style>
