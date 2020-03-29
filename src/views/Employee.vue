@@ -1,9 +1,19 @@
 <template>
   <div class="container">
-    <QRScanner v-if="scanning" @patient="addPatient"></QRScanner>
-    <PatientSummary
-      v-if="!scanning && scannedAtLeastOnce && currentPatient"
-    ></PatientSummary>
+    <div v-if="scanning">
+      <button @click="scanning = false">Back</button>
+      <QRScanner @patient="addPatient"></QRScanner>
+    </div>
+
+    <PatientSummary v-if="!scanning && currentPatient"></PatientSummary>
+
+    <router-link
+      v-if="!scanning && currentPatient"
+      class="link"
+      to="print-barcode"
+      >Print barcode</router-link
+    >
+
     <button v-if="!scanning" @click="scanning = true">Scan next patient</button>
   </div>
 </template>

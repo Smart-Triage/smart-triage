@@ -8,8 +8,8 @@
     <div>
       <div v-for="step in formStepsToShow" :key="step.order">
         {{ step.question }} -
-        <span v-if="typeof step.answer == 'boolean'">{{
-          step.answer === true ? 'ANO' : 'NE'
+        <span v-if="step.answerType === 'boolean'">{{
+          currentPatient.answers[step.order] === true ? 'ANO' : 'NE'
         }}</span>
         <span v-else> {{ currentPatient.answers[step.order] }}</span>
       </div>

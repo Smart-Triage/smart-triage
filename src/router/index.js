@@ -70,6 +70,17 @@ const router = new Router({
         authNotRequired: true
       }
     },
+    {
+      path: '/print-barcode',
+      name: 'print-barcode',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-employee" */ '@/views/PrintBarcode.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
     // {
     //   path: '/check-login',
     //   name: 'check-login',

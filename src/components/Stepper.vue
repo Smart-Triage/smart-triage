@@ -184,8 +184,16 @@ export default {
             break
 
           case 'number':
+            this.currentPatient.answers[this.currentStepNum] = answer
+            this.currentStepNum = this.currentStep.next
+            break
+
           case 'string':
             this.currentPatient.answers[this.currentStepNum] = answer
+              .replace(/\s\s+/g, ' ') // replace multiple whitespaces with only one
+              .split(' ')
+              .join('')
+              .trim()
             this.currentStepNum = this.currentStep.next
             break
 
