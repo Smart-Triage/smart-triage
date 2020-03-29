@@ -80,6 +80,11 @@ export default {
 @import '@/theme/variables.scss';
 @import '@/theme/general.scss';
 
+ion-icon {
+  font-size: 1.3em;
+  margin: 0 0.5em 0 0;
+}
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
@@ -105,7 +110,7 @@ export default {
     .home-page-title {
       margin: 0 0 0.5em 0;
       font-weight: 300;
-      font-size: 3em;
+      font-size: 2.5em;
       line-height: 1em;
       color: $main-text-color;
     }
@@ -118,7 +123,7 @@ export default {
     }
 
     .home-page-info {
-      margin-top: 2rem;
+      margin: 2em 1.5em 0 1.5em;
     }
 
     .patient-list {
@@ -152,9 +157,7 @@ export default {
       color: $main-text-color;
       font-weight: 400;
       align-self: flex-end;
-      margin-bottom: 1em;
-      margin-left: 3rem;
-      margin-right: 3rem;
+      margin: 0 1.5em 1em 1.5em;
     }
   }
 }
