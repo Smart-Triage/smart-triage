@@ -83,6 +83,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 1.5em 0;
 }
 
 .top-buttons {
