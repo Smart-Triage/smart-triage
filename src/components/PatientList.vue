@@ -21,11 +21,11 @@
         </span>
       </div>
       <div class="patient-item-right">
-        <span>{{
-          patient.finished === true ? 'Finished' : 'Not finished'
-        }}</span>
+        <span v-if="patient.confirmed">Confirmed</span>
+        <span v-else-if="patient.finished">Finished</span>
+        <span v-else>Not finished</span>
         <ion-icon name="arrow-forward-outline"></ion-icon>
-       </div>
+      </div>
     </div>
   </div>
 </template>
@@ -69,14 +69,13 @@ ion-icon {
   cursor: pointer;
   padding: 1rem;
   margin: 1rem 0;
-  background: white;
   border-radius: 10rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
   .patient-item-left {
     display: flex;
     margin-left: 0.5em;
-  align-items: center;
+    align-items: center;
     .patient-name {
       margin-left: 0.5rem;
     }
@@ -84,7 +83,7 @@ ion-icon {
 
   .patient-item-right {
     display: flex;
-  align-items: center;
+    align-items: center;
     ion-icon {
       margin-left: 1rem;
     }

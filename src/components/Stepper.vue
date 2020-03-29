@@ -105,20 +105,14 @@
                 type="checkbox"
                 class="hideCheckbox"
               />
-              <ion-icon
+              <!-- <ion-icon
                 v-if="
                   answers[currentStepNum].find(op => op.value === option.value)
                     .isChecked
                 "
                 name="checkbox"
               ></ion-icon>
-              <ion-icon
-                v-if="
-                  !answers[currentStepNum].find(op => op.value === option.value)
-                    .isChecked
-                "
-                name="checkbox-outline"
-              ></ion-icon>
+              <ion-icon v-else name="checkbox-outline"></ion-icon> -->
               <label :for="option.value">{{ option.text }}</label>
             </div>
 

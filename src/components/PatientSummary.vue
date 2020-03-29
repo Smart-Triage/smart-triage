@@ -13,7 +13,7 @@
     </div>
     <button
       :class="{ changecolor: !patientInfoHidden }"
-      class="patient-item"
+      class="patient-item accordion-button"
       @click="patientInfoHidden = !patientInfoHidden"
     >
       <div class="patient-item-left">
@@ -45,14 +45,18 @@
         <p><b>Phone number</b></p>
         <span>{{ currentPatient.phoneNumber }}</span>
         <hr class="dividerInfo" />
-        <button v-if="!employee" class="edit-btn" @click="edit('0')">
+        <button
+          v-if="!employee && !currentPatient.confirmed"
+          class="edit-btn"
+          @click="edit('0')"
+        >
           Edit
         </button>
       </div>
     </transition>
     <button
       :class="{ changecolor: !patientSymptomsHidden }"
-      class="patient-item"
+      class="patient-item accordion-button"
       @click="patientSymptomsHidden = !patientSymptomsHidden"
     >
       <div class="patient-item-left">
@@ -97,7 +101,11 @@
         <span v-else>{{ currentPatient.answers[step.order] }}</span>
         <hr class="dividerInfo" />
       </div>
-      <button v-if="!employee" class="edit-btn" @click="edit('1')">
+      <button
+        v-if="!employee && !currentPatient.confirmed"
+        class="edit-btn"
+        @click="edit('1')"
+      >
         Edit
       </button>
     </div>

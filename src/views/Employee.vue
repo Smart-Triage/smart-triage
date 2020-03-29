@@ -94,6 +94,7 @@ export default {
       if (this.currentPatient)
         return JSON.stringify({
           ...this.currentPatient,
+          confirmed: true,
           confirmation: {
             confirmedBy: 'HOSPITAL_EMPLOYEE_NAME',
             timestamp: new Date()
