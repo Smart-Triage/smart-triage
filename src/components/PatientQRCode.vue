@@ -22,7 +22,24 @@ export default {
   },
   computed: {
     stringyfiedPatient() {
-      return JSON.stringify(this.patient)
+      const filteredPatient = Object.keys(this.patient)
+        .filter(
+          key =>
+            [
+              'id',
+              'firstName',
+              'lastName',
+              'birthNumber',
+              'phoneNumber',
+              'answers'
+            ].indexOf(key) > -1
+        )
+        .reduce(
+          (res, key) => Object.assign(res, { [key]: this.patient[key] }),
+          {}
+        )
+
+      return JSON.stringify(filteredPatient)
     }
   }
 }

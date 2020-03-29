@@ -12,14 +12,21 @@ export default {
           Object.keys(state.patients[state.patients.length - 1]).length > 1)
       ) {
         const newPatient = {
-          id: uuidv4(),
-          answers: {}
+          id: uuidv4()
         }
         commit('createNewPatient', newPatient)
         commit('setCurrentPatientId', newPatient.id)
       }
       resolve()
     })
+  },
+
+  updateOrAddPatient: async ({ state, commit }, patient) => {
+    if (state.patients.find(p => p.id === patient.id))
+      commit('updatePatient', patient)
+    else commit('createNewPatient', patient)
+
+    commit('setCurrentPatientId', patient.id)
   },
 
   deletePatientById: async ({ commit }, patientId) => {

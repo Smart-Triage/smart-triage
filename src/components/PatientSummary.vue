@@ -1,15 +1,39 @@
 <template>
-  <div>
-    <div>First name: {{ patient.firstName }}</div>
-    <div>Last Name: {{ patient.lastName }}</div>
-    <div>Birth number: {{ patient.birthNumber }}</div>
-    <div>Phone number: {{ patient.phoneNumber }}</div>
+  <div v-if="currentPatient">
+    <div>
+      Name: {{ currentPatient.firstName + ' ' + currentPatient.lastName }}
+    </div>
+    <div>Birth number: {{ currentPatient.birthNumber }}</div>
+    <div>Phone number: {{ currentPatient.phoneNumber }}</div>
+    <div>
+      <div v-for="step in formStepsToShow" :key="step.order">
+        {{ step.question }} -
+        <span v-if="typeof step.answer == 'boolean'">{{
+          step.answer === true ? 'ANO' : 'NE'
+        }}</span>
+        <span v-else> {{ currentPatient.answers[step.order] }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
+
 export default {
-  props: { patient: { type: Object, required: true } }
+  computed: {
+    ...mapState('patients', ['formSteps']),
+    ...mapGetters('patients', ['currentPatient']),
+    formStepsToShow() {
+      if (!this.currentPatient) return []
+      const stepsToShow = []
+      this.formSteps.forEach(step => {
+        if (Object.keys(this.currentPatient.answers).indexOf(step.order) > -1)
+          stepsToShow.push(step)
+      })
+      return stepsToShow
+    }
+  }
 }
 </script>
 
