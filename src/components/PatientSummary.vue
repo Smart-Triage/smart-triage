@@ -5,10 +5,10 @@
       class="btn-secondary accordion-button"
       @click="patientInfoHidden = !patientInfoHidden"
     >
-         <ion-icon name="person-outline"></ion-icon>
+      <ion-icon name="person-outline"></ion-icon>
       Patient info
       <ion-icon
-      class="iconAccordion"
+        class="iconAccordion"
         :name="
           patientInfoHidden ? 'chevron-down-outline' : 'chevron-up-outline'
         "
@@ -169,7 +169,7 @@ ion-icon {
   align-self: flex-start;
   margin: 0 1em;
   background-color: #32227f15;
-  padding: 3em 2em 0.8em 2em;
+  padding: 3em 2em 2em 2em;
   width: calc(100% - 2em);
   border-radius: 1.1em;
 }

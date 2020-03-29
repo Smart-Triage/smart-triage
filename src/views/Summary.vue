@@ -14,11 +14,11 @@
           Remove this person
         </button>
         <button class="link btn-primary" @click="edit">Edit this person</button>
+
+      </div>
         <router-link to="/home" class="link btn-primary"
           >Add another person</router-link
         >
-      </div>
-
       <router-link to="/qr-code" class="link btn-primary"
         >Show QR code</router-link
       >
