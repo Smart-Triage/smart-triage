@@ -1,18 +1,27 @@
 <template>
   <div v-if="currentPatient" class="container">
-    <h1>Summary</h1>
-
+    <div class="top-sumary">
+      <h1 class="page-title">Summary</h1>
+      <img src="@/assets/img/home-page-welcome-img.png" alt="" />
+    </div>
     <PatientSummary></PatientSummary>
 
     <hr />
 
     <div class="buttons">
-      <button @click="deletePatient">
-        Remove this person
-      </button>
-      <button class="link" @click="edit">Edit</button>
-      <router-link to="/qr-code" class="link">Show QR code</router-link>
-      <router-link to="/home" class="link">Next person</router-link>
+      <div>
+        <button class="link btn-primary" @click="deletePatient">
+          Remove this person
+        </button>
+        <button class="link btn-primary" @click="edit">Edit this person</button>
+        <router-link to="/home" class="link btn-primary"
+          >Add another person</router-link
+        >
+      </div>
+
+      <router-link to="/qr-code" class="link btn-primary"
+        >Show QR code</router-link
+      >
     </div>
   </div>
   <div v-else>
@@ -69,7 +78,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/theme/variables.scss';
+@import '@/theme/general.scss';
 .container {
   display: flex;
   flex-direction: column;
@@ -77,8 +88,19 @@ export default {
 }
 
 .buttons {
+  margin-top: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.link {
+  font-size: 1em;
+  padding: 0.5em 1em;
+  margin: 0 0.5em 2em 0.5em;
+}
+
+.top-sumary {
+  text-align: center;
 }
 </style>
