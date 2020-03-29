@@ -14,11 +14,11 @@
           Remove this person
         </button>
         <button class="link btn-primary" @click="edit">Edit this person</button>
+
+      </div>
         <router-link to="/home" class="link btn-primary"
           >Add another person</router-link
         >
-      </div>
-
       <router-link to="/qr-code" class="link btn-primary"
         >Show QR code</router-link
       >
@@ -81,6 +81,9 @@ export default {
 <style lang="scss" scoped>
 @import '@/theme/variables.scss';
 @import '@/theme/general.scss';
+
+
+
 .container {
   display: flex;
   flex-direction: column;

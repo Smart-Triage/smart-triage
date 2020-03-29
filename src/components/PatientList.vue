@@ -8,24 +8,24 @@
     >
       <div class="patient-item-left">
         <ion-icon name="person-outline"></ion-icon>
-        <div
+        <span
           v-if="
             patient.firstName === undefined || patient.lastName === undefined
           "
           class="patient-name"
         >
           _
-        </div>
-        <div v-else class="patient-name">
+        </span>
+        <span v-else class="patient-name">
           {{ patient.firstName + ' ' + patient.lastName }}
-        </div>
+        </span>
       </div>
       <div class="patient-item-right">
         <span>{{
           patient.finished === true ? 'Finished' : 'Not finished'
         }}</span>
         <ion-icon name="arrow-forward-outline"></ion-icon>
-      </div>
+       </div>
     </div>
   </div>
 </template>
@@ -52,6 +52,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+ion-icon {
+  font-size: 1.3em;
+  margin: 0 0.5em 0 0;
+}
+
 .patient-list {
   padding: 1rem;
 }
@@ -60,7 +65,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   cursor: pointer;
   padding: 1rem;
   margin: 1rem 0;
@@ -70,15 +75,16 @@ export default {
 
   .patient-item-left {
     display: flex;
-
+    margin-left: 0.5em;
+  align-items: center;
     .patient-name {
-      margin-left: 1rem;
+      margin-left: 0.5rem;
     }
   }
 
   .patient-item-right {
     display: flex;
-
+  align-items: center;
     ion-icon {
       margin-left: 1rem;
     }
