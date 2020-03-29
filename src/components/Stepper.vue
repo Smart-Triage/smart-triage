@@ -233,13 +233,22 @@ export default {
 
 .container {
   min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  width: 100vw;
+  align-items: center;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 2em 2em 0 0;
+  max-width: 400px;
+  padding: 0 0 2em 0;
 }
 
 .step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1rem;
 }
 
 .buttons {
