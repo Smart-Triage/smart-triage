@@ -14,6 +14,7 @@ import 'pwacompat'
 Vue.use(UUID)
 
 Vue.config.productionTip = false
+Vue.config.ignoredElements = ['ion-icon']
 
 new Vue({
   router,

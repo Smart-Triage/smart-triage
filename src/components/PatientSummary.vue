@@ -27,7 +27,20 @@
         <span v-if="step.answerType === 'boolean'">{{
           currentPatient.answers[step.order] === true ? 'ANO' : 'NE'
         }}</span>
-        <span v-else> {{ currentPatient.answers[step.order] }}</span>
+        <span v-else-if="step.answerType === 'checkbox'">
+          <span
+            v-for="option in currentPatient.answers[step.order]"
+            :key="option.value"
+            >{{
+              option.isChecked
+                ? formSteps
+                    .find(s => s.order === step.order)
+                    .options.find(o => o.value === option.value).text + ', '
+                : ''
+            }}</span
+          >
+        </span>
+        <span v-else>{{ currentPatient.answers[step.order] }}</span>
       </div>
     </div>
   </div>

@@ -81,6 +81,28 @@ const router = new Router({
         authNotRequired: true
       }
     },
+    {
+      path: '/how-it-works',
+      name: 'how-it-works',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-about" */ '@/views/HowItWorks.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-about" */ '@/views/About.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
     // {
     //   path: '/check-login',
     //   name: 'check-login',
