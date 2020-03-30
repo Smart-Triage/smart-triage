@@ -35,7 +35,7 @@
         @click="viewConfirmationQR"
       >
         <ion-icon name="checkmark-outline"></ion-icon>
-        <div class="button-text">Confirm pacient info</div>
+        <div class="button-text">Confirm patient info</div>
       </button>
     </div>
 
@@ -61,7 +61,7 @@
 
     <button
       v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
-      class="btn-primary scan-next-pacient icon-button"
+      class="btn-primary scan-next-patient icon-button"
       @click="scan"
     >
       <ion-icon name="scan-outline"></ion-icon>
@@ -217,7 +217,7 @@ export default {
   padding: 0.8rem 1.5rem 0.8rem 1.2rem;
 }
 
-.scan-next-pacient {
+.scan-next-patient {
   font-size: 1rem;
   margin-bottom: 2rem;
   padding: 0.8rem 1.2rem;

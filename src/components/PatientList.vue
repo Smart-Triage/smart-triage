@@ -40,7 +40,7 @@ export default {
   methods: {
     ...mapMutations('patients', [
       'setCurrentPatientId',
-      'setCurrentPacientFormStep'
+      'setCurrentPatientFormStep'
     ]),
     selectPatient(patient) {
       this.setCurrentPatientId(patient.id)

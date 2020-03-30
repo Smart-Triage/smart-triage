@@ -57,7 +57,7 @@ const router = new Router({
       name: 'patient-qr-code',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-summary" */ '@/views/PacientQRCode.vue'
+          /* webpackChunkName: "client-chunk-summary" */ '@/views/PatientQRCode.vue'
         ),
       meta: {
         authNotRequired: true

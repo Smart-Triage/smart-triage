@@ -11,6 +11,19 @@
       <img src="@/assets/img/scan-code.png" alt="" />
     </div>
     <p>When asked, show this code.</p>
+    <div
+      v-if="
+        currentPatient.confirmation &&
+          currentPatient.confirmation.confirmedBy.length > 1 &&
+          currentPatient.confirmation.timestamp
+      "
+      class="is-confirmed"
+    >
+      <div class="confirmation-info">
+        <div>Confirmed by {{ currentPatient.confirmation.confirmedBy }}</div>
+        <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
+      </div>
+    </div>
     <!-- {{ currentPatient.firstName + ' ' + currentPatient.lastName }} -->
     <QrcodeVue
       class="qrcode"
