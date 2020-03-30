@@ -1,12 +1,11 @@
 <template>
   <div v-if="currentPatient" class="container">
     <div class="top-sumary">
-      <!-- <div class="top-buttons">
-        <button @click="edit">Edit</button>
-        <button @click="deletePatient">
-          Remove
-        </button>
-      </div> -->
+      <div class="top-buttons">
+        <router-link to="/home">
+          <ion-icon name="close" size="large"></ion-icon>
+        </router-link>
+      </div>
       <h1 class="page-title">Summary</h1>
       <img src="@/assets/img/home-page-welcome-img.png" alt="" />
     </div>
@@ -15,14 +14,17 @@
     <hr />
 
     <div class="buttons">
-      <router-link to="/home" class="link btn-primary icon-button"
-        ><ion-icon name="person-add-outline"></ion-icon>
-        <div class="button-text">Add another person</div>
-      </router-link>
-      <router-link to="/patient-qr-code" class="link btn-primary icon-button">
+      <router-link
+        to="/patient-qr-code"
+        class="link btn-primary icon-button show-qr-code-btn"
+      >
         <ion-icon name="qr-code-outline"></ion-icon>
         <div class="button-text">Show QR code</div>
       </router-link>
+      <!-- <router-link to="/home" class="link btn-primary icon-button"
+        ><ion-icon name="person-add-outline"></ion-icon>
+        <div class="button-text">Add another person</div>
+      </router-link> -->
     </div>
   </div>
   <div v-else>
@@ -92,7 +94,6 @@ export default {
   left: 0;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
   padding: 1rem;
 
   button {
@@ -111,6 +112,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .link {
@@ -121,5 +124,13 @@ export default {
 
 .top-sumary {
   text-align: center;
+}
+
+.show-qr-code-btn {
+  // background-color: $secondary-color;
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 </style>

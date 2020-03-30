@@ -6,7 +6,10 @@
       </router-link>
     </div>
     <h1>Scan confirmation code from hospital employee</h1>
-    <QRScanner @patient="processConfirmation"></QRScanner>
+    <QRScanner
+      :scanning-confirmation-code="true"
+      @patient="processConfirmation"
+    ></QRScanner>
   </div>
 </template>
 

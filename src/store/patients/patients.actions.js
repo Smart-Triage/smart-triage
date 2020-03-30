@@ -6,10 +6,11 @@ export default {
    */
   createNewPatient: async ({ state, commit }) => {
     return new Promise(resolve => {
+      // Only create new patient if the last patient is filled, if last patient is empty, use that one instead of creating a new one
       if (
         state.patients.length === 0 ||
         (state.patients.length >= 1 &&
-          Object.keys(state.patients[state.patients.length - 1]).length > 1)
+          Object.keys(state.patients[state.patients.length - 1]).length > 3)
       ) {
         const newPatient = {
           id: uuidv4()

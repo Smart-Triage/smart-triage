@@ -52,6 +52,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import '@/theme/variables.scss';
+
 ion-icon {
   font-size: 1.3em;
   margin: 0 0.5em 0 0;
@@ -67,6 +69,8 @@ ion-icon {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  background-color: $secondary-color;
+  color: white;
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 10rem;

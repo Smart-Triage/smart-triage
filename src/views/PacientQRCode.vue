@@ -1,10 +1,16 @@
 <template>
-  <div class="container">
+  <div class="container" :class="{ 'bg-confirmed': currentPatient.confirmed }">
+    <div class="top-buttons">
+      <router-link to="/summary"
+        ><ion-icon name="close" size="large"></ion-icon
+      ></router-link>
+    </div>
+
     <div class="home-page-top-img">
-      <h1>Vyčkejte na příchod zdravotníka</h1>
+      <h1>Follow the instructions of the hospital staff</h1>
       <img src="@/assets/img/scan-code.png" alt="" />
     </div>
-    <p>Zde je Váš QR kód, ukažte ho zdravotníkovi</p>
+    <p>When asked, show this code.</p>
     <!-- {{ currentPatient.firstName + ' ' + currentPatient.lastName }} -->
     <QrcodeVue
       class="qrcode"
@@ -13,11 +19,8 @@
       level="H"
     ></QrcodeVue>
 
-    <router-link class="link btn-primary button-qr-close" to="/summary"
-      >Close</router-link
-    >
-
     <router-link
+      v-if="!currentPatient.confirmed"
       class="link btn-primary scan-confirmation-btn icon-button"
       to="/scan-confirmation-qr-code"
       ><ion-icon name="scan-outline"></ion-icon>
@@ -67,6 +70,7 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 3rem;
   height: 100%;
   min-height: 100vh;
   @supports (-webkit-appearance: none) {
@@ -98,5 +102,19 @@ export default {
   img {
     margin: 0;
   }
+}
+
+.top-buttons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  padding: 0.5rem 1rem;
+}
+
+.bg-confirmed {
+  background-color: $secondary-color;
+  color: white;
 }
 </style>

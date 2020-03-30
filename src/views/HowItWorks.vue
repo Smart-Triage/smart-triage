@@ -10,7 +10,7 @@
     <ol>
       <li>Fill form for yourself</li>
       <li>[optinal] Fill form for other people who are comming with you</li>
-      <li>Show the QR code to the hospital personnel</li>
+      <li>Show the QR code to the hospital staff</li>
     </ol>
   </div>
 </template>

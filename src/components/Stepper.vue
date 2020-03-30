@@ -29,7 +29,7 @@
       <transition name="view" mode="out-in">
         <div class="container">
           <p v-if="step.order !== '0'" class="directions">
-            Nyní prosím zodpovězte několik otázek ohledně Vašeho zdraví.
+            Please answer a few questions about your health.
           </p>
           <p v-if="currentStepNum !== '0'" class="question">
             {{ step.question }}
@@ -116,7 +116,7 @@
               <label :for="option.value">{{ option.text }}</label>
             </div>
 
-            <button @click="next(step.options)">Další</button>
+            <button @click="next(step.options)">Next</button>
           </div>
 
           <div class="spacer"></div>
@@ -479,7 +479,7 @@ export default {
     align-items: center;
     cursor: pointer;
     padding: 0.5rem 1em;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     background: white;
     border-radius: 10rem;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
