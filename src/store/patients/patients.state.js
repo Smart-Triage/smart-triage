@@ -10,43 +10,50 @@ export default {
     },
     {
       order: '1',
-      question: 'Měřil/a jste si v poslední době teplotu?',
+      question: 'Did you take your body temperature lately?',
+      // question: 'Měřil/a jste si v poslední době teplotu?',
       answerType: 'boolean',
       nextIfPositive: '1.1',
       nextIfNegative: '1.2'
     },
     {
       order: '1.1',
-      question: 'Zadejte teplotu',
+      question: 'Enter your temperature',
+      // question: 'Zadejte teplotu',
       answerType: 'slider',
       next: '2',
       pointsIfPositive: 3
     },
     {
       order: '1.2',
-      question: 'Pociťoval/a jste zvýšené projevy teploty?',
+      // question: 'Pociťoval/a jste zvýšené projevy teploty?',
+      question: 'Did you experience increased body temperature?',
       answerType: 'boolean',
       next: '2',
       pointsIfPositive: 2
     },
     {
       order: '2',
-      question: 'Měl/a jste v poslední době kašel?',
+      question: 'Have you been coughing lately?',
+      // question: 'Měl/a jste v poslední době kašel?',
       answerType: 'boolean',
       nextIfPositive: '2.1',
       nextIfNegative: '3'
     },
     {
       order: '2.1',
-      question: 'Vlhký nebo suchý kašel?',
+      question: 'Wet or dry cough?',
+      // question: 'Vlhký nebo suchý kašel?',
       answerType: 'one-of',
       options: [
         {
-          text: 'Vlhký',
+          text: 'Wet',
+          // text: 'Vlhký',
           value: 'vlhky'
         },
         {
-          text: 'Suchý',
+          text: 'Dry',
+          // text: 'Suchý',
           value: 'suchy'
         }
       ],
@@ -57,43 +64,55 @@ export default {
     {
       order: '3',
       question:
-        'Měl/a jste v poslední době nezvyklý pocit tíhy na hrudi nebo dušnost?',
+        'Have you recently had an unusual chest strain or shortness of breath?',
+      // question:'Měl/a jste v poslední době nezvyklý pocit tíhy na hrudi nebo dušnost?',
       answerType: 'boolean',
       pointsIfPositive: 2,
       next: '4'
     },
     {
       order: '4',
-      question:
-        'Měl/a jste v poslední době nezvykou únavu, třesavku nebo zimnici?',
+      question: 'Have you had unusual tiredness, chills or rigor lately?',
+      // question:'Měl/a jste v poslední době nezvykou únavu, třesavku nebo zimnici?',
       answerType: 'boolean',
       pointsIfPositive: 1,
       next: '5'
     },
     {
       order: '5',
-      question: 'Vyberte příznaky, které jste během poslední doby měli:',
+      question: 'Select the symptoms you have had recently:',
+      // question: 'Vyberte příznaky, které jste během poslední doby měli:',
       answerType: 'checkbox',
       options: [
-        { text: 'Rýma', value: 'ryma' },
-        { text: 'Bolest v krku', value: 'bolest-v-krku' },
-        {
-          text: 'Bolest svalů nebo kloubů',
-          value: 'bolest-svalu-nebo-kloubu'
-        },
-        { text: 'Ztráta chuti nebo čichu', value: 'ztrata-chuti-nebo-cichu' }
+        { text: 'Cold', value: 'ryma' },
+        // { text: 'Rýma', value: 'ryma' },
+        { text: 'Sore throat', value: 'bolest-v-krku' },
+        // { text: 'Bolest v krku', value: 'bolest-v-krku' },
+        { text: 'Muscle or joint pain', value: 'bolest-svalu-nebo-kloubu' },
+        // {text: 'Bolest svalů nebo kloubů', value: 'bolest-svalu-nebo-kloubu'     },
+        { text: 'Loss of taste or smell', value: 'ztrata-chuti-nebo-cichu' }
+        // { text: 'Ztráta chuti nebo čichu', value: 'ztrata-chuti-nebo-cichu' }
       ],
       next: '6'
     },
     {
       order: '6',
-      question: 'Byl/a jste v poslední době v zahraničí?',
+      question: 'Have you been abroad recently?',
+      // question: 'Byl/a jste v poslední době v zahraničí?',
       answerType: 'boolean',
       next: '7'
     },
     {
       order: '7',
-      question: 'Navštívil Vás někdo v posledních 14 dnech?',
+      question: 'Has anyone visited you in the last 14 days?',
+      // question: 'Navštívil Vás někdo v posledních 14 dnech?',
+      answerType: 'boolean',
+      next: '8'
+    },
+    {
+      order: '8',
+      question: 'Have they been abroad recently?',
+      // question: 'Byl/a daná osova v poslední době v zahraničí?',
       answerType: 'boolean',
       next: 'end'
     }

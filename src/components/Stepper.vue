@@ -206,7 +206,6 @@ export default {
         switch (step.answerType) {
           case 'checkbox':
             this.answers[step.order] = []
-            console.log(step.options)
 
             step.options.forEach(option => {
               this.answers[step.order].push({
