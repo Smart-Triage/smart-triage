@@ -8,8 +8,10 @@
       "
       class="is-confirmed"
     >
-      <div>Confirmed by {{ currentPatient.confirmation.confirmedBy }}</div>
-      <div>{{ currentPatient.confirmation.timestamp }}</div>
+      <div class="confirmation-info">
+        <div>Confirmed by {{ currentPatient.confirmation.confirmedBy }}</div>
+        <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
+      </div>
     </div>
     <button
       :class="{ changecolor: !patientInfoHidden }"
@@ -262,5 +264,17 @@ ion-icon {
       margin-left: 1rem;
     }
   }
+}
+
+.confirmation-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: $positive-color;
+  color: white;
+  border-radius: 5rem;
+  margin: 0 1rem;
 }
 </style>

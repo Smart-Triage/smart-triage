@@ -130,6 +130,7 @@ export default {
   // background-color: $secondary-color;
   padding: 1rem;
   width: 100%;
+  max-width: 25rem;
   display: flex;
   justify-content: center;
 }

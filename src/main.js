@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import UUID from 'vue-uuid'
+import moment from 'moment'
 
 import App from './App.vue'
 import router from './router'
@@ -15,6 +16,13 @@ Vue.use(UUID)
 
 Vue.config.productionTip = false
 Vue.config.ignoredElements = ['ion-icon']
+
+Vue.filter('formatDate', value => {
+  if (value) {
+    return moment(String(value)).format('MM/DD/YYYY hh:mm')
+  }
+  return ''
+})
 
 new Vue({
   router,

@@ -96,7 +96,7 @@ export default {
           ...this.currentPatient,
           confirmed: true,
           confirmation: {
-            confirmedBy: 'HOSPITAL_EMPLOYEE_NAME',
+            confirmedBy: 'Jan Novák',
             timestamp: new Date()
           }
         })

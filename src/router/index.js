@@ -19,6 +19,10 @@ Vue.use(Head, {
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
+  scrollBehavior() {
+    // Scroll to top on navigation
+    return { x: 0, y: 0 }
+  },
   routes: [
     {
       path: '/home',
