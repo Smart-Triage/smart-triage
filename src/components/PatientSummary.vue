@@ -61,7 +61,7 @@
     >
       <div class="patient-item-left">
         <ion-icon name="thermometer-outline"></ion-icon>
-        <span>Symptomy</span>
+        <span>Symptoms</span>
       </div>
       <div class="patient-item-right">
         <ion-icon
@@ -83,8 +83,16 @@
           <b>{{ step.question }}</b>
         </p>
         <span v-if="step.answerType === 'boolean'">{{
-          currentPatient.answers[step.order] === true ? 'ANO' : 'NE'
+          currentPatient.answers[step.order] === true ? 'Yes' : 'No'
         }}</span>
+        <span v-else-if="step.answerType === 'one-of'">
+          {{
+            formSteps
+              .find(s => s.order === step.order)
+              .options.find(o => o.value === currentPatient.answers[step.order])
+              .text
+          }}
+        </span>
         <span v-else-if="step.answerType === 'checkbox'">
           <span
             v-for="option in currentPatient.answers[step.order]"
@@ -159,6 +167,7 @@ export default {
 .questionInfo {
   p {
     color: $secondary-color;
+    margin: 0.5rem 0;
   }
   span {
     color: black;
