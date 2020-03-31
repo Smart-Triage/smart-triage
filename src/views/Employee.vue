@@ -11,7 +11,7 @@
       v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
       class="header-info"
     >
-      <h1>Triage</h1>
+      <h1>Smart Triage</h1>
       <p>Welcome to the employee application for the triage of patients</p>
       <p>Tap scan next patient to begin</p>
     </div>
