@@ -107,10 +107,11 @@ export default {
       question: 'Has anyone visited you in the last 14 days?',
       // question: 'Navštívil Vás někdo v posledních 14 dnech?',
       answerType: 'boolean',
-      next: '8'
+      nextIfPositive: '7.1',
+      nextIfNegative: 'end'
     },
     {
-      order: '8',
+      order: '7.1',
       question: 'Have they been abroad recently?',
       // question: 'Byl/a daná osova v poslední době v zahraničí?',
       answerType: 'boolean',

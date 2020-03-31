@@ -1,6 +1,11 @@
 <template>
   <form class="container" @submit="formSubmit">
     <div>
+      <div class="info-box">
+        <p>The information you enter is safe.</p>
+        <p>No data ever leaves this device.</p>
+      </div>
+
       <label class="floating-label">First name</label>
       <input
         placeholder=""
@@ -87,6 +92,15 @@ export default {
   border-radius: 2em 2em 0 0;
   max-width: 400px;
   padding: 0 0 2em 0;
+
+  .info-box {
+    margin: 0 0 1rem 0;
+    color: $secondary-color;
+
+    p {
+      margin: 0;
+    }
+  }
 
   div {
     display: flex;

@@ -90,7 +90,7 @@ export default {
 
 .top-buttons {
   position: absolute;
-  top: 0;
+  top: 1.5rem;
   left: 0;
   width: 100%;
   display: flex;

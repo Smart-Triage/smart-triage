@@ -19,9 +19,18 @@
       "
       class="is-confirmed"
     >
-      <div class="confirmation-info">
+      <div
+        class="confirmation-info"
+        :class="{ 'covid-suspedted': currentPatient.isCovidSuspected }"
+      >
         <div>Confirmed by {{ currentPatient.confirmation.confirmedBy }}</div>
         <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
+        <div v-if="currentPatient.isCovidSuspected === true">
+          Covid suspected
+        </div>
+        <div v-if="currentPatient.isCovidSuspected === false">
+          Covid NOT suspected
+        </div>
       </div>
     </div>
     <!-- {{ currentPatient.firstName + ' ' + currentPatient.lastName }} -->
@@ -60,7 +69,11 @@ export default {
               'lastName',
               'birthNumber',
               'phoneNumber',
-              'answers'
+              'answers',
+              'confirmed',
+              'confirmation',
+              'isCovidSuspected',
+              'finished'
             ].indexOf(key) > -1
         )
         .reduce(
@@ -119,7 +132,7 @@ export default {
 
 .top-buttons {
   position: absolute;
-  top: 0;
+  top: 1.5rem;
   left: 0;
   width: 100%;
   display: flex;
@@ -129,5 +142,27 @@ export default {
 .bg-confirmed {
   background-color: $secondary-color;
   color: white;
+}
+
+.qrcode {
+  background-color: white;
+  padding: 2rem;
+  margin-top: 1rem;
+}
+
+.confirmation-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: $positive-color;
+  color: white;
+  border-radius: 5rem;
+  margin: 0 1rem;
+
+  &.covid-suspedted {
+    background-color: $negative-color;
+  }
 }
 </style>

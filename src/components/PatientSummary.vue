@@ -8,9 +8,18 @@
       "
       class="is-confirmed"
     >
-      <div class="confirmation-info">
+      <div
+        class="confirmation-info"
+        :class="{ 'covid-suspedted': currentPatient.isCovidSuspected }"
+      >
         <div>Confirmed by {{ currentPatient.confirmation.confirmedBy }}</div>
         <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
+        <div v-if="currentPatient.isCovidSuspected === true">
+          Covid suspected
+        </div>
+        <div v-if="currentPatient.isCovidSuspected === false">
+          Covid NOT suspected
+        </div>
       </div>
     </div>
     <button
@@ -276,5 +285,9 @@ ion-icon {
   color: white;
   border-radius: 5rem;
   margin: 0 1rem;
+
+  &.covid-suspedted {
+    background-color: $negative-color;
+  }
 }
 </style>

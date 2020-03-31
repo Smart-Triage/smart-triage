@@ -10,7 +10,7 @@
 
       <p class="home-page-info">
         Please fill this form before comming to the hospital to speed up your
-        admission
+        admission.
       </p>
 
       <PatientList class="patient-list"></PatientList>
@@ -91,7 +91,7 @@ ion-icon {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 34px);
   @supports (-webkit-appearance: none) {
     .os-android & {
       min-height: calc(100vh - 56px);
@@ -163,7 +163,7 @@ ion-icon {
       color: $main-text-color;
       font-weight: 400;
       align-self: flex-end;
-      margin: 0 1.5em 1em 1.5em;
+      margin: 1em 1.5em 1em 1.5em;
     }
   }
 }

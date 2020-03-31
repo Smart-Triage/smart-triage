@@ -13,6 +13,9 @@
     >
       <h1>Smart Triage</h1>
       <p>Welcome to the employee application for the triage of patients</p>
+
+      <img src="@/assets/img/hand-holding-phone-scanning-qr-code.png" alt="" />
+
       <p>Tap scan next patient to begin</p>
     </div>
 
@@ -23,19 +26,33 @@
         </button>
       </div>
       <h1>Patient summary</h1>
-      <PatientSummary :employee="true"></PatientSummary>
 
-      <!-- <router-link
+      <PatientSummary :employee="true"></PatientSummary>
+    </div>
+
+    <!-- <router-link
       class="link icon-button"
       to="print-barcode"
       ><ion-icon name="barcode-outline"></ion-icon><div class="button-text">Print barcode</div></router-link
     > -->
+    <div
+      v-if="showPatientSummary && currentPatient.isCovidSuspected === undefined"
+      class="confirmation-buttons"
+    >
       <button
-        class="btn-primary show-confirmation-btn icon-button"
-        @click="viewConfirmationQR"
+        class="btn-primary show-confirmation-btn patient-suspect icon-button"
+        @click="viewConfirmationQR(true)"
       >
         <ion-icon name="checkmark-outline"></ion-icon>
-        <div class="button-text">Confirm patient info</div>
+        <div class="button-text">Confirm patient as COVID suspect</div>
+      </button>
+
+      <button
+        class="btn-primary show-confirmation-btn patient-non-suspect icon-button"
+        @click="viewConfirmationQR(false)"
+      >
+        <ion-icon name="checkmark-outline"></ion-icon>
+        <div class="button-text">Confirm patient as COVID NON suspect</div>
       </button>
     </div>
 
@@ -72,7 +89,7 @@
 
 <script>
 import QrcodeVue from 'qrcode.vue'
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import QRScanner from '../components/QRSanner'
 import PatientSummary from '../components/PatientSummary'
 
@@ -91,15 +108,7 @@ export default {
   computed: {
     ...mapGetters('patients', ['currentPatient']),
     confirmedPatient() {
-      if (this.currentPatient)
-        return JSON.stringify({
-          ...this.currentPatient,
-          confirmed: true,
-          confirmation: {
-            confirmedBy: 'Jan Novák',
-            timestamp: new Date()
-          }
-        })
+      if (this.currentPatient) return JSON.stringify(this.currentPatient)
       return null
     }
   },
@@ -148,6 +157,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('patients', ['setCurrentPatientValueByKey']),
     ...mapActions('patients', ['updateOrAddPatient']),
     addPatient(patient) {
       this.scanning = false
@@ -165,7 +175,22 @@ export default {
       this.scanning = true
       this.$router.push('#scanning')
     },
-    viewConfirmationQR() {
+    viewConfirmationQR(isCovidSuspected) {
+      this.setCurrentPatientValueByKey({
+        key: 'confirmed',
+        value: true
+      })
+      this.setCurrentPatientValueByKey({
+        key: 'confirmation',
+        value: {
+          confirmedBy: 'Jan Novák',
+          timestamp: new Date()
+        }
+      })
+      this.setCurrentPatientValueByKey({
+        key: 'isCovidSuspected',
+        value: isCovidSuspected
+      })
       this.showingConfirmationQR = true
       this.$router.push('#confirmation-qr-code')
     },
@@ -200,6 +225,10 @@ export default {
   flex-direction: column;
   align-items: center;
   padding: 1rem 2rem;
+
+  img {
+    max-width: 20rem;
+  }
 }
 
 .summary-view,
@@ -209,12 +238,27 @@ export default {
   align-items: center;
 }
 
+.confirmation-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .show-confirmation-btn {
   cursor: pointer;
   font-size: 1.1rem;
   background-color: $primary-color;
   color: white;
   padding: 0.8rem 1.5rem 0.8rem 1.2rem;
+  margin: 0.5rem 0;
+
+  &.patient-suspect {
+    background-color: $negative-color;
+  }
+
+  &.patient-non-suspect {
+    background-color: $positive-color;
+  }
 }
 
 .scan-next-patient {

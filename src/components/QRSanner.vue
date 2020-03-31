@@ -75,7 +75,12 @@ export default {
           'phoneNumber',
           'answers'
         ]
-        const optionalKeys = ['confirmation', 'confirmed']
+        const optionalKeys = [
+          'confirmation',
+          'confirmed',
+          'isCovidSuspected',
+          'finished'
+        ]
 
         requiredKeys.forEach(key => {
           if (incommingKeys.indexOf(key) === -1)
