@@ -1,6 +1,8 @@
-# Hack Kosice Digital 2020 submission by team The Makers
+# Smart Triage
 
-Solution to speed up the admission of patients on hospitals during COVID-19 testing.
+Hack Kosice Digital 2020 submission
+
+Solution to speed up the triage of patients in hospitals during COVID-19 testing.
 
 ## Demo
 
