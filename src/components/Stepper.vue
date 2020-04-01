@@ -166,14 +166,6 @@ export default {
       return this.currentStepNum === '0'
     }
   },
-  watch: {
-    $route(to) {
-      // Watch for url changes, and view correct step based on URL hash value
-      const stepNumFromhash = to.hash.substr(1).trim()
-      if (stepNumFromhash.length >= 1) this.currentStepNum = stepNumFromhash
-      else this.currentStepNum = '0'
-    }
-  },
   mounted() {
     if (!this.currentPatient.visitedSteps) {
       // If visitedSteps are not defined set te default value ['0']
@@ -229,9 +221,15 @@ export default {
         key => (this.answers[key] = cloneDeep(this.currentPatient.answers[key]))
       )
     }
+    const stepNumFromUrl = this.$route.hash.substr(1).trim()
+
+    // Check if hash in URL is a valid step
+    if (this.getFormSteps.map(step => step.order).indexOf(stepNumFromUrl) > -1)
+      this.$router.replace('')
 
     // Set correct hash in URL
-    this.$router.replace(`#${this.currentStepNum}`)
+    if (stepNumFromUrl !== this.currentStepNum)
+      this.$router.replace(`#${this.currentStepNum}`)
 
     this.dataIsReady = true
   },
