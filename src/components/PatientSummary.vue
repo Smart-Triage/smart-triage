@@ -49,7 +49,7 @@
         :class="{ hideInfo: patientInfoHidden }"
       >
         <p>
-          <b>{{ $t('NAME') }}</b>
+          <b>{{ $t('FULL_NAME') }}</b>
         </p>
         <span>{{
           currentPatient.firstName + ' ' + currentPatient.lastName

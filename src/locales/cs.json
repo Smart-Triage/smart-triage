@@ -1,12 +1,91 @@
 {
-  "home": {
+  "YES": "Ano",
+  "NO": "Ne",
+  "NEXT": "Další",
+  "FIRST_NAME": "Křestní jméno",
+  "LAST_NAME": "Příjmení",
+  "FULL_NAME": "Celé jméno",
+  "PERSONAL_IDENTIFICATION_NUMBER": "Rodné číslo",
+  "PHONE_NUMBER": "Telefonní číslo",
+
+  "SOMETHING_WENT_WRONG": "Něco se pokazilo",
+  "GO_TO_HOMEPAGE": "Jít na domovskou obrazoku",
+
+  "EDIT": "Upravit",
+
+  "HOME": {
     "WELCOME": "COVID-19",
-    "TITLE": "Patient admission",
-    "INFO": "Please fill this form before comming to the hospital to speed up your admission.",
-    "BEGIN": "Begin",
-    "NOT_GOING_ALONE": "Not going alone?",
-    "FILL_FOR_ANOTHER_PERSON": "Fill for another person",
+    "TITLE": "Triáž",
+    "INFO": "Prosím vyplňte tento formulář před příchodem do nemocnice pro urychlení průchodu a omezení blízného kontaktu s personálem",
+    "BEGIN": "Začít",
+    "NOT_GOING_ALONE": "Nejdete sami?",
+    "FILL_FOR_ANOTHER_PERSON": "Vyplnit pro další osobu",
     "HOW_IT_WORKS": "Jak to funguje?",
     "ABOUT": "O aplikaci"
+  },
+  "FORM": {
+    "PERSONAL_DETAILS": "Osobní informace",
+    "QUESTIONNAIRE": "Dotazník",
+    "ANSWER_A_FEW_QUESTIONS": "Prosím vyplňte informace o svém zdravotním stavu",
+    "SKIP_TO_SUMMARY": "Přejít na Shrnutí",
+    "INFORMATION_IS_SAFE": "Vaše osobní informace jsou v bezpečí.",
+    "NO_DATA_IS_SENT_OVER_THE_INTERNET": "Žádná data se neodesílají přes internet."
+  },
+  "APP_IN_DEVELOPMENT": "Zkušební mód. Aplikace je stále ve vývoji.",
+  "SUMMARY": {
+    "SUMMARY": "Shrnutí",
+    "SHOW_QR_CODE": "Zobrazit QR kód"
+  },
+  "PATIENT_SUMMARY": {
+    "CONFIRMED_BY": "Potvrdil/a",
+    "COVID_SUSPECTED": "Covid suspected",
+    "COVID_NOT_SUSPECTED": "Covid NOT suspected",
+    "PATIENT_INFO": "Osobní údaje",
+    "SYMPTOPMS": "Symptomy"
+  },
+  "PATIENT_LIST": {
+    "CONFIRMED": "Potvrzeno",
+    "FINISHED": "Dokončeno",
+    "NOT_FINISHED": "Nedokončeno"
+  },
+  "NEW_CONTENT_AVAILABLE": {
+    "LOADING": "Načítání nového obsahu",
+    "AVAILABLE": "Dostupný nový obsah.",
+    "REFRESH": "Obnovit"
+  },
+  "EMPLOYEE": {
+    "WELCOME": "Vítejte v zaměstnanecké aplikaci pro triáž pacientů",
+    "TAP_SCAN_TO_BEGIN": "Začněte klepnutím na Další pacient",
+    "PATIENT_SUMMARY": "Přehled pacienta",
+    "CONFIRM_AS_COVID_SUSPECT": "Potvrdit pacienta jako COVID suspect",
+    "CONFIRM_AS_COVID_NON_SUSPECT": "Potvrdit pacienta jako COVID NON suspect",
+    "PATIENT_CONFIRMATION_CODE": "Potvrzovací kód pro pacienta",
+    "CLOSE_PATIENT": "Zavřít pacienta",
+    "SCAN_NEXT_PATIENT": "Další pacient"
+  },
+  "HOW_IT_WORKS": {
+    "HOW_IT_WORKS": "Jak to funguje",
+    "SHORT_DESCRIPTION": "Tato aplikace je určena pro osoby, které jdou na vyšetření do nemocnice a nechtějí čeka dlouhé fronty. Tento formulář lze vyplnit předem.",
+    "FILL_FORM": "Vyplňte formulář pro sebe",
+    "FILL_FOR_OTHERS": "[volitelné] Vyplňte formulář pro další osoby, které jsou s Vámi",
+    "SHOW_QR_CODE_TO_STAFF": "Ukažte QR kód personálu nemocnice"
+  },
+  "ABOUT": {
+    "ABOUT_THIS_APP": "O aplikaci",
+    "APP_SHORT_DESCRIPTION": "Tato aplikace byla vytvořena k urychlení triáže pacientů v nemocnicích během pandemie COVID-19.",
+    "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
+    "CREATED_ON_HACKATHON": "Tato aplikace byla vytvořena během online hackathonu Hack Košice Digital 2020.",
+    "AUTHORS": "Autoři"
+  },
+  "PATIENT_QR_CODE": {
+    "FOLLOW_INSTRUCTIONS": "Vyčkejte na instrukce personálu nemocnice",
+    "WHEN_ASKED_SHOW_THIS_CODE": "Zde je Váš QR kód, ukažte ho zdravotníkovi.",
+    "CONFIRMED_BY": "Potvrdil",
+    "COVID_SUSPECTED": "Covid suspected",
+    "COVID_NOT_SUSPECTED": "Covid NOT suspected",
+    "SCAN_CONFIRMATION": "Naskenovat potvrzení"
+  },
+  "SCAN_CONFIRMATION_QR_CODE": {
+    "SCAN_CONFIRMATION_QR_CODE": "Naskenujte potvrzovací QR kód od zdravotníka"
   }
 }

@@ -4,7 +4,7 @@
   "NEXT": "Next",
   "FIRST_NAME": "First name",
   "LAST_NAME": "Last name",
-  "NAME": "Name",
+  "FULL_NAME": "Full Name",
   "PERSONAL_IDENTIFICATION_NUMBER": "Personal identification number",
   "PHONE_NUMBER": "Phone number",
 
@@ -29,7 +29,7 @@
     "ANSWER_A_FEW_QUESTIONS": "Please answer a few questions about your health.",
     "SKIP_TO_SUMMARY": "Skip to Summary",
     "INFORMATION_IS_SAFE": "The information you enter is safe.",
-    "NO_DATA_LEAVES_THIS_DEVICE": "No data ever leaves this device."
+    "NO_DATA_IS_SENT_OVER_THE_INTERNET": "No data is sent over the internet."
   },
   "APP_IN_DEVELOPMENT": "This app is in development",
   "SUMMARY": {

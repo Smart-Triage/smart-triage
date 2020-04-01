@@ -3,7 +3,7 @@
     <div>
       <div class="info-box">
         <p>{{ $t('FORM.INFORMATION_IS_SAFE') }}</p>
-        <p>{{ $t('FORM.NO_DATA_LEAVES_THIS_DEVICE') }}</p>
+        <p>{{ $t('FORM.NO_DATA_IS_SENT_OVER_THE_INTERNET') }}</p>
       </div>
 
       <label class="floating-label"> {{ $t('FIRST_NAME') }}</label>

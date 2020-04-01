@@ -5,7 +5,7 @@
         ><ion-icon name="arrow-back-outline" size="large"></ion-icon
       ></router-link>
     </div>
-    <h1>{{ $t('HOW_IT_WORKS.HOW_IT_WORKS') }}</h1>
+    <h1>{{ $t('HOW_IT_WORKS.HOW_IT_WORKS') }}?</h1>
 
     <img src="@/assets/img/hand-holding-phone-scanning-qr-code.png" alt="" />
 
