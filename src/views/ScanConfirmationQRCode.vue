@@ -15,7 +15,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import QRScanner from '../components/QRSanner'
+import QRScanner from '@/components/QRSanner'
 
 export default {
   components: {

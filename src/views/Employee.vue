@@ -90,8 +90,8 @@
 <script>
 import QrcodeVue from 'qrcode.vue'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-import QRScanner from '../components/QRSanner'
-import PatientSummary from '../components/PatientSummary'
+import QRScanner from '@/components/QRSanner'
+import PatientSummary from '@/components/PatientSummary'
 
 export default {
   components: {

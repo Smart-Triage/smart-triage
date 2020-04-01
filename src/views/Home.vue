@@ -42,7 +42,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import PatientList from '../components/PatientList'
+import PatientList from '@/components/PatientList'
 
 export default {
   components: {

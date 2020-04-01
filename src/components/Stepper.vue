@@ -142,7 +142,7 @@
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
-import PatientForm from './PatientForm'
+import PatientForm from '@/components/PatientForm'
 
 export default {
   components: { PatientForm },

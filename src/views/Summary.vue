@@ -35,7 +35,7 @@
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
-import PatientSummary from '../components/PatientSummary'
+import PatientSummary from '@/components/PatientSummary'
 
 export default {
   components: { PatientSummary },

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Stepper from '../components/Stepper'
+import Stepper from '@/components/Stepper'
 
 export default {
   components: { Stepper }
