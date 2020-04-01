@@ -41,15 +41,7 @@ export default {
   components: { PatientSummary },
   computed: {
     ...mapState('patients', ['patients']),
-    ...mapGetters('patients', ['currentPatient']),
-    stepAnswers() {
-      return this.formSteps.map(step => {
-        return {
-          ...step,
-          answer: this.currentPatient.answers[step.order]
-        }
-      })
-    }
+    ...mapGetters('patients', ['currentPatient'])
   },
   mounted() {
     if (this.currentPatient === undefined) {

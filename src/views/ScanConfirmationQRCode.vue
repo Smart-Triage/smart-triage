@@ -14,12 +14,20 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 
 export default {
   components: {
     QRScanner
+  },
+  computed: {
+    ...mapGetters('patients', ['currentPatient'])
+  },
+  created() {
+    if (!this.currentPatient) {
+      this.$router.push('/home')
+    }
   },
   methods: {
     ...mapActions('patients', ['updateOrAddPatient']),

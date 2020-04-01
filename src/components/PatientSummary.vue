@@ -107,7 +107,7 @@
         }}</span>
         <span v-else-if="step.answerType === 'one-of'">
           {{
-            formSteps
+            getFormSteps
               .find(s => s.order === step.order)
               .options.find(o => o.value === currentPatient.answers[step.order])
               .text
@@ -119,7 +119,7 @@
             :key="option.value"
             >{{
               option.isChecked
-                ? formSteps
+                ? getFormSteps
                     .find(s => s.order === step.order)
                     .options.find(o => o.value === option.value).text + ', '
                 : ''
@@ -141,7 +141,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   props: { employee: { type: Boolean, default: false } },
@@ -150,12 +150,12 @@ export default {
     patientSymptomsHidden: true
   }),
   computed: {
-    ...mapState('patients', ['formSteps']),
+    ...mapGetters('questions', ['getFormSteps']),
     ...mapGetters('patients', ['currentPatient']),
     formStepsToShow() {
       if (!this.currentPatient) return []
       const stepsToShow = []
-      this.formSteps.forEach(step => {
+      this.getFormSteps.forEach(step => {
         if (Object.keys(this.currentPatient.answers).indexOf(step.order) > -1)
           stepsToShow.push(step)
       })

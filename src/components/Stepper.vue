@@ -1,7 +1,7 @@
 <template>
   <div v-if="dataIsReady">
     <div
-      v-for="step in formSteps"
+      v-for="step in getFormSteps"
       :key="step.order"
       class="step"
       :class="{ hidden: step.order !== currentStepNum }"
@@ -140,7 +140,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 
@@ -154,10 +154,10 @@ export default {
     answers: {}
   }),
   computed: {
-    ...mapState('patients', ['formSteps']),
+    ...mapGetters('questions', ['getFormSteps']),
     ...mapGetters('patients', ['currentPatient']),
     currentStep() {
-      return this.formSteps.find(step => step.order === this.currentStepNum)
+      return this.getFormSteps.find(step => step.order === this.currentStepNum)
     },
     isLast() {
       return this.currentStepNum === '7'
@@ -202,7 +202,7 @@ export default {
     if (!this.currentPatient.answers) {
       // If answers are not defined for current patient (first time in form), prepopulate the object with default values
       this.answers = {}
-      this.formSteps.forEach(step => {
+      this.getFormSteps.forEach(step => {
         switch (step.answerType) {
           case 'checkbox':
             this.answers[step.order] = []

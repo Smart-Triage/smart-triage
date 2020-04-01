@@ -37,7 +37,7 @@
 
 <script>
 import { QrcodeStream } from 'vue-qrcode-reader'
-import { mapState, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   components: { QrcodeStream },
@@ -54,7 +54,7 @@ export default {
     }
   },
   computed: {
-    ...mapState('patients', ['formSteps']),
+    ...mapGetters('questions', ['getFormSteps']),
     ...mapGetters('patients', ['currentPatient'])
   },
   methods: {
@@ -88,7 +88,7 @@ export default {
         })
 
         const incommingAnswers = Object.keys(patient.answers)
-        const requiredAnswers = this.formSteps
+        const requiredAnswers = this.getFormSteps
           .map(step => step.order)
           .filter(stepNum => stepNum !== '0' && stepNum.length <= 1)
 

@@ -6,6 +6,7 @@ import app from './app'
 // import products from './products'
 import patients from './patients'
 import settings from './settings'
+import questions from './questions'
 
 Vue.use(Vuex)
 
@@ -23,7 +24,8 @@ export default new Vuex.Store({
     app,
     // products,
     patients,
-    settings
+    settings,
+    questions
   },
   plugins: [vuexLocal.plugin]
 })

@@ -78,16 +78,26 @@
       </button>
     </div>
 
-    <div class="spacer"></div>
-
-    <button
+    <div
       v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
-      class="btn-primary scan-next-patient icon-button"
-      @click="scan"
+      class="employee-page-buttons"
     >
-      <ion-icon name="scan-outline"></ion-icon>
-      <div class="button-text">{{ $t('EMPLOYEE.SCAN_NEXT_PATIENT') }}</div>
-    </button>
+      <button class="btn-primary scan-next-patient icon-button" @click="scan">
+        <ion-icon name="scan-outline"></ion-icon>
+        <div class="button-text">{{ $t('EMPLOYEE.SCAN_NEXT_PATIENT') }}</div>
+      </button>
+
+      <div class="spacer"></div>
+
+      <div class="employee-page-bottom-links">
+        <router-link class="employee-page-link" to="/how-it-works">{{
+          $t('HOME.HOW_IT_WORKS')
+        }}</router-link>
+        <router-link class="employee-page-link" to="/about">{{
+          $t('HOME.ABOUT')
+        }}</router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -215,10 +225,7 @@ export default {
   flex-direction: column;
   align-items: center;
   height: 100%;
-
-  .spacer {
-    flex-grow: 1;
-  }
+  min-height: calc(100vh - 34px);
 }
 
 .top-buttons {
@@ -274,6 +281,29 @@ export default {
 
   .button-text {
     font-size: 1rem;
+  }
+}
+
+.employee-page-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+
+  .spacer {
+    flex-grow: 1;
+  }
+}
+
+.employee-page-bottom-links {
+  display: flex;
+
+  .employee-page-link {
+    text-decoration: none;
+    color: $main-text-color;
+    font-weight: 400;
+    align-self: flex-end;
+    margin: 1em 1.5em 1em 1.5em;
   }
 }
 </style>

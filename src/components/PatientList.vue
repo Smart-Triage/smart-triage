@@ -21,9 +21,11 @@
         </span>
       </div>
       <div class="patient-item-right">
-        <span v-if="patient.confirmed">{{ $t('CONFIRMED') }}</span>
-        <span v-else-if="patient.finished">{{ $t('FINISHED') }}</span>
-        <span v-else>{{ $t('NOT_FINISHED') }}</span>
+        <span v-if="patient.confirmed">{{ $t('PATIENT_LIST.CONFIRMED') }}</span>
+        <span v-else-if="patient.finished">{{
+          $t('PATIENT_LIST.FINISHED')
+        }}</span>
+        <span v-else>{{ $t('PATIENT_LIST.NOT_FINISHED') }}</span>
         <ion-icon name="arrow-forward-outline"></ion-icon>
       </div>
     </div>

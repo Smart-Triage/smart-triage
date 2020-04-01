@@ -88,6 +88,11 @@ export default {
 
       return JSON.stringify(filteredPatient)
     }
+  },
+  created() {
+    if (!this.currentPatient) {
+      this.$router.push('/home')
+    }
   }
 }
 </script>

@@ -2,6 +2,8 @@ import Vue from 'vue'
 import UUID from 'vue-uuid'
 import moment from 'moment'
 
+import i18n from '@/plugins/i18n'
+
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -11,7 +13,6 @@ import '@/firebase/init'
 import '@/firebase/authentication'
 import '@/misc/handle-apple-install-prompt'
 import 'pwacompat'
-import i18n from './i18n'
 
 Vue.use(UUID)
 

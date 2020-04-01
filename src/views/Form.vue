@@ -6,9 +6,18 @@
 
 <script>
 import Stepper from '@/components/Stepper'
+import { mapGetters } from 'vuex'
 
 export default {
-  components: { Stepper }
+  components: { Stepper },
+  computed: {
+    ...mapGetters('patients', ['currentPatient'])
+  },
+  created() {
+    if (!this.currentPatient) {
+      this.$router.push('/home')
+    }
+  }
 }
 </script>
 
