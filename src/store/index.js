@@ -5,6 +5,7 @@ import VuexPersistence from 'vuex-persist'
 import app from './app'
 // import products from './products'
 import patients from './patients'
+import settings from './settings'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,7 @@ Vue.use(Vuex)
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
-  reducer: state => ({ patients: state.patients })
+  reducer: state => ({ patients: state.patients, settings: state.settings })
 })
 
 export default new Vuex.Store({
@@ -21,7 +22,8 @@ export default new Vuex.Store({
     // authentication,
     app,
     // products,
-    patients
+    patients,
+    settings
   },
   plugins: [vuexLocal.plugin]
 })

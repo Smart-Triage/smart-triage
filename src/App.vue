@@ -39,7 +39,11 @@ export default {
   },
   computed: {
     ...mapGetters('app', ['newContentAvailable']),
-    ...mapState('app', ['showAddToHomeScreenModalForApple', 'refreshingApp'])
+    ...mapState('app', ['showAddToHomeScreenModalForApple', 'refreshingApp']),
+    ...mapState('settings', ['locale'])
+  },
+  created() {
+    this.$i18n.locale = this.locale
   },
   methods: mapActions('app', [
     'closeAddToHomeScreenModalForApple',

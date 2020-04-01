@@ -11,6 +11,7 @@ import '@/firebase/init'
 import '@/firebase/authentication'
 import '@/misc/handle-apple-install-prompt'
 import 'pwacompat'
+import i18n from './i18n'
 
 Vue.use(UUID)
 
@@ -27,6 +28,7 @@ Vue.filter('formatDate', value => {
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')
 

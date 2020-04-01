@@ -1,16 +1,18 @@
 <template>
   <div class="page-wrapper">
+    <div class="top-buttons">
+      <LocaleChanger></LocaleChanger>
+    </div>
     <div class="home-page-top-img">
       <img src="@/assets/img/home-page-welcome-img.png" alt="" />
     </div>
 
     <div class="home-page-center">
-      <p class="home-page-welcome">COVID-19</p>
-      <h1 class="home-page-title">Patient admission</h1>
+      <p class="home-page-welcome">{{ $t('home-page-welcome') }}</p>
+      <h1 class="home-page-title">{{ $t('homepage-title') }}</h1>
 
       <p class="home-page-info">
-        Please fill this form before comming to the hospital to speed up your
-        admission.
+        {{ $t('home-page-info') }}
       </p>
 
       <PatientList class="patient-list"></PatientList>
@@ -43,10 +45,12 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import PatientList from '@/components/PatientList'
+import LocaleChanger from '@/components/LocaleChanger'
 
 export default {
   components: {
-    PatientList
+    PatientList,
+    LocaleChanger
   },
   head() {
     return {
@@ -166,5 +170,11 @@ ion-icon {
       margin: 1em 1.5em 1em 1.5em;
     }
   }
+}
+
+.top-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
