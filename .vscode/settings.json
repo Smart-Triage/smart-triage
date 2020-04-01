@@ -12,7 +12,7 @@
 
   "[scss]": {
     "editor.formatOnSave": true
-  },
+  }
   // "workbench.colorCustomizations": {
   //   "activityBar.background": "#ef7853",
   //   "activityBar.activeBackground": "#ef7853",
