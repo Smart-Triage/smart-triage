@@ -61,13 +61,13 @@
           </div>
 
           <div v-if="step.answerType === 'slider'" class="slider-answer-slider">
-            <div>{{ temperatureValue }}</div>
+            <div class="slider-value">{{ temperatureValue }}</div>
             <input
               v-model="temperatureValue"
               type="range"
-              min="36.5"
+              min="36"
               max="42"
-              step="0.5"
+              step="0.1"
               class="slider"
             />
             <button @click="next(temperatureValue)">{{ $t('NEXT') }}</button>
@@ -418,21 +418,27 @@ export default {
 }
 
 .slider-answer-slider {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 2rem;
+
+  .slider-value {
+    font-size: 1.2rem;
+  }
 
   .slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 10px;
+    height: 8px;
     border-radius: 5px;
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
-    margin: 1rem;
+    margin: 1rem 0 2rem;
   }
 
   .slider::-webkit-slider-thumb {
