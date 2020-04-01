@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-container">
     <div class="in-developement-overlay">
-      This app is in development
+      {{ $t('APP_IN_DEVELOPMENT') }}
     </div>
   </div>
 </template>

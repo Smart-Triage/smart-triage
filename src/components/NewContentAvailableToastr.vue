@@ -1,11 +1,13 @@
 <template>
   <div class="wrapper">
     <template v-if="refreshingApp">
-      Loading new content...
+      {{ $t('NEW_CONTENT_AVAILABLE.LOADING') }} ...
     </template>
     <template v-else>
-      New content available. Please
-      <span class="refresh-btn" @click="$emit('refresh')">REFRESH</span>
+      {{ $t('NEW_CONTENT_AVAILABLE.AVAILABLE') }}
+      <span class="refresh-btn" @click="$emit('refresh')">{{
+        $t('NEW_CONTENT_AVAILABLE.REFRESH')
+      }}</span>
     </template>
   </div>
 </template>

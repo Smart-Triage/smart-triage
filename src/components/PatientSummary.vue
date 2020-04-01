@@ -12,13 +12,16 @@
         class="confirmation-info"
         :class="{ 'covid-suspedted': currentPatient.isCovidSuspected }"
       >
-        <div>Confirmed by {{ currentPatient.confirmation.confirmedBy }}</div>
+        <div>
+          {{ $t('PATIENT_SUMMARY.CONFIRMED_BY') }}
+          {{ currentPatient.confirmation.confirmedBy }}
+        </div>
         <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
         <div v-if="currentPatient.isCovidSuspected === true">
-          Covid suspected
+          {{ $t('PATIENT_SUMMARY.COVID_SUSPECTED') }}
         </div>
         <div v-if="currentPatient.isCovidSuspected === false">
-          Covid NOT suspected
+          {{ $t('PATIENT_SUMMARY.COVID_NOT_SUSPECTED') }}
         </div>
       </div>
     </div>
@@ -29,7 +32,7 @@
     >
       <div class="patient-item-left">
         <ion-icon name="person-outline"></ion-icon>
-        <span>Patient info</span>
+        <span>{{ $t('PATIENT_SUMMARY.PATIENT_INFO') }}</span>
       </div>
       <div class="patient-item-right">
         <ion-icon
@@ -45,15 +48,21 @@
         class="info-container questionInfo"
         :class="{ hideInfo: patientInfoHidden }"
       >
-        <p><b>Name</b></p>
+        <p>
+          <b>{{ $t('NAME') }}</b>
+        </p>
         <span>{{
           currentPatient.firstName + ' ' + currentPatient.lastName
         }}</span>
         <hr class="dividerInfo" />
-        <p><b>Birth number</b></p>
+        <p>
+          <b>{{ $t('PERSONAL_IDENTIFICATION_NUMBER') }}</b>
+        </p>
         <span>{{ currentPatient.birthNumber }}</span>
         <hr class="dividerInfo" />
-        <p><b>Phone number</b></p>
+        <p>
+          <b>{{ $t('PHONE_NUMBER') }}</b>
+        </p>
         <span>{{ currentPatient.phoneNumber }}</span>
         <hr class="dividerInfo" />
         <button
@@ -61,7 +70,7 @@
           class="edit-btn"
           @click="edit('0')"
         >
-          Edit
+          {{ $t('EDIT') }}
         </button>
       </div>
     </transition>
@@ -72,7 +81,7 @@
     >
       <div class="patient-item-left">
         <ion-icon name="thermometer-outline"></ion-icon>
-        <span>Symptoms</span>
+        <span>{{ $t('PATIENT_SUMMARY.SYMPTOPMS') }}</span>
       </div>
       <div class="patient-item-right">
         <ion-icon
@@ -125,7 +134,7 @@
         class="edit-btn"
         @click="edit('1')"
       >
-        Edit
+        {{ $t('EDIT') }}
       </button>
     </div>
   </div>

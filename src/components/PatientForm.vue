@@ -2,11 +2,11 @@
   <form class="container" @submit="formSubmit">
     <div>
       <div class="info-box">
-        <p>The information you enter is safe.</p>
-        <p>No data ever leaves this device.</p>
+        <p>{{ $t('FORM.INFORMATION_IS_SAFE') }}</p>
+        <p>{{ $t('FORM.NO_DATA_LEAVES_THIS_DEVICE') }}</p>
       </div>
 
-      <label class="floating-label">First name</label>
+      <label class="floating-label"> {{ $t('FIRST_NAME') }}</label>
       <input
         placeholder=""
         class="form-input"
@@ -16,7 +16,7 @@
         @input="setPatientValueByKey('firstName', $event.target.value)"
       />
 
-      <label class="floating-label">Last name</label>
+      <label class="floating-label"> {{ $t('LAST_NAME') }}</label>
       <input
         placeholder=""
         class="form-input"
@@ -26,7 +26,9 @@
         @input="setPatientValueByKey('lastName', $event.target.value)"
       />
 
-      <label class="floating-label">Birth number</label>
+      <label class="floating-label">
+        {{ $t('PERSONAL_IDENTIFICATION_NUMBER') }}</label
+      >
       <input
         placeholder=""
         class="form-input"
@@ -36,7 +38,7 @@
         @input="setPatientValueByKey('birthNumber', $event.target.value)"
       />
 
-      <label class="floating-label">Phone number</label>
+      <label class="floating-label"> {{ $t('PHONE_NUMBER') }}</label>
       <input
         placeholder=""
         class="form-input"
@@ -46,7 +48,7 @@
         @input="setPatientValueByKey('phoneNumber', $event.target.value)"
       />
     </div>
-    <button type="submit" class="link btn-primary">Next</button>
+    <button type="submit" class="link btn-primary">{{ $t('NEXT') }}</button>
   </form>
 </template>
 

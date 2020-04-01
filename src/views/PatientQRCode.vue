@@ -7,10 +7,10 @@
     </div>
 
     <div class="home-page-top-img">
-      <h1>Follow the instructions of the hospital staff</h1>
+      <h1>{{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}</h1>
       <img src="@/assets/img/scan-code.png" alt="" />
     </div>
-    <p>When asked, show this code.</p>
+    <p>{{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}</p>
     <div
       v-if="
         currentPatient.confirmation &&
@@ -23,13 +23,16 @@
         class="confirmation-info"
         :class="{ 'covid-suspedted': currentPatient.isCovidSuspected }"
       >
-        <div>Confirmed by {{ currentPatient.confirmation.confirmedBy }}</div>
+        <div>
+          {{ $t('PATIENT_QR_CODE.CONFIRMED_BY') }}
+          {{ currentPatient.confirmation.confirmedBy }}
+        </div>
         <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
         <div v-if="currentPatient.isCovidSuspected === true">
-          Covid suspected
+          {{ $t('PATIENT_QR_CODE.COVID_SUSPECTED') }}
         </div>
         <div v-if="currentPatient.isCovidSuspected === false">
-          Covid NOT suspected
+          {{ $t('PATIENT_QR_CODE.COVID_NOT_SUSPECTED') }}
         </div>
       </div>
     </div>
@@ -46,7 +49,9 @@
       class="link btn-primary scan-confirmation-btn icon-button"
       to="/scan-confirmation-qr-code"
       ><ion-icon name="scan-outline"></ion-icon>
-      <div class="button-text">Scan confirmation</div></router-link
+      <div class="button-text">
+        {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
+      </div></router-link
     >
   </div>
 </template>

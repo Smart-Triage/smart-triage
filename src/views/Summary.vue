@@ -6,7 +6,7 @@
           <ion-icon name="close" size="large"></ion-icon>
         </router-link>
       </div>
-      <h1 class="page-title">Summary</h1>
+      <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
       <img src="@/assets/img/home-page-welcome-img.png" alt="" />
     </div>
     <PatientSummary></PatientSummary>
@@ -19,7 +19,7 @@
         class="link btn-primary icon-button show-qr-code-btn"
       >
         <ion-icon name="qr-code-outline"></ion-icon>
-        <div class="button-text">Show QR code</div>
+        <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
       </router-link>
       <!-- <router-link to="/home" class="link btn-primary icon-button"
         ><ion-icon name="person-add-outline"></ion-icon>
@@ -28,8 +28,8 @@
     </div>
   </div>
   <div v-else>
-    <p>Something went wrong</p>
-    <router-link to="/home">Go to homepage</router-link>
+    <p>{{ $t('SOMETHING_WENT_WRONG') }}</p>
+    <router-link to="/home"> {{ $t('GO_TO_HOMEPAGE') }}</router-link>
   </div>
 </template>
 

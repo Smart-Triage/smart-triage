@@ -5,7 +5,7 @@
         <ion-icon name="arrow-back-outline" size="large"></ion-icon>
       </router-link>
     </div>
-    <h1>Scan confirmation code from hospital employee</h1>
+    <h1>{{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}</h1>
     <QRScanner
       :scanning-confirmation-code="true"
       @patient="processConfirmation"

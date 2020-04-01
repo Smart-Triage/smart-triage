@@ -11,12 +11,12 @@
       v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
       class="header-info"
     >
-      <h1>Smart Triage</h1>
-      <p>Welcome to the employee application for the triage of patients</p>
+      <h1>{{ appTitle }}</h1>
+      <p>{{ $t('EMPLOYEE.WELCOME') }}</p>
 
       <img src="@/assets/img/hand-holding-phone-scanning-qr-code.png" alt="" />
 
-      <p>Tap scan next patient to begin</p>
+      <p>{{ $t('EMPLOYEE.TAP_SCAN_TO_BEGIN') }}</p>
     </div>
 
     <div v-if="showPatientSummary && currentPatient" class="summary-view">
@@ -25,7 +25,7 @@
           <ion-icon name="close-outline" size="large"></ion-icon>
         </button>
       </div>
-      <h1>Patient summary</h1>
+      <h1>{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
 
       <PatientSummary :employee="true"></PatientSummary>
     </div>
@@ -44,7 +44,9 @@
         @click="viewConfirmationQR(true)"
       >
         <ion-icon name="checkmark-outline"></ion-icon>
-        <div class="button-text">Confirm patient as COVID suspect</div>
+        <div class="button-text">
+          {{ $t('EMPLOYEE.CONFIRM_AS_COVID_SUSPECT') }}
+        </div>
       </button>
 
       <button
@@ -52,7 +54,9 @@
         @click="viewConfirmationQR(false)"
       >
         <ion-icon name="checkmark-outline"></ion-icon>
-        <div class="button-text">Confirm patient as COVID NON suspect</div>
+        <div class="button-text">
+          {{ $t('EMPLOYEE.CONFIRM_AS_COVID_NON_SUSPECT') }}
+        </div>
       </button>
     </div>
 
@@ -62,7 +66,7 @@
           <ion-icon name="arrow-back-outline" size="large"></ion-icon>
         </button>
       </div>
-      <h1>Patient confirmation code</h1>
+      <h1>{{ $t('EMPLOYEE.PATIENT_CONFIRMATION_CODE') }}</h1>
       <qrcode-vue
         class="qrcode"
         :value="confirmedPatient"
@@ -70,7 +74,7 @@
         level="H"
       ></qrcode-vue>
       <button class="link btn-primary" @click="showEmployeeHomepage">
-        Close patient
+        {{ $t('EMPLOYEE.CLOSE_PATIENT') }}
       </button>
     </div>
 
@@ -82,14 +86,14 @@
       @click="scan"
     >
       <ion-icon name="scan-outline"></ion-icon>
-      <div class="button-text">Scan next patient</div>
+      <div class="button-text">{{ $t('EMPLOYEE.SCAN_NEXT_PATIENT') }}</div>
     </button>
   </div>
 </template>
 
 <script>
 import QrcodeVue from 'qrcode.vue'
-import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
 
@@ -106,6 +110,7 @@ export default {
     showPatientSummary: false
   }),
   computed: {
+    ...mapState('app', ['appTitle']),
     ...mapGetters('patients', ['currentPatient']),
     confirmedPatient() {
       if (this.currentPatient) return JSON.stringify(this.currentPatient)

@@ -14,22 +14,22 @@
           v-if="currentPatient.finished"
           class="skip-to-summary"
           to="/summary"
-          >Skip to summary</router-link
+          >{{ $t('FORM.SKIP_TO_SUMMARY') }}</router-link
         >
       </div>
       <div v-if="step.order === '0'" class="home-page-top-img">
-        <h1 class="page-title">Personal details</h1>
+        <h1 class="page-title">{{ $t('FORM.PERSONAL_DETAILS') }}</h1>
         <img src="@/assets/img/form-page-top.png" alt />
       </div>
       <div v-if="step.order !== '0'" class="home-page-top-img">
-        <h1 class="page-title">Dotazník</h1>
+        <h1 class="page-title">{{ $t('FORM.QUESTIONNAIRE') }}</h1>
         <img src="@/assets/img/form-page-top.png" alt />
       </div>
 
       <transition name="view" mode="out-in">
         <div class="container">
           <p v-if="step.order !== '0'" class="directions">
-            Please answer a few questions about your health.
+            {{ $t('FORM.ANSWER_A_FEW_QUESTIONS') }}
           </p>
           <p v-if="currentStepNum !== '0'" class="question">
             {{ step.question }}
@@ -50,13 +50,13 @@
               :class="{ 'button-active': answers[currentStepNum] == false }"
               @click="next(false)"
             >
-              No
+              {{ $t('NO') }}
             </button>
             <button
               :class="{ 'button-active': answers[currentStepNum] == true }"
               @click="next(true)"
             >
-              Yes
+              {{ $t('YES') }}
             </button>
           </div>
 
@@ -70,7 +70,7 @@
               step="0.5"
               class="slider"
             />
-            <button @click="next(temperatureValue)">Next</button>
+            <button @click="next(temperatureValue)">{{ $t('NEXT') }}</button>
           </div>
 
           <div v-if="step.answerType === 'one-of'" class="one-of-answer">
@@ -116,7 +116,7 @@
               <label :for="option.value">{{ option.text }}</label>
             </div>
 
-            <button @click="next(step.options)">Next</button>
+            <button @click="next(step.options)">{{ $t('NEXT') }}</button>
           </div>
 
           <div class="spacer"></div>

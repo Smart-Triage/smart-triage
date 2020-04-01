@@ -8,11 +8,11 @@
     </div>
 
     <div class="home-page-center">
-      <p class="home-page-welcome">{{ $t('home-page-welcome') }}</p>
-      <h1 class="home-page-title">{{ $t('homepage-title') }}</h1>
+      <p class="home-page-welcome">{{ $t('HOME.WELCOME') }}</p>
+      <h1 class="home-page-title">{{ $t('HOME.TITLE') }}</h1>
 
       <p class="home-page-info">
-        {{ $t('home-page-info') }}
+        {{ $t('HOME.INFO') }}
       </p>
 
       <PatientList class="patient-list"></PatientList>
@@ -20,24 +20,26 @@
       <div v-if="patients.length === 0" class="main-action">
         <button class="link btn-primary" @click="createPatient">
           <ion-icon name="person-add-outline"></ion-icon>
-          <span class="main-action-button-text">Begin</span>
+          <span class="main-action-button-text">{{ $t('HOME.BEGIN') }}</span>
         </button>
       </div>
       <div v-else class="main-action">
-        <p>Not going alone?</p>
+        <p>{{ $t('HOME.NOT_GOING_ALONE') }}</p>
         <button class="link btn-primary" @click="createPatient">
           <ion-icon name="person-add-outline"></ion-icon>
-          <span class="main-action-button-text">Fill for another person</span>
+          <span class="main-action-button-text">{{
+            $t('HOME.FILL_FOR_ANOTHER_PERSON')
+          }}</span>
         </button>
       </div>
     </div>
     <div class="home-page-bottom-link">
-      <router-link class="home-page-link" to="/how-it-works"
-        >How it works?</router-link
-      >
-      <router-link class="home-page-link" to="/about"
-        >About this app</router-link
-      >
+      <router-link class="home-page-link" to="/how-it-works">{{
+        $t('HOME.HOW_IT_WORKS')
+      }}</router-link>
+      <router-link class="home-page-link" to="/about">{{
+        $t('HOME.ABOUT')
+      }}</router-link>
     </div>
   </div>
 </template>

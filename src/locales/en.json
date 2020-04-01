@@ -1,5 +1,91 @@
 {
-  "home-page-welcome": "COVID-19",
-  "homepage-title": "Patient admission",
-  "home-page-info": "Please fill this form before comming to the hospital to speed up your admission."
+  "YES": "Yes",
+  "NO": "No",
+  "NEXT": "Next",
+  "FIRST_NAME": "First name",
+  "LAST_NAME": "Last name",
+  "NAME": "Name",
+  "PERSONAL_IDENTIFICATION_NUMBER": "Personal identification number",
+  "PHONE_NUMBER": "Phone number",
+
+  "SOMETHING_WENT_WRONG": "Something went wrong",
+  "GO_TO_HOMEPAGE": "Go to homepage",
+
+  "EDIT": "Edit",
+
+  "HOME": {
+    "WELCOME": "COVID-19",
+    "TITLE": "Patient admission",
+    "INFO": "Please fill this form before comming to the hospital to speed up your admission.",
+    "BEGIN": "Begin",
+    "NOT_GOING_ALONE": "Not going alone?",
+    "FILL_FOR_ANOTHER_PERSON": "Fill for another person",
+    "HOW_IT_WORKS": "How it works?",
+    "ABOUT": "About this app"
+  },
+  "FORM": {
+    "PERSONAL_DETAILS": "Personal details",
+    "QUESTIONNAIRE": "Questionnaire",
+    "ANSWER_A_FEW_QUESTIONS": "Please answer a few questions about your health.",
+    "SKIP_TO_SUMMARY": "Skip to Summary",
+    "INFORMATION_IS_SAFE": "The information you enter is safe.",
+    "NO_DATA_LEAVES_THIS_DEVICE": "No data ever leaves this device."
+  },
+  "APP_IN_DEVELOPMENT": "This app is in development",
+  "SUMMARY": {
+    "SUMMARY": "Summary",
+    "SHOW_QR_CODE": "Show QR code"
+  },
+  "PATIENT_SUMMARY": {
+    "CONFIRMED_BY": "Confirmed by",
+    "COVID_SUSPECTED": "Covid suspected",
+    "COVID_NOT_SUSPECTED": "Covid NOT suspected",
+    "PATIENT_INFO": "Patient info",
+    "SYMPTOPMS": "Symptoms"
+  },
+  "PATIENT_LIST": {
+    "CONFIRMED": "Confirmed",
+    "FINISHED": "Finished",
+    "NOT_FINISHED": "Not finished"
+  },
+  "NEW_CONTENT_AVAILABLE": {
+    "LOADING": "Loading new content",
+    "AVAILABLE": "New content available. Please",
+    "REFRESH": "Refresh"
+  },
+  "EMPLOYEE": {
+    "WELCOME": "Welcome to the employee application for the triage of patients",
+    "TAP_SCAN_TO_BEGIN": "Tap scan next patient to begin",
+    "PATIENT_SUMMARY": "Patient summary",
+    "CONFIRM_AS_COVID_SUSPECT": "Confirm patient as COVID suspect",
+    "CONFIRM_AS_COVID_NON_SUSPECT": "Confirm patient as COVID NON suspect",
+    "PATIENT_CONFIRMATION_CODE": "Patient confirmation code",
+    "CLOSE_PATIENT": "Close patient",
+    "SCAN_NEXT_PATIENT": "Scan next patient"
+  },
+  "HOW_IT_WORKS": {
+    "HOW_IT_WORKS": "How it works",
+    "SHORT_DESCRIPTION": "This app is intended for people who are about to be tested for COVID-19. If you're going to the hospital, you can fill this form on your smartphone at home and take your phone to the hospital with you",
+    "FILL_FORM": "Fill form for yourself",
+    "FILL_FOR_OTHERS": "[optinal] Fill form for other people who are comming with you",
+    "SHOW_QR_CODE_TO_STAFF": "Show the QR code to the hospital staff"
+  },
+  "ABOUT": {
+    "ABOUT_THIS_APP": "About this app",
+    "APP_SHORT_DESCRIPTION": "This application is designed to significantly speed up patient triage in hospitals and mobile test ambulances during COVID-19 testing.",
+    "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
+    "CREATED_ON_HACKATHON": "This applicatin was created as a submission for the Hack Košice Digital hackathon 2020.",
+    "AUTHORS": "Authors"
+  },
+  "PATIENT_QR_CODE": {
+    "FOLLOW_INSTRUCTIONS": "Follow the instructions of the hospital staff",
+    "WHEN_ASKED_SHOW_THIS_CODE": "When asked, show this code.",
+    "CONFIRMED_BY": "Confirmed by",
+    "COVID_SUSPECTED": "Covid suspected",
+    "COVID_NOT_SUSPECTED": "Covid NOT suspected",
+    "SCAN_CONFIRMATION": "Scan confirmation"
+  },
+  "SCAN_CONFIRMATION_QR_CODE": {
+    "SCAN_CONFIRMATION_QR_CODE": "Scan confirmation code from hospital employee"
+  }
 }

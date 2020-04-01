@@ -5,27 +5,23 @@
         ><ion-icon name="arrow-back-outline" size="large"></ion-icon
       ></router-link>
     </div>
-    <h1>About this app</h1>
+    <h1>{{ $t('ABOUT.ABOUT_THIS_APP') }}</h1>
 
     <img src="@/assets/img/home-page-welcome-img.png" alt="" />
 
     <p>
-      This application is designed to significantly speed up patient triage in
-      hospitals and mobile test ambulances during COVID-19 testing.
+      {{ $t('ABOUT.APP_SHORT_DESCRIPTION') }}
     </p>
 
     <p>
-      Triage is the process of determining the priority of patients' treatments
-      based on the severity of their condition or likelyhood of recovery with
-      and without treatment
+      {{ $t('ABOUT.TRIAGE_DESCRIPTION') }}
     </p>
 
     <p>
-      This applicatin was created as a submission for the Hack Košice Digital
-      hackathon 2020.
+      {{ $t('ABOUT.CREATED_ON_HACKATHON') }}
     </p>
 
-    <div>Authors:</div>
+    <div>{{ $t('ABOUT.AUTHORS') }}:</div>
     <ul>
       <li>Vasil Kostin</li>
       <li>Tom Kuna</li>
