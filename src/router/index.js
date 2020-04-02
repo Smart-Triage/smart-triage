@@ -101,7 +101,18 @@ const router = new Router({
       name: 'how-it-works',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-about" */ '@/views/HowItWorks.vue'
+          /* webpackChunkName: "client-chunk-settings" */ '@/views/HowItWorks.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-settings" */ '@/views/Settings.vue'
         ),
       meta: {
         authNotRequired: true
@@ -112,7 +123,7 @@ const router = new Router({
       name: 'about',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-about" */ '@/views/About.vue'
+          /* webpackChunkName: "client-chunk-settings" */ '@/views/About.vue'
         ),
       meta: {
         authNotRequired: true
@@ -136,23 +147,6 @@ const router = new Router({
     //   meta: {
     //     authNotRequired: true
     //   }
-    // },
-    // {
-    //   path: '/products',
-    //   name: 'products',
-    //   component: () =>
-    //     import(
-    //       /* webpackChunkName: "client-chunk-products" */ '@/views/Products.vue'
-    //     )
-    // },
-    // {
-    //   path: '/products/:id',
-    //   name: 'product',
-    //   props: true,
-    //   component: () =>
-    //     import(
-    //       /* webpackChunkName: "client-chunk-product-details" */ '@/views/Product.vue'
-    //     )
     // },
     { path: '*', redirect: '/home' }
   ]

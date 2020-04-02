@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="top-buttons">
-      <router-link class="icon-button" to="/home"
+      <router-link class="icon-button" to="/settings"
         ><ion-icon name="arrow-back-outline" size="large"></ion-icon
       ></router-link>
     </div>

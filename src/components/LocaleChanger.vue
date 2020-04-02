@@ -1,5 +1,5 @@
 <template>
-  <div class="locale-changer">
+  <span class="locale-changer">
     <select v-model="$i18n.locale" @change="setLocale($event.target.value)">
       <option
         v-for="lang in langs"
@@ -9,7 +9,7 @@
         >{{ lang.text }}</option
       >
     </select>
-  </div>
+  </span>
 </template>
 
 <script>

@@ -21,7 +21,7 @@
     "NOT_GOING_ALONE": "Nejdete sami?",
     "FILL_FOR_ANOTHER_PERSON": "Vyplnit pro další osobu",
     "HOW_IT_WORKS": "Jak to funguje?",
-    "ABOUT": "O aplikaci"
+    "SETTINGS": "Nastavení"
   },
   "FORM": {
     "PERSONAL_DETAILS": "Osobní informace",
@@ -87,5 +87,14 @@
   },
   "SCAN_CONFIRMATION_QR_CODE": {
     "SCAN_CONFIRMATION_QR_CODE": "Naskenujte potvrzovací QR kód od zdravotníka"
+  },
+  "SETTINGS": {
+    "SETTINGS": "Nastavení",
+    "ABOUT": "O aplikaci",
+    "APP_LANGUAGE": "Jazyk apliakce",
+    "DELETE_ALL_DATA": "Vymazat všechna data"
+  },
+  "ALERT": {
+    "DELETE_ALL_DATA": "Vymazat všechna data? Tu operaci není možné vrátit."
   }
 }
