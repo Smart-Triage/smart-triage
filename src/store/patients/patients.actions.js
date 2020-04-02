@@ -36,6 +36,7 @@ export default {
   deletePatientById: async ({ commit }, patientId) => {
     return new Promise(resolve => {
       commit('removePatientById', patientId)
+      commit('setCurrentPatientId', '')
       resolve()
     })
   },
