@@ -34,12 +34,4 @@ export default {
     const index = state.patients.findIndex(patient => patient.id === patientId)
     state.patients.splice(index, 1)
   }
-
-  /* Products */
-  // setProducts: (state, products) => (state.products = products),
-  // addProduct: (state, product) => state.products.push(product),
-  // removeProductById: (state, productId) => {
-  //   const index = state.products.findIndex(product => product.id === productId)
-  //   state.products.splice(index, 1)
-  // }
 }

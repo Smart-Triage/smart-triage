@@ -43,18 +43,4 @@ export default {
   clearCurrentPatient: async ({ commit }) => {
     commit('setCurrentPatientId', '')
   }
-
-  // /**
-  //  * Delete a user product from its id
-  //  */
-  // deleteUserProduct: async ({ rootState, commit, getters }, productId) => {
-  //   if (getters.isProductDeletionPending(productId)) return
-
-  //   const userProductsDb = new UserProductsDB(rootState.authentication.user.id)
-
-  //   commit('addProductDeletionPending', productId)
-  //   await userProductsDb.delete(productId)
-  //   commit('removeProductById', productId)
-  //   commit('removeProductDeletionPending', productId)
-  // }
 }
