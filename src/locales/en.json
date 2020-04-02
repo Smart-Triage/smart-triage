@@ -75,7 +75,8 @@
     "APP_SHORT_DESCRIPTION": "This application is designed to significantly speed up patient triage in hospitals and mobile test ambulances during COVID-19 testing.",
     "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
     "CREATED_ON_HACKATHON": "This applicatin was created as a submission for the Hack Košice Digital hackathon 2020.",
-    "AUTHORS": "Authors"
+    "AUTHORS": "Authors",
+    "VERSION": "Version"
   },
   "PATIENT_QR_CODE": {
     "FOLLOW_INSTRUCTIONS": "Follow the instructions of the hospital staff",

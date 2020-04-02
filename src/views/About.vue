@@ -28,6 +28,11 @@
       <li>Ľuboš Repka</li>
       <li>Tomáš Trejdl</li>
     </ul>
+
+    <div>
+      {{ $store.state.app.appTitle }} {{ $t('ABOUT.VERSION') }}
+      {{ $store.getters.appVersion }}
+    </div>
   </div>
 </template>
 
