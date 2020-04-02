@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="top-buttons">
-      <router-link class="icon-button" to="/home"
+      <router-link class="icon-button" to="/settings"
         ><ion-icon name="arrow-back-outline" size="large"></ion-icon
       ></router-link>
     </div>
@@ -28,6 +28,11 @@
       <li>Ľuboš Repka</li>
       <li>Tomáš Trejdl</li>
     </ul>
+
+    <div>
+      {{ $store.state.app.appTitle }} {{ $t('ABOUT.VERSION') }}
+      {{ $store.getters.appVersion }}
+    </div>
   </div>
 </template>
 

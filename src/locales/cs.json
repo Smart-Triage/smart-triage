@@ -21,7 +21,7 @@
     "NOT_GOING_ALONE": "Nejdete sami?",
     "FILL_FOR_ANOTHER_PERSON": "Vyplnit pro další osobu",
     "HOW_IT_WORKS": "Jak to funguje?",
-    "ABOUT": "O aplikaci"
+    "SETTINGS": "Nastavení"
   },
   "FORM": {
     "PERSONAL_DETAILS": "Osobní informace",
@@ -75,7 +75,8 @@
     "APP_SHORT_DESCRIPTION": "Tato aplikace byla vytvořena k urychlení triáže pacientů v nemocnicích během pandemie COVID-19.",
     "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
     "CREATED_ON_HACKATHON": "Tato aplikace byla vytvořena během online hackathonu Hack Košice Digital 2020.",
-    "AUTHORS": "Autoři"
+    "AUTHORS": "Autoři",
+    "VERSION": "Verze"
   },
   "PATIENT_QR_CODE": {
     "FOLLOW_INSTRUCTIONS": "Vyčkejte na instrukce personálu nemocnice",
@@ -87,5 +88,14 @@
   },
   "SCAN_CONFIRMATION_QR_CODE": {
     "SCAN_CONFIRMATION_QR_CODE": "Naskenujte potvrzovací QR kód od zdravotníka"
+  },
+  "SETTINGS": {
+    "SETTINGS": "Nastavení",
+    "ABOUT": "O aplikaci",
+    "APP_LANGUAGE": "Jazyk apliakce",
+    "DELETE_ALL_DATA": "Vymazat všechna data"
+  },
+  "ALERT": {
+    "DELETE_ALL_DATA": "Vymazat všechna data? Tu operaci není možné vrátit."
   }
 }

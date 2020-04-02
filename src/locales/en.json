@@ -21,7 +21,7 @@
     "NOT_GOING_ALONE": "Not going alone?",
     "FILL_FOR_ANOTHER_PERSON": "Fill for another person",
     "HOW_IT_WORKS": "How it works?",
-    "ABOUT": "About this app"
+    "SETTINGS": "Settings"
   },
   "FORM": {
     "PERSONAL_DETAILS": "Personal details",
@@ -75,7 +75,8 @@
     "APP_SHORT_DESCRIPTION": "This application is designed to significantly speed up patient triage in hospitals and mobile test ambulances during COVID-19 testing.",
     "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
     "CREATED_ON_HACKATHON": "This applicatin was created as a submission for the Hack Košice Digital hackathon 2020.",
-    "AUTHORS": "Authors"
+    "AUTHORS": "Authors",
+    "VERSION": "Version"
   },
   "PATIENT_QR_CODE": {
     "FOLLOW_INSTRUCTIONS": "Follow the instructions of the hospital staff",
@@ -87,5 +88,14 @@
   },
   "SCAN_CONFIRMATION_QR_CODE": {
     "SCAN_CONFIRMATION_QR_CODE": "Scan confirmation code from hospital employee"
+  },
+  "SETTINGS": {
+    "SETTINGS": "Settings",
+    "ABOUT": "About this app",
+    "APP_LANGUAGE": "Language",
+    "DELETE_ALL_DATA": "Delete all data"
+  },
+  "ALERT": {
+    "DELETE_ALL_DATA": "Delete all app data? This operation cannot be reversed."
   }
 }

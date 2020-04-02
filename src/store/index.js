@@ -14,11 +14,20 @@ Vue.use(Vuex)
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
-  reducer: state => ({ patients: state.patients, settings: state.settings })
+  reducer: state => ({
+    patients: state.patients,
+    settings: state.settings
+  })
 })
 
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
+  state: {
+    appVersion: process.env.VUE_APP_VERSION || '0'
+  },
+  getters: {
+    appVersion: state => state.appVersion
+  },
   modules: {
     // authentication,
     app,

@@ -5,6 +5,10 @@
         <router-link to="/home">
           <ion-icon name="close" size="large"></ion-icon>
         </router-link>
+        <div class="spacer"></div>
+        <button class="icon-button" @click="deletePatient">
+          <ion-icon name="trash-outline" size="large"></ion-icon>
+        </button>
       </div>
       <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
       <img src="@/assets/img/home-page-welcome-img.png" alt="" />
@@ -88,14 +92,8 @@ export default {
   display: flex;
   padding: 1rem;
 
-  button {
-    cursor: pointer;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    background-color: $light-button-color;
-    border-radius: 2em;
-    border: none;
+  .spacer {
+    flex-grow: 1;
   }
 }
 

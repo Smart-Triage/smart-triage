@@ -1,8 +1,5 @@
 <template>
   <div class="page-wrapper">
-    <div class="top-buttons">
-      <LocaleChanger></LocaleChanger>
-    </div>
     <div class="home-page-top-img">
       <img src="@/assets/img/home-page-welcome-img.png" alt="" />
     </div>
@@ -37,8 +34,8 @@
       <router-link class="home-page-link" to="/how-it-works">{{
         $t('HOME.HOW_IT_WORKS')
       }}</router-link>
-      <router-link class="home-page-link" to="/about">{{
-        $t('HOME.ABOUT')
+      <router-link class="home-page-link" to="/settings">{{
+        $t('HOME.SETTINGS')
       }}</router-link>
     </div>
   </div>
@@ -47,12 +44,10 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import PatientList from '@/components/PatientList'
-import LocaleChanger from '@/components/LocaleChanger'
 
 export default {
   components: {
-    PatientList,
-    LocaleChanger
+    PatientList
   },
   head() {
     return {
@@ -172,11 +167,5 @@ ion-icon {
       margin: 1em 1.5em 1em 1.5em;
     }
   }
-}
-
-.top-buttons {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
 }
 </style>
