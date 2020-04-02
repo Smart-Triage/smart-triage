@@ -6,17 +6,22 @@
       class="step"
       :class="{ hidden: step.order !== currentStepNum }"
     >
-      <div class="top-buttons">
-        <router-link class="close" to="/home"
-          ><ion-icon name="close" size="large"></ion-icon
-        ></router-link>
-        <router-link
-          v-if="currentPatient.finished"
-          class="skip-to-summary"
-          to="/summary"
-          >{{ $t('FORM.SKIP_TO_SUMMARY') }}</router-link
-        >
-      </div>
+      <NavBar>
+        <template v-slot:left>
+          <router-link class="close" to="/home"
+            ><ion-icon name="close" size="large"></ion-icon
+          ></router-link>
+        </template>
+        <template v-slot:right>
+          <router-link
+            v-if="currentPatient.finished"
+            class="skip-to-summary"
+            to="/summary"
+            >{{ $t('FORM.SKIP_TO_SUMMARY') }}</router-link
+          >
+        </template>
+      </NavBar>
+
       <div v-if="step.order === '0'" class="home-page-top-img">
         <h1 class="page-title">{{ $t('FORM.PERSONAL_DETAILS') }}</h1>
         <img src="@/assets/img/form-page-top.png" alt />
@@ -343,24 +348,11 @@ export default {
   }
 }
 
-.top-buttons {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 1rem 1.5rem;
-  align-content: center;
-
-  .close {
-    color: black;
-    align-self: center;
-  }
-
-  .skip-to-summary {
-    color: white;
-    background-color: $secondary-color;
-    padding: 0.5rem 1rem;
-    border-radius: 5rem;
-  }
+.skip-to-summary {
+  color: white;
+  background-color: $secondary-color;
+  padding: 0.5rem 1rem;
+  border-radius: 5rem;
 }
 
 .step {

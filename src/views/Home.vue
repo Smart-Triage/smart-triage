@@ -1,5 +1,10 @@
 <template>
   <div class="page-wrapper">
+    <NavBar>
+      <template v-slot:center>
+        {{ appTitle }}
+      </template>
+    </NavBar>
     <div class="home-page-top-img">
       <img src="@/assets/img/home-page-welcome-img.png" alt="" />
     </div>

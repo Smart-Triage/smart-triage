@@ -4,6 +4,8 @@ import moment from 'moment'
 
 import i18n from '@/plugins/i18n'
 
+import NavBar from '@/components/NavBar'
+
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -18,6 +20,8 @@ Vue.use(UUID)
 
 Vue.config.productionTip = false
 Vue.config.ignoredElements = ['ion-icon']
+
+Vue.component('NavBar', NavBar)
 
 Vue.filter('formatDate', value => {
   if (value) {

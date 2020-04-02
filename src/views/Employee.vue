@@ -20,11 +20,13 @@
     </div>
 
     <div v-if="showPatientSummary && currentPatient" class="summary-view">
-      <div class="top-buttons">
-        <button class="icon-button" @click="showEmployeeHomepage">
-          <ion-icon name="close-outline" size="large"></ion-icon>
-        </button>
-      </div>
+      <NavBar>
+        <template v-slot:left>
+          <button class="icon-button" @click="showEmployeeHomepage">
+            <ion-icon name="close-outline" size="large"></ion-icon>
+          </button>
+        </template>
+      </NavBar>
       <h1>{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
 
       <PatientSummary :employee="true"></PatientSummary>
@@ -61,11 +63,13 @@
     </div>
 
     <div v-if="showingConfirmationQR" class="confirmation-view">
-      <div class="top-buttons">
-        <button @click="viewPatientSummary">
-          <ion-icon name="arrow-back-outline" size="large"></ion-icon>
-        </button>
-      </div>
+      <NavBar>
+        <template v-slot:left>
+          <button @click="viewPatientSummary">
+            <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+          </button>
+        </template>
+      </NavBar>
       <h1>{{ $t('EMPLOYEE.PATIENT_CONFIRMATION_CODE') }}</h1>
       <qrcode-vue
         class="qrcode"
@@ -226,10 +230,6 @@ export default {
   align-items: center;
   height: 100%;
   min-height: calc(100vh - 34px);
-}
-
-.top-buttons {
-  width: 100%;
 }
 
 .header-info {

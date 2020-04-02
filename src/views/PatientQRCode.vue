@@ -1,10 +1,12 @@
 <template>
   <div class="container" :class="{ 'bg-confirmed': currentPatient.confirmed }">
-    <div class="top-buttons">
-      <router-link to="/summary"
-        ><ion-icon name="close" size="large"></ion-icon
-      ></router-link>
-    </div>
+    <NavBar>
+      <template v-slot:left>
+        <router-link to="/summary"
+          ><ion-icon name="close" size="large"></ion-icon
+        ></router-link>
+      </template>
+    </NavBar>
 
     <div class="home-page-top-img">
       <h1>{{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}</h1>
@@ -138,15 +140,6 @@ export default {
   img {
     margin: 0;
   }
-}
-
-.top-buttons {
-  position: absolute;
-  top: 1.5rem;
-  left: 0;
-  width: 100%;
-  display: flex;
-  padding: 0.5rem 1rem;
 }
 
 .bg-confirmed {

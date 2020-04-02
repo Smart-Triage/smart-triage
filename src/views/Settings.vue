@@ -1,21 +1,20 @@
 <template>
   <div class="container">
-    <div class="top-buttons">
-      <router-link class="icon-button" to="/home"
-        ><ion-icon name="arrow-back-outline" size="large"></ion-icon
-      ></router-link>
+    <NavBar :back-btn="true"></NavBar>
+
+    <div class="content">
+      <h1>{{ $t('SETTINGS.SETTINGS') }}</h1>
+
+      <p>{{ $t('SETTINGS.APP_LANGUAGE') }}<LocaleChanger></LocaleChanger></p>
+
+      <button class="link btn-primary" @click="deleteAllData">
+        {{ $t('SETTINGS.DELETE_ALL_DATA') }}
+      </button>
+
+      <router-link class="about-link" to="/about">{{
+        $t('SETTINGS.ABOUT')
+      }}</router-link>
     </div>
-    <h1>{{ $t('SETTINGS.SETTINGS') }}</h1>
-
-    <p>{{ $t('SETTINGS.APP_LANGUAGE') }}<LocaleChanger></LocaleChanger></p>
-
-    <button class="link btn-primary" @click="deleteAllData">
-      {{ $t('SETTINGS.DELETE_ALL_DATA') }}
-    </button>
-
-    <router-link class="about-link" to="/about">{{
-      $t('SETTINGS.ABOUT')
-    }}</router-link>
   </div>
 </template>
 
@@ -44,20 +43,17 @@ export default {
 @import '@/theme/general.scss';
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  max-width: 40rem;
-  margin: 0 auto;
-
-  .top-buttons {
-    width: 100%;
+  .content {
     display: flex;
-  }
-}
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    max-width: 40rem;
+    margin: 0 auto;
 
-.about-link {
-  margin-top: 2rem;
+    .about-link {
+      margin-top: 2rem;
+    }
+  }
 }
 </style>
