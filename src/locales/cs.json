@@ -66,8 +66,7 @@
   "HOW_IT_WORKS": {
     "HOW_IT_WORKS": "Jak to funguje",
     "SHORT_DESCRIPTION": "Tato aplikace je určena pro osoby, které jdou na vyšetření do nemocnice a nechtějí čekat dlouhé fronty. Tento formulář lze vyplnit předem.",
-    "FILL_FORM": "Vyplňte formulář pro sebe",
-    "FILL_FOR_OTHERS": "[volitelné] Vyplňte formulář pro další osoby, které jsou s Vámi",
+    "FILL_FORM": "Vyplňte formulář pro sebe nebe pro další osoby, které jsou s Vámi",
     "SHOW_QR_CODE_TO_STAFF": "Ukažte QR kód personálu nemocnice"
   },
   "ABOUT": {

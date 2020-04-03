@@ -31,7 +31,7 @@ h1 {
 
 h2 {
   font-size: 1.5em;
-  padding: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .main-container {
@@ -39,12 +39,19 @@ h2 {
 }
 
 .main-content {
- @apply flex flex-col text-center items-center justify-between max-w-md h-screen;
+ @apply flex flex-col text-center items-center justify-around max-w-md h-screen;
 }
 
 .card {
-  @apply rounded-lg overflow-hidden shadow-lg mx-6 p-6 bg-white;
+  @apply rounded-lg shadow-lg m-6 p-6 bg-white;
   p {
     @apply m-3;
+  }
+}
+
+.order-list {
+  @apply list-decimal w-2/3;
+  li {
+    @apply p-2;
   }
 }
