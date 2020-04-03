@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="fl">
     <NavBar :back-btn="true"> </NavBar>
     <div class="content">
       <h1>{{ $t('ABOUT.ABOUT_THIS_APP') }}</h1>
