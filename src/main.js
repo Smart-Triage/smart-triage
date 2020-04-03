@@ -16,6 +16,8 @@ import '@/firebase/authentication'
 import '@/misc/handle-apple-install-prompt'
 import 'pwacompat'
 
+import '@/assets/styles/tailwind.css';
+
 Vue.use(UUID)
 
 Vue.config.productionTip = false
