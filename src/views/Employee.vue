@@ -30,6 +30,11 @@
       <h1>{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
 
       <PatientSummary :employee="true"></PatientSummary>
+
+      <RiskScale
+        :value="currentPatient.totalPoints"
+        :max="getMaxPoints"
+      ></RiskScale>
     </div>
 
     <!-- <router-link
@@ -97,8 +102,8 @@
         <router-link class="employee-page-link" to="/how-it-works">{{
           $t('HOME.HOW_IT_WORKS')
         }}</router-link>
-        <router-link class="employee-page-link" to="/about">{{
-          $t('HOME.ABOUT')
+        <router-link class="employee-page-link" to="/settings">{{
+          $t('HOME.SETTINGS')
         }}</router-link>
       </div>
     </div>
@@ -110,12 +115,14 @@ import QrcodeVue from 'qrcode.vue'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
+import RiskScale from '@/components/RiskScale'
 
 export default {
   components: {
     QRScanner,
     PatientSummary,
-    QrcodeVue
+    QrcodeVue,
+    RiskScale
   },
   data: () => ({
     scanning: false,
@@ -126,6 +133,7 @@ export default {
   computed: {
     ...mapState('app', ['appTitle']),
     ...mapGetters('patients', ['currentPatient']),
+    ...mapGetters('questions', ['getMaxPoints']),
     confirmedPatient() {
       if (this.currentPatient) return JSON.stringify(this.currentPatient)
       return null

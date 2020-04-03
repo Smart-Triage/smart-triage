@@ -1,4 +1,5 @@
 export default {
+  maxPoints: 19,
   formSteps: {
     cs: [
       {
@@ -19,7 +20,7 @@ export default {
         question: 'Zadejte teplotu',
         answerType: 'slider',
         next: '2',
-        pointsIfPositive: 3
+        pointsIfValueIsHigherThan: { treshold: 37.5, points: 3 }
       },
       {
         order: '1.2',
@@ -49,9 +50,9 @@ export default {
             value: 'dry'
           }
         ],
-        next: '3',
         pointsIfPositive: 2,
-        pointsIfNegative: 2
+        pointsIfNegative: 2,
+        next: '3'
       },
       {
         order: '3',
@@ -74,33 +75,47 @@ export default {
         question: 'Vyberte příznaky, které jste během poslední doby měli:',
         answerType: 'checkbox',
         options: [
-          { text: 'Rýma', value: 'cold' },
-          { text: 'Bolest v krku', value: 'sore-throat' },
+          { text: 'Rýma', value: 'cold', pointsIfChecked: 1 },
+          { text: 'Bolest v krku', value: 'sore-throat', pointsIfChecked: 1 },
           {
             text: 'Bolest svalů nebo kloubů',
-            value: 'muscle-or-joint-pain'
+            value: 'muscle-or-joint-pain',
+            pointsIfChecked: 1
           },
-          { text: 'Ztráta chuti nebo čichu', value: 'loss-of-taste-or-smell' }
+          {
+            text: 'Ztráta chuti nebo čichu',
+            value: 'loss-of-taste-or-smell',
+            pointsIfChecked: 1
+          }
         ],
         next: '6'
       },
       {
         order: '6',
-        question: 'Byl/a jste v poslední době v zahraničí?',
+        question: 'Byl/a jste v posledních 20 dnech v zahraničí?',
         answerType: 'boolean',
+        pointsIfPositive: 2,
         next: '7'
       },
       {
         order: '7',
-        question: 'Navštívil Vás někdo v posledních 14 dnech?',
+        question: 'Setkal/a jste se s někým v posledních 14 dnech?',
         answerType: 'boolean',
         nextIfPositive: '7.1',
         nextIfNegative: 'end'
       },
       {
         order: '7.1',
-        question: 'Byl/a daná osova v poslední době v zahraničí?',
+        question: 'Byl/a daná osoba v poslední době v zahraničí?',
         answerType: 'boolean',
+        pointsIfPositive: 2,
+        next: '7.2'
+      },
+      {
+        order: '7.2',
+        question: 'Byl/a daná osoba testovaná pozitivně na COVID-19?',
+        answerType: 'boolean',
+        pointsIfPositive: 3,
         next: 'end'
       }
     ],
@@ -124,7 +139,7 @@ export default {
         question: 'Enter your temperature',
         answerType: 'slider',
         next: '2',
-        pointsIfPositive: 3
+        pointsIfValueIsHigherThan: { treshold: 37.5, points: 3 }
       },
       {
         order: '1.2',
@@ -154,9 +169,9 @@ export default {
             value: 'dry'
           }
         ],
-        next: '3',
         pointsIfPositive: 2,
-        pointsIfNegative: 2
+        pointsIfNegative: 2,
+        next: '3'
       },
       {
         order: '3',
@@ -178,22 +193,31 @@ export default {
         question: 'Select the symptoms you have had recently:',
         answerType: 'checkbox',
         options: [
-          { text: 'Cold', value: 'cold' },
-          { text: 'Sore throat', value: 'sore-throat' },
-          { text: 'Muscle or joint pain', value: 'muscle-or-joint-pain' },
-          { text: 'Loss of taste or smell', value: 'loss-of-taste-or-smell' }
+          { text: 'Cold', value: 'cold', pointsIfChecked: 1 },
+          { text: 'Sore throat', value: 'sore-throat', pointsIfChecked: 1 },
+          {
+            text: 'Muscle or joint pain',
+            value: 'muscle-or-joint-pain',
+            pointsIfChecked: 1
+          },
+          {
+            text: 'Loss of taste or smell',
+            value: 'loss-of-taste-or-smell',
+            pointsIfChecked: 1
+          }
         ],
         next: '6'
       },
       {
         order: '6',
-        question: 'Have you been abroad recently?',
+        question: 'Have you been abroad in the last 20 days?',
         answerType: 'boolean',
+        pointsIfPositive: 2,
         next: '7'
       },
       {
         order: '7',
-        question: 'Has anyone visited you in the last 14 days?',
+        question: 'Have you been in contact with anyone in the last 14 days?',
         answerType: 'boolean',
         nextIfPositive: '7.1',
         nextIfNegative: 'end'
@@ -202,6 +226,14 @@ export default {
         order: '7.1',
         question: 'Have they been abroad recently?',
         answerType: 'boolean',
+        pointsIfPositive: 2,
+        next: '7.2'
+      },
+      {
+        order: '7.2',
+        question: 'Have they been tested positively for COVID-19?',
+        answerType: 'boolean',
+        pointsIfPositive: 3,
         next: 'end'
       }
     ]
