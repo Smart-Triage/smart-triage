@@ -1,9 +1,8 @@
 <template>
   <div class="main-container">
-    <NavBar :back-btn="true"> </NavBar>
+    <NavBar :back-btn="true"></NavBar>
     <h1 class="mb-6">{{ $t('ABOUT.ABOUT_THIS_APP') }}</h1>
     <div class="main-content">
-
       <img class="m-6" src="@/assets/img/home-page-welcome-img.png" alt="" />
       <div class="card">
         <p>
@@ -23,20 +22,18 @@
 
       <div class="mb-6 mt-2">
         <h2>{{ $t('ABOUT.AUTHORS') }}</h2>
-      <ul>
-        <li>Vasil Kostin</li>
-        <li>Tom Kuna</li>
-        <li>Ľuboš Repka</li>
-        <li>Tomáš Trejdl</li>
-      </ul>
+        <ul>
+          <li>Vasil Kostin</li>
+          <li>Tom Kuna</li>
+          <li>Ľuboš Repka</li>
+          <li>Tomáš Trejdl</li>
+        </ul>
       </div>
-
-
     </div>
-          <div class="mt-auto p-4">
-        {{ $store.state.app.appTitle }} {{ $t('ABOUT.VERSION') }}
-        {{ $store.getters.appVersion }}
-      </div>
+    <div class="mt-auto p-4">
+      {{ $store.state.app.appTitle }} {{ $t('ABOUT.VERSION') }}
+      {{ $store.getters.appVersion }}
+    </div>
   </div>
 </template>
 
@@ -44,5 +41,4 @@
 export default {}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
