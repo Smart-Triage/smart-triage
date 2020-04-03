@@ -17,6 +17,7 @@ import '@/misc/handle-apple-install-prompt'
 import 'pwacompat'
 
 import '@/assets/styles/tailwind.css';
+import '@/theme/general.scss';
 
 Vue.use(UUID)
 

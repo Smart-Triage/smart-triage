@@ -1,3 +1,5 @@
+@import '@/theme/variables';
+
 .page-title {
   margin: 1.5em 0;
   font-weight: 600;
@@ -19,4 +21,15 @@
   background-color: $bg-color;
   border-radius: 2em;
   border: none;
+}
+
+//New
+h1 {
+  font-size: 2em;
+  padding: 0.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+  padding: 0.5em;
 }

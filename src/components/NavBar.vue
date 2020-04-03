@@ -10,7 +10,9 @@
     </div>
 
     <div class="center">
-      <slot name="center"></slot>
+      <slot name="center">
+        <InDevelopementOverlay></InDevelopementOverlay>
+      </slot>
     </div>
 
     <div class="right">
@@ -21,8 +23,12 @@
 
 <script>
 import { mapState } from 'vuex'
+import InDevelopementOverlay from '@/components/InDevelopementOverlay'
 
 export default {
+  components: {
+    InDevelopementOverlay
+  },
   props: { backBtn: { type: Boolean, default: false } },
   computed: {
     ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle'])

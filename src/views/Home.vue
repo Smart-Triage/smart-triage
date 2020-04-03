@@ -18,7 +18,7 @@
       </p>
 
       <PatientList class="patient-list"></PatientList>
-
+      <InDevelopementOverlay></InDevelopementOverlay>
       <div v-if="patients.length === 0" class="main-action">
         <button class="link btn-primary" @click="createPatient">
           <ion-icon name="person-add-outline"></ion-icon>
@@ -49,10 +49,12 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import PatientList from '@/components/PatientList'
+import InDevelopementOverlay from '@/components/InDevelopementOverlay'
 
 export default {
   components: {
-    PatientList
+    PatientList,
+    InDevelopementOverlay
   },
   head() {
     return {
