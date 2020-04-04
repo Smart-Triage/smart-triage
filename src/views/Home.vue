@@ -19,21 +19,23 @@
         </p>
       </div>
 
-      <PatientList class="w-full px-4"></PatientList>
-      <div v-if="patients.length === 0" class="main-action">
-        <button class="link btn-primary" @click="createPatient">
-          <ion-icon name="person-add-outline"></ion-icon>
-          <span class="main-action-button-text">{{ $t('HOME.BEGIN') }}</span>
-        </button>
-      </div>
-      <div v-else class="main-action">
-        <p>{{ $t('HOME.NOT_GOING_ALONE') }}</p>
-        <button class="link btn-primary" @click="createPatient">
-          <ion-icon name="person-add-outline"></ion-icon>
-          <span class="main-action-button-text">{{
-            $t('HOME.FILL_FOR_ANOTHER_PERSON')
-          }}</span>
-        </button>
+      <div class="w-full">
+        <PatientList class="w-full px-4"></PatientList>
+        <div v-if="patients.length === 0" class="main-action">
+          <button class="link btn-primary" @click="createPatient">
+            <ion-icon name="person-add-outline"></ion-icon>
+            <span class="main-action-button-text">{{ $t('HOME.BEGIN') }}</span>
+          </button>
+        </div>
+        <div v-else class="main-action">
+          <p class="my-1">{{ $t('HOME.NOT_GOING_ALONE') }}</p>
+          <button class="link btn-primary" @click="createPatient">
+            <ion-icon name="person-add-outline"></ion-icon>
+            <span class="main-action-button-text">{{
+              $t('HOME.FILL_FOR_ANOTHER_PERSON')
+            }}</span>
+          </button>
+        </div>
       </div>
     </div>
     <div class="bottom-link">

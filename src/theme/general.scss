@@ -65,5 +65,5 @@ h2 {
 }
 
 .bottom-link {
-  @apply mt-auto p-4 pt-8 w-full flex justify-around;
+  @apply mt-auto p-4 pt-8 w-full max-w-md flex justify-around;
 }
