@@ -1,24 +1,25 @@
 <template>
-  <div class="page-wrapper">
+  <div class="main-container">
     <NavBar>
       <template v-slot:center>
         {{ appTitle }}
+        <InDevelopementOverlay class="z-auto"></InDevelopementOverlay>
       </template>
     </NavBar>
-    <div class="home-page-top-img">
-      <img src="@/assets/img/home-page-welcome-img.png" alt="" />
-    </div>
+    <div class="main-content">
+      <div>
+        <img src="@/assets/img/home-page-welcome-img.png" alt="" />
+      </div>
 
-    <div class="home-page-center">
-      <p class="home-page-welcome">{{ $t('HOME.WELCOME') }}</p>
-      <h1 class="home-page-title">{{ $t('HOME.TITLE') }}</h1>
+      <div>
+        <p>{{ $t('HOME.WELCOME') }}</p>
+        <h1 class="text-5xl p-0 my-1">{{ $t('HOME.TITLE') }}</h1>
+        <p>
+          {{ $t('HOME.INFO') }}
+        </p>
+      </div>
 
-      <p class="home-page-info">
-        {{ $t('HOME.INFO') }}
-      </p>
-
-      <PatientList class="patient-list"></PatientList>
-      <InDevelopementOverlay></InDevelopementOverlay>
+      <PatientList class="w-full px-4"></PatientList>
       <div v-if="patients.length === 0" class="main-action">
         <button class="link btn-primary" @click="createPatient">
           <ion-icon name="person-add-outline"></ion-icon>
@@ -35,13 +36,11 @@
         </button>
       </div>
     </div>
-    <div class="home-page-bottom-link">
-      <router-link class="home-page-link" to="/how-it-works">{{
+    <div class="bottom-link">
+      <router-link to="/how-it-works">{{
         $t('HOME.HOW_IT_WORKS')
       }}</router-link>
-      <router-link class="home-page-link" to="/settings">{{
-        $t('HOME.SETTINGS')
-      }}</router-link>
+      <router-link to="/settings">{{ $t('HOME.SETTINGS') }}</router-link>
     </div>
   </div>
 </template>
@@ -85,9 +84,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/theme/variables.scss';
-@import '@/theme/general.scss';
-
+/*
 ion-icon {
   font-size: 1.3em;
   margin: 0 0.5em 0 0;
@@ -175,4 +172,5 @@ ion-icon {
     }
   }
 }
+*/
 </style>

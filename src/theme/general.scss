@@ -39,7 +39,15 @@ h2 {
 }
 
 .main-content {
- @apply flex flex-col text-center items-center justify-around max-w-md h-screen;
+  @apply
+  flex
+  flex-col
+  text-center
+  items-center
+  justify-around
+  max-w-md
+  h-screen
+  mx-2;
 }
 
 .card {
@@ -54,4 +62,8 @@ h2 {
   li {
     @apply p-2;
   }
+}
+
+.bottom-link {
+  @apply mt-auto p-4 pt-8 w-full flex justify-around;
 }
