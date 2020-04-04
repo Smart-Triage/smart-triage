@@ -3,7 +3,7 @@
     <div>
       <div class="info-box">
         <p>{{ $t('FORM.INFORMATION_IS_SAFE') }}</p>
-        <p>{{ $t('FORM.NO_DATA_IS_SENT_OVER_THE_INTERNET') }}</p>
+        <p><strong>{{ $t('FORM.NO_DATA_IS_SENT_OVER_THE_INTERNET') }}</strong></p>
       </div>
 
       <label class="floating-label"> {{ $t('FIRST_NAME') }}</label>
@@ -48,7 +48,7 @@
         @input="setPatientValueByKey('phoneNumber', $event.target.value)"
       />
     </div>
-    <button type="submit" class="link btn-primary">{{ $t('NEXT') }}</button>
+    <button type="submit" class="btn-primary mb-4">{{ $t('NEXT') }}</button>
   </form>
 </template>
 
@@ -80,20 +80,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/theme/variables.scss';
 @import '@/theme/general.scss';
 
 .container {
   display: flex;
   flex-direction: column;
-  align-self: flex-end;
-  width: 100vw;
   align-items: center;
-  margin: 0 auto;
   background-color: white;
   border-radius: 2em 2em 0 0;
-  max-width: 400px;
   padding: 0 0 2em 0;
+  padding: 0 2rem;
 
   .info-box {
     margin: 0 0 1rem 0;
@@ -113,18 +109,16 @@ export default {
     .floating-label {
       display: flex;
       align-self: flex-start;
-      margin: 0.5rem 0.5rem 0 0.5rem;
-      padding-left: 5px;
+      margin: 0.5rem 0 0 0;
       font-size: 0.9em;
       font-weight: 600;
       color: $secondary-text-color;
     }
 
     .form-input {
-      margin: 0 0.5rem 1rem 0.5rem;
-      padding-left: 5px;
+      margin: 0 0 1rem 0;
       height: 2rem;
-      width: 20rem;
+      width: 100%;
       outline: none;
       font: inherit;
       border-width: 0 0 1px 0;
