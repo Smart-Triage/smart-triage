@@ -3,8 +3,10 @@
     <NavBar :back-btn="true"></NavBar>
     <h1>{{ $t('SETTINGS.SETTINGS') }}</h1>
     <div class="main-content settings-content">
-      <p class="p-4"><strong>{{ $t('SETTINGS.APP_LANGUAGE') }}</strong><LocaleChanger class="px-4"></LocaleChanger></p>
-
+      <p class="p-4">
+        <strong>{{ $t('SETTINGS.APP_LANGUAGE') }}</strong
+        ><LocaleChanger class="px-4"></LocaleChanger>
+      </p>
     </div>
     <button class="link btn-primary mt-auto p-4" @click="deleteAllData">
       {{ $t('SETTINGS.DELETE_ALL_DATA') }}
@@ -12,7 +14,7 @@
 
     <router-link class="p-4" to="/about">{{
       $t('SETTINGS.ABOUT')
-      }}</router-link>
+    }}</router-link>
   </div>
 </template>
 
@@ -37,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .settings-content {
-    @apply justify-start;
-  }
+.settings-content {
+  @apply justify-start;
+}
 </style>
