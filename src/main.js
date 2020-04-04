@@ -21,7 +21,6 @@ import 'pwacompat'
 import '@/assets/styles/tailwind.css'
 import '@/theme/general.scss'
 
-
 Vue.use(UUID)
 Vue.use(VueAxios, axios)
 
