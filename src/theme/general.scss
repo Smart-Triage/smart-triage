@@ -1,3 +1,5 @@
+@import '@/theme/variables';
+
 .page-title {
   margin: 1.5em 0;
   font-weight: 600;
@@ -19,4 +21,37 @@
   background-color: $bg-color;
   border-radius: 2em;
   border: none;
+}
+
+//New
+h1 {
+  font-size: 2em;
+  padding: 0.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.5em;
+}
+
+.main-container {
+  @apply flex flex-col items-center h-screen;
+}
+
+.main-content {
+ @apply flex flex-col text-center items-center justify-around max-w-md h-screen;
+}
+
+.card {
+  @apply rounded-lg shadow-lg m-6 p-6 bg-white;
+  p {
+    @apply m-3;
+  }
+}
+
+.order-list {
+  @apply list-decimal w-2/3;
+  li {
+    @apply p-2;
+  }
 }

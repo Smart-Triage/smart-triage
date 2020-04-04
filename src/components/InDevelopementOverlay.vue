@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-container">
-    <div class="in-developement-overlay">
+    <div class="in-developement-overlay p-4 m-3 rounded-lg text-sm font-normal leading-none text-center">
       {{ $t('APP_IN_DEVELOPMENT') }}
     </div>
   </div>
@@ -15,9 +15,6 @@ export default {}
 
 .in-developement-overlay {
   background-color: $negative-color;
-  padding: 0.5rem 1rem;
   color: white;
-  font-weight: 600;
-  font-size: 1rem;
 }
 </style>
