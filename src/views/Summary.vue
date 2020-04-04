@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentPatient" class="container">
+  <div v-if="currentPatient" class="main-container">
     <NavBar>
       <template v-slot:left>
         <router-link to="/home">
