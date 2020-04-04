@@ -1,24 +1,38 @@
 <template>
   <div class="page-wrapper">
-    <h1 class="login-page-title">Login page</h1>
+    <h1 class="login-page-title">{{ appTitle }}</h1>
+
+    <p>{{ $t('LOGIN.ONLY_FOR_EMPLOYEES') }}</p>
+
+    <p>
+      {{ $t('LOGIN.ENTER_REGISTRATION_CODE') }}
+    </p>
 
     <!-- Loader -->
+
     <div v-show="user === undefined" data-test="loader">Authenticating...</div>
 
     <!-- Offline instruction -->
     <div v-show="!networkOnLine" data-test="offline-instruction">
-      Please check your connection, login feature is not available offline.
+      {{ $t('LOGIN.SEND') }}
     </div>
 
-    <p v-if="loginError">{{ loginError }}</p>
+    <p v-if="loginError" class="bg-red-500 text-white p-2 m-2 rounded">
+      {{ $t(`ERROR.${loginError}`) }}
+    </p>
     <!-- Auth UI -->
+    <input
+      v-model="registrationCode"
+      type="text"
+      class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal max-w-xs"
+    />
     <div
       v-show="user !== undefined && !user && networkOnLine"
       data-test="login-btn"
       class="login-btn"
       @click="login"
     >
-      Login with google
+      {{ $t('LOGIN.SEND') }}
     </div>
   </div>
 </template>
@@ -27,10 +41,9 @@
 import { mapState, mapMutations } from 'vuex'
 import { isNil } from 'lodash'
 import firebase from 'firebase/app'
-import { desktop as isDekstop } from 'is_js'
 
 export default {
-  data: () => ({ loginError: null }),
+  data: () => ({ loginError: null, registrationCode: '', errorMessage: '' }),
   head() {
     return {
       title: {
@@ -54,7 +67,7 @@ export default {
       handler(user) {
         if (!isNil(user)) {
           const redirectUrl = isNil(this.$route.query.redirectUrl)
-            ? '/products'
+            ? '/employee'
             : this.$route.query.redirectUrl
           this.$router.push(redirectUrl)
         }
@@ -66,18 +79,24 @@ export default {
     ...mapMutations('authentication', ['setUser']),
     async login() {
       this.loginError = null
-      const provider = new firebase.auth.GoogleAuthProvider()
+      // const provider = new firebase.auth.GoogleAuthProvider()
       this.setUser(undefined)
 
       try {
-        // Firebase signin with popup is faster than redirect
-        // but we can't use it on mobile because it's not well supported
-        // when app is running as standalone on ios & android
-        // eslint-disable-next-line no-unused-expressions
-        isDekstop()
-          ? await firebase.auth().signInWithPopup(provider)
-          : await firebase.auth().signInWithRedirect(provider)
+        const res = (
+          await this.axios.post(
+            'https://europe-west3-triage-app-8e193.cloudfunctions.net/api/checkEmployeeRegistrationCode',
+            { registrationCode: this.registrationCode }
+          )
+        ).data
+        if (!res.success) {
+          this.loginError = res.error
+          throw res.error
+        }
+
+        firebase.auth().signInWithCustomToken(res.token)
       } catch (err) {
+        // Handle Errors here.
         this.loginError = err
         this.setUser(null)
       }

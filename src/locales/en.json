@@ -96,6 +96,17 @@
     "DELETE_ALL_DATA": "Delete all data"
   },
   "ALERT": {
-    "DELETE_ALL_DATA": "Delete all app data? This operation cannot be reversed."
+    "DELETE_ALL_DATA": "Delete all app data? This operation cannot be reversed.",
+    "ALL_DATA_CLEARED": "All data cleared"
+  },
+  "LOGIN": {
+    "ONLY_FOR_EMPLOYEES": "This part of the application is only available for hospital employees.",
+    "ENTER_REGISTRATION_CODE": "Enter registration code. If you don't have one, contact the person in charge of triage in your hospital.",
+    "SEND": "Send",
+    "CHECK_CONNECTION": "Please check your connection, this feature is not available offline."
+  },
+  "ERROR": {
+    "server_error": "Ups. Something went wrong. Try again later",
+    "registration_key_invalid_error": "This registration key is invalid"
   }
 }

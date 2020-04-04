@@ -95,6 +95,17 @@
     "DELETE_ALL_DATA": "Vymazat všechna data"
   },
   "ALERT": {
-    "DELETE_ALL_DATA": "Vymazat všechna data? Tu operaci není možné vrátit."
+    "DELETE_ALL_DATA": "Vymazat všechna data? Tu operaci není možné vrátit.",
+    "ALL_DATA_CLEARED": "Všechna data vymazána"
+  },
+  "LOGIN": {
+    "ONLY_FOR_EMPLOYEES": "Tato část aplikace je určena pouze pro zaměstnance nemocnic.",
+    "ENTER_REGISTRATION_CODE": "Zadejte registrační kód. Pokud registrační kód nemáte, kontaktuje osobu pověřenou triáží ve vaší nemocnici.",
+    "SEND": "Odeslat",
+    "CHECK_CONNECTION": "Zkontrolujte připojení k internetu, tato funkce není dostupná offline."
+  },
+  "ERROR": {
+    "server_error": "Ups. Něco se pokazilo. Zkuste to znovu později",
+    "registration_key_invalid_error": "Tento registrační kód je neplatný"
   }
 }
