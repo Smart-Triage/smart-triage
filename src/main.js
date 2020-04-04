@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import UUID from 'vue-uuid'
 import moment from 'moment'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 import i18n from '@/plugins/i18n'
+
+import NavBar from '@/components/NavBar'
 
 import App from './App.vue'
 import router from './router'
@@ -14,10 +18,16 @@ import '@/firebase/authentication'
 import '@/misc/handle-apple-install-prompt'
 import 'pwacompat'
 
+import '@/assets/styles/tailwind.css'
+import '@/theme/general.scss'
+
 Vue.use(UUID)
+Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false
 Vue.config.ignoredElements = ['ion-icon']
+
+Vue.component('NavBar', NavBar)
 
 Vue.filter('formatDate', value => {
   if (value) {

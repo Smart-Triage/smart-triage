@@ -1,10 +1,6 @@
 <template>
   <div class="container">
-    <div class="top-buttons">
-      <router-link to="/patient-qr-code">
-        <ion-icon name="arrow-back-outline" size="large"></ion-icon>
-      </router-link>
-    </div>
+    <NavBar :back-btn="true"></NavBar>
     <h1>{{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}</h1>
     <QRScanner
       :scanning-confirmation-code="true"
@@ -46,9 +42,5 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.top-buttons {
-  display: flex;
 }
 </style>

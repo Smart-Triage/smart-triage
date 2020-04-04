@@ -20,14 +20,21 @@
     </div>
 
     <div v-if="showPatientSummary && currentPatient" class="summary-view">
-      <div class="top-buttons">
-        <button class="icon-button" @click="showEmployeeHomepage">
-          <ion-icon name="close-outline" size="large"></ion-icon>
-        </button>
-      </div>
+      <NavBar>
+        <template v-slot:left>
+          <button class="icon-button" @click="showEmployeeHomepage">
+            <ion-icon name="close-outline" size="large"></ion-icon>
+          </button>
+        </template>
+      </NavBar>
       <h1>{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
 
       <PatientSummary :employee="true"></PatientSummary>
+
+      <RiskScale
+        :value="currentPatient.totalPoints"
+        :max="getMaxPoints"
+      ></RiskScale>
     </div>
 
     <!-- <router-link
@@ -61,11 +68,13 @@
     </div>
 
     <div v-if="showingConfirmationQR" class="confirmation-view">
-      <div class="top-buttons">
-        <button @click="viewPatientSummary">
-          <ion-icon name="arrow-back-outline" size="large"></ion-icon>
-        </button>
-      </div>
+      <NavBar>
+        <template v-slot:left>
+          <button @click="viewPatientSummary">
+            <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+          </button>
+        </template>
+      </NavBar>
       <h1>{{ $t('EMPLOYEE.PATIENT_CONFIRMATION_CODE') }}</h1>
       <qrcode-vue
         class="qrcode"
@@ -93,8 +102,8 @@
         <router-link class="employee-page-link" to="/how-it-works">{{
           $t('HOME.HOW_IT_WORKS')
         }}</router-link>
-        <router-link class="employee-page-link" to="/about">{{
-          $t('HOME.ABOUT')
+        <router-link class="employee-page-link" to="/settings">{{
+          $t('HOME.SETTINGS')
         }}</router-link>
       </div>
     </div>
@@ -106,12 +115,14 @@ import QrcodeVue from 'qrcode.vue'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
+import RiskScale from '@/components/RiskScale'
 
 export default {
   components: {
     QRScanner,
     PatientSummary,
-    QrcodeVue
+    QrcodeVue,
+    RiskScale
   },
   data: () => ({
     scanning: false,
@@ -122,6 +133,7 @@ export default {
   computed: {
     ...mapState('app', ['appTitle']),
     ...mapGetters('patients', ['currentPatient']),
+    ...mapGetters('questions', ['getMaxPoints']),
     confirmedPatient() {
       if (this.currentPatient) return JSON.stringify(this.currentPatient)
       return null
@@ -226,10 +238,6 @@ export default {
   align-items: center;
   height: 100%;
   min-height: calc(100vh - 34px);
-}
-
-.top-buttons {
-  width: 100%;
 }
 
 .header-info {

@@ -1,19 +1,18 @@
 <template>
-  <div class="container">
-    <div class="top-buttons">
-      <router-link class="icon-button" to="/home"
-        ><ion-icon name="arrow-back-outline" size="large"></ion-icon
-      ></router-link>
-    </div>
+  <div class="main-container">
+    <NavBar :back-btn="true"></NavBar>
     <h1>{{ $t('SETTINGS.SETTINGS') }}</h1>
-
-    <p>{{ $t('SETTINGS.APP_LANGUAGE') }}<LocaleChanger></LocaleChanger></p>
-
-    <button class="link btn-primary" @click="deleteAllData">
+    <div class="main-content settings-content">
+      <p class="p-4">
+        <strong>{{ $t('SETTINGS.APP_LANGUAGE') }}</strong
+        ><LocaleChanger class="px-4"></LocaleChanger>
+      </p>
+    </div>
+    <button class="link btn-primary mt-auto p-4" @click="deleteAllData">
       {{ $t('SETTINGS.DELETE_ALL_DATA') }}
     </button>
 
-    <router-link class="about-link" to="/about">{{
+    <router-link class="p-4" to="/about">{{
       $t('SETTINGS.ABOUT')
     }}</router-link>
   </div>
@@ -31,7 +30,17 @@ export default {
       // eslint-disable-next-line no-alert
       const r = window.confirm(this.$t('ALERT.DELETE_ALL_DATA'))
       if (r === true) {
-        localStorage.removeItem('vuex')
+        localStorage.clear()
+        sessionStorage.clear()
+        window.indexedDB
+          .databases()
+          .then(databases => {
+            databases.forEach(db => window.indexedDB.deleteDatabase(db.name))
+          })
+          .then(() => {
+            // eslint-disable-next-line no-alert
+            alert(this.$t('ALERT.ALL_DATA_CLEARED'))
+          })
         window.location.reload()
       }
     }
@@ -40,24 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/theme/variables.scss';
-@import '@/theme/general.scss';
-
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  max-width: 40rem;
-  margin: 0 auto;
-
-  .top-buttons {
-    width: 100%;
-    display: flex;
-  }
-}
-
-.about-link {
-  margin-top: 2rem;
+.settings-content {
+  @apply justify-start;
 }
 </style>

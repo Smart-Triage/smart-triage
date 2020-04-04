@@ -1,3 +1,5 @@
+@import '@/theme/variables';
+
 .page-title {
   margin: 1.5em 0;
   font-weight: 600;
@@ -13,10 +15,56 @@
   line-height: 1.5em;
   font-weight: 500;
   font-family: 'Titillium Web', sans-serif;
+  color: white;
+  @apply px-6 py-3;
 }
 
 .btn-secondary {
   background-color: $bg-color;
   border-radius: 2em;
   border: none;
+}
+
+//New
+h1 {
+  font-size: 2em;
+  padding: 0.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.5em;
+}
+
+.main-container {
+  @apply flex flex-col items-center h-screen;
+}
+
+.main-content {
+  @apply flex
+  flex-col
+  text-center
+  items-center
+  justify-around
+  max-w-md
+  mx-2
+  h-full;
+}
+
+.card {
+  @apply rounded-lg shadow-lg m-6 p-6 bg-white;
+  p {
+    @apply m-3;
+  }
+}
+
+.order-list {
+  @apply list-decimal w-2/3;
+  li {
+    @apply p-2;
+  }
+}
+
+.bottom-link {
+  @apply mt-auto p-4 pt-8 w-full max-w-md flex justify-around;
 }

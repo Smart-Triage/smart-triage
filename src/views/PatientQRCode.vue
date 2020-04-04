@@ -1,58 +1,70 @@
 <template>
-  <div class="container" :class="{ 'bg-confirmed': currentPatient.confirmed }">
-    <div class="top-buttons">
-      <router-link to="/summary"
-        ><ion-icon name="close" size="large"></ion-icon
-      ></router-link>
-    </div>
-
-    <div class="home-page-top-img">
-      <h1>{{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}</h1>
-      <img src="@/assets/img/scan-code.png" alt="" />
-    </div>
-    <p>{{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}</p>
-    <div
-      v-if="
-        currentPatient.confirmation &&
-          currentPatient.confirmation.confirmedBy.length > 1 &&
-          currentPatient.confirmation.timestamp
-      "
-      class="is-confirmed"
-    >
+  <div
+    class="main-container"
+    :class="{ 'bg-confirmed': currentPatient.confirmed }"
+  >
+    <NavBar>
+      <template v-slot:left>
+        <router-link to="/summary"
+          ><ion-icon name="close" size="large"></ion-icon
+        ></router-link>
+      </template>
+    </NavBar>
+    <div class="main-content">
+      <div class="flex flex-col justify-start items-center">
+        <h1 class="text-2xl leading-tight">
+          {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
+        </h1>
+        <img class="w-1/2" src="@/assets/img/scan-code.png" alt="" />
+        <p class="my-4">
+          <strong>
+            {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
+          </strong>
+        </p>
+      </div>
       <div
-        class="confirmation-info"
-        :class="{ 'covid-suspedted': currentPatient.isCovidSuspected }"
+        v-if="
+          currentPatient.confirmation &&
+            currentPatient.confirmation.confirmedBy.length > 1 &&
+            currentPatient.confirmation.timestamp
+        "
+        class="is-confirmed"
       >
-        <div>
-          {{ $t('PATIENT_QR_CODE.CONFIRMED_BY') }}
-          {{ currentPatient.confirmation.confirmedBy }}
-        </div>
-        <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
-        <div v-if="currentPatient.isCovidSuspected === true">
-          {{ $t('PATIENT_QR_CODE.COVID_SUSPECTED') }}
-        </div>
-        <div v-if="currentPatient.isCovidSuspected === false">
-          {{ $t('PATIENT_QR_CODE.COVID_NOT_SUSPECTED') }}
+        <div
+          class="confirmation-info"
+          :class="{ 'covid-suspedted': currentPatient.isCovidSuspected }"
+        >
+          <div>
+            {{ $t('PATIENT_QR_CODE.CONFIRMED_BY') }}
+            {{ currentPatient.confirmation.confirmedBy }}
+          </div>
+          <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
+          <div v-if="currentPatient.isCovidSuspected === true">
+            {{ $t('PATIENT_QR_CODE.COVID_SUSPECTED') }}
+          </div>
+          <div v-if="currentPatient.isCovidSuspected === false">
+            {{ $t('PATIENT_QR_CODE.COVID_NOT_SUSPECTED') }}
+          </div>
         </div>
       </div>
-    </div>
-    <!-- {{ currentPatient.firstName + ' ' + currentPatient.lastName }} -->
-    <QrcodeVue
-      class="qrcode"
-      :value="stringyfiedPatient"
-      size="300"
-      level="H"
-    ></QrcodeVue>
+      <!-- {{ currentPatient.firstName + ' ' + currentPatient.lastName }} -->
+      <QrcodeVue
+        class="qrcode"
+        :value="stringyfiedPatient"
+        size="300"
+        level="H"
+      ></QrcodeVue>
 
-    <router-link
-      v-if="!currentPatient.confirmed"
-      class="link btn-primary scan-confirmation-btn icon-button"
-      to="/scan-confirmation-qr-code"
-      ><ion-icon name="scan-outline"></ion-icon>
-      <div class="button-text">
-        {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
-      </div></router-link
-    >
+      <router-link
+        v-if="!currentPatient.confirmed"
+        class="link btn-primary scan-confirmation-btn icon-button mb-3"
+        to="/scan-confirmation-qr-code"
+        ><ion-icon name="scan-outline"></ion-icon>
+        <div class="button-text">
+          {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
+        </div></router-link
+      >
+    </div>
   </div>
 </template>
 
@@ -140,15 +152,6 @@ export default {
   }
 }
 
-.top-buttons {
-  position: absolute;
-  top: 1.5rem;
-  left: 0;
-  width: 100%;
-  display: flex;
-  padding: 0.5rem 1rem;
-}
-
 .bg-confirmed {
   background-color: $secondary-color;
   color: white;
@@ -157,7 +160,6 @@ export default {
 .qrcode {
   background-color: white;
   padding: 2rem;
-  margin-top: 1rem;
 }
 
 .confirmation-info {

@@ -1,5 +1,5 @@
 <template>
-  <div class="patient-list">
+  <div>
     <div
       v-for="patient in patients"
       :key="patient.id"

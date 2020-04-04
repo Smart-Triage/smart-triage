@@ -1,15 +1,18 @@
 <template>
-  <div v-if="currentPatient" class="container">
-    <div class="top-sumary">
-      <div class="top-buttons">
+  <div v-if="currentPatient" class="main-container">
+    <NavBar>
+      <template v-slot:left>
         <router-link to="/home">
           <ion-icon name="close" size="large"></ion-icon>
         </router-link>
-        <div class="spacer"></div>
+      </template>
+      <template v-slot:right>
         <button class="icon-button" @click="deletePatient">
           <ion-icon name="trash-outline" size="large"></ion-icon>
         </button>
-      </div>
+      </template>
+    </NavBar>
+    <div class="top-sumary">
       <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
       <img src="@/assets/img/home-page-welcome-img.png" alt="" />
     </div>
@@ -81,20 +84,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1.5em 0;
-}
-
-.top-buttons {
-  position: absolute;
-  top: 1.5rem;
-  left: 0;
-  width: 100%;
-  display: flex;
-  padding: 1rem;
-
-  .spacer {
-    flex-grow: 1;
-  }
 }
 
 .buttons {
