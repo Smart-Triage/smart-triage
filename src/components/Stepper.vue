@@ -29,8 +29,8 @@
           <h1 class="">{{ $t('FORM.PERSONAL_DETAILS') }}</h1>
           <img class="my-1" src="@/assets/img/form-page-top.png" alt />
         </div>
-        <div v-if="step.order !== '0'" class="flex-auto">
-          <h1 class="">{{ $t('FORM.QUESTIONNAIRE') }}</h1>
+        <div v-if="step.order !== '0'" class="">
+          <h1 class="mb-10">{{ $t('FORM.QUESTIONNAIRE') }}</h1>
         </div>
 
         <transition name="view" mode="out-in">
@@ -356,7 +356,7 @@ export default {
 
 .form-content {
   justify-content: space-between;
-  width: calc(100% - 1rem);
+  width: calc(100% - 2rem);
 }
 
 .form-div {
