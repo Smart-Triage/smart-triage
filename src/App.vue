@@ -25,8 +25,6 @@ import NewContentAvailableToastr from '@/components/NewContentAvailableToastr'
 import AppleAddToHomeScreenModal from '@/components/AppleAddToHomeScreenModal'
 import { mapState, mapActions, mapGetters } from 'vuex'
 
-
-
 export default {
   components: {
     NewContentAvailableToastr,

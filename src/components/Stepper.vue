@@ -22,7 +22,10 @@
         </template>
       </NavBar>
       <div class="main-content form-content">
-        <div v-if="step.order === '0'" class="flex-auto flex flex-col items-center">
+        <div
+          v-if="step.order === '0'"
+          class="flex-auto flex flex-col items-center"
+        >
           <h1 class="">{{ $t('FORM.PERSONAL_DETAILS') }}</h1>
           <img class="my-1" src="@/assets/img/form-page-top.png" alt />
         </div>
