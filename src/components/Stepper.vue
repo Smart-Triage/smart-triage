@@ -261,6 +261,30 @@ export default {
             : this.currentStep.nextIfNegative) || this.currentStep.next
         )
       } else {
+        // Save prevous value
+        const previousAnswer = this.answers[this.currentStepNum]
+
+        // Check if answer has changed from the previous answer
+        if (previousAnswer !== answer) {
+          const stepsToReset = this.getFormSteps
+            .filter(
+              step =>
+                step.order.substr(0, 1) === this.currentStepNum.substr(0, 1)
+            )
+            .map(step => step.order)
+            .filter(
+              stepToReset =>
+                stepToReset.length > 1 &&
+                parseInt(stepToReset.substr(2), 10) >
+                  (parseInt(this.currentStepNum.substr(2), 10) || 0)
+            )
+
+          // Reset answers for follow-up questions (e.g. 1 has changed, reset 1.1, 1.2, ...)
+          stepsToReset.forEach(stepToReset => {
+            delete this.answers[stepToReset]
+          })
+        }
+
         // Navigating by selecting an answer, save the answer to store
         switch (typeof answer) {
           case 'boolean':
