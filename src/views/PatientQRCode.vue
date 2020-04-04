@@ -57,7 +57,7 @@
 
       <router-link
         v-if="!currentPatient.confirmed"
-        class="link btn-primary scan-confirmation-btn icon-button"
+        class="link btn-primary scan-confirmation-btn icon-button mb-3"
         to="/scan-confirmation-qr-code"
         ><ion-icon name="scan-outline"></ion-icon>
         <div class="button-text">
