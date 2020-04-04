@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
-// import authentication from './authentication'
+import authentication from './authentication'
 import app from './app'
-// import products from './products'
 import patients from './patients'
 import settings from './settings'
 import questions from './questions'
@@ -29,9 +28,8 @@ export default new Vuex.Store({
     appVersion: state => state.appVersion
   },
   modules: {
-    // authentication,
+    authentication,
     app,
-    // products,
     patients,
     settings,
     questions

@@ -30,7 +30,17 @@ export default {
       // eslint-disable-next-line no-alert
       const r = window.confirm(this.$t('ALERT.DELETE_ALL_DATA'))
       if (r === true) {
-        localStorage.removeItem('vuex')
+        localStorage.clear()
+        sessionStorage.clear()
+        window.indexedDB
+          .databases()
+          .then(databases => {
+            databases.forEach(db => window.indexedDB.deleteDatabase(db.name))
+          })
+          .then(() => {
+            // eslint-disable-next-line no-alert
+            alert(this.$t('ALERT.ALL_DATA_CLEARED'))
+          })
         window.location.reload()
       }
     }
