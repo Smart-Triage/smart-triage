@@ -246,7 +246,7 @@ ion-icon {
   border-radius: 2em;
   padding: 0.8em 4em;
   width: fit-content;
-  margin: 0 auto;
+  margin: 2rem auto 0 auto;
 }
 
 .patient-item {

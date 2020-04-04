@@ -1,6 +1,6 @@
 <template>
   <header class="navbar" :class="{ offline: !networkOnLine }">
-    <div class="left">
+    <div class="left flex items-center leading-none">
       <slot name="left">
         <!-- Back button is only displayed when there is no element in 'left' slot and 'backBtn' prop is true-->
         <button v-if="backBtn" class="icon-button" @click="$router.go(-1)">
@@ -15,7 +15,7 @@
       </slot>
     </div>
 
-    <div class="right">
+    <div class="right flex justify-end">
       <slot name="right"></slot>
     </div>
   </header>
