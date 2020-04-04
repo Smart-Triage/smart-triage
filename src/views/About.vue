@@ -30,7 +30,7 @@
         </ul>
       </div>
     </div>
-    <div class="mt-auto p-4">
+    <div class="bottom-link text-xs">
       {{ $store.state.app.appTitle }} {{ $t('ABOUT.VERSION') }}
       {{ $store.getters.appVersion }}
     </div>

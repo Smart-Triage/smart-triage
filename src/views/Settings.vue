@@ -1,20 +1,20 @@
 <template>
-  <div class="container">
+  <div class="main-container">
     <NavBar :back-btn="true"></NavBar>
-
-    <div class="content">
-      <h1>{{ $t('SETTINGS.SETTINGS') }}</h1>
-
-      <p>{{ $t('SETTINGS.APP_LANGUAGE') }}<LocaleChanger></LocaleChanger></p>
-
-      <button class="link btn-primary" @click="deleteAllData">
-        {{ $t('SETTINGS.DELETE_ALL_DATA') }}
-      </button>
-
-      <router-link class="about-link" to="/about">{{
-        $t('SETTINGS.ABOUT')
-      }}</router-link>
+    <h1>{{ $t('SETTINGS.SETTINGS') }}</h1>
+    <div class="main-content settings-content">
+      <p class="p-4">
+        <strong>{{ $t('SETTINGS.APP_LANGUAGE') }}</strong
+        ><LocaleChanger class="px-4"></LocaleChanger>
+      </p>
     </div>
+    <button class="link btn-primary mt-auto p-4" @click="deleteAllData">
+      {{ $t('SETTINGS.DELETE_ALL_DATA') }}
+    </button>
+
+    <router-link class="p-4" to="/about">{{
+      $t('SETTINGS.ABOUT')
+    }}</router-link>
   </div>
 </template>
 
@@ -49,21 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/theme/variables.scss';
-@import '@/theme/general.scss';
-
-.container {
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    max-width: 40rem;
-    margin: 0 auto;
-
-    .about-link {
-      margin-top: 2rem;
-    }
-  }
+.settings-content {
+  @apply justify-start;
 }
 </style>

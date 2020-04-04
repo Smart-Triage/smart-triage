@@ -1,6 +1,10 @@
 <template>
   <span class="locale-changer">
-    <select v-model="$i18n.locale" @change="setLocale($event.target.value)">
+    <select
+      v-model="$i18n.locale"
+      class="p-2 px-4 rounded-full"
+      @change="setLocale($event.target.value)"
+    >
       <option
         v-for="lang in langs"
         :key="`lang-${lang.code}`"
