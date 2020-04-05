@@ -21,7 +21,10 @@
 
       <hr />
 
-      <div class="flex items-center my-3 mx-6 card">
+      <div
+        v-if="!currentPatient.confirmed"
+        class="flex items-center my-3 mx-6 card"
+      >
         <p class="text-left text-xs">
           {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
         </p>
@@ -34,7 +37,10 @@
         />
       </div>
 
-      <div class="flex items-center my-3 mx-6 card">
+      <div
+        v-if="!currentPatient.confirmed"
+        class="flex items-center my-3 mx-6 card"
+      >
         <p class="text-left text-xs">
           {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
         </p>
@@ -50,7 +56,9 @@
 
       <p class="buttons"></p>
       <router-link
-        v-if="!allIsTrueAgreed || !personalInfoAgreed"
+        v-if="
+          (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
+        "
         to="/summary"
         class="link btn-primary icon-button show-qr-code-btn not-active-qr"
       >
@@ -59,7 +67,7 @@
         </div>
       </router-link>
       <router-link
-        v-if="allIsTrueAgreed && personalInfoAgreed"
+        v-else
         to="/patient-qr-code"
         class="link btn-primary icon-button show-qr-code-btn"
       >
