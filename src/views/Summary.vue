@@ -72,6 +72,18 @@
         <div class="button-text">Add another person</div>
       </router-link> -->
     </div>
+    <ModalWindow v-if="showModal" @close="showModal = false">
+      <template v-slot:header>
+        <h2 class="p-0">Upozornení</h2>
+      </template>
+      <template v-slot:body>
+        <p>
+          Tyto informace zjišťujeme za účelem snížení rizika přenosu infekce
+          virem COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých
+          informací může být posuzováno jako trestný čin.
+        </p>
+      </template>
+    </ModalWindow>
   </div>
   <div v-else>
     <p>{{ $t('SOMETHING_WENT_WRONG') }}</p>
@@ -82,16 +94,18 @@
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 import PatientSummary from '@/components/PatientSummary'
+import ModalWindow from '@/components/ModalWindow'
 
 export default {
-  components: { PatientSummary },
+  components: { PatientSummary, ModalWindow },
   computed: {
     ...mapState('patients', ['patients']),
     ...mapGetters('patients', ['currentPatient'])
   },
   data: () => ({
     allIsTrueAgreed: false,
-    personalInfoAgreed: false
+    personalInfoAgreed: false,
+    showModal: false
   }),
   mounted() {
     if (this.currentPatient === undefined) {
@@ -120,6 +134,9 @@ export default {
         key: 'termsAccepted',
         value: this.checked
       })
+      if (this.allIsTrueAgreed) {
+        this.showModal = true
+      }
     }
   }
 }
