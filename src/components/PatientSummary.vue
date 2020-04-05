@@ -14,7 +14,7 @@
       >
         <div>
           {{ $t('PATIENT_SUMMARY.CONFIRMED_BY') }}
-          {{ currentPatient.confirmation.confirmedBy }}
+          {{ currentPatient.confirmation.confirmedByName }}
         </div>
         <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
         <div v-if="currentPatient.isCovidSuspected === true">

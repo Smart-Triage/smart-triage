@@ -132,7 +132,7 @@ export default {
     agreedToTerms() {
       this.setCurrentPatientValueByKey({
         key: 'termsAccepted',
-        value: this.checked
+        value: this.personalInfoAgreed
       })
       if (this.allIsTrueAgreed) {
         this.showModal = true
