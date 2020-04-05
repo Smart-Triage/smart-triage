@@ -98,15 +98,16 @@ import ModalWindow from '@/components/ModalWindow'
 
 export default {
   components: { PatientSummary, ModalWindow },
-  computed: {
-    ...mapState('patients', ['patients']),
-    ...mapGetters('patients', ['currentPatient'])
-  },
   data: () => ({
     allIsTrueAgreed: false,
     personalInfoAgreed: false,
     showModal: false
   }),
+  computed: {
+    ...mapState('patients', ['patients']),
+    ...mapGetters('patients', ['currentPatient'])
+  },
+
   mounted() {
     if (this.currentPatient === undefined) {
       this.$router.push('/home')
