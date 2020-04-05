@@ -37,7 +37,7 @@ h2 {
 }
 
 .main-container {
-  @apply flex flex-col items-center h-screen;
+  @apply flex flex-col items-center min-h-screen;
 }
 
 .main-content {

@@ -12,22 +12,48 @@
         </button>
       </template>
     </NavBar>
-    <div class="top-sumary">
-      <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
-      <img src="@/assets/img/home-page-welcome-img.png" alt="" />
-    </div>
-    <PatientSummary></PatientSummary>
+    <div class="main-content">
+      <div class="top-sumary">
+        <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
+        <img src="@/assets/img/home-page-welcome-img.png" alt="" />
+      </div>
+      <PatientSummary></PatientSummary>
 
-    <hr />
+      <hr />
 
-    <div class="buttons">
+      <div class="flex items-center my-3 mx-6 card">
+        <p class="text-left">
+          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
+        </p>
+        <input
+          id="agree"
+          v-model="checked"
+          type="checkbox"
+          value="agree"
+          class="m-4"
+          @change="agreedToTerms()"
+        />
+      </div>
+
+      <p class="buttons"></p>
       <router-link
+        v-if="!checked"
+        to="/summary"
+        class="link btn-primary icon-button show-qr-code-btn not-active-qr"
+      >
+        <div>
+          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
+        </div>
+      </router-link>
+      <router-link
+        v-if="checked"
         to="/patient-qr-code"
         class="link btn-primary icon-button show-qr-code-btn"
       >
         <ion-icon name="qr-code-outline"></ion-icon>
         <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
       </router-link>
+
       <!-- <router-link to="/home" class="link btn-primary icon-button"
         ><ion-icon name="person-add-outline"></ion-icon>
         <div class="button-text">Add another person</div>
@@ -50,6 +76,9 @@ export default {
     ...mapState('patients', ['patients']),
     ...mapGetters('patients', ['currentPatient'])
   },
+  data: () => ({
+    checked: false
+  }),
   mounted() {
     if (this.currentPatient === undefined) {
       this.$router.push('/home')
@@ -71,6 +100,12 @@ export default {
           this.$router.push('/home')
         })
       }
+    },
+    agreedToTerms() {
+      this.setCurrentPatientValueByKey({
+        key: 'termsAccepted',
+        value: this.checked
+      })
     }
   }
 }
@@ -112,5 +147,12 @@ export default {
   max-width: 25rem;
   display: flex;
   justify-content: center;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.not-active-qr {
+  background-color: #d5d8de;
+  color: #0d1f3c;
 }
 </style>

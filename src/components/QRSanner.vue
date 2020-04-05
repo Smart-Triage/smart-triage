@@ -73,7 +73,8 @@ export default {
           'lastName',
           'birthNumber',
           'phoneNumber',
-          'answers'
+          'answers',
+          'termsAccepted'
         ]
         const optionalKeys = [
           'confirmation',
