@@ -45,7 +45,7 @@
     </button>
     <transition name="unroll">
       <div
-        class="info-container questionInfo"
+        class="info-container questionInfo text-left"
         :class="{ hideInfo: patientInfoHidden }"
       >
         <p>
@@ -93,7 +93,7 @@
         ></ion-icon>
       </div>
     </button>
-    <div :class="{ hideInfo: patientSymptomsHidden }" class="info-container">
+    <div :class="{ hideInfo: patientSymptomsHidden }" class="info-container text-left">
       <div
         v-for="step in formStepsToShow"
         :key="step.order"
