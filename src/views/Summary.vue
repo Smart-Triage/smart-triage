@@ -21,7 +21,10 @@
 
       <hr />
 
-      <div class="flex items-center my-3 mx-6 card">
+      <div
+        v-if="!currentPatient.confirmed"
+        class="flex items-center my-3 mx-6 card"
+      >
         <p class="text-left text-xs">
           {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
         </p>
@@ -34,7 +37,10 @@
         />
       </div>
 
-      <div class="flex items-center my-3 mx-6 card">
+      <div
+        v-if="!currentPatient.confirmed"
+        class="flex items-center my-3 mx-6 card"
+      >
         <p class="text-left text-xs">
           {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
         </p>
@@ -50,7 +56,9 @@
 
       <p class="buttons"></p>
       <router-link
-        v-if="!allIsTrueAgreed || !personalInfoAgreed"
+        v-if="
+          (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
+        "
         to="/summary"
         class="link btn-primary icon-button show-qr-code-btn not-active-qr"
       >
@@ -59,7 +67,7 @@
         </div>
       </router-link>
       <router-link
-        v-if="allIsTrueAgreed && personalInfoAgreed"
+        v-else
         to="/patient-qr-code"
         class="link btn-primary icon-button show-qr-code-btn"
       >
@@ -98,15 +106,16 @@ import ModalWindow from '@/components/ModalWindow'
 
 export default {
   components: { PatientSummary, ModalWindow },
-  computed: {
-    ...mapState('patients', ['patients']),
-    ...mapGetters('patients', ['currentPatient'])
-  },
   data: () => ({
     allIsTrueAgreed: false,
     personalInfoAgreed: false,
     showModal: false
   }),
+  computed: {
+    ...mapState('patients', ['patients']),
+    ...mapGetters('patients', ['currentPatient'])
+  },
+
   mounted() {
     if (this.currentPatient === undefined) {
       this.$router.push('/home')
@@ -132,7 +141,7 @@ export default {
     agreedToTerms() {
       this.setCurrentPatientValueByKey({
         key: 'termsAccepted',
-        value: this.checked
+        value: this.personalInfoAgreed
       })
       if (this.allIsTrueAgreed) {
         this.showModal = true

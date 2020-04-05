@@ -1,10 +1,10 @@
 <template>
   <div class="main-container">
     <NavBar>
-      <template v-slot:center>
-        {{ appTitle }}
-        <InDevelopementOverlay class="z-auto"></InDevelopementOverlay>
-      </template>
+      <!-- <template v-slot:center> -->
+      <!-- {{ appTitle }} -->
+      <!-- <InDevelopementOverlay class="z-auto"></InDevelopementOverlay> -->
+      <!-- </template> -->
     </NavBar>
     <div class="main-content">
       <div>
@@ -50,12 +50,12 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import PatientList from '@/components/PatientList'
-import InDevelopementOverlay from '@/components/InDevelopementOverlay'
+// import InDevelopementOverlay from '@/components/InDevelopementOverlay'
 
 export default {
   components: {
-    PatientList,
-    InDevelopementOverlay
+    PatientList
+    // InDevelopementOverlay
   },
   head() {
     return {

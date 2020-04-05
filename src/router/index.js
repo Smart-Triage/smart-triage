@@ -83,6 +83,17 @@ const router = new Router({
         )
     },
     {
+      path: '/verify',
+      name: 'verify',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-summary" */ '@/views/VerifyConfirmationValidity.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
       path: '/print-barcode',
       name: 'print-barcode',
       component: () =>

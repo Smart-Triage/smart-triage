@@ -30,7 +30,7 @@
       v-show="user !== undefined && !user && networkOnLine"
       data-test="login-btn"
       class="login-btn"
-      @click="login"
+      @click="register"
     >
       {{ $t('LOGIN.SEND') }}
     </div>
@@ -38,12 +38,21 @@
 </template>
 
 <script>
+/* eslint-disable no-alert */
+
 import { mapState, mapMutations } from 'vuex'
 import { isNil } from 'lodash'
 import firebase from 'firebase/app'
+import KeyStore from '@/misc/KeyStore'
+import PublicKeysDB from '../firebase/public-keys-db'
 
 export default {
-  data: () => ({ loginError: null, registrationCode: '', errorMessage: '' }),
+  data: () => ({
+    loginError: null,
+    registrationCode: '',
+    errorMessage: '',
+    keyStore: null
+  }),
   head() {
     return {
       title: {
@@ -75,11 +84,32 @@ export default {
       immediate: true
     }
   },
+  mounted() {
+    if (!window.crypto || !window.crypto.subtle) {
+      alert(
+        'Your current browser does not support the Web Cryptography API! This page will not work.'
+      )
+      return
+    }
+
+    if (!window.indexedDB) {
+      alert(
+        'Your current browser does not support IndexedDB. This page will not work.'
+      )
+      return
+    }
+
+    this.keyStore = new KeyStore()
+    this.keyStore
+      .open()
+      .catch(err => alert(`Could not open key store: ${err.message}`))
+  },
   methods: {
     ...mapMutations('authentication', ['setUser']),
-    async login() {
+
+    /* REGISTER EMPLOYEE */
+    async register() {
       this.loginError = null
-      // const provider = new firebase.auth.GoogleAuthProvider()
       this.setUser(undefined)
 
       try {
@@ -94,12 +124,52 @@ export default {
           throw res.error
         }
 
-        firebase.auth().signInWithCustomToken(res.token)
+        firebase
+          .auth()
+          .signInWithCustomToken(res.token)
+          .then(async userCredential => {
+            this.createKeyPair(userCredential)
+          })
       } catch (err) {
         // Handle Errors here.
         this.loginError = err
         this.setUser(null)
       }
+    },
+    exportPublicKey(publicKey, userCredential) {
+      window.crypto.subtle
+        .exportKey(
+          'jwk', // can be "jwk" (public or private), "spki" (public only), or "pkcs8" (private only)
+          publicKey // can be a publicKey or privateKey, as long as extractable was true
+        )
+        .then(async keydata => {
+          // returns the exported key data
+          const publicKeysDB = new PublicKeysDB()
+          publicKeysDB.create({ publicKey: keydata }, userCredential.user.uid)
+        })
+        .catch(err => console.error(err))
+    },
+    createKeyPair(userCredential) {
+      window.crypto.subtle
+        .generateKey(
+          {
+            name: 'ECDSA',
+            namedCurve: 'P-256' // can be "P-256", "P-384", or "P-521"
+          },
+          false, // whether the key is extractable (i.e. can be used in exportKey)
+          ['sign', 'verify'] // can be any combination of "sign" and "verify"
+        )
+        .then(keyPair => {
+          this.exportPublicKey(keyPair.publicKey, userCredential)
+          return this.keyStore.saveKey(
+            keyPair.publicKey,
+            keyPair.privateKey,
+            'EMPLOYEE_PRIVATE_KEY'
+          )
+        })
+        .catch(err => {
+          alert(`Could not create and save new key pair: ${err.message}`)
+        })
     }
   }
 }

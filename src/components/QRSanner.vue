@@ -45,6 +45,10 @@ export default {
     scanningConfirmationCode: {
       type: Boolean,
       default: false
+    },
+    verifying: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -76,6 +80,8 @@ export default {
           'answers',
           'termsAccepted'
         ]
+        if (this.scanningConfirmationCode || this.verifying)
+          requiredKeys.push('signature')
         const optionalKeys = [
           'confirmation',
           'confirmed',
