@@ -21,135 +21,118 @@
           >
         </template>
       </NavBar>
-      <div class="main-content form-content">
-        <div
-          v-if="step.order === '0'"
-          class="flex-auto flex flex-col items-center"
-        >
-          <h1 class="">{{ $t('FORM.PERSONAL_DETAILS') }}</h1>
-          <img class="my-1" src="@/assets/img/form-page-top.png" alt />
-        </div>
-        <div v-if="step.order !== '0'" class="">
-          <h1 class="mb-10">{{ $t('FORM.QUESTIONNAIRE') }}</h1>
-        </div>
+      <div
+        v-if="step.order === '0'"
+        class="flex-auto flex flex-col items-center"
+      >
+        <h1 class="">{{ $t('FORM.PERSONAL_DETAILS') }}</h1>
+        <img class="my-1" src="@/assets/img/form-page-top.png" alt />
+      </div>
+      <div v-if="step.order !== '0'" class="">
+        <h1 class="mb-10">{{ $t('FORM.QUESTIONNAIRE') }}</h1>
+      </div>
 
-        <transition name="view" mode="out-in">
-          <div class="flex-auto bg-white form-div w-full">
-            <p v-if="step.order !== '0'" class="directions">
-              {{ $t('FORM.ANSWER_A_FEW_QUESTIONS') }}
-            </p>
-            <p v-if="currentStepNum !== '0'" class="question">
-              {{ step.question }}
-            </p>
+      <transition name="view" mode="out-in">
+        <div class="flex flex-col flex-auto bg-white form-div mx-4 items-center">
+          <p v-if="step.order !== '0'" class="directions">
+            {{ $t('FORM.ANSWER_A_FEW_QUESTIONS') }}
+          </p>
+          <p v-if="currentStepNum !== '0'" class="question">
+            {{ step.question }}
+          </p>
 
-            <div v-if="step.order === '0'">
-              <PatientForm
-                v-if="currentStepNum === '0'"
-                @next="next(null)"
-              ></PatientForm>
-            </div>
+          <div v-if="step.order === '0'">
+            <PatientForm
+              v-if="currentStepNum === '0'"
+              @next="next(null)"
+            ></PatientForm>
+          </div>
 
-            <div
-              v-if="step.answerType === 'boolean'"
-              class="boolean-answer-button"
+          <div
+            v-if="step.answerType === 'boolean'"
+            class="boolean-answer-button"
+          >
+            <button
+              :class="{ 'button-active': answers[currentStepNum] == false }"
+              @click="next(false)"
             >
-              <button
-                :class="{ 'button-active': answers[currentStepNum] == false }"
-                @click="next(false)"
-              >
-                {{ $t('NO') }}
-              </button>
-              <button
-                :class="{ 'button-active': answers[currentStepNum] == true }"
-                @click="next(true)"
-              >
-                {{ $t('YES') }}
-              </button>
-            </div>
-
-            <div
-              v-if="step.answerType === 'slider'"
-              class="slider-answer-slider"
+              {{ $t('NO') }}
+            </button>
+            <button
+              :class="{ 'button-active': answers[currentStepNum] == true }"
+              @click="next(true)"
             >
-              <div class="slider-value">{{ temperatureValue }}</div>
+              {{ $t('YES') }}
+            </button>
+          </div>
+
+          <div v-if="step.answerType === 'slider'" class="slider-answer-slider">
+            <div class="slider-value">{{ temperatureValue }}</div>
+            <input
+              v-model="temperatureValue"
+              type="range"
+              min="36"
+              max="42"
+              step="0.1"
+              class="slider"
+            />
+            <button @click="next(temperatureValue)">{{ $t('NEXT') }}</button>
+          </div>
+
+          <div v-if="step.answerType === 'one-of'" class="one-of-answer">
+            <button
+              v-for="option in step.options"
+              :key="option.value"
+              :class="{
+                'button-active': answers[currentStepNum] === option.value
+              }"
+              @click="next(option.value)"
+            >
+              {{ option.text }}
+            </button>
+          </div>
+
+          <div
+            v-if="currentStepNum == '5' && step.answerType === 'checkbox'"
+            class="checkbox-answer"
+          >
+            <div
+              v-for="option in step.options"
+              :key="currentPatient + option.value"
+              class="checkbox-wrapper"
+            >
               <input
-                v-model="temperatureValue"
-                type="range"
-                min="36"
-                max="42"
-                step="0.1"
-                class="slider"
-              />
-              <button @click="next(temperatureValue)">{{ $t('NEXT') }}</button>
-            </div>
-
-            <div v-if="step.answerType === 'one-of'" class="one-of-answer">
-              <button
-                v-for="option in step.options"
-                :key="option.value"
-                :class="{
-                  'button-active': answers[currentStepNum] === option.value
-                }"
-                @click="next(option.value)"
-              >
-                {{ option.text }}
-              </button>
-            </div>
-
-            <div
-              v-if="currentStepNum == '5' && step.answerType === 'checkbox'"
-              class="checkbox-answer"
-            >
-              <div
-                v-for="option in step.options"
-                :key="currentPatient + option.value"
-                class="checkbox-wrapper"
-              >
-                <input
-                  :id="option.value"
-                  v-model="
-                    answers[currentStepNum].find(
-                      op => op.value === option.value
-                    ).isChecked
-                  "
-                  :value="option.value"
-                  type="checkbox"
-                  class="hideCheckbox"
-                />
-                <!-- <ion-icon
-                v-if="
+                :id="option.value"
+                v-model="
                   answers[currentStepNum].find(op => op.value === option.value)
                     .isChecked
                 "
-                name="checkbox"
-              ></ion-icon>
-              <ion-icon v-else name="checkbox-outline"></ion-icon> -->
-                <label :for="option.value">{{ option.text }}</label>
-              </div>
-
-              <button @click="next(step.options)">{{ $t('NEXT') }}</button>
+                :value="option.value"
+                type="checkbox"
+                class="hideCheckbox"
+              />
+              <label :for="option.value">{{ option.text }}</label>
             </div>
 
-            <div class="spacer"></div>
-            <div v-if="currentStepNum !== '0'" class="buttons">
-              <button v-if="!isFirst" class="icon-button prev" @click="prev()">
-                <ion-icon name="chevron-back-outline" size="large"></ion-icon>
-              </button>
-              <div class="spacer"></div>
-              <button
-                v-if="currentPatient.answers[currentStepNum] !== undefined"
-                class="icon-button next"
-                @click="next(null)"
-              >
-                <ion-icon
-                  name="chevron-forward-outline"
-                  size="large"
-                ></ion-icon>
-              </button>
-            </div>
+            <button @click="next(step.options)">{{ $t('NEXT') }}</button>
           </div>
-        </transition>
-      </div>
+
+          <div class="spacer"></div>
+          <div v-if="currentStepNum !== '0'" class="buttons">
+            <button v-if="!isFirst" class="icon-button prev" @click="prev()">
+              <ion-icon name="chevron-back-outline" size="large"></ion-icon>
+            </button>
+            <div class="spacer"></div>
+            <button
+              v-if="currentPatient.answers[currentStepNum] !== undefined"
+              class="icon-button next"
+              @click="next(null)"
+            >
+              <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -361,14 +344,6 @@ export default {
 
 .form-div {
   border-radius: 2em 2em 0 0;
-}
-
-.hideCheckbox {
-  // position: absolute;
-  // opacity: 0;
-  // cursor: pointer;
-  // height: 0;
-  // width: 0;
 }
 
 .container {
