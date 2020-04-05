@@ -14,7 +14,7 @@
 
         <div class="modal-footer">
           <button class="btn-primary" @click="$emit('close')">
-            Souhhlasím
+            Souhlasím
           </button>
         </div>
       </div>

@@ -54,6 +54,7 @@ h2 {
 .card {
   @apply shadow-lg m-4 p-6 bg-white;
   border-radius: 1.1em;
+  width: calc(100% - 2em);
   p {
     @apply m-3;
   }
