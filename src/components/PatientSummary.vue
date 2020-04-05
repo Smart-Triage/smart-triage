@@ -3,7 +3,7 @@
     <div
       v-if="
         currentPatient.confirmation &&
-          currentPatient.confirmation.confirmedBy.length > 1 &&
+          currentPatient.confirmation.confirmedById.length > 1 &&
           currentPatient.confirmation.timestamp
       "
       class="is-confirmed"
@@ -14,7 +14,7 @@
       >
         <div>
           {{ $t('PATIENT_SUMMARY.CONFIRMED_BY') }}
-          {{ currentPatient.confirmation.confirmedBy }}
+          {{ currentPatient.confirmation.confirmedByName }}
         </div>
         <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
         <div v-if="currentPatient.isCovidSuspected === true">

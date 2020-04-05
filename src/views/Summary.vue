@@ -12,27 +12,78 @@
         </button>
       </template>
     </NavBar>
-    <div class="top-sumary">
-      <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
-      <img src="@/assets/img/home-page-welcome-img.png" alt="" />
-    </div>
-    <PatientSummary></PatientSummary>
+    <div class="main-content">
+      <div class="top-sumary">
+        <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
+        <img src="@/assets/img/home-page-welcome-img.png" alt="" />
+      </div>
+      <PatientSummary></PatientSummary>
 
-    <hr />
+      <hr />
 
-    <div class="buttons">
+      <div class="flex items-center my-3 mx-6 card">
+        <p class="text-left text-xs">
+          {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
+        </p>
+        <input
+          id="agree"
+          v-model="personalInfoAgreed"
+          type="checkbox"
+          value="agree"
+          class="m-4"
+        />
+      </div>
+
+      <div class="flex items-center my-3 mx-6 card">
+        <p class="text-left text-xs">
+          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
+        </p>
+        <input
+          id="agree2"
+          v-model="allIsTrueAgreed"
+          type="checkbox"
+          value="agree"
+          class="m-4"
+          @change="agreedToTerms()"
+        />
+      </div>
+
+      <p class="buttons"></p>
       <router-link
+        v-if="!allIsTrueAgreed || !personalInfoAgreed"
+        to="/summary"
+        class="link btn-primary icon-button show-qr-code-btn not-active-qr"
+      >
+        <div>
+          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
+        </div>
+      </router-link>
+      <router-link
+        v-if="allIsTrueAgreed && personalInfoAgreed"
         to="/patient-qr-code"
         class="link btn-primary icon-button show-qr-code-btn"
       >
         <ion-icon name="qr-code-outline"></ion-icon>
         <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
       </router-link>
+
       <!-- <router-link to="/home" class="link btn-primary icon-button"
         ><ion-icon name="person-add-outline"></ion-icon>
         <div class="button-text">Add another person</div>
       </router-link> -->
     </div>
+    <ModalWindow v-if="showModal" @close="showModal = false">
+      <template v-slot:header>
+        <h2 class="p-0">Upozornení</h2>
+      </template>
+      <template v-slot:body>
+        <p>
+          Tyto informace zjišťujeme za účelem snížení rizika přenosu infekce
+          virem COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých
+          informací může být posuzováno jako trestný čin.
+        </p>
+      </template>
+    </ModalWindow>
   </div>
   <div v-else>
     <p>{{ $t('SOMETHING_WENT_WRONG') }}</p>
@@ -43,13 +94,20 @@
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 import PatientSummary from '@/components/PatientSummary'
+import ModalWindow from '@/components/ModalWindow'
 
 export default {
-  components: { PatientSummary },
+  components: { PatientSummary, ModalWindow },
+  data: () => ({
+    allIsTrueAgreed: false,
+    personalInfoAgreed: false,
+    showModal: false
+  }),
   computed: {
     ...mapState('patients', ['patients']),
     ...mapGetters('patients', ['currentPatient'])
   },
+
   mounted() {
     if (this.currentPatient === undefined) {
       this.$router.push('/home')
@@ -70,6 +128,15 @@ export default {
         this.deletePatientById(this.currentPatient.id).then(() => {
           this.$router.push('/home')
         })
+      }
+    },
+    agreedToTerms() {
+      this.setCurrentPatientValueByKey({
+        key: 'termsAccepted',
+        value: this.personalInfoAgreed
+      })
+      if (this.allIsTrueAgreed) {
+        this.showModal = true
       }
     }
   }
@@ -112,5 +179,12 @@ export default {
   max-width: 25rem;
   display: flex;
   justify-content: center;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.not-active-qr {
+  background-color: #d5d8de;
+  color: #0d1f3c;
 }
 </style>

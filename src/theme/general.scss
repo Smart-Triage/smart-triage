@@ -37,7 +37,7 @@ h2 {
 }
 
 .main-container {
-  @apply flex flex-col items-center h-screen;
+  @apply flex flex-col items-center min-h-screen;
 }
 
 .main-content {
@@ -52,7 +52,8 @@ h2 {
 }
 
 .card {
-  @apply rounded-lg shadow-lg m-6 p-6 bg-white;
+  @apply shadow-lg m-4 p-6 bg-white;
+  border-radius: 1.1em;
   p {
     @apply m-3;
   }

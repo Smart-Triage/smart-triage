@@ -34,7 +34,9 @@
   "APP_IN_DEVELOPMENT": "This app is in development",
   "SUMMARY": {
     "SUMMARY": "Summary",
-    "SHOW_QR_CODE": "Show QR code"
+    "SHOW_QR_CODE": "Show QR code",
+    "YOU_HAVE_TO_ACCEPT_TXT": "You have to accept the terms and you are telling the truth",
+    "YOU_HAVE_TO_ACCEPT_BTN": "You have to accept the terms"
   },
   "PATIENT_SUMMARY": {
     "CONFIRMED_BY": "Confirmed by",

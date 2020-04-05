@@ -11,17 +11,20 @@ export default {
     (state.currentPatientId = patientId),
 
   setCurrentPatientValueByKey: (state, { key, value }) => {
-    const p = find(
-      state.patients,
-      patient => patient.id === state.currentPatientId
-    )
+    return new Promise(resolve => {
+      const p = find(
+        state.patients,
+        patient => patient.id === state.currentPatientId
+      )
 
-    p[key] = value
+      p[key] = value
 
-    return (find(
-      state.patients,
-      patient => patient.id === state.currentPatientId
-    )[key] = value)
+      resolve(
+        (find(state.patients, patient => patient.id === state.currentPatientId)[
+          key
+        ] = value)
+      )
+    })
   },
 
   updatePatient: (state, patient) => {
