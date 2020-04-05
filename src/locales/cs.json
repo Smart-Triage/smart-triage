@@ -34,7 +34,10 @@
   "APP_IN_DEVELOPMENT": "Zkušební mód. Aplikace je stále ve vývoji.",
   "SUMMARY": {
     "SUMMARY": "Shrnutí",
-    "SHOW_QR_CODE": "Zobrazit QR kód"
+    "SHOW_QR_CODE": "Zobrazit QR kód",
+    "PERSONAL_INFORMATION": "Souhlasím se zpracováním osobních údajů",
+    "YOU_HAVE_TO_ACCEPT_TXT": "Souhlasím, že všechny uvedené údaje jsou pravdivé. Uvedení nepravidvých informací může být posuzováno jako trestný čin",
+    "YOU_HAVE_TO_ACCEPT_BTN": "Musíte souhlasit s podmínkami"
   },
   "PATIENT_SUMMARY": {
     "CONFIRMED_BY": "Potvrdil/a",

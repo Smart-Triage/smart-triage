@@ -77,7 +77,8 @@ export default {
           'lastName',
           'birthNumber',
           'phoneNumber',
-          'answers'
+          'answers',
+          'termsAccepted'
         ]
         if (this.scanningConfirmationCode || this.verifying)
           requiredKeys.push('signature')

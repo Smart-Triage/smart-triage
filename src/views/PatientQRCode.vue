@@ -91,7 +91,8 @@ export default {
               'confirmation',
               'isCovidSuspected',
               'finished',
-              'signature'
+              'signature',
+              'termsAccepted'
             ].indexOf(key) > -1
         )
         .reduce(
