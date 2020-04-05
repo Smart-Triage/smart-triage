@@ -22,32 +22,32 @@ const admin = require('firebase-admin')
 const FieldValue = admin.firestore.FieldValue
 
 // admin.initializeApp(functions.config().firebase)
-var serviceAccount = require('./triage-app-8e193-firebase-adminsdk-x99td-280e478654.json')
+const serviceAccount = require('./triage-app-8e193-firebase-adminsdk-x99td-280e478654.json')
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: 'https://triage-app-8e193.firebaseio.com'
 })
 
-let db = admin.firestore()
+const db = admin.firestore()
 const regiostrationCodesRef = db.collection('registrationCodes')
 
 /* Express */
 const app = express()
 app.use(cors())
 
-SERVER_ERROR = {
+const SERVER_ERROR = {
   success: false,
   error: 'server_error'
 }
 
-REGISTRATION_KEY_INVALID_ERROR = {
+const REGISTRATION_KEY_INVALID_ERROR = {
   success: false,
   error: 'registration_key_invalid_error'
 }
 
 app.post('/checkEmployeeRegistrationCode', async (req, res) => {
-  let query = regiostrationCodesRef
+  regiostrationCodesRef
     .where('code', '==', req.body.registrationCode)
     .get()
     // eslint-disable-next-line consistent-return
@@ -80,7 +80,7 @@ app.post('/checkEmployeeRegistrationCode', async (req, res) => {
 
         console.log(newDoc.id, '=>', newDocData)
         try {
-          let additionalClaims = {
+          const additionalClaims = {
             employeeAccount: true
           }
           const customToken = await admin
