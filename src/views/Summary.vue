@@ -22,12 +22,25 @@
       <hr />
 
       <div class="flex items-center my-3 mx-6 card">
-        <p class="text-left">
-          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
+        <p class="text-left text-xs">
+          {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
         </p>
         <input
           id="agree"
-          v-model="checked"
+          v-model="personalInfoAgreed"
+          type="checkbox"
+          value="agree"
+          class="m-4"
+        />
+      </div>
+
+      <div class="flex items-center my-3 mx-6 card">
+        <p class="text-left text-xs">
+          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
+        </p>
+        <input
+          id="agree2"
+          v-model="allIsTrueAgreed"
           type="checkbox"
           value="agree"
           class="m-4"
@@ -37,7 +50,7 @@
 
       <p class="buttons"></p>
       <router-link
-        v-if="!checked"
+        v-if="!allIsTrueAgreed || !personalInfoAgreed"
         to="/summary"
         class="link btn-primary icon-button show-qr-code-btn not-active-qr"
       >
@@ -46,7 +59,7 @@
         </div>
       </router-link>
       <router-link
-        v-if="checked"
+        v-if="allIsTrueAgreed && personalInfoAgreed"
         to="/patient-qr-code"
         class="link btn-primary icon-button show-qr-code-btn"
       >
@@ -77,7 +90,8 @@ export default {
     ...mapGetters('patients', ['currentPatient'])
   },
   data: () => ({
-    checked: false
+    allIsTrueAgreed: false,
+    personalInfoAgreed: false
   }),
   mounted() {
     if (this.currentPatient === undefined) {
