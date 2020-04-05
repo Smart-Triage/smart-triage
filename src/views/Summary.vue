@@ -15,11 +15,13 @@
     <div class="main-content">
       <div class="top-sumary">
         <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
-        <img src="@/assets/img/home-page-welcome-img.png" alt="" />
+        <img
+          class="mx-auto"
+          src="@/assets/img/home-page-welcome-img.png"
+          alt=""
+        />
       </div>
       <PatientSummary></PatientSummary>
-
-      <hr />
 
       <div
         v-if="!currentPatient.confirmed"
@@ -54,7 +56,6 @@
         />
       </div>
 
-      <p class="buttons"></p>
       <router-link
         v-if="
           (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
@@ -183,12 +184,12 @@ export default {
 .show-qr-code-btn {
   // background-color: $secondary-color;
   padding: 1rem;
-  width: 100%;
+  width: calc(100% - 2em);
   max-width: 25rem;
   display: flex;
   justify-content: center;
-  margin-left: 2em;
-  margin-right: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .not-active-qr {

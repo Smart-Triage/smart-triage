@@ -33,7 +33,7 @@
       </div>
 
       <transition name="view" mode="out-in">
-        <div class="flex flex-col flex-auto bg-white form-div mx-4 items-center">
+        <div class="flex flex-col flex-auto bg-white form-div items-center">
           <p v-if="step.order !== '0'" class="directions">
             {{ $t('FORM.ANSWER_A_FEW_QUESTIONS') }}
           </p>

@@ -37,10 +37,6 @@ h2 {
 }
 
 .main-container {
-  @apply flex flex-col items-center min-h-screen;
-}
-
-.main-content {
   @apply flex
   flex-col
   text-center
@@ -48,7 +44,11 @@ h2 {
   justify-around
   max-w-md
   mx-2
-  h-full;
+  min-h-screen
+  text-center
+  justify-between
+  px-4
+  mx-auto;
 }
 
 .card {
@@ -68,5 +68,5 @@ h2 {
 }
 
 .bottom-link {
-  @apply mt-auto p-4 pt-8 w-full max-w-md flex justify-around;
+  @apply p-4 pt-8 w-full max-w-md flex justify-around;
 }
