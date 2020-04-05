@@ -77,8 +77,8 @@
       </NavBar>
       <h1>{{ $t('EMPLOYEE.PATIENT_CONFIRMATION_CODE') }}</h1>
       <qrcode-vue
-        class="qrcode"
-        :value="confirmedPatient"
+        class="qrcode bg-white p-4 m-2"
+        :value="signedPatient"
         size="300"
         level="H"
       ></qrcode-vue>
@@ -116,6 +116,8 @@ import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
 import RiskScale from '@/components/RiskScale'
+import KeyStore from '@/misc/KeyStore'
+import { str2ab, ab2str } from '../misc/helpers'
 
 export default {
   components: {
@@ -128,16 +130,14 @@ export default {
     scanning: false,
     showingConfirmationQR: false,
     scannedAtLeastOnce: false,
-    showPatientSummary: false
+    showPatientSummary: false,
+    signedPatient: null
   }),
   computed: {
     ...mapState('app', ['appTitle']),
     ...mapGetters('patients', ['currentPatient']),
     ...mapGetters('questions', ['getMaxPoints']),
-    confirmedPatient() {
-      if (this.currentPatient) return JSON.stringify(this.currentPatient)
-      return null
-    }
+    ...mapState('authentication', ['user'])
   },
   watch: {
     $route(to) {
@@ -202,24 +202,78 @@ export default {
       this.scanning = true
       this.$router.push('#scanning')
     },
-    viewConfirmationQR(isCovidSuspected) {
-      this.setCurrentPatientValueByKey({
+    async viewConfirmationQR(isCovidSuspected) {
+      await this.setCurrentPatientValueByKey({
         key: 'confirmed',
         value: true
       })
-      this.setCurrentPatientValueByKey({
+      await this.setCurrentPatientValueByKey({
         key: 'confirmation',
         value: {
-          confirmedBy: 'Jan Novák',
+          confirmedByName: 'Jan Novák',
+          confirmedById: this.user.id,
           timestamp: new Date()
         }
       })
-      this.setCurrentPatientValueByKey({
+      await this.setCurrentPatientValueByKey({
         key: 'isCovidSuspected',
         value: isCovidSuspected
       })
-      this.showingConfirmationQR = true
-      this.$router.push('#confirmation-qr-code')
+
+      // SIGN THE CONFIRMATION
+      const signedData = await this.signConfirmation(
+        JSON.stringify(this.currentPatient)
+      )
+      if (signedData) {
+        this.signedPatient = JSON.stringify(signedData)
+        this.showingConfirmationQR = true
+        this.$router.push('#confirmation-qr-code')
+        return true
+      }
+
+      // eslint-disable-next-line no-alert
+      alert('Error signing confirmation')
+      return false
+    },
+    async signConfirmation(dataToSign) {
+      const keyStore = new KeyStore()
+      await keyStore.open()
+      const keyFromStore = (await keyStore.listKeys()).find(
+        key => key.value.name === 'EMPLOYEE_PRIVATE_KEY'
+      )
+
+      if (!keyFromStore) {
+        // eslint-disable-next-line no-alert
+        alert('Error: Private key not found')
+        return false
+      }
+
+      console.log(keyFromStore)
+      console.log('dataToSign: ', dataToSign)
+
+      return window.crypto.subtle
+        .sign(
+          {
+            name: 'ECDSA',
+            hash: { name: 'SHA-256' } // can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
+          },
+          keyFromStore.value.privateKey, // from generateKey or importKey above
+          str2ab(dataToSign) // ArrayBuffer of data you want to sign
+        )
+        .then(signature => {
+          // returns an ArrayBuffer containing the signature
+          console.log(new Uint8Array(signature))
+          const signedData = {
+            ...JSON.parse(dataToSign),
+            signature: ab2str(signature)
+          }
+          console.log(signedData)
+          return signedData
+        })
+        .catch(err => {
+          console.error(err)
+          return false
+        })
     },
     viewPatientSummary() {
       this.showPatientSummary = true

@@ -3,7 +3,7 @@
     <div
       v-if="
         currentPatient.confirmation &&
-          currentPatient.confirmation.confirmedBy.length > 1 &&
+          currentPatient.confirmation.confirmedById.length > 1 &&
           currentPatient.confirmation.timestamp
       "
       class="is-confirmed"
