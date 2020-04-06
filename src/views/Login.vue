@@ -1,5 +1,6 @@
 <template>
   <div class="page-wrapper">
+    <NavBar> </NavBar>
     <h1 class="login-page-title">{{ appTitle }}</h1>
 
     <p>{{ $t('LOGIN.ONLY_FOR_EMPLOYEES') }}</p>

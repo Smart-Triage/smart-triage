@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <NavBar> </NavBar>
     <div v-if="scanning" class="scanner-view">
       <button @click="showEmployeeHomepage">
         <ion-icon name="arrow-back-outline" size="large"></ion-icon>
