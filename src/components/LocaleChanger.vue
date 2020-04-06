@@ -6,11 +6,11 @@
       @change="setLocale($event.target.value)"
     >
       <option
-        v-for="lang in langs"
-        :key="`lang-${lang.code}`"
-        :value="lang.code"
-        :selected="locale === lang.code"
-        >{{ lang.text }}</option
+        v-for="locale in supportedLocales"
+        :key="`lang-${locale.langCode}`"
+        :value="locale.langCode"
+        :selected="locale === locale.langCode"
+        >{{ locale.langName }}</option
       >
     </select>
   </span>
@@ -20,17 +20,8 @@
 import { mapMutations, mapState } from 'vuex'
 
 export default {
-  data() {
-    return {
-      langs: [
-        { text: 'Česky', code: 'cs' },
-        { text: 'Slovenčina', code: 'sk' },
-        { text: 'English', code: 'en' }
-      ]
-    }
-  },
   computed: {
-    ...mapState('settings', ['locale'])
+    ...mapState('settings', ['locale', 'supportedLocales'])
   },
   methods: {
     ...mapMutations('settings', ['setLocale'])
