@@ -93,7 +93,10 @@
         ></ion-icon>
       </div>
     </button>
-    <div :class="{ hideInfo: patientSymptomsHidden }" class="info-container text-left">
+    <div
+      :class="{ hideInfo: patientSymptomsHidden }"
+      class="info-container text-left"
+    >
       <div
         v-for="step in formStepsToShow"
         :key="step.order"

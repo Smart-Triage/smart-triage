@@ -24,6 +24,7 @@ export default {
     return {
       langs: [
         { text: 'Česky', code: 'cs' },
+        { text: 'Slovenčina', code: 'sk' },
         { text: 'English', code: 'en' }
       ]
     }

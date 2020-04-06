@@ -43,7 +43,6 @@ export default {
 .navbar {
   height: $navbar-height;
   width: 100%;
-  background-color: $bg-color;
   padding: 0.7rem 1.5rem;
   line-height: 2.2rem;
   display: flex;
