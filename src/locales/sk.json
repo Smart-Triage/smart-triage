@@ -10,6 +10,10 @@
   "SOMETHING_WENT_WRONG": "Niečo sa pokazilo",
   "GO_TO_HOMEPAGE": "Ísť na domovskú obrazovku",
   "EDIT": "Upraviť",
+  "ADMIN": {
+    "CREATE_CERTIFICATE": "Vytvoriť certifikát",
+    "UPLOAD_CERTIFICATE": "Nahrať certifikát"
+  },
   "HOME": {
     "WELCOME": "COVID-19",
     "TITLE": "Triáž",

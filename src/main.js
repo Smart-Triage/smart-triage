@@ -25,7 +25,7 @@ Vue.use(UUID)
 Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false
-Vue.config.ignoredElements = ['ion-icon']
+Vue.config.ignoredElements = [/^ion-/]
 
 Vue.component('NavBar', NavBar)
 
