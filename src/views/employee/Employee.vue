@@ -20,7 +20,10 @@
       <p>{{ $t('EMPLOYEE.TAP_SCAN_TO_BEGIN') }}</p>
     </div>
 
-    <div v-if="showPatientSummary && currentPatient" class="summary-view">
+    <div
+      v-if="showPatientSummary && scannedPatient !== null"
+      class="w-full max-w-md summary-view"
+    >
       <NavBar>
         <template v-slot:left>
           <button class="icon-button" @click="showEmployeeHomepage">
@@ -30,10 +33,13 @@
       </NavBar>
       <h1>{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
 
-      <PatientSummary :employee="true"></PatientSummary>
+      <PatientSummary
+        :patient="scannedPatient"
+        :employee="true"
+      ></PatientSummary>
 
       <RiskScale
-        :value="currentPatient.totalPoints"
+        :value="scannedPatient.totalPoints"
         :max="getMaxPoints"
       ></RiskScale>
     </div>
@@ -44,7 +50,11 @@
       ><ion-icon name="barcode-outline"></ion-icon><div class="button-text">Print barcode</div></router-link
     > -->
     <div
-      v-if="showPatientSummary && currentPatient.isCovidSuspected === undefined"
+      v-if="
+        showPatientSummary &&
+          scannedPatient &&
+          scannedPatient.isCovidSuspected === undefined
+      "
       class="confirmation-buttons"
     >
       <button
@@ -69,13 +79,6 @@
     </div>
 
     <div v-if="showingConfirmationQR" class="confirmation-view">
-      <NavBar>
-        <template v-slot:left>
-          <button @click="viewPatientSummary">
-            <ion-icon name="arrow-back-outline" size="large"></ion-icon>
-          </button>
-        </template>
-      </NavBar>
       <h1>{{ $t('EMPLOYEE.PATIENT_CONFIRMATION_CODE') }}</h1>
       <qrcode-vue
         class="qrcode bg-white p-4 m-2"
@@ -113,7 +116,7 @@
 
 <script>
 import QrcodeVue from 'qrcode.vue'
-import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
 import RiskScale from '@/components/RiskScale'
@@ -132,12 +135,12 @@ export default {
     showingConfirmationQR: false,
     scannedAtLeastOnce: false,
     showPatientSummary: false,
-    signedPatient: null
+    signedPatient: null,
+    scannedPatient: null
   }),
   computed: {
     ...mapState('app', ['appTitle']),
-    ...mapGetters('patients', ['currentPatient']),
-    ...mapGetters('questions', ['getMaxPoints']),
+    ...mapGetters('questions', ['getMaxPoints', 'getFormSteps']),
     ...mapState('authentication', ['user'])
   },
   watch: {
@@ -185,12 +188,11 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('patients', ['setCurrentPatientValueByKey']),
-    ...mapActions('patients', ['updateOrAddPatient']),
     addPatient(patient) {
       this.scanning = false
       this.scannedAtLeastOnce = true
-      this.updateOrAddPatient(patient)
+      this.scannedPatient = patient
+      this.recalculatePoints()
       this.viewPatientSummary()
     },
     showEmployeeHomepage() {
@@ -204,26 +206,17 @@ export default {
       this.$router.push('#scanning')
     },
     async viewConfirmationQR(isCovidSuspected) {
-      await this.setCurrentPatientValueByKey({
-        key: 'confirmed',
-        value: true
-      })
-      await this.setCurrentPatientValueByKey({
-        key: 'confirmation',
-        value: {
-          confirmedByName: 'Jan Novák',
-          confirmedById: this.user.id,
-          timestamp: new Date()
-        }
-      })
-      await this.setCurrentPatientValueByKey({
-        key: 'isCovidSuspected',
-        value: isCovidSuspected
-      })
+      this.scannedPatient.confirmed = true
+      this.scannedPatient.confirmation = {
+        confirmedByName: 'Jan Novák',
+        confirmedById: this.user.id,
+        timestamp: new Date()
+      }
+      this.scannedPatient.isCovidSuspected = isCovidSuspected
 
       // SIGN THE CONFIRMATION
       const signedData = await this.signConfirmation(
-        JSON.stringify(this.currentPatient)
+        JSON.stringify(this.scannedPatient)
       )
       if (signedData) {
         this.signedPatient = JSON.stringify(signedData)
@@ -279,6 +272,38 @@ export default {
     viewPatientSummary() {
       this.showPatientSummary = true
       this.$router.push('#patient-summary')
+    },
+    recalculatePoints() {
+      let totalPoints = 0
+      this.getFormSteps.forEach(step => {
+        const answer = this.scannedPatient.answers[
+          Object.keys(this.scannedPatient.answers).find(
+            key => key === step.order
+          )
+        ]
+
+        if (step.answerType === 'boolean') {
+          totalPoints +=
+            (answer === true ? step.pointsIfPositive : step.pointsIfNegative) ||
+            0
+        }
+
+        if (step.answerType === 'slider') {
+          totalPoints +=
+            answer >= step.pointsIfValueIsHigherThan.treshold
+              ? step.pointsIfValueIsHigherThan.points
+              : 0
+        }
+
+        if (step.answerType === 'checkbox') {
+          step.options.forEach(option => {
+            if (answer.find(a => a.value === option.value).isChecked)
+              totalPoints += option.pointsIfChecked
+          })
+        }
+      })
+
+      this.scannedPatient.totalPoints = totalPoints
     }
   }
 }

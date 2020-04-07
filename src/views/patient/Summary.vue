@@ -21,7 +21,7 @@
           alt=""
         />
       </div>
-      <PatientSummary></PatientSummary>
+      <PatientSummary :patient="currentPatient"></PatientSummary>
 
       <div
         v-if="!currentPatient.confirmed"
