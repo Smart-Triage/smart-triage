@@ -3,8 +3,8 @@ import UUID from 'vue-uuid'
 import moment from 'moment'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-
 import i18n from '@/plugins/i18n'
+import VModal from 'vue-js-modal'
 
 import NavBar from '@/components/NavBar'
 
@@ -21,6 +21,7 @@ import 'pwacompat'
 import '@/assets/styles/tailwind.css'
 import '@/theme/general.scss'
 
+Vue.use(VModal, { dynamic: true, dynamicDefaults: { clickToClose: true } })
 Vue.use(UUID)
 Vue.use(VueAxios, axios)
 

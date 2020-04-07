@@ -2,6 +2,8 @@
   <div class="main-container">
     <NavBar> </NavBar>
 
+    <button @click="openModal">Open Modal</button>
+
     <div>
       <img src="@/assets/img/home-page-welcome-img.png" alt="" />
     </div>
@@ -45,12 +47,10 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import PatientList from '@/components/PatientList'
-// import InDevelopementOverlay from '@/components/InDevelopementOverlay'
 
 export default {
   components: {
     PatientList
-    // InDevelopementOverlay
   },
   head() {
     return {
@@ -75,6 +75,9 @@ export default {
     async createPatient() {
       await this.createNewPatient()
       this.$router.push('/form')
+    },
+    beforeClose(event) {
+      console.log(event)
     }
   }
 }

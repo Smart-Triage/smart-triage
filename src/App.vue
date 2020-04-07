@@ -6,6 +6,8 @@
       </transition>
     </div>
 
+    <modals-container />
+
     <new-content-available-toastr
       v-if="newContentAvailable"
       class="new-content-available-toastr"

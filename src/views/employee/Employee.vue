@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <NavBar> </NavBar>
-    <div v-if="scanning" class="scanner-view">
+    <!-- <div v-if="scanning" class="scanner-view">
       <button @click="showEmployeeHomepage">
         <ion-icon name="arrow-back-outline" size="large"></ion-icon>
       </button>
       <QRScanner @patient="addPatient"></QRScanner>
-    </div>
+    </div> -->
 
     <div
       v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
@@ -114,15 +114,16 @@
 <script>
 import QrcodeVue from 'qrcode.vue'
 import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
-import QRScanner from '@/components/QRSanner'
+// import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
 import RiskScale from '@/components/RiskScale'
 import KeyStore from '@/misc/KeyStore'
 import { str2ab, ab2str } from '@/misc/helpers'
+import QRScannerModal from '@/components/modals/QRScannerModal'
 
 export default {
   components: {
-    QRScanner,
+    // QRScanner,
     PatientSummary,
     QrcodeVue,
     RiskScale
@@ -201,7 +202,18 @@ export default {
     },
     scan() {
       this.scanning = true
-      this.$router.push('#scanning')
+      this.openScannerModal()
+      // this.$router.push('#scanning')
+    },
+    openScannerModal() {
+      this.$modal.show(
+        QRScannerModal,
+        {},
+        {},
+        {
+          'before-close': (this.scanning = false)
+        }
+      )
     },
     async viewConfirmationQR(isCovidSuspected) {
       await this.setCurrentPatientValueByKey({
