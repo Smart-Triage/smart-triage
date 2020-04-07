@@ -1,11 +1,11 @@
 @import '@/theme/variables';
 
-.page-title {
-  margin: 1.5em 0;
-  font-weight: 600;
-  font-size: 1.5em;
-  line-height: 1em;
-  color: $main-text-color;
+h1 {
+  @apply text-4xl;
+}
+
+h2 {
+  @apply text-2xl;
 }
 
 .btn-primary {
@@ -32,15 +32,6 @@
   @apply pr-4 flex self-center;
 }
 
-//New
-h1 {
-  @apply text-4xl;
-}
-
-h2 {
-  @apply text-2xl;
-}
-
 .main-container {
   @apply flex
   flex-col
@@ -56,9 +47,9 @@ h2 {
 }
 
 .card {
-  @apply shadow-lg m-4 p-6 bg-white;
+  @apply shadow-lg p-0 bg-white;
   border-radius: 1.1em;
-  width: calc(100% - 2em);
+  width: 100%;
   p {
     @apply m-3;
   }

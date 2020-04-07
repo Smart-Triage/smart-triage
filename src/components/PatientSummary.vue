@@ -197,16 +197,13 @@ export default {
 }
 
 .accordion-button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  z-index: 20;
-
-  .spacer {
-    width: 18px;
-  }
+  @apply flex
+  justify-between
+  items-center
+  cursor-pointer
+  my-2
+  relative
+  z-20;
 }
 
 ion-icon {
@@ -231,12 +228,9 @@ ion-icon {
   transform: translateY(-50px);
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  align-self: flex-start;
-  margin: 0 1em;
   background-color: #32227f15;
-  padding: 3em 2em 2em 2em;
-  width: calc(100% - 2em);
+  padding: 4em 2em 2em 2em;
+  width: 100%;
   border-radius: 1.1em;
 }
 
@@ -252,13 +246,12 @@ ion-icon {
 }
 
 .patient-item {
-  width: calc(100% - 2em);
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
   padding: 1rem;
-  margin: 0.5em 1em;
   background: $secondary-color;
   color: white;
   border-radius: 10rem;

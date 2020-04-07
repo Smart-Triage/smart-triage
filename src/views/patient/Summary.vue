@@ -12,76 +12,68 @@
         </button>
       </template>
     </NavBar>
-    <div class="main-content">
-      <div class="top-sumary">
-        <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
-        <img
-          class="mx-auto"
-          src="@/assets/img/home-page-welcome-img.png"
-          alt=""
-        />
+
+    <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
+    <img
+      class="mx-auto my-4"
+      src="@/assets/img/home-page-welcome-img.png"
+      alt=""
+    />
+
+    <PatientSummary></PatientSummary>
+
+    <div v-if="!currentPatient.confirmed" class="flex items-center my-3">
+      <p class="text-left text-xs">
+        {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
+      </p>
+      <input
+        id="agree"
+        v-model="personalInfoAgreed"
+        type="checkbox"
+        value="agree"
+        class="m-4"
+      />
+    </div>
+
+    <div v-if="!currentPatient.confirmed" class="flex items-center my-3 card">
+      <p class="text-left text-xs">
+        {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
+      </p>
+      <input
+        id="agree2"
+        v-model="allIsTrueAgreed"
+        type="checkbox"
+        value="agree"
+        class="m-4"
+        @change="agreedToTerms()"
+      />
+    </div>
+
+    <router-link
+      v-if="
+        (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
+      "
+      to="/summary"
+      class="link btn-primary icon-button show-qr-code-btn not-active-qr"
+    >
+      <div>
+        {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
       </div>
-      <PatientSummary :patient="currentPatient"></PatientSummary>
+    </router-link>
+    <router-link
+      v-else
+      to="/patient-qr-code"
+      class="link btn-primary icon-button show-qr-code-btn"
+    >
+      <ion-icon name="qr-code-outline"></ion-icon>
+      <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
+    </router-link>
 
-      <div
-        v-if="!currentPatient.confirmed"
-        class="flex items-center my-3 mx-6 card"
-      >
-        <p class="text-left text-xs">
-          {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
-        </p>
-        <input
-          id="agree"
-          v-model="personalInfoAgreed"
-          type="checkbox"
-          value="agree"
-          class="m-4"
-        />
-      </div>
-
-      <div
-        v-if="!currentPatient.confirmed"
-        class="flex items-center my-3 mx-6 card"
-      >
-        <p class="text-left text-xs">
-          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
-        </p>
-        <input
-          id="agree2"
-          v-model="allIsTrueAgreed"
-          type="checkbox"
-          value="agree"
-          class="m-4"
-          @change="agreedToTerms()"
-        />
-      </div>
-
-      <router-link
-        v-if="
-          (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
-        "
-        to="/summary"
-        class="link btn-primary icon-button show-qr-code-btn not-active-qr"
-      >
-        <div>
-          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
-        </div>
-      </router-link>
-      <router-link
-        v-else
-        to="/patient-qr-code"
-        class="link btn-primary icon-button show-qr-code-btn"
-      >
-        <ion-icon name="qr-code-outline"></ion-icon>
-        <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
-      </router-link>
-
-      <!-- <router-link to="/home" class="link btn-primary icon-button"
+    <!-- <router-link to="/home" class="link btn-primary icon-button"
         ><ion-icon name="person-add-outline"></ion-icon>
         <div class="button-text">Add another person</div>
       </router-link> -->
-    </div>
-    <ModalWindow v-if="showModal" @close="showModal = false">
+    <ModalWindow v-if="showModal">
       <template v-slot:header>
         <h2 class="p-0">Upozornení</h2>
       </template>
@@ -93,7 +85,7 @@
         </p>
       </template>
       <template v-slot:footer>
-        <button class="btn-primary" @click="$emit('close')">
+        <button class="btn-primary" @click="showModal = false">
           Souhlasím
         </button>
       </template>
