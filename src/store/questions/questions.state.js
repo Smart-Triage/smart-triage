@@ -6,6 +6,7 @@ export default {
         order: '0',
         question: 'Osobní údaje',
         answerType: 'form',
+        formFields: ['firstName', 'lastName', 'birthNumber', 'phoneNumber'],
         next: '1'
       },
       {
@@ -47,6 +48,7 @@ export default {
         order: '0',
         question: 'Osobní údaje',
         answerType: 'form',
+        formFields: ['firstName', 'lastName', 'birthNumber', 'phoneNumber'],
         next: '1'
       },
       {
@@ -166,6 +168,7 @@ export default {
         order: '0',
         question: 'Patient personal details',
         answerType: 'form',
+        formFields: ['firstName', 'lastName', 'birthNumber', 'phoneNumber'],
         next: '1'
       },
       {
@@ -280,7 +283,13 @@ export default {
     ],
 
     sk: [
-      { order: '0', question: 'Osobné údaje', answerType: 'form', next: '1' },
+      {
+        order: '0',
+        question: 'Osobné údaje',
+        answerType: 'form',
+        formFields: ['firstName', 'lastName', 'birthNumber', 'phoneNumber'],
+        next: '1'
+      },
       {
         order: '1',
         question: 'Merali ste si v poslednej dobe teplotu?',
