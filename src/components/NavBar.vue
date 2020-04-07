@@ -41,24 +41,12 @@ export default {
 @import '@/theme/variables.scss';
 
 .navbar {
-  height: $navbar-height;
   width: 100%;
-  padding: 0.7rem 1.5rem;
   line-height: 2.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .left,
-  .right {
-    min-width: 3rem;
-    height: 100%;
-  }
-
-  .center {
-    font-size: 1.3rem;
-    font-weight: 600;
-  }
+  @apply mt-5 mb-2;
 
   &.offline {
     background: $navbar-offline-color;

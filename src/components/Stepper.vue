@@ -355,7 +355,7 @@ export default {
 .skip-to-summary {
   color: white;
   background-color: $secondary-color;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
   border-radius: 5rem;
 }
 
