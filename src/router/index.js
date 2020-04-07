@@ -151,6 +151,17 @@ const router = new Router({
       }
     },
     {
+      path: '/video',
+      name: 'video',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-video" */ '@/views/Video.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
       path: '/check-login',
       name: 'check-login',
       component: CheckLogin,
