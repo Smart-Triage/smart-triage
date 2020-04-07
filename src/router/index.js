@@ -118,6 +118,17 @@ const router = new Router({
       }
     },
     {
+      path: '/admin',
+      name: 'admin',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-settings" */ '@/views/Admin.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
       path: '/settings',
       name: 'settings',
       component: () =>
