@@ -11,12 +11,15 @@
 .btn-primary {
   background-color: $primary-color;
   border-radius: 2em;
-  border: none;
-  line-height: 1.5em;
-  font-weight: 500;
   font-family: 'Titillium Web', sans-serif;
-  color: white;
-  @apply px-6 py-3;
+  @apply px-6
+  py-3
+  border-none
+  leading-normal
+  font-medium
+  text-white
+  flex
+  mx-auto;
 }
 
 .btn-secondary {
@@ -25,15 +28,17 @@
   border: none;
 }
 
+.btn-icon {
+  @apply pr-4 flex self-center;
+}
+
 //New
 h1 {
-  font-size: 2em;
-  padding: 0.5em;
+  @apply text-4xl;
 }
 
 h2 {
-  font-size: 1.5em;
-  padding-bottom: 0.5em;
+  @apply text-2xl;
 }
 
 .main-container {
@@ -43,11 +48,10 @@ h2 {
   items-center
   justify-around
   max-w-md
-  mx-2
   min-h-screen
   text-center
   justify-between
-  px-4
+  px-6
   mx-auto;
 }
 

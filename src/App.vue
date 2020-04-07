@@ -141,20 +141,6 @@ body {
   }
 }
 
-.link {
-  display: inline-block;
-  font-size: 1.2rem;
-  color: #fff;
-  background-color: $vue-color;
-  padding: 0.8rem 1.6rem;
-  margin: 0.2rem;
-  border-radius: 4px;
-  transition: background-color 0.1s ease;
-  box-sizing: border-box;
-  text-decoration: none;
-  width: fit-content;
-  font-weight: 500;
-}
 
 .view-enter-active,
 .view-leave-active {

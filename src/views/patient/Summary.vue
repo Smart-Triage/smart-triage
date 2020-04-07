@@ -92,6 +92,11 @@
           informací může být posuzováno jako trestný čin.
         </p>
       </template>
+      <template v-slot:footer>
+        <button class="btn-primary" @click="$emit('close')">
+          Souhlasím
+        </button>
+      </template>
     </ModalWindow>
   </div>
   <div v-else>

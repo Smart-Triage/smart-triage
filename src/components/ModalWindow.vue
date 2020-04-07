@@ -13,9 +13,8 @@
         </div>
 
         <div class="modal-footer">
-          <button class="btn-primary" @click="$emit('close')">
-            Souhlasím
-          </button>
+
+          <slot name="footer"> </slot>
         </div>
       </div>
     </div>

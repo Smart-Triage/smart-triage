@@ -11,7 +11,7 @@
 
     <div class="center">
       <slot name="center">
-        <InDevelopementOverlay></InDevelopementOverlay>
+<!--        <InDevelopementOverlay></InDevelopementOverlay>-->
       </slot>
     </div>
 
@@ -23,11 +23,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import InDevelopementOverlay from '@/components/InDevelopementOverlay'
+// import InDevelopementOverlay from '@/components/InDevelopementOverlay'
 
 export default {
   components: {
-    InDevelopementOverlay
+    // InDevelopementOverlay
   },
   props: { backBtn: { type: Boolean, default: false } },
   computed: {
