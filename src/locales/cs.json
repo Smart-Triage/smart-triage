@@ -26,7 +26,7 @@
   "FORM": {
     "PERSONAL_DETAILS": "Osobní informace",
     "QUESTIONNAIRE": "Dotazník",
-    "ANSWER_A_FEW_QUESTIONS": "Prosím vyplňte informace o svém zdravotním stavu",
+    "ANSWER_A_FEW_QUESTIONS": "Máte nyní tyto příznaky, nebo jste je pozoroval(a) v posledních 24 hodinách?",
     "SKIP_TO_SUMMARY": "Přejít na Shrnutí",
     "INFORMATION_IS_SAFE": "Vaše osobní informace jsou v bezpečí.",
     "NO_DATA_IS_SENT_OVER_THE_INTERNET": "Žádná data se neodesílají přes internet."
