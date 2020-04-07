@@ -45,7 +45,7 @@ import { mapState, mapMutations } from 'vuex'
 import { isNil } from 'lodash'
 import firebase from 'firebase/app'
 import KeyStore from '@/misc/KeyStore'
-import PublicKeysDB from '../firebase/public-keys-db'
+import PublicKeysDB from '@/firebase/public-keys-db'
 
 export default {
   data: () => ({

@@ -28,7 +28,7 @@
 <script>
 import QRScanner from '@/components/QRSanner'
 import PublicKeysDB from '@/firebase/public-keys-db'
-import { str2ab } from '../misc/helpers'
+import { str2ab } from '@/misc/helpers'
 
 export default {
   components: { QRScanner },

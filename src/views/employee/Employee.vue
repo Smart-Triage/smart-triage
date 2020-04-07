@@ -118,7 +118,7 @@ import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
 import RiskScale from '@/components/RiskScale'
 import KeyStore from '@/misc/KeyStore'
-import { str2ab, ab2str } from '../misc/helpers'
+import { str2ab, ab2str } from '@/misc/helpers'
 
 export default {
   components: {

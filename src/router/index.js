@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Head from 'vue-head'
 import Home from '@/views/Home'
-import CheckLogin from '@/views/CheckLogin'
+import CheckLogin from '@/views/employee/CheckLogin'
 import { isNil } from 'lodash'
 import store from '@/store'
 
@@ -36,7 +36,9 @@ const router = new Router({
       path: '/form',
       name: 'form',
       component: () =>
-        import(/* webpackChunkName: "client-chunk-form" */ '@/views/Form.vue'),
+        import(
+          /* webpackChunkName: "client-chunk-form" */ '@/views/patient/Form.vue'
+        ),
       meta: {
         authNotRequired: true
       }
@@ -46,7 +48,7 @@ const router = new Router({
       name: 'summary',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-summary" */ '@/views/Summary.vue'
+          /* webpackChunkName: "client-chunk-summary" */ '@/views/patient/Summary.vue'
         ),
       meta: {
         authNotRequired: true
@@ -57,7 +59,7 @@ const router = new Router({
       name: 'patient-qr-code',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-summary" */ '@/views/PatientQRCode.vue'
+          /* webpackChunkName: "client-chunk-summary" */ '@/views/patient/PatientQRCode.vue'
         ),
       meta: {
         authNotRequired: true
@@ -68,7 +70,7 @@ const router = new Router({
       name: 'scan-confirmation-qr-code',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-summary" */ '@/views/ScanConfirmationQRCode.vue'
+          /* webpackChunkName: "client-chunk-summary" */ '@/views/patient/ScanConfirmationQRCode.vue'
         ),
       meta: {
         authNotRequired: true
@@ -79,7 +81,7 @@ const router = new Router({
       name: 'employee',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-employee" */ '@/views/Employee.vue'
+          /* webpackChunkName: "client-chunk-employee" */ '@/views/employee/Employee.vue'
         )
     },
     {
@@ -87,7 +89,7 @@ const router = new Router({
       name: 'verify',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-summary" */ '@/views/VerifyConfirmationValidity.vue'
+          /* webpackChunkName: "client-chunk-summary" */ '@/views/employee/VerifyConfirmationValidity.vue'
         ),
       meta: {
         authNotRequired: true
@@ -98,7 +100,7 @@ const router = new Router({
       name: 'print-barcode',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-employee" */ '@/views/PrintBarcode.vue'
+          /* webpackChunkName: "client-chunk-employee" */ '@/views/employee/PrintBarcode.vue'
         ),
       meta: {
         authNotRequired: true
@@ -150,7 +152,7 @@ const router = new Router({
       name: 'login',
       component: () =>
         import(
-          /* webpackChunkName: "client-chunk-login" */ '@/views/Login.vue'
+          /* webpackChunkName: "client-chunk-login" */ '@/views/employee/Login.vue'
         ),
       meta: {
         authNotRequired: true
