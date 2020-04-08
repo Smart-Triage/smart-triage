@@ -183,7 +183,6 @@ export default {
 }
 
 .show-qr-code-btn {
-  // background-color: $secondary-color;
   padding: 1rem;
   width: calc(100% - 2em);
   max-width: 25rem;
