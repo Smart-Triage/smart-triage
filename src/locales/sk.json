@@ -103,7 +103,8 @@
     "ONLY_FOR_EMPLOYEES": "Táto časť aplikácie je určená iba pre zamestnancov nemocníc.",
     "ENTER_REGISTRATION_CODE": "Zadajte registračný kód. Ak registračný kód nemáte, kontaktuje osobu poverenú triážou vo vašej nemocnici.",
     "SEND": "Odoslať",
-    "CHECK_CONNECTION": "Skontrolujte pripojenie k internetu, táto funkcia nie je dostupná offline."
+    "CHECK_CONNECTION": "Skontrolujte pripojenie k internetu, táto funkcia nie je dostupná offline.",
+    "REGISTRATION_CODE": "Registračný kód"
   },
   "ERROR": {
     "server_error": "Ups. Niečo sa pokazilo. Skúste to znovu neskôr.",

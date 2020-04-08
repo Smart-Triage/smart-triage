@@ -28,19 +28,31 @@
       {{ $t(`ERROR.${loginError}`) }}
     </p>
     <!-- Auth UI -->
-    <input
-      v-model="registrationCode"
-      type="text"
-      class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app"
-    />
-    <div
-      v-show="user !== undefined && !user && networkOnLine"
-      data-test="login-btn"
-      class="btn-primary my-4"
-      @click="register"
-    >
-      {{ $t('LOGIN.SEND') }}
-    </div>
+    <form class="w-full" @submit="register">
+      <input
+        v-model="fullName"
+        :placeholder="$t('FULL_NAME')"
+        type="text"
+        class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
+        required
+      />
+      <input
+        v-model="registrationCode"
+        :placeholder="$t('LOGIN.REGISTRATION_CODE')"
+        type="text"
+        class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
+        required
+      />
+
+      <button
+        v-show="user !== undefined && !user && networkOnLine"
+        type="submit"
+        data-test="login-btn"
+        class="btn-primary my-4"
+      >
+        {{ $t('LOGIN.SEND') }}
+      </button>
+    </form>
   </div>
 </template>
 
@@ -56,6 +68,7 @@ import PublicKeysDB from '@/firebase/public-keys-db'
 export default {
   data: () => ({
     loginError: null,
+    fullName: '',
     registrationCode: '',
     errorMessage: '',
     keyStore: null
@@ -113,9 +126,11 @@ export default {
   },
   methods: {
     ...mapMutations('authentication', ['setUser']),
+    ...mapMutations('employee', ['setFullName']),
 
     /* REGISTER EMPLOYEE */
-    async register() {
+    async register(e) {
+      e.preventDefault()
       this.loginError = null
       this.setUser(undefined)
 
@@ -136,6 +151,7 @@ export default {
           .signInWithCustomToken(res.token)
           .then(async userCredential => {
             this.createKeyPair(userCredential)
+            this.setFullName(this.fullName)
           })
       } catch (err) {
         // Handle Errors here.

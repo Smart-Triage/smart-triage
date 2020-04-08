@@ -1,8 +1,13 @@
 <template>
   <div class="main-container">
-    <NavBar
-      v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
-    ></NavBar>
+    <NavBar v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
+      <template v-slot:right>
+        <div class="flex items-center">
+          <ion-icon name="person-circle-outline" size="large"></ion-icon>
+          <span class="ml-2">{{ fullName }}</span>
+        </div>
+      </template>
+    </NavBar>
     <div v-if="scanning" class="my-auto">
       <button @click="showEmployeeHomepage">
         <ion-icon name="arrow-back-outline" size="large"></ion-icon>
@@ -144,7 +149,8 @@ export default {
   computed: {
     ...mapState('app', ['appTitle']),
     ...mapGetters('questions', ['getMaxPoints', 'getFormSteps']),
-    ...mapState('authentication', ['user'])
+    ...mapState('authentication', ['user']),
+    ...mapState('employee', ['fullName'])
   },
   watch: {
     $route(to) {
@@ -211,7 +217,7 @@ export default {
     async viewConfirmationQR(isCovidSuspected) {
       this.scannedPatient.confirmed = true
       this.scannedPatient.confirmation = {
-        confirmedByName: 'Jan Novák',
+        confirmedByName: this.fullName,
         confirmedById: this.user.id,
         timestamp: new Date()
       }

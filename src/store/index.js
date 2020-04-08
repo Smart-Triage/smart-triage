@@ -6,6 +6,7 @@ import app from './app'
 import patients from './patients'
 import settings from './settings'
 import questions from './questions'
+import employee from './employee'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
   reducer: state => ({
     patients: state.patients,
-    settings: state.settings
+    settings: state.settings,
+    employee: state.employee
   })
 })
 
@@ -32,7 +34,8 @@ export default new Vuex.Store({
     app,
     patients,
     settings,
-    questions
+    questions,
+    employee
   },
   plugins: [vuexLocal.plugin]
 })
