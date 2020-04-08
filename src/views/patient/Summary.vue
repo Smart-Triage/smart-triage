@@ -20,7 +20,7 @@
       alt=""
     />
 
-    <PatientSummary></PatientSummary>
+    <PatientSummary :patient="currentPatient"></PatientSummary>
 
     <div v-if="!currentPatient.confirmed" class="flex items-center my-3">
       <p class="text-left text-xs">
