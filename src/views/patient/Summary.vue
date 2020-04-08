@@ -83,13 +83,11 @@
       </router-link> -->
     <ModalWindow v-if="showModal">
       <template v-slot:header>
-        <h2 class="p-0">Upozornení</h2>
+        <h2 class="p-0">{{ $t('SUMMARY.WARNING') }}</h2>
       </template>
       <template v-slot:body>
         <p>
-          Tyto informace zjišťujeme za účelem snížení rizika přenosu infekce
-          virem COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých
-          informací může být posuzováno jako trestný čin.
+          {{ $t('SUMMARY.WARNING_TEXT') }}
         </p>
       </template>
       <template v-slot:footer>

@@ -42,7 +42,9 @@
     "SHOW_QR_CODE": "Zobrazit QR kód",
     "PERSONAL_INFORMATION": "Souhlasím se zpracováním osobních údajů",
     "YOU_HAVE_TO_ACCEPT_TXT": "Souhlasím, že všechny uvedené údaje jsou pravdivé. Uvedení nepravidvých informací může být posuzováno jako trestný čin",
-    "YOU_HAVE_TO_ACCEPT_BTN": "Musíte souhlasit s podmínkami"
+    "YOU_HAVE_TO_ACCEPT_BTN": "Musíte souhlasit s podmínkami",
+    "WARNING": "Upozornění",
+    "WARNING_TEXT": "Tyto informace zjišťujeme za účelem snížení rizika přenosu infekce virem COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých informací může být posuzováno jako trestný čin."
   },
   "PATIENT_SUMMARY": {
     "CONFIRMED_BY": "Potvrdil/a",
