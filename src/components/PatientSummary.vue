@@ -104,7 +104,7 @@
           <b>{{ step.question }}</b>
         </p>
         <span v-if="step.answerType === 'boolean'">{{
-          patient.answers[step.order] === true ? 'Yes' : 'No'
+          patient.answers[step.order] === true ? $t('YES') : $t('NO')
         }}</span>
         <span v-else-if="step.answerType === 'one-of'">
           {{

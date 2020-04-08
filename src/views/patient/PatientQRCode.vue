@@ -10,7 +10,7 @@
         ></router-link>
       </template>
     </NavBar>
-    <div class="main-content">
+    <div class="main-content flex-grow">
       <div class="flex flex-col justify-start items-center">
         <h1 class="text-2xl leading-tight">
           {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
