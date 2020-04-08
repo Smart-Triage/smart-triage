@@ -28,7 +28,7 @@
         <li>Tomáš Trejdl</li>
       </ul>
     </div>
-    <div class="bottom-link text-xs">
+    <div class="text-xs mx-auto py-3">
       {{ $store.state.app.appTitle }} {{ $t('ABOUT.VERSION') }}
       {{ $store.getters.appVersion }}
     </div>
