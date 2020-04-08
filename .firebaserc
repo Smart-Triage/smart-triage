@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "triage-app-8e193"
+  },
+  "targets": {
+    "triage-app-8e193": {
+      "hosting": {
+        "dev": [
+          "smart-triage-dev"
+        ]
+      }
+    }
   }
 }
