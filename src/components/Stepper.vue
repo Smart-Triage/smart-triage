@@ -337,11 +337,6 @@ export default {
 <style scoped lang="scss">
 @import '@/theme/general.scss';
 
-.form-content {
-  justify-content: space-between;
-  width: calc(100% - 2rem);
-}
-
 .form-div {
   border-radius: 2em 2em 0 0;
 }
