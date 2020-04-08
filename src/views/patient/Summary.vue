@@ -22,52 +22,56 @@
 
     <PatientSummary :patient="currentPatient"></PatientSummary>
 
-    <div v-if="!currentPatient.confirmed" class="flex items-center my-3">
-      <p class="text-left text-xs">
-        {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
-      </p>
-      <input
-        id="agree"
-        v-model="personalInfoAgreed"
-        type="checkbox"
-        value="agree"
-        class="m-4"
-      />
+    <div
+      v-if="!currentPatient.confirmed"
+      class="flex flex-col items-center card"
+    >
+      <div class="flex flex-row w-full justify-between mb-2">
+        <p class="text-left text-xs">
+          {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
+        </p>
+        <input
+          id="agree"
+          v-model="personalInfoAgreed"
+          type="checkbox"
+          value="agree"
+          class="m-4 self-center"
+        />
+      </div>
+      <div class="flex flex-row w-full justify-between">
+        <p class="text-left text-xs">
+          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
+        </p>
+
+        <input
+          id="agree2"
+          v-model="allIsTrueAgreed"
+          type="checkbox"
+          value="agree"
+          class="m-4 self-center"
+          @change="agreedToTerms()"
+        />
+      </div>
     </div>
 
-    <div v-if="!currentPatient.confirmed" class="flex items-center my-3 card">
-      <p class="text-left text-xs">
-        {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
-      </p>
-      <input
-        id="agree2"
-        v-model="allIsTrueAgreed"
-        type="checkbox"
-        value="agree"
-        class="m-4"
-        @change="agreedToTerms()"
-      />
-    </div>
-
-    <router-link
+    <div
       v-if="
         (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
       "
-      to="/summary"
       class="link btn-primary icon-button show-qr-code-btn not-active-qr"
     >
       <div>
         {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
       </div>
-    </router-link>
-    <router-link
+    </div>
+    <button
       v-else
-      to="/patient-qr-code"
       class="link btn-primary icon-button show-qr-code-btn"
+      @click="showModal = true"
     >
       <ion-icon name="qr-code-outline"></ion-icon>
       <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
-    </router-link>
+    </button>
 
     <!-- <router-link to="/home" class="link btn-primary icon-button"
         ><ion-icon name="person-add-outline"></ion-icon>
@@ -85,9 +89,12 @@
         </p>
       </template>
       <template v-slot:footer>
-        <button class="btn-primary" @click="showModal = false">
-          Souhlasím
+        <button class="btn-secondary mb-3" @click="showModal = false">
+          Spátky
         </button>
+        <router-link to="/patient-qr-code" class="btn-primary">
+          <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
+        </router-link>
       </template>
     </ModalWindow>
   </div>
@@ -141,9 +148,6 @@ export default {
         key: 'termsAccepted',
         value: this.personalInfoAgreed
       })
-      if (this.allIsTrueAgreed) {
-        this.showModal = true
-      }
     }
   }
 }
@@ -192,5 +196,9 @@ export default {
 .not-active-qr {
   background-color: #d5d8de;
   color: #0d1f3c;
+}
+
+.card {
+  @apply my-8;
 }
 </style>
