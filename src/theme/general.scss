@@ -60,3 +60,7 @@ h2 {
     @apply p-2;
   }
 }
+
+.bottom-link {
+  @apply p-4 mt-8 w-full max-w-md flex justify-around;
+}
