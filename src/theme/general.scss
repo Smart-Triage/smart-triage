@@ -38,7 +38,6 @@ h2 {
   flex-col
   text-center
   items-center
-  justify-around
   max-w-md
   text-center
   justify-between
@@ -47,7 +46,7 @@ h2 {
 }
 
 .card {
-  @apply shadow-lg p-0 bg-white;
+  @apply shadow-lg py-3 px-4 my-3 bg-white;
   border-radius: 1.1em;
   width: 100%;
   p {
@@ -56,7 +55,7 @@ h2 {
 }
 
 .order-list {
-  @apply list-decimal w-2/3;
+  @apply list-decimal list-inside;
   li {
     @apply p-2;
   }

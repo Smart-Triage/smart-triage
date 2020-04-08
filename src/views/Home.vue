@@ -1,5 +1,6 @@
 <template>
   <div class="main-container">
+    <div></div>
     <div class="mt-4 mb-2">
       <img class="mb-8 mx-auto" src="@/assets/img/home-page-welcome-img.png" alt="" />
       <p>{{ $t('HOME.WELCOME') }}</p>
