@@ -44,6 +44,7 @@
           <div v-if="step.order === '0'">
             <PatientForm
               v-if="currentStepNum === '0'"
+              :form-fields="step.formFields"
               @next="next(null)"
             ></PatientForm>
           </div>
