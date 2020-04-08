@@ -19,7 +19,7 @@
       </p>
     </div>
 
-    <div class="mb-6 mt-2 text-center">
+    <div class="my-6 text-center">
       <h2>{{ $t('ABOUT.AUTHORS') }}</h2>
       <ul>
         <li>Vasil Kostin</li>
