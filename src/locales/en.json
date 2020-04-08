@@ -111,7 +111,8 @@
     "ENTER_REGISTRATION_CODE": "Enter registration code. If you don't have one, contact the person in charge of triage in your hospital.",
     "SEND": "Send",
     "CHECK_CONNECTION": "Please check your connection, this feature is not available offline.",
-    "REGISTRATION_CODE": "Registration code"
+    "REGISTRATION_CODE": "Registration code",
+    "AUTHENTICATING": "Authenticating"
   },
   "ERROR": {
     "server_error": "Ups. Something went wrong. Try again later",

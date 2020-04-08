@@ -111,7 +111,8 @@
     "ENTER_REGISTRATION_CODE": "Zadejte registrační kód. Pokud registrační kód nemáte, kontaktuje osobu pověřenou triáží ve vaší nemocnici.",
     "SEND": "Odeslat",
     "CHECK_CONNECTION": "Zkontrolujte připojení k internetu, tato funkce není dostupná offline.",
-    "REGISTRATION_CODE": "Registrační kód"
+    "REGISTRATION_CODE": "Registrační kód",
+    "AUTHENTICATING": "Ověřování"
   },
   "ERROR": {
     "server_error": "Ups. Něco se pokazilo. Zkuste to znovu později",

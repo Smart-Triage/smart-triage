@@ -104,7 +104,8 @@
     "ENTER_REGISTRATION_CODE": "Zadajte registračný kód. Ak registračný kód nemáte, kontaktuje osobu poverenú triážou vo vašej nemocnici.",
     "SEND": "Odoslať",
     "CHECK_CONNECTION": "Skontrolujte pripojenie k internetu, táto funkcia nie je dostupná offline.",
-    "REGISTRATION_CODE": "Registračný kód"
+    "REGISTRATION_CODE": "Registračný kód",
+    "AUTHENTICATING": "Overovanie"
   },
   "ERROR": {
     "server_error": "Ups. Niečo sa pokazilo. Skúste to znovu neskôr.",
