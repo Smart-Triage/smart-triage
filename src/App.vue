@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div class="main-wrapper">
+      <InDevelopementOverlay></InDevelopementOverlay>
       <transition name="view" mode="out-in">
         <router-view />
       </transition>
@@ -24,11 +25,13 @@
 import NewContentAvailableToastr from '@/components/NewContentAvailableToastr'
 import AppleAddToHomeScreenModal from '@/components/AppleAddToHomeScreenModal'
 import { mapState, mapActions, mapGetters } from 'vuex'
+import InDevelopementOverlay from '@/components/InDevelopementOverlay'
 
 export default {
   components: {
     NewContentAvailableToastr,
-    AppleAddToHomeScreenModal
+    AppleAddToHomeScreenModal,
+    InDevelopementOverlay
   },
   computed: {
     ...mapGetters('app', ['newContentAvailable']),

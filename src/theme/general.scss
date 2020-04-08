@@ -33,13 +33,13 @@ h2 {
 }
 
 .main-container {
+  min-height: calc(100vh - 3rem);
   @apply flex
   flex-col
   text-center
   items-center
   justify-around
   max-w-md
-  min-h-screen
   text-center
   justify-between
   px-6

@@ -1,6 +1,5 @@
 <template>
   <div class="main-container">
-    <div></div>
     <div class="mt-4 mb-2">
       <img class="mb-8 mx-auto" src="@/assets/img/home-page-welcome-img.png" alt="" />
       <p>{{ $t('HOME.WELCOME') }}</p>
@@ -32,41 +31,20 @@
       }}</router-link>
       <router-link to="/settings">{{ $t('HOME.SETTINGS') }}</router-link>
     </div>
-
-    <!-- Modal development warning -->
-    <ModalWindow v-if="showModal">
-      <template v-slot:header>
-        <h2 class="p-0">Upozornení</h2>
-      </template>
-      <template v-slot:body>
-        <p>
-          Zkušební mód.
-        </p>
-        <p>
-          Aplikace je stále ve vývoji.
-        </p>
-      </template>
-      <template v-slot:footer>
-        <button class="btn-primary" @click="showModal = false">
-          Beru na vědomí
-        </button>
-      </template>
-    </ModalWindow>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 import PatientList from '@/components/PatientList'
-import ModalWindow from '@/components/ModalWindow'
+
 
 export default {
   components: {
     PatientList,
-    ModalWindow
   },
   data: () => ({
-    showModal: true
+    showModal: false
   }),
   head() {
     return {
