@@ -2,7 +2,7 @@
   <div class="main-container">
     <div></div>
     <div class="mt-4 mb-2">
-      <img class="mb-8" src="@/assets/img/home-page-welcome-img.png" alt="" />
+      <img class="mb-8 mx-auto" src="@/assets/img/home-page-welcome-img.png" alt="" />
       <p>{{ $t('HOME.WELCOME') }}</p>
       <h1 class="text-5xl">{{ $t('HOME.TITLE') }}</h1>
       <p>
