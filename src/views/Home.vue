@@ -9,9 +9,8 @@
         {{ $t('HOME.INFO') }}
       </p>
     </div>
-
+    <PatientList class="w-full my-1"></PatientList>
     <div class="w-full">
-      <PatientList class="w-full my-6"></PatientList>
       <div v-if="patients.length === 0">
         <button class="btn-primary" @click="createPatient">
           <ion-icon class="btn-icon" name="person-add-outline"></ion-icon>
