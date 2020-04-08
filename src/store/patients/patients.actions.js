@@ -22,14 +22,13 @@ export default {
     })
   },
 
-  updateOrAddPatient: async ({ state, commit, dispatch }, patient) => {
+  updateOrAddPatient: async ({ state, commit }, patient) => {
     return new Promise(resolve => {
       if (state.patients.find(p => p.id === patient.id))
         commit('updatePatient', patient)
       else commit('createNewPatient', patient)
 
       commit('setCurrentPatientId', patient.id)
-      dispatch('recalculatePoints')
       resolve()
     })
   },
@@ -44,42 +43,5 @@ export default {
 
   clearCurrentPatient: async ({ commit }) => {
     commit('setCurrentPatientId', '')
-  },
-
-  recalculatePoints: async ({ getters, rootGetters, commit }) => {
-    let totalPoints = 0
-    rootGetters['questions/getFormSteps'].forEach(step => {
-      const answer =
-        getters.currentPatient.answers[
-          Object.keys(getters.currentPatient.answers).find(
-            key => key === step.order
-          )
-        ]
-
-      if (step.answerType === 'boolean') {
-        totalPoints +=
-          (answer === true ? step.pointsIfPositive : step.pointsIfNegative) || 0
-      }
-
-      if (step.answerType === 'slider') {
-        totalPoints +=
-          answer >= step.pointsIfValueIsHigherThan.treshold
-            ? step.pointsIfValueIsHigherThan.points
-            : 0
-      }
-
-      if (step.answerType === 'checkbox') {
-        step.options.forEach(option => {
-          if (answer.find(a => a.value === option.value).isChecked)
-            totalPoints += option.pointsIfChecked
-        })
-      }
-      console.log('step: ', step.order, ', totalPoints: ', totalPoints)
-    })
-
-    commit('setCurrentPatientValueByKey', {
-      key: 'totalPoints',
-      value: totalPoints
-    })
   }
 }

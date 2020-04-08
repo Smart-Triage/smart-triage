@@ -57,12 +57,12 @@
 
       <router-link
         v-if="!currentPatient.confirmed"
-        class="link btn-primary scan-confirmation-btn icon-button mb-3"
+        class="btn-primary scan-confirmation-btn icon-button my-6"
         to="/scan-confirmation-qr-code"
         ><ion-icon name="scan-outline"></ion-icon>
-        <div class="button-text">
+        <p class="button-text">
           {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
-        </div></router-link
+        </p></router-link
       >
     </div>
   </div>
@@ -138,6 +138,8 @@ export default {
   background-color: $secondary-color;
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: fit-content;
 }
 
 .home-page-top-img {

@@ -1,7 +1,7 @@
 <template>
   <div class="overflow-container">
     <div
-      class="in-developement-overlay p-4 m-3 rounded-lg text-sm font-normal leading-none text-center"
+      class="in-developement-overlay p-4 text-sm font-normal leading-none text-center w-full h-12"
     >
       {{ $t('APP_IN_DEVELOPMENT') }}
     </div>

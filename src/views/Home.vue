@@ -1,43 +1,31 @@
 <template>
   <div class="main-container">
-    <NavBar>
-      <!-- <template v-slot:center> -->
-      <!-- {{ appTitle }} -->
-      <!-- <InDevelopementOverlay class="z-auto"></InDevelopementOverlay> -->
-      <!-- </template> -->
-    </NavBar>
-    <div class="main-content">
-      <div>
-        <img src="@/assets/img/home-page-welcome-img.png" alt="" />
+    <div></div>
+    <div class="mt-4 mb-2">
+      <img class="mb-8 mx-auto" src="@/assets/img/home-page-welcome-img.png" alt="" />
+      <p>{{ $t('HOME.WELCOME') }}</p>
+      <h1 class="text-5xl">{{ $t('HOME.TITLE') }}</h1>
+      <p>
+        {{ $t('HOME.INFO') }}
+      </p>
+    </div>
+    <PatientList class="w-full my-1"></PatientList>
+    <div class="w-full">
+      <div v-if="patients.length === 0">
+        <button class="btn-primary" @click="createPatient">
+          <ion-icon class="btn-icon" name="person-add-outline"></ion-icon>
+          <span>{{ $t('HOME.BEGIN') }}</span>
+        </button>
       </div>
-
-      <div>
-        <p>{{ $t('HOME.WELCOME') }}</p>
-        <h1 class="text-5xl p-0 my-1">{{ $t('HOME.TITLE') }}</h1>
-        <p>
-          {{ $t('HOME.INFO') }}
-        </p>
-      </div>
-
-      <div class="w-full">
-        <PatientList class="w-full px-4"></PatientList>
-        <div v-if="patients.length === 0" class="main-action">
-          <button class="link btn-primary" @click="createPatient">
-            <ion-icon name="person-add-outline"></ion-icon>
-            <span class="main-action-button-text">{{ $t('HOME.BEGIN') }}</span>
-          </button>
-        </div>
-        <div v-else class="main-action">
-          <p class="my-1">{{ $t('HOME.NOT_GOING_ALONE') }}</p>
-          <button class="link btn-primary" @click="createPatient">
-            <ion-icon name="person-add-outline"></ion-icon>
-            <span class="main-action-button-text">{{
-              $t('HOME.FILL_FOR_ANOTHER_PERSON')
-            }}</span>
-          </button>
-        </div>
+      <div v-else>
+        <p class="my-1">{{ $t('HOME.NOT_GOING_ALONE') }}</p>
+        <button class="btn-primary" @click="createPatient">
+          <ion-icon class="btn-icon" name="person-add-outline"></ion-icon>
+          <span>{{ $t('HOME.FILL_FOR_ANOTHER_PERSON') }}</span>
+        </button>
       </div>
     </div>
+
     <div class="bottom-link">
       <router-link to="/how-it-works">{{
         $t('HOME.HOW_IT_WORKS')
@@ -50,13 +38,15 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import PatientList from '@/components/PatientList'
-// import InDevelopementOverlay from '@/components/InDevelopementOverlay'
+
 
 export default {
   components: {
-    PatientList
-    // InDevelopementOverlay
+    PatientList,
   },
+  data: () => ({
+    showModal: false
+  }),
   head() {
     return {
       title: {

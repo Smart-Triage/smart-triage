@@ -13,6 +13,10 @@
 
   "EDIT": "Upravit",
 
+  "ADMIN": {
+    "CREATE_CERTIFICATE": "Vytvořit certifikát",
+    "UPLOAD_CERTIFICATE": "Nahrát certifikát"
+  },
   "HOME": {
     "WELCOME": "COVID-19",
     "TITLE": "Triáž",

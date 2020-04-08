@@ -11,7 +11,7 @@
 
     <div class="center">
       <slot name="center">
-        <InDevelopementOverlay></InDevelopementOverlay>
+<!--        <InDevelopementOverlay></InDevelopementOverlay>-->
       </slot>
     </div>
 
@@ -23,11 +23,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import InDevelopementOverlay from '@/components/InDevelopementOverlay'
+// import InDevelopementOverlay from '@/components/InDevelopementOverlay'
 
 export default {
   components: {
-    InDevelopementOverlay
+    // InDevelopementOverlay
   },
   props: { backBtn: { type: Boolean, default: false } },
   computed: {
@@ -41,25 +41,12 @@ export default {
 @import '@/theme/variables.scss';
 
 .navbar {
-  height: $navbar-height;
   width: 100%;
-  background-color: $bg-color;
-  padding: 0.7rem 1.5rem;
   line-height: 2.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .left,
-  .right {
-    min-width: 3rem;
-    height: 100%;
-  }
-
-  .center {
-    font-size: 1.3rem;
-    font-weight: 600;
-  }
+  @apply mt-5 mb-2;
 
   &.offline {
     background: $navbar-offline-color;

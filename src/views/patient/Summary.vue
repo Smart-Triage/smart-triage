@@ -12,19 +12,21 @@
         </button>
       </template>
     </NavBar>
-    <div class="main-content">
-      <div class="top-sumary">
-        <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
-        <img src="@/assets/img/home-page-welcome-img.png" alt="" />
-      </div>
-      <PatientSummary></PatientSummary>
 
-      <hr />
+    <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
+    <img
+      class="mx-auto my-4"
+      src="@/assets/img/home-page-welcome-img.png"
+      alt=""
+    />
 
-      <div
-        v-if="!currentPatient.confirmed"
-        class="flex items-center my-3 mx-6 card"
-      >
+    <PatientSummary :patient="currentPatient"></PatientSummary>
+
+    <div
+      v-if="!currentPatient.confirmed"
+      class="flex flex-col items-center card"
+    >
+      <div class="flex flex-row w-full justify-between mb-2">
         <p class="text-left text-xs">
           {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
         </p>
@@ -33,54 +35,49 @@
           v-model="personalInfoAgreed"
           type="checkbox"
           value="agree"
-          class="m-4"
+          class="m-4 self-center"
         />
       </div>
-
-      <div
-        v-if="!currentPatient.confirmed"
-        class="flex items-center my-3 mx-6 card"
-      >
+      <div class="flex flex-row w-full justify-between">
         <p class="text-left text-xs">
           {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
         </p>
+
         <input
           id="agree2"
           v-model="allIsTrueAgreed"
           type="checkbox"
           value="agree"
-          class="m-4"
+          class="m-4 self-center"
           @change="agreedToTerms()"
         />
       </div>
+    </div>
 
-      <p class="buttons"></p>
-      <router-link
-        v-if="
-          (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
-        "
-        to="/summary"
-        class="link btn-primary icon-button show-qr-code-btn not-active-qr"
-      >
-        <div>
-          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
-        </div>
-      </router-link>
-      <router-link
-        v-else
-        to="/patient-qr-code"
-        class="link btn-primary icon-button show-qr-code-btn"
-      >
-        <ion-icon name="qr-code-outline"></ion-icon>
-        <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
-      </router-link>
+    <div
+      v-if="
+        (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
+      "
+      class="link btn-primary icon-button show-qr-code-btn not-active-qr"
+    >
+      <div>
+        {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
+      </div>
+    </div>
+    <button
+      v-else
+      class="link btn-primary icon-button show-qr-code-btn"
+      @click="showModal = true"
+    >
+      <ion-icon name="qr-code-outline"></ion-icon>
+      <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
+    </button>
 
-      <!-- <router-link to="/home" class="link btn-primary icon-button"
+    <!-- <router-link to="/home" class="link btn-primary icon-button"
         ><ion-icon name="person-add-outline"></ion-icon>
         <div class="button-text">Add another person</div>
       </router-link> -->
-    </div>
-    <ModalWindow v-if="showModal" @close="showModal = false">
+    <ModalWindow v-if="showModal">
       <template v-slot:header>
         <h2 class="p-0">Upozornení</h2>
       </template>
@@ -90,6 +87,14 @@
           virem COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých
           informací může být posuzováno jako trestný čin.
         </p>
+      </template>
+      <template v-slot:footer>
+        <button class="btn-secondary mb-3" @click="showModal = false">
+          Spátky
+        </button>
+        <router-link to="/patient-qr-code" class="btn-primary">
+          <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
+        </router-link>
       </template>
     </ModalWindow>
   </div>
@@ -143,9 +148,6 @@ export default {
         key: 'termsAccepted',
         value: this.personalInfoAgreed
       })
-      if (this.allIsTrueAgreed) {
-        this.showModal = true
-      }
     }
   }
 }
@@ -181,18 +183,21 @@ export default {
 }
 
 .show-qr-code-btn {
-  // background-color: $secondary-color;
   padding: 1rem;
-  width: 100%;
+  width: calc(100% - 2em);
   max-width: 25rem;
   display: flex;
   justify-content: center;
-  margin-left: 2em;
-  margin-right: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .not-active-qr {
   background-color: #d5d8de;
   color: #0d1f3c;
+}
+
+.card {
+  @apply my-8;
 }
 </style>

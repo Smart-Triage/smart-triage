@@ -1,26 +1,26 @@
 <template>
-  <div v-if="currentPatient">
+  <div v-if="patient">
     <div
       v-if="
-        currentPatient.confirmation &&
-          currentPatient.confirmation.confirmedById.length > 1 &&
-          currentPatient.confirmation.timestamp
+        patient.confirmation &&
+          patient.confirmation.confirmedById.length > 1 &&
+          patient.confirmation.timestamp
       "
       class="is-confirmed"
     >
       <div
         class="confirmation-info"
-        :class="{ 'covid-suspedted': currentPatient.isCovidSuspected }"
+        :class="{ 'covid-suspedted': patient.isCovidSuspected }"
       >
         <div>
           {{ $t('PATIENT_SUMMARY.CONFIRMED_BY') }}
-          {{ currentPatient.confirmation.confirmedByName }}
+          {{ patient.confirmation.confirmedByName }}
         </div>
-        <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
-        <div v-if="currentPatient.isCovidSuspected === true">
+        <div>{{ patient.confirmation.timestamp | formatDate }}</div>
+        <div v-if="patient.isCovidSuspected === true">
           {{ $t('PATIENT_SUMMARY.COVID_SUSPECTED') }}
         </div>
-        <div v-if="currentPatient.isCovidSuspected === false">
+        <div v-if="patient.isCovidSuspected === false">
           {{ $t('PATIENT_SUMMARY.COVID_NOT_SUSPECTED') }}
         </div>
       </div>
@@ -51,22 +51,20 @@
         <p>
           <b>{{ $t('FULL_NAME') }}</b>
         </p>
-        <span>{{
-          currentPatient.firstName + ' ' + currentPatient.lastName
-        }}</span>
+        <span>{{ patient.firstName + ' ' + patient.lastName }}</span>
         <hr class="dividerInfo" />
         <p>
           <b>{{ $t('PERSONAL_IDENTIFICATION_NUMBER') }}</b>
         </p>
-        <span>{{ currentPatient.birthNumber }}</span>
+        <span>{{ patient.birthNumber }}</span>
         <hr class="dividerInfo" />
         <p>
           <b>{{ $t('PHONE_NUMBER') }}</b>
         </p>
-        <span>{{ currentPatient.phoneNumber }}</span>
+        <span>{{ patient.phoneNumber }}</span>
         <hr class="dividerInfo" />
         <button
-          v-if="!employee && !currentPatient.confirmed"
+          v-if="!employee && !patient.confirmed"
           class="edit-btn"
           @click="edit('0')"
         >
@@ -93,7 +91,10 @@
         ></ion-icon>
       </div>
     </button>
-    <div :class="{ hideInfo: patientSymptomsHidden }" class="info-container text-left">
+    <div
+      :class="{ hideInfo: patientSymptomsHidden }"
+      class="info-container text-left"
+    >
       <div
         v-for="step in formStepsToShow"
         :key="step.order"
@@ -103,19 +104,18 @@
           <b>{{ step.question }}</b>
         </p>
         <span v-if="step.answerType === 'boolean'">{{
-          currentPatient.answers[step.order] === true ? 'Yes' : 'No'
+          patient.answers[step.order] === true ? 'Yes' : 'No'
         }}</span>
         <span v-else-if="step.answerType === 'one-of'">
           {{
             getFormSteps
               .find(s => s.order === step.order)
-              .options.find(o => o.value === currentPatient.answers[step.order])
-              .text
+              .options.find(o => o.value === patient.answers[step.order]).text
           }}
         </span>
         <span v-else-if="step.answerType === 'checkbox'">
           <span
-            v-for="option in currentPatient.answers[step.order]"
+            v-for="option in patient.answers[step.order]"
             :key="option.value"
             >{{
               option.isChecked
@@ -126,11 +126,11 @@
             }}</span
           >
         </span>
-        <span v-else>{{ currentPatient.answers[step.order] }}</span>
+        <span v-else>{{ patient.answers[step.order] }}</span>
         <hr class="dividerInfo" />
       </div>
       <button
-        v-if="!employee && !currentPatient.confirmed"
+        v-if="!employee && !patient.confirmed"
         class="edit-btn"
         @click="edit('1')"
       >
@@ -144,19 +144,21 @@
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
-  props: { employee: { type: Boolean, default: false } },
+  props: {
+    patient: { type: Object, required: true },
+    employee: { type: Boolean, default: false }
+  },
   data: () => ({
     patientInfoHidden: false,
     patientSymptomsHidden: true
   }),
   computed: {
     ...mapGetters('questions', ['getFormSteps']),
-    ...mapGetters('patients', ['currentPatient']),
     formStepsToShow() {
-      if (!this.currentPatient) return []
+      if (!this.patient) return []
       const stepsToShow = []
       this.getFormSteps.forEach(step => {
-        if (Object.keys(this.currentPatient.answers).indexOf(step.order) > -1)
+        if (Object.keys(this.patient.answers).indexOf(step.order) > -1)
           stepsToShow.push(step)
       })
       return stepsToShow
@@ -195,16 +197,13 @@ export default {
 }
 
 .accordion-button {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  position: relative;
-  z-index: 20;
-
-  .spacer {
-    width: 18px;
-  }
+  @apply flex
+  justify-between
+  items-center
+  cursor-pointer
+  my-2
+  relative
+  z-20;
 }
 
 ion-icon {
@@ -229,12 +228,9 @@ ion-icon {
   transform: translateY(-50px);
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  align-self: flex-start;
-  margin: 0 1em;
   background-color: #32227f15;
-  padding: 3em 2em 2em 2em;
-  width: calc(100% - 2em);
+  padding: 4em 2em 2em 2em;
+  width: 100%;
   border-radius: 1.1em;
 }
 
@@ -250,13 +246,12 @@ ion-icon {
 }
 
 .patient-item {
-  width: calc(100% - 2em);
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
   padding: 1rem;
-  margin: 0.5em 1em;
   background: $secondary-color;
   color: white;
   border-radius: 10rem;

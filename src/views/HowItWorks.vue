@@ -1,22 +1,20 @@
 <template>
   <div class="main-container">
     <NavBar :back-btn="true"></NavBar>
-    <h1>{{ $t('HOW_IT_WORKS.HOW_IT_WORKS') }}?</h1>
-    <div class="main-content">
-      <img
-        class="w-2/3"
-        src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
-        alt=""
-      />
+    <h1 class="">{{ $t('HOW_IT_WORKS.HOW_IT_WORKS') }}?</h1>
+    <img
+      class="w-2/3 my-6"
+      src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+      alt=""
+    />
 
-      <div class="card">
-        <p>
-          {{ $t('HOW_IT_WORKS.SHORT_DESCRIPTION') }}
-        </p>
-      </div>
-      <ol class="order-list mb-4">
+    <p class="my-6">
+      {{ $t('HOW_IT_WORKS.SHORT_DESCRIPTION') }}
+    </p>
+
+    <div class="card">
+      <ol class="order-list">
         <li>{{ $t('HOW_IT_WORKS.FILL_FORM') }}</li>
-        <!--        <li>{{ $t('HOW_IT_WORKS.FILL_FOR_OTHERS') }}</li>-->
         <li>{{ $t('HOW_IT_WORKS.SHOW_QR_CODE_TO_STAFF') }}</li>
       </ol>
     </div>
@@ -27,4 +25,12 @@
 export default {}
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.main-container {
+  justify-content: flex-start;
+}
+
+.card {
+  margin-bottom: 2rem;
+}
+</style>

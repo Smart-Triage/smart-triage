@@ -33,7 +33,7 @@
       </div>
 
       <transition name="view" mode="out-in">
-        <div class="flex flex-col flex-auto bg-white form-div mx-4 items-center">
+        <div class="flex flex-col flex-auto bg-white form-div items-center">
           <p v-if="step.order !== '0'" class="directions">
             {{ $t('FORM.ANSWER_A_FEW_QUESTIONS') }}
           </p>
@@ -337,11 +337,6 @@ export default {
 <style scoped lang="scss">
 @import '@/theme/general.scss';
 
-.form-content {
-  justify-content: space-between;
-  width: calc(100% - 2rem);
-}
-
 .form-div {
   border-radius: 2em 2em 0 0;
 }
@@ -355,7 +350,7 @@ export default {
 .skip-to-summary {
   color: white;
   background-color: $secondary-color;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
   border-radius: 5rem;
 }
 
