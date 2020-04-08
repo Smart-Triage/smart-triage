@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
-    <NavBar> </NavBar>
-    <div v-if="scanning" class="scanner-view">
+  <div class="main-container">
+    <NavBar></NavBar>
+    <div v-if="scanning" class="my-auto">
       <button @click="showEmployeeHomepage">
         <ion-icon name="arrow-back-outline" size="large"></ion-icon>
       </button>
@@ -13,12 +13,13 @@
       class="header-info"
     >
       <h1>{{ appTitle }}</h1>
-      <p>{{ $t('EMPLOYEE.WELCOME') }}</p>
+      <p class="my-4">{{ $t('EMPLOYEE.WELCOME') }}</p>
 
       <img src="@/assets/img/hand-holding-phone-scanning-qr-code.png" alt="" />
-
-      <p>{{ $t('EMPLOYEE.TAP_SCAN_TO_BEGIN') }}</p>
     </div>
+    <p v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
+      {{ $t('EMPLOYEE.TAP_SCAN_TO_BEGIN') }}
+    </p>
 
     <div
       v-if="showPatientSummary && scannedPatient !== null"
@@ -99,17 +100,17 @@
         <ion-icon name="scan-outline"></ion-icon>
         <div class="button-text">{{ $t('EMPLOYEE.SCAN_NEXT_PATIENT') }}</div>
       </button>
-
-      <div class="spacer"></div>
-
-      <div class="employee-page-bottom-links">
-        <router-link class="employee-page-link" to="/how-it-works">{{
-          $t('HOME.HOW_IT_WORKS')
-        }}</router-link>
-        <router-link class="employee-page-link" to="/settings">{{
-          $t('HOME.SETTINGS')
-        }}</router-link>
-      </div>
+    </div>
+    <div
+      v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
+      class="bottom-link"
+    >
+      <router-link class="employee-page-link" to="/how-it-works">{{
+        $t('HOME.HOW_IT_WORKS')
+      }}</router-link>
+      <router-link class="employee-page-link" to="/settings">{{
+        $t('HOME.SETTINGS')
+      }}</router-link>
     </div>
   </div>
 </template>
@@ -320,17 +321,6 @@ export default {
   min-height: calc(100vh - 34px);
 }
 
-.header-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem 2rem;
-
-  img {
-    max-width: 20rem;
-  }
-}
-
 .summary-view,
 .confirmation-view {
   display: flex;
@@ -369,29 +359,6 @@ export default {
 
   .button-text {
     font-size: 1rem;
-  }
-}
-
-.employee-page-buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-
-  .spacer {
-    flex-grow: 1;
-  }
-}
-
-.employee-page-bottom-links {
-  display: flex;
-
-  .employee-page-link {
-    text-decoration: none;
-    color: $main-text-color;
-    font-weight: 400;
-    align-self: flex-end;
-    margin: 1em 1.5em 1em 1.5em;
   }
 }
 </style>
