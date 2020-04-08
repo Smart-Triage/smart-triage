@@ -46,10 +46,10 @@
         :employee="true"
       ></PatientSummary>
 
-      <RiskScale
+      <!-- <RiskScale
         :value="scannedPatient.totalPoints"
         :max="getMaxPoints"
-      ></RiskScale>
+      ></RiskScale> -->
     </div>
 
     <!-- <router-link
@@ -127,7 +127,7 @@ import QrcodeVue from 'qrcode.vue'
 import { mapGetters, mapState } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
-import RiskScale from '@/components/RiskScale'
+// import RiskScale from '@/components/RiskScale'
 import KeyStore from '@/misc/KeyStore'
 import { str2ab, ab2str } from '@/misc/helpers'
 
@@ -135,8 +135,8 @@ export default {
   components: {
     QRScanner,
     PatientSummary,
-    QrcodeVue,
-    RiskScale
+    QrcodeVue
+    // RiskScale
   },
   data: () => ({
     scanning: false,
