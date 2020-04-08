@@ -90,7 +90,7 @@
       </template>
       <template v-slot:footer>
         <button class="btn-secondary mb-3" @click="showModal = false">
-          Spátky
+          {{ $t('BACK') }}
         </button>
         <router-link to="/patient-qr-code" class="btn-primary">
           <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
