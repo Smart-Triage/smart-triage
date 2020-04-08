@@ -57,7 +57,6 @@
           @input="setPatientValueByKey('phoneNumber', $event.target.value)"
         />
       </div>
-      
     </div>
     <button type="submit" class="btn-primary mb-4">{{ $t('NEXT') }}</button>
   </form>

@@ -1,6 +1,8 @@
 <template>
   <div class="main-container">
-    <NavBar></NavBar>
+    <NavBar
+      v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
+    ></NavBar>
     <div v-if="scanning" class="my-auto">
       <button @click="showEmployeeHomepage">
         <ion-icon name="arrow-back-outline" size="large"></ion-icon>
@@ -32,7 +34,7 @@
           </button>
         </template>
       </NavBar>
-      <h1>{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
+      <h1 class="mb-4">{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
 
       <PatientSummary
         :patient="scannedPatient"
