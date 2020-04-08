@@ -1,11 +1,17 @@
 <template>
-  <div class="page-wrapper">
+  <div class="main-container">
     <NavBar> </NavBar>
-    <h1 class="login-page-title">{{ appTitle }}</h1>
+    <img
+      class="mb-8 mx-auto"
+      src="@/assets/img/home-page-welcome-img.png"
+      alt=""
+    />
+    <h1 class="mb-4">{{ appTitle }}</h1>
+    <p class="mb-4">
+      <strong>{{ $t('LOGIN.ONLY_FOR_EMPLOYEES') }}</strong>
+    </p>
 
-    <p>{{ $t('LOGIN.ONLY_FOR_EMPLOYEES') }}</p>
-
-    <p>
+    <p class="mb-4">
       {{ $t('LOGIN.ENTER_REGISTRATION_CODE') }}
     </p>
 
@@ -25,12 +31,12 @@
     <input
       v-model="registrationCode"
       type="text"
-      class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal max-w-xs"
+      class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app"
     />
     <div
       v-show="user !== undefined && !user && networkOnLine"
       data-test="login-btn"
-      class="login-btn"
+      class="btn-primary my-4"
       @click="register"
     >
       {{ $t('LOGIN.SEND') }}
@@ -177,31 +183,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/theme/variables.scss';
-
-.page-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-
-  .login-page-title {
-    text-align: center;
-  }
-
-  .login-btn {
-    margin-top: 20px;
-    cursor: pointer;
-    padding: 5px 20px;
-    border: 1px solid;
-    display: inline-block;
-    border-radius: 3px;
-    border-color: #2c3e50;
-
-    &:hover {
-      color: $vue-color;
-      border-color: $vue-color;
-    }
-  }
+.main-container {
+  justify-content: start;
 }
 </style>
