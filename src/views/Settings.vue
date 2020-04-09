@@ -18,27 +18,31 @@
 
 <script>
 import LocaleChanger from '@/components/LocaleChanger'
+import firebase from 'firebase/app'
 
 export default {
   components: {
     LocaleChanger
   },
   methods: {
-    deleteAllData() {
+    async deleteAllData() {
       // eslint-disable-next-line no-alert
       const r = window.confirm(this.$t('ALERT.DELETE_ALL_DATA'))
       if (r === true) {
         localStorage.clear()
         sessionStorage.clear()
-        window.indexedDB
-          .databases()
-          .then(databases => {
+
+        await firebase.auth().signOut()
+
+        if (window.indexedDB.databases !== undefined) {
+          await window.indexedDB.databases().then(databases => {
             databases.forEach(db => window.indexedDB.deleteDatabase(db.name))
           })
-          .then(() => {
-            // eslint-disable-next-line no-alert
-            alert(this.$t('ALERT.ALL_DATA_CLEARED'))
-          })
+        }
+
+        // eslint-disable-next-line no-alert
+        alert(this.$t('ALERT.ALL_DATA_CLEARED'))
+
         window.location.reload()
       }
     }
