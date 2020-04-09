@@ -8,12 +8,20 @@
         </div>
       </template>
     </NavBar>
-    <div v-if="scanning" class="my-auto">
-      <button @click="showEmployeeHomepage">
-        <ion-icon name="arrow-back-outline" size="large"></ion-icon>
-      </button>
-      <QRScanner @patient="addPatient"></QRScanner>
-    </div>
+    <FullScreenModal v-if="scanning">
+      <template v-slot:header>
+        <NavBar>
+          <template v-slot:left>
+            <button class="text-black" @click="showEmployeeHomepage">
+              <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+            </button>
+          </template>
+        </NavBar>
+      </template>
+      <template v-slot:body>
+        <QRScanner @patient="addPatient"></QRScanner>
+      </template>
+    </FullScreenModal>
 
     <div
       v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
@@ -130,12 +138,14 @@ import PatientSummary from '@/components/PatientSummary'
 // import RiskScale from '@/components/RiskScale'
 import KeyStore from '@/misc/KeyStore'
 import { str2ab, ab2str } from '@/misc/helpers'
+import FullScreenModal from '@/components/modals/FullScreenModal'
 
 export default {
   components: {
     QRScanner,
     PatientSummary,
-    QrcodeVue
+    QrcodeVue,
+    FullScreenModal
     // RiskScale
   },
   data: () => ({
