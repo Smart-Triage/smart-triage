@@ -53,6 +53,7 @@
       ]
     },
     {
+      "target": "prod",
       "headers": [
         {
           "source": "/service-worker.js",

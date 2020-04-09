@@ -7,6 +7,9 @@
       "hosting": {
         "dev": [
           "smart-triage-dev"
+        ],
+        "prod": [
+          "triage-app-8e193"
         ]
       }
     }
