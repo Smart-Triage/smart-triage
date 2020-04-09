@@ -1,6 +1,6 @@
 <template>
   <form class="container" @submit="formSubmit">
-    <div>
+    <div class="form-wrapper">
       <div class="info-box">
         <p>{{ $t('FORM.INFORMATION_IS_SAFE') }}</p>
         <p>
@@ -8,47 +8,55 @@
         </p>
       </div>
 
-      <label class="floating-label"> {{ $t('FIRST_NAME') }}</label>
-      <input
-        placeholder=""
-        class="form-input"
-        type="text"
-        :value="currentPatient.firstName"
-        required
-        @input="setPatientValueByKey('firstName', $event.target.value)"
-      />
+      <div v-if="formFields.includes('firstName')" class="w-full">
+        <label class="floating-label"> {{ $t('FIRST_NAME') }}</label>
+        <input
+          placeholder=""
+          class="form-input"
+          type="text"
+          :value="currentPatient.firstName"
+          required
+          @input="setPatientValueByKey('firstName', $event.target.value)"
+        />
+      </div>
 
-      <label class="floating-label"> {{ $t('LAST_NAME') }}</label>
-      <input
-        placeholder=""
-        class="form-input"
-        type="text"
-        :value="currentPatient.lastName"
-        required
-        @input="setPatientValueByKey('lastName', $event.target.value)"
-      />
+      <div v-if="formFields.includes('lastName')" class="w-full">
+        <label class="floating-label"> {{ $t('LAST_NAME') }}</label>
+        <input
+          placeholder=""
+          class="form-input"
+          type="text"
+          :value="currentPatient.lastName"
+          required
+          @input="setPatientValueByKey('lastName', $event.target.value)"
+        />
+      </div>
 
-      <label class="floating-label">
-        {{ $t('PERSONAL_IDENTIFICATION_NUMBER') }}</label
-      >
-      <input
-        placeholder=""
-        class="form-input"
-        type="text"
-        :value="currentPatient.birthNumber"
-        required
-        @input="setPatientValueByKey('birthNumber', $event.target.value)"
-      />
+      <div v-if="formFields.includes('birthNumber')" class="w-full">
+        <label class="floating-label">
+          {{ $t('PERSONAL_IDENTIFICATION_NUMBER') }}</label
+        >
+        <input
+          placeholder=""
+          class="form-input"
+          type="text"
+          :value="currentPatient.birthNumber"
+          required
+          @input="setPatientValueByKey('birthNumber', $event.target.value)"
+        />
+      </div>
 
-      <label class="floating-label"> {{ $t('PHONE_NUMBER') }}</label>
-      <input
-        placeholder=""
-        class="form-input"
-        type="tel"
-        :value="currentPatient.phoneNumber"
-        required
-        @input="setPatientValueByKey('phoneNumber', $event.target.value)"
-      />
+      <div v-if="formFields.includes('phoneNumber')" class="w-full">
+        <label class="floating-label"> {{ $t('PHONE_NUMBER') }}</label>
+        <input
+          placeholder=""
+          class="form-input"
+          type="tel"
+          :value="currentPatient.phoneNumber"
+          required
+          @input="setPatientValueByKey('phoneNumber', $event.target.value)"
+        />
+      </div>
     </div>
     <button type="submit" class="btn-primary mb-4">{{ $t('NEXT') }}</button>
   </form>
@@ -58,6 +66,7 @@
 import { mapMutations, mapGetters } from 'vuex'
 
 export default {
+  props: { formFields: { type: Array, required: true } },
   computed: {
     ...mapGetters('patients', ['currentPatient'])
   },
@@ -102,7 +111,7 @@ export default {
     }
   }
 
-  div {
+  .form-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;

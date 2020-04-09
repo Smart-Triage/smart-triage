@@ -12,6 +12,7 @@
   "GO_TO_HOMEPAGE": "Go to homepage",
 
   "EDIT": "Edit",
+  "BACK": "Back",
 
   "ADMIN": {
     "CREATE_CERTIFICATE": "Create certificate",
@@ -109,7 +110,9 @@
     "ONLY_FOR_EMPLOYEES": "This part of the application is only available for hospital employees.",
     "ENTER_REGISTRATION_CODE": "Enter registration code. If you don't have one, contact the person in charge of triage in your hospital.",
     "SEND": "Send",
-    "CHECK_CONNECTION": "Please check your connection, this feature is not available offline."
+    "CHECK_CONNECTION": "Please check your connection, this feature is not available offline.",
+    "REGISTRATION_CODE": "Registration code",
+    "AUTHENTICATING": "Authenticating"
   },
   "ERROR": {
     "server_error": "Ups. Something went wrong. Try again later",

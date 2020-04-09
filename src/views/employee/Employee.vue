@@ -1,12 +1,27 @@
 <template>
   <div class="main-container">
-    <NavBar></NavBar>
-    <div v-if="scanning" class="my-auto">
-      <button @click="showEmployeeHomepage">
-        <ion-icon name="arrow-back-outline" size="large"></ion-icon>
-      </button>
-      <QRScanner @patient="addPatient"></QRScanner>
-    </div>
+    <NavBar v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
+      <template v-slot:right>
+        <div class="flex items-center">
+          <ion-icon name="person-circle-outline" size="large"></ion-icon>
+          <span class="ml-2">{{ fullName }}</span>
+        </div>
+      </template>
+    </NavBar>
+    <FullScreenModal v-if="scanning">
+      <template v-slot:header>
+        <NavBar>
+          <template v-slot:left>
+            <button class="text-black" @click="showEmployeeHomepage">
+              <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+            </button>
+          </template>
+        </NavBar>
+      </template>
+      <template v-slot:body>
+        <QRScanner only-valid-patient="true" @data="addPatient"></QRScanner>
+      </template>
+    </FullScreenModal>
 
     <div
       v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
@@ -32,17 +47,17 @@
           </button>
         </template>
       </NavBar>
-      <h1>{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
+      <h1 class="mb-4">{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
 
       <PatientSummary
         :patient="scannedPatient"
         :employee="true"
       ></PatientSummary>
 
-      <RiskScale
+      <!-- <RiskScale
         :value="scannedPatient.totalPoints"
         :max="getMaxPoints"
-      ></RiskScale>
+      ></RiskScale> -->
     </div>
 
     <!-- <router-link
@@ -120,16 +135,18 @@ import QrcodeVue from 'qrcode.vue'
 import { mapGetters, mapState } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
-import RiskScale from '@/components/RiskScale'
+// import RiskScale from '@/components/RiskScale'
 import KeyStore from '@/misc/KeyStore'
 import { str2ab, ab2str } from '@/misc/helpers'
+import FullScreenModal from '@/components/modals/FullScreenModal'
 
 export default {
   components: {
     QRScanner,
     PatientSummary,
     QrcodeVue,
-    RiskScale
+    FullScreenModal
+    // RiskScale
   },
   data: () => ({
     scanning: false,
@@ -142,7 +159,8 @@ export default {
   computed: {
     ...mapState('app', ['appTitle']),
     ...mapGetters('questions', ['getMaxPoints', 'getFormSteps']),
-    ...mapState('authentication', ['user'])
+    ...mapState('authentication', ['user']),
+    ...mapState('employee', ['fullName'])
   },
   watch: {
     $route(to) {
@@ -209,7 +227,7 @@ export default {
     async viewConfirmationQR(isCovidSuspected) {
       this.scannedPatient.confirmed = true
       this.scannedPatient.confirmation = {
-        confirmedByName: 'Jan Novák',
+        confirmedByName: this.fullName,
         confirmedById: this.user.id,
         timestamp: new Date()
       }

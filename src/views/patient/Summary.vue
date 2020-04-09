@@ -30,27 +30,31 @@
         <p class="text-left text-xs">
           {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
         </p>
-        <input
-          id="agree"
-          v-model="personalInfoAgreed"
-          type="checkbox"
-          value="agree"
-          class="m-4 self-center"
-        />
+        <div>
+          <input
+            id="agree"
+            v-model="personalInfoAgreed"
+            type="checkbox"
+            value="agree"
+            class="m-4 self-center"
+          />
+        </div>
       </div>
       <div class="flex flex-row w-full justify-between">
         <p class="text-left text-xs">
           {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
         </p>
 
-        <input
-          id="agree2"
-          v-model="allIsTrueAgreed"
-          type="checkbox"
-          value="agree"
-          class="m-4 self-center"
-          @change="agreedToTerms()"
-        />
+        <div>
+          <input
+            id="agree2"
+            v-model="allIsTrueAgreed"
+            type="checkbox"
+            value="agree"
+            class="m-4 self-center"
+            @change="agreedToTerms()"
+          />
+        </div>
       </div>
     </div>
 
@@ -79,18 +83,16 @@
       </router-link> -->
     <ModalWindow v-if="showModal">
       <template v-slot:header>
-        <h2 class="p-0">Upozornení</h2>
+        <h2 class="p-0">{{ $t('SUMMARY.WARNING') }}</h2>
       </template>
       <template v-slot:body>
         <p>
-          Tyto informace zjišťujeme za účelem snížení rizika přenosu infekce
-          virem COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých
-          informací může být posuzováno jako trestný čin.
+          {{ $t('SUMMARY.WARNING_TEXT') }}
         </p>
       </template>
       <template v-slot:footer>
         <button class="btn-secondary mb-3" @click="showModal = false">
-          Spátky
+          {{ $t('BACK') }}
         </button>
         <router-link to="/patient-qr-code" class="btn-primary">
           <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>

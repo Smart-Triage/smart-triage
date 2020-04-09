@@ -12,6 +12,7 @@
   "GO_TO_HOMEPAGE": "Jít na domovskou obrazoku",
 
   "EDIT": "Upravit",
+  "BACK": "Zpět",
 
   "ADMIN": {
     "CREATE_CERTIFICATE": "Vytvořit certifikát",
@@ -30,7 +31,7 @@
   "FORM": {
     "PERSONAL_DETAILS": "Osobní informace",
     "QUESTIONNAIRE": "Dotazník",
-    "ANSWER_A_FEW_QUESTIONS": "Prosím vyplňte informace o svém zdravotním stavu",
+    "ANSWER_A_FEW_QUESTIONS": "Máte nyní tyto příznaky, nebo jste je pozoroval(a) v posledních 24 hodinách?",
     "SKIP_TO_SUMMARY": "Přejít na Shrnutí",
     "INFORMATION_IS_SAFE": "Vaše osobní informace jsou v bezpečí.",
     "NO_DATA_IS_SENT_OVER_THE_INTERNET": "Žádná data se neodesílají přes internet."
@@ -41,7 +42,9 @@
     "SHOW_QR_CODE": "Zobrazit QR kód",
     "PERSONAL_INFORMATION": "Souhlasím se zpracováním osobních údajů",
     "YOU_HAVE_TO_ACCEPT_TXT": "Souhlasím, že všechny uvedené údaje jsou pravdivé. Uvedení nepravidvých informací může být posuzováno jako trestný čin",
-    "YOU_HAVE_TO_ACCEPT_BTN": "Musíte souhlasit s podmínkami"
+    "YOU_HAVE_TO_ACCEPT_BTN": "Musíte souhlasit s podmínkami",
+    "WARNING": "Upozornění",
+    "WARNING_TEXT": "Tyto informace zjišťujeme za účelem snížení rizika přenosu infekce virem COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých informací může být posuzováno jako trestný čin."
   },
   "PATIENT_SUMMARY": {
     "CONFIRMED_BY": "Potvrdil/a",
@@ -109,7 +112,9 @@
     "ONLY_FOR_EMPLOYEES": "Tato část aplikace je určena pouze pro zaměstnance nemocnic.",
     "ENTER_REGISTRATION_CODE": "Zadejte registrační kód. Pokud registrační kód nemáte, kontaktuje osobu pověřenou triáží ve vaší nemocnici.",
     "SEND": "Odeslat",
-    "CHECK_CONNECTION": "Zkontrolujte připojení k internetu, tato funkce není dostupná offline."
+    "CHECK_CONNECTION": "Zkontrolujte připojení k internetu, tato funkce není dostupná offline.",
+    "REGISTRATION_CODE": "Registrační kód",
+    "AUTHENTICATING": "Ověřování"
   },
   "ERROR": {
     "server_error": "Ups. Něco se pokazilo. Zkuste to znovu později",

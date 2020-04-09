@@ -1,45 +1,72 @@
 <template>
   <div class="main-container">
-    <NavBar> </NavBar>
-    <img
-      class="mb-8 mx-auto"
-      src="@/assets/img/home-page-welcome-img.png"
-      alt=""
-    />
-    <h1 class="mb-4">{{ appTitle }}</h1>
-    <p class="mb-4">
-      <strong>{{ $t('LOGIN.ONLY_FOR_EMPLOYEES') }}</strong>
-    </p>
+    <div>
+      <NavBar> </NavBar>
+      <img
+        class="mb-8 mx-auto"
+        src="@/assets/img/home-page-welcome-img.png"
+        alt=""
+      />
+      <h1 class="mb-4">{{ appTitle }}</h1>
+      <p class="mb-4">
+        <strong>{{ $t('LOGIN.ONLY_FOR_EMPLOYEES') }}</strong>
+      </p>
 
-    <p class="mb-4">
-      {{ $t('LOGIN.ENTER_REGISTRATION_CODE') }}
-    </p>
+      <p class="mb-4">
+        {{ $t('LOGIN.ENTER_REGISTRATION_CODE') }}
+      </p>
 
-    <!-- Loader -->
+      <!-- Loader -->
 
-    <div v-show="user === undefined" data-test="loader">Authenticating...</div>
+      <div v-show="user === undefined" data-test="loader">
+        {{ $t('LOGIN.AUTHENTICATING')}}...
+      </div>
 
-    <!-- Offline instruction -->
-    <div v-show="!networkOnLine" data-test="offline-instruction">
-      {{ $t('LOGIN.SEND') }}
+      <!-- Offline instruction -->
+      <div v-show="!networkOnLine" data-test="offline-instruction">
+        {{ $t('LOGIN.SEND') }}
+      </div>
+
+      <p v-if="loginError" class="bg-red-500 text-white p-2 m-2 rounded">
+        {{ $t(`ERROR.${loginError}`) }}
+      </p>
+      <!-- Auth UI -->
+      <form class="w-full" @submit="register">
+        <input
+          v-model="fullName"
+          :placeholder="$t('FULL_NAME')"
+          type="text"
+          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
+          required
+        />
+        <input
+          v-model="registrationCode"
+          :placeholder="$t('LOGIN.REGISTRATION_CODE')"
+          type="text"
+          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
+          required
+        />
+
+        <button
+          v-show="user !== undefined && !user && networkOnLine"
+          type="submit"
+          data-test="login-btn"
+          class="btn-primary my-4"
+        >
+          {{ $t('LOGIN.SEND') }}
+        </button>
+      </form>
     </div>
-
-    <p v-if="loginError" class="bg-red-500 text-white p-2 m-2 rounded">
-      {{ $t(`ERROR.${loginError}`) }}
-    </p>
-    <!-- Auth UI -->
-    <input
-      v-model="registrationCode"
-      type="text"
-      class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app"
-    />
     <div
-      v-show="user !== undefined && !user && networkOnLine"
-      data-test="login-btn"
-      class="btn-primary my-4"
-      @click="register"
+      v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
+      class="bottom-link"
     >
-      {{ $t('LOGIN.SEND') }}
+      <router-link class="employee-page-link" to="/how-it-works">{{
+        $t('HOME.HOW_IT_WORKS')
+      }}</router-link>
+      <router-link class="employee-page-link" to="/settings">{{
+        $t('HOME.SETTINGS')
+      }}</router-link>
     </div>
   </div>
 </template>
@@ -56,6 +83,7 @@ import PublicKeysDB from '@/firebase/public-keys-db'
 export default {
   data: () => ({
     loginError: null,
+    fullName: '',
     registrationCode: '',
     errorMessage: '',
     keyStore: null
@@ -113,9 +141,11 @@ export default {
   },
   methods: {
     ...mapMutations('authentication', ['setUser']),
+    ...mapMutations('employee', ['setFullName']),
 
     /* REGISTER EMPLOYEE */
-    async register() {
+    async register(e) {
+      e.preventDefault()
       this.loginError = null
       this.setUser(undefined)
 
@@ -136,6 +166,7 @@ export default {
           .signInWithCustomToken(res.token)
           .then(async userCredential => {
             this.createKeyPair(userCredential)
+            this.setFullName(this.fullName)
           })
       } catch (err) {
         // Handle Errors here.
@@ -181,9 +212,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.main-container {
-  justify-content: start;
-}
-</style>
