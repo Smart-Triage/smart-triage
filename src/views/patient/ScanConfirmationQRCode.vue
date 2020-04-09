@@ -3,8 +3,9 @@
     <NavBar :back-btn="true"></NavBar>
     <h1>{{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}</h1>
     <QRScanner
+      only-valid-patient="true"
       :scanning-confirmation-code="true"
-      @patient="processConfirmation"
+      @data="processConfirmation"
     ></QRScanner>
   </div>
 </template>

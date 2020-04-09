@@ -19,7 +19,7 @@
         </NavBar>
       </template>
       <template v-slot:body>
-        <QRScanner @patient="addPatient"></QRScanner>
+        <QRScanner only-valid-patient="true" @data="addPatient"></QRScanner>
       </template>
     </FullScreenModal>
 

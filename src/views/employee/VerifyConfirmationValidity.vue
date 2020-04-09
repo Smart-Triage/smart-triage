@@ -1,7 +1,11 @@
 <template>
   <div>
     <div v-if="scannig" class="scanner-view">
-      <QRScanner :verifying="true" @patient="verify"></QRScanner>
+      <QRScanner
+        only-valid-patient="true"
+        :verifying="true"
+        @data="verify"
+      ></QRScanner>
       <div v-if="error" class="bg-red-500 p-4 m-4 text-white rounded">
         {{ error }}
       </div>
