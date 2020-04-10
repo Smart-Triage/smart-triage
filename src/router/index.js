@@ -162,6 +162,17 @@ const router = new Router({
       }
     },
     {
+      path: '/activate',
+      name: 'activate',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-activate" */ '@/views/employee/ActivateApp.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
       path: '/check-login',
       name: 'check-login',
       component: CheckLogin,

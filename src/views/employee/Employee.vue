@@ -97,7 +97,7 @@
     <div v-if="showingConfirmationQR" class="confirmation-view">
       <h1>{{ $t('EMPLOYEE.PATIENT_CONFIRMATION_CODE') }}</h1>
       <qrcode-vue
-        class="qrcode bg-white p-4 m-2"
+        class="qrcode bg-white p-8 m-2"
         :value="signedPatient"
         size="300"
         level="H"
