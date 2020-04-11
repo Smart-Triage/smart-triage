@@ -28,7 +28,7 @@
 
       <FullScreenModal v-if="scanning">
         <template v-slot:header>
-          <NavBar>
+          <NavBar class="absolute top-0 left-0 z-10 px-4">
             <template v-slot:left>
               <button class="text-black" @click="scanning = false">
                 <ion-icon name="arrow-back-outline" size="large"></ion-icon>
@@ -37,7 +37,7 @@
           </NavBar>
         </template>
         <template v-slot:body>
-          <QRScanner @data="signRequest"></QRScanner>
+          <QRScanner class="h-full" @data="signRequest"></QRScanner>
         </template>
       </FullScreenModal>
 

@@ -1,23 +1,25 @@
 <template>
-  <div class="modal-mask">
-    <div class="modal-wrapper">
-      <div
-        class="modal-container flex flex-col items-center text-center bg-white"
-      >
-        <div class="modal-header w-full">
-          <slot name="header"> </slot>
-        </div>
+  <transition name="modal">
+    <div class="modal-mask">
+      <div class="modal-wrapper">
+        <div
+          class="modal-container flex flex-col items-center text-center bg-white"
+        >
+          <div class="modal-header w-full px-4">
+            <slot name="header"></slot>
+          </div>
 
-        <div class="modal-body w-full">
-          <slot name="body"> </slot>
-        </div>
+          <div class="modal-body w-full h-full">
+            <slot name="body"></slot>
+          </div>
 
-        <div class="modal-footer">
-          <slot name="footer"> </slot>
+          <div class="modal-footer">
+            <slot name="footer"></slot>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -48,20 +50,11 @@ export default {
   width: 100vw;
   height: 100vh;
   margin: 0px auto;
-  padding: 20px 30px;
   color: white;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
   font-family: Helvetica, Arial, sans-serif;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-
-.modal-default-button {
-  float: right;
 }
 
 .modal-enter {
