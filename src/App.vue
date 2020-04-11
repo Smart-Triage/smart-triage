@@ -1,11 +1,9 @@
 <template>
   <div id="app">
-    <div class="main-wrapper">
-      <InDevelopementOverlay></InDevelopementOverlay>
-      <transition name="view" mode="out-in">
-        <router-view />
-      </transition>
-    </div>
+    <InDevelopementOverlay></InDevelopementOverlay>
+    <transition name="view" mode="out-in">
+      <router-view />
+    </transition>
 
     <new-content-available-toastr
       v-if="newContentAvailable"
@@ -40,6 +38,13 @@ export default {
   },
   created() {
     this.$i18n.locale = this.locale
+
+    // We listen to the resize event
+    window.addEventListener('resize', () => {
+      // We execute the same script as before
+      const vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty('--vh', `${vh}px`)
+    })
   },
   methods: mapActions('app', [
     'closeAddToHomeScreenModalForApple',
@@ -48,103 +53,52 @@ export default {
 }
 </script>
 
+<style lang="postcss">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</style>
+
 <style lang="scss">
 @import '@/theme/variables.scss';
 
-* {
-  box-sizing: border-box;
-}
+#app {
+  width: 100%;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
 
-html {
-  height: 100%;
-  min-height: 100vh;
-  @supports (-webkit-appearance: none) {
-    .os-android & {
-      min-height: calc(100vh - 56px);
-    }
-  }
-}
-body {
-  margin: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
   background-color: $bg-color;
+  font-family: 'Titillium Web', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  color: #2c3e50;
 
-  height: 100%;
-  min-height: 100vh;
-  @supports (-webkit-appearance: none) {
-    .os-android & {
-      min-height: calc(100vh - 56px);
-    }
+  .new-content-available-toastr {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
   }
 
-  a {
-    font-weight: 500;
-    text-decoration: none;
-    color: black;
-  }
-
-  button {
-    background-color: initial;
-    border: initial;
-  }
-
-  hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid;
-    border-color: $secondary-text-color;
-    padding: 0;
-  }
-
-  #app {
-    // font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    //   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-family: 'Titillium Web', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 16px;
-    color: #2c3e50;
-
-    .new-content-available-toastr {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-    }
-
-    .apple-add-to-home-screen-modal {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      top: 0;
-      left: 0;
-      height: fit-content;
-      width: fit-content;
-      margin: auto;
-      z-index: 1000;
-    }
-
-    .main-wrapper {
-      height: 100%;
-      min-height: 100vh;
-      @supports (-webkit-appearance: none) {
-        .os-android & {
-          min-height: calc(100vh - 56px);
-        }
-      }
-
-      .page-wrapper {
-        width: 60%;
-        margin: auto;
-
-        @media screen and (max-width: 1000px) {
-          width: 100%;
-        }
-      }
-    }
+  .apple-add-to-home-screen-modal {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    left: 0;
+    height: fit-content;
+    width: fit-content;
+    margin: auto;
+    z-index: 1000;
   }
 }
 
-
+/* Vue Transition definitions */
 .view-enter-active,
 .view-leave-active {
   transition: opacity 0.2s ease-in-out, transform 0.2s ease;
@@ -161,29 +115,5 @@ body {
 .view-leave-to {
   opacity: 0;
   transform: translateX(-100px);
-}
-
-.unroll-enter-active,
-.unroll-leave-active {
-  transition: opacity 0.2s ease-in-out, transform 0.2s ease;
-}
-.unroll-enter,
-.unroll-leave-to {
-  opacity: 0;
-  transform: scaleY(1);
-}
-.unroll-enter-to,
-.unroll-leave {
-  opacity: 1;
-  transform: scaleY(0);
-}
-
-.icon-button {
-  display: flex;
-  cursor: pointer;
-
-  .button-text {
-    margin-left: 1rem;
-  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="page-wrapper">
     <div>
       <NavBar> </NavBar>
       <img

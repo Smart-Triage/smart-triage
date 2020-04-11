@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full" :class="{ 'bg-confirmed': currentPatient.confirmed }">
-    <div class="main-container">
+  <div class="page-wrapper">
+    <div class="w-full" :class="{ 'bg-confirmed': currentPatient.confirmed }">
       <NavBar>
         <template v-slot:left>
           <router-link to="/summary"
@@ -122,11 +122,6 @@ export default {
   padding-bottom: 3rem;
   height: 100%;
   min-height: 100vh;
-  @supports (-webkit-appearance: none) {
-    .os-android & {
-      min-height: calc(100vh - 56px);
-    }
-  }
 }
 
 .button-qr-close {

@@ -43,7 +43,6 @@
         ></ion-icon>
       </div>
     </button>
-    <transition name="unroll">
       <div
         class="info-container questionInfo text-left"
         :class="{ hideInfo: patientInfoHidden }"
@@ -71,7 +70,6 @@
           {{ $t('EDIT') }}
         </button>
       </div>
-    </transition>
     <button
       :class="{ changecolor: !patientSymptomsHidden }"
       class="patient-item accordion-button"

@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="page-wrapper">
     <NavBar></NavBar>
     <div class="main-content">
       <!-- TODO: spinner v-if spinner -->

@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="page-wrapper">
     <NavBar :back-btn="true"></NavBar>
     <h1 class="">{{ $t('HOW_IT_WORKS.HOW_IT_WORKS') }}?</h1>
     <img

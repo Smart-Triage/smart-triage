@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="page-wrapper">
     <NavBar v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
       <template v-slot:right>
         <div class="flex items-center">
@@ -19,7 +19,7 @@
         </NavBar>
       </template>
       <template v-slot:body>
-        <QRScanner only-valid-patient="true" @data="addPatient"></QRScanner>
+        <QRScanner :only-valid-patient="true" @data="addPatient"></QRScanner>
       </template>
     </FullScreenModal>
 

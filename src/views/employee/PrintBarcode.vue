@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="page-wrapper">
     <router-link to="/employee"
       ><ion-icon name="arrow-back-outline" size="large"></ion-icon
     ></router-link>

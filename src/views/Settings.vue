@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="page-wrapper">
     <NavBar :back-btn="true"></NavBar>
     <h1>{{ $t('SETTINGS.SETTINGS') }}</h1>
     <p class="p-4">

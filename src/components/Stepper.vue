@@ -359,13 +359,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  min-height: 100vh;
-  @supports (-webkit-appearance: none) {
-    .os-android & {
-      min-height: calc(100vh - 56px);
-    }
-  }
 }
 
 .buttons {
@@ -484,27 +477,4 @@ export default {
     }
   }
 }
-
-/*.main-container {*/
-/*  height: 100%;*/
-/*  min-height: 100vh;*/
-/*  @supports (-webkit-appearance: none) {*/
-/*    .os-android & {*/
-/*      min-height: calc(100vh - 56px);*/
-/*    }*/
-/*  }*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-
-/*  .home-page-top-img {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    flex: 2;*/
-/*    img {*/
-/*      margin: 0 0 2em 0;*/
-/*    }*/
-/*  }*/
-/*}*/
 </style>

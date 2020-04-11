@@ -1,22 +1,11 @@
 <template>
-  <div class="overflow-container">
-    <div
-      class="in-developement-overlay p-4 text-sm font-normal leading-none text-center w-full h-12"
-    >
-      {{ $t('APP_IN_DEVELOPMENT') }}
-    </div>
+  <div
+    class="w-full h-8 flex justify-center items-center bg-red-500 text-white text-sm"
+  >
+    {{ $t('APP_IN_DEVELOPMENT') }}
   </div>
 </template>
 
 <script>
 export default {}
 </script>
-
-<style lang="scss" scoped>
-@import '@/theme/variables.scss';
-
-.in-developement-overlay {
-  background-color: $negative-color;
-  color: white;
-}
-</style>

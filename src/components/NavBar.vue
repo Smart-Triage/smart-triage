@@ -1,5 +1,9 @@
 <template>
-  <header class="navbar" :class="{ offline: !networkOnLine }">
+  <header
+    class="sticky top-0 w-full h-12 flex justify-between items-center px-2"
+    :class="{ offline: !networkOnLine }"
+  >
+    <!-- LEFT SLOT -->
     <div class="left flex items-center leading-none">
       <slot name="left">
         <!-- Back button is only displayed when there is no element in 'left' slot and 'backBtn' prop is true-->
@@ -9,12 +13,13 @@
       </slot>
     </div>
 
-    <div class="center">
-      <slot name="center">
-<!--        <InDevelopementOverlay></InDevelopementOverlay>-->
-      </slot>
+    <!-- CENTER SLOT -->
+    <div class="center text-xl flex flex-col">
+      <span v-if="!networkOnLine" class="text-xs">{{ $t('OFFLINE') }}</span>
+      <slot name="center"> </slot>
     </div>
 
+    <!-- RIGHT SLOT -->
     <div class="right flex justify-end">
       <slot name="right"></slot>
     </div>
@@ -23,12 +28,8 @@
 
 <script>
 import { mapState } from 'vuex'
-// import InDevelopementOverlay from '@/components/InDevelopementOverlay'
 
 export default {
-  components: {
-    // InDevelopementOverlay
-  },
   props: { backBtn: { type: Boolean, default: false } },
   computed: {
     ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle'])
@@ -40,34 +41,13 @@ export default {
 <style lang="scss" scoped>
 @import '@/theme/variables.scss';
 
-.navbar {
-  width: 100%;
-  line-height: 2.2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  @apply mt-5 mb-2;
+header {
+  background-color: $bg-color;
+  z-index: 100;
+}
 
-  &.offline {
-    background: $navbar-offline-color;
-    .links .nav-links .nav-item a,
-    .site-name {
-      color: white;
-    }
-  }
-
-  .user-picture {
-    max-height: 32px;
-    margin-left: 1.5rem;
-    border-radius: 50%;
-  }
-
-  .offline-label {
-    padding: 0px 10px;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    margin-left: 1.5rem;
-  }
+.offline {
+  background: $navbar-offline-color;
+  color: white;
 }
 </style>
