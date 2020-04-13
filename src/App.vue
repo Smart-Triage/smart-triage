@@ -39,17 +39,19 @@ export default {
   created() {
     this.$i18n.locale = this.locale
 
+    this.setHeight()
     // We listen to the resize event
-    window.addEventListener('resize', () => {
-      // We execute the same script as before
-      const vh = window.innerHeight * 0.01
-      document.documentElement.style.setProperty('--vh', `${vh}px`)
-    })
+    window.addEventListener('resize', this.setHeight)
   },
   methods: mapActions('app', [
     'closeAddToHomeScreenModalForApple',
     'serviceWorkerSkipWaiting'
-  ])
+  ]),
+  setHeight() {
+    // Set window height without browser bars on mobile
+    const vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
+  }
 }
 </script>
 

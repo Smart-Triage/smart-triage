@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky top-0 w-full h-12 flex justify-between items-center px-2"
+    class="sticky top-0 w-full h-12 flex justify-between items-center px-2 mt-2"
     :class="{ offline: !networkOnLine }"
   >
     <!-- LEFT SLOT -->
@@ -49,5 +49,11 @@ header {
 .offline {
   background: $navbar-offline-color;
   color: white;
+}
+
+.left,
+.center,
+.right {
+  min-width: 2rem;
 }
 </style>

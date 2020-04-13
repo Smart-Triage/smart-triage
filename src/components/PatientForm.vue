@@ -1,7 +1,10 @@
 <template>
-  <form class="container" @submit="formSubmit">
+  <form
+    class="container w-full sm:max-w-lg flex flex-col items-center bg-white p-4 sm:p-8"
+    @submit="formSubmit"
+  >
     <div class="form-wrapper">
-      <div class="info-box">
+      <div class="info-box text-sm text-center">
         <p>{{ $t('FORM.INFORMATION_IS_SAFE') }}</p>
         <p>
           <strong>{{ $t('FORM.NO_DATA_IS_SENT_OVER_THE_INTERNET') }}</strong>
@@ -94,13 +97,7 @@ export default {
 @import '@/theme/general.scss';
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
   border-radius: 2em 2em 0 0;
-  padding: 0 0 2em 0;
-  padding: 0 2rem;
 
   .info-box {
     margin: 0 0 1rem 0;

@@ -1,9 +1,9 @@
 <template>
-  <div v-if="dataIsReady">
+  <div v-if="dataIsReady" class=" w-full h-full">
     <div
       v-for="step in getFormSteps"
       :key="step.order"
-      class="step"
+      class="step w-full h-full"
       :class="{ hidden: step.order !== currentStepNum }"
     >
       <NavBar>
@@ -11,6 +11,14 @@
           <router-link class="close" to="/home"
             ><ion-icon name="close" size="large"></ion-icon
           ></router-link>
+        </template>
+        <template v-slot:center>
+          <span v-if="step.order === '0'">
+            {{ $t('FORM.PERSONAL_DETAILS') }}
+          </span>
+          <span v-else>
+            {{ $t('FORM.QUESTIONNAIRE') }}
+          </span>
         </template>
         <template v-slot:right>
           <router-link
@@ -21,19 +29,14 @@
           >
         </template>
       </NavBar>
-      <div
-        v-if="step.order === '0'"
-        class="flex-auto flex flex-col items-center"
-      >
-        <h1 class="">{{ $t('FORM.PERSONAL_DETAILS') }}</h1>
-        <img class="my-1" src="@/assets/img/form-page-top.png" alt />
-      </div>
-      <div v-if="step.order !== '0'" class="">
-        <h1 class="mb-10">{{ $t('FORM.QUESTIONNAIRE') }}</h1>
+      <div v-if="step.order === '0'" class="mb-8">
+        <img src="@/assets/img/form-page-top.png" class="h-32 sm:h-full" />
       </div>
 
       <transition name="view" mode="out-in">
-        <div class="flex flex-col flex-auto bg-white form-div items-center">
+        <div
+          class="w-full max-w-lg flex flex-col flex-auto bg-white form-div items-center mx-2 sm:mx-4"
+        >
           <p v-if="step.order !== '0'" class="directions">
             {{ $t('FORM.ANSWER_A_FEW_QUESTIONS') }}
           </p>
