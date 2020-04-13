@@ -43,33 +43,33 @@
         ></ion-icon>
       </div>
     </button>
-      <div
-        class="info-container questionInfo text-left"
-        :class="{ hideInfo: patientInfoHidden }"
+    <div
+      class="info-container questionInfo text-left"
+      :class="{ hideInfo: patientInfoHidden }"
+    >
+      <p>
+        <b>{{ $t('FULL_NAME') }}</b>
+      </p>
+      <span>{{ patient.firstName + ' ' + patient.lastName }}</span>
+      <hr class="dividerInfo" />
+      <p>
+        <b>{{ $t('PERSONAL_IDENTIFICATION_NUMBER') }}</b>
+      </p>
+      <span>{{ patient.birthNumber }}</span>
+      <hr class="dividerInfo" />
+      <p>
+        <b>{{ $t('PHONE_NUMBER') }}</b>
+      </p>
+      <span>{{ patient.phoneNumber }}</span>
+      <hr class="dividerInfo" />
+      <button
+        v-if="allowEdit && !patient.confirmed"
+        class="edit-btn"
+        @click="edit('0')"
       >
-        <p>
-          <b>{{ $t('FULL_NAME') }}</b>
-        </p>
-        <span>{{ patient.firstName + ' ' + patient.lastName }}</span>
-        <hr class="dividerInfo" />
-        <p>
-          <b>{{ $t('PERSONAL_IDENTIFICATION_NUMBER') }}</b>
-        </p>
-        <span>{{ patient.birthNumber }}</span>
-        <hr class="dividerInfo" />
-        <p>
-          <b>{{ $t('PHONE_NUMBER') }}</b>
-        </p>
-        <span>{{ patient.phoneNumber }}</span>
-        <hr class="dividerInfo" />
-        <button
-          v-if="!employee && !patient.confirmed"
-          class="edit-btn"
-          @click="edit('0')"
-        >
-          {{ $t('EDIT') }}
-        </button>
-      </div>
+        {{ $t('EDIT') }}
+      </button>
+    </div>
     <button
       :class="{ changecolor: !patientSymptomsHidden }"
       class="patient-item accordion-button"
@@ -128,7 +128,7 @@
         <hr class="dividerInfo" />
       </div>
       <button
-        v-if="!employee && !patient.confirmed"
+        v-if="allowEdit && !patient.confirmed"
         class="edit-btn"
         @click="edit('1')"
       >
@@ -144,7 +144,7 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
   props: {
     patient: { type: Object, required: true },
-    employee: { type: Boolean, default: false }
+    allowEdit: { type: Boolean, default: true }
   },
   data: () => ({
     patientInfoHidden: false,

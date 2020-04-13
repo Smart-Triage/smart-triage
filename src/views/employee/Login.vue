@@ -32,7 +32,7 @@
           {{ $t(`ERROR.${loginError}`) }}
         </p>
         <!-- Auth UI -->
-        <form class="w-full" @submit="register">
+        <form class="w-full flex flex-col items-center" @submit="register">
           <input
             v-model="fullName"
             :placeholder="$t('FULL_NAME')"
@@ -58,10 +58,7 @@
           </button>
         </form>
       </div>
-      <div
-        v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
-        class="bottom-link"
-      >
+      <div class="bottom-link">
         <router-link class="employee-page-link" to="/how-it-works">{{
           $t('HOME.HOW_IT_WORKS')
         }}</router-link>

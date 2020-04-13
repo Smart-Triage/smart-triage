@@ -102,7 +102,11 @@
     "SETTINGS": "Nastavení",
     "ABOUT": "O aplikaci",
     "APP_LANGUAGE": "Jazyk apliakce",
-    "DELETE_ALL_DATA": "Vymazat všechna data"
+    "DELETE_ALL_DATA": "Vymazat všechna data",
+    "APP_MODE": "Režim aplikace",
+    "PATIENT": "Pacient",
+    "EMPLOYEE": "Zaměstnanec",
+    "ADMIN": "Administrátor"
   },
   "ALERT": {
     "DELETE_ALL_DATA": "Vymazat všechna data? Tu operaci není možné vrátit.",

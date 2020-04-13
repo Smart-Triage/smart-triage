@@ -4,5 +4,7 @@ export default {
     { langName: 'Česky', langCode: 'cs' },
     { langName: 'Slovenčina', langCode: 'sk' },
     { langName: 'English', langCode: 'en' }
-  ]
+  ],
+  appMode: 'patient',
+  availableAppModes: ['patient']
 }
