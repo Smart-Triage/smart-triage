@@ -10,7 +10,7 @@
     </NavBar>
     <FullScreenModal v-if="scanning">
       <template v-slot:header>
-        <NavBar>
+        <NavBar :bg-transparent="true">
           <template v-slot:left>
             <button class="text-black" @click="showEmployeeHomepage">
               <ion-icon name="arrow-back-outline" size="large"></ion-icon>
@@ -23,109 +23,114 @@
       </template>
     </FullScreenModal>
 
-    <div
-      v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
-      class="header-info"
-    >
-      <h1>{{ appTitle }}</h1>
-      <p class="my-4">{{ $t('EMPLOYEE.WELCOME') }}</p>
+    <div class="page-content">
+      <div
+        v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
+        class="header-info"
+      >
+        <h1>{{ appTitle }}</h1>
+        <p class="my-4">{{ $t('EMPLOYEE.WELCOME') }}</p>
 
-      <img src="@/assets/img/hand-holding-phone-scanning-qr-code.png" alt="" />
-    </div>
-    <p v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
-      {{ $t('EMPLOYEE.TAP_SCAN_TO_BEGIN') }}
-    </p>
+        <img
+          src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+          alt=""
+        />
+      </div>
+      <p v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
+        {{ $t('EMPLOYEE.TAP_SCAN_TO_BEGIN') }}
+      </p>
 
-    <div
-      v-if="showPatientSummary && scannedPatient !== null"
-      class="w-full max-w-md summary-view"
-    >
-      <NavBar>
-        <template v-slot:left>
-          <button class="icon-button" @click="showEmployeeHomepage">
-            <ion-icon name="close-outline" size="large"></ion-icon>
-          </button>
-        </template>
-      </NavBar>
-      <h1 class="mb-4">{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
+      <div
+        v-if="showPatientSummary && scannedPatient !== null"
+        class="w-full max-w-md summary-view"
+      >
+        <NavBar>
+          <template v-slot:left>
+            <button class="icon-button" @click="showEmployeeHomepage">
+              <ion-icon name="close-outline" size="large"></ion-icon>
+            </button>
+          </template>
+        </NavBar>
+        <h1 class="mb-4">{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
 
-      <PatientSummary
-        :patient="scannedPatient"
-        :employee="true"
-      ></PatientSummary>
+        <PatientSummary
+          :patient="scannedPatient"
+          :employee="true"
+        ></PatientSummary>
 
-      <!-- <RiskScale
+        <!-- <RiskScale
         :value="scannedPatient.totalPoints"
         :max="getMaxPoints"
       ></RiskScale> -->
-    </div>
+      </div>
 
-    <!-- <router-link
+      <!-- <router-link
       class="link icon-button"
       to="print-barcode"
       ><ion-icon name="barcode-outline"></ion-icon><div class="button-text">Print barcode</div></router-link
     > -->
-    <div
-      v-if="
-        showPatientSummary &&
-          scannedPatient &&
-          scannedPatient.isCovidSuspected === undefined
-      "
-      class="confirmation-buttons"
-    >
-      <button
-        class="btn-primary show-confirmation-btn patient-suspect icon-button"
-        @click="viewConfirmationQR(true)"
+      <div
+        v-if="
+          showPatientSummary &&
+            scannedPatient &&
+            scannedPatient.isCovidSuspected === undefined
+        "
+        class="confirmation-buttons"
       >
-        <ion-icon name="checkmark-outline"></ion-icon>
-        <div class="button-text">
-          {{ $t('EMPLOYEE.CONFIRM_AS_COVID_SUSPECT') }}
-        </div>
-      </button>
+        <button
+          class="btn-primary show-confirmation-btn patient-suspect icon-button"
+          @click="viewConfirmationQR(true)"
+        >
+          <ion-icon name="checkmark-outline"></ion-icon>
+          <div class="button-text">
+            {{ $t('EMPLOYEE.CONFIRM_AS_COVID_SUSPECT') }}
+          </div>
+        </button>
 
-      <button
-        class="btn-primary show-confirmation-btn patient-non-suspect icon-button"
-        @click="viewConfirmationQR(false)"
+        <button
+          class="btn-primary show-confirmation-btn patient-non-suspect icon-button"
+          @click="viewConfirmationQR(false)"
+        >
+          <ion-icon name="checkmark-outline"></ion-icon>
+          <div class="button-text">
+            {{ $t('EMPLOYEE.CONFIRM_AS_COVID_NON_SUSPECT') }}
+          </div>
+        </button>
+      </div>
+
+      <div v-if="showingConfirmationQR" class="confirmation-view">
+        <h1>{{ $t('EMPLOYEE.PATIENT_CONFIRMATION_CODE') }}</h1>
+        <qrcode-vue
+          class="qrcode bg-white p-4 m-2"
+          :value="signedPatient"
+          size="300"
+          level="H"
+        ></qrcode-vue>
+        <button class="link btn-primary" @click="showEmployeeHomepage">
+          {{ $t('EMPLOYEE.CLOSE_PATIENT') }}
+        </button>
+      </div>
+
+      <div
+        v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
+        class="employee-page-buttons"
       >
-        <ion-icon name="checkmark-outline"></ion-icon>
-        <div class="button-text">
-          {{ $t('EMPLOYEE.CONFIRM_AS_COVID_NON_SUSPECT') }}
-        </div>
-      </button>
-    </div>
-
-    <div v-if="showingConfirmationQR" class="confirmation-view">
-      <h1>{{ $t('EMPLOYEE.PATIENT_CONFIRMATION_CODE') }}</h1>
-      <qrcode-vue
-        class="qrcode bg-white p-4 m-2"
-        :value="signedPatient"
-        size="300"
-        level="H"
-      ></qrcode-vue>
-      <button class="link btn-primary" @click="showEmployeeHomepage">
-        {{ $t('EMPLOYEE.CLOSE_PATIENT') }}
-      </button>
-    </div>
-
-    <div
-      v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
-      class="employee-page-buttons"
-    >
-      <button class="btn-primary scan-next-patient icon-button" @click="scan">
-        <ion-icon name="scan-outline"></ion-icon>
-        <div class="button-text">{{ $t('EMPLOYEE.SCAN_NEXT_PATIENT') }}</div>
-      </button>
-    </div>
-    <div
-      v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
-      class="bottom-link"
-    >
-      <router-link class="employee-page-link" to="/how-it-works">{{
-        $t('HOME.HOW_IT_WORKS')
-      }}</router-link>
-      <router-link class="employee-page-link" to="/settings">{{
-        $t('HOME.SETTINGS')
-      }}</router-link>
+        <button class="btn-primary scan-next-patient icon-button" @click="scan">
+          <ion-icon name="scan-outline"></ion-icon>
+          <div class="button-text">{{ $t('EMPLOYEE.SCAN_NEXT_PATIENT') }}</div>
+        </button>
+      </div>
+      <div
+        v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
+        class="bottom-link"
+      >
+        <router-link class="employee-page-link" to="/how-it-works">{{
+          $t('HOME.HOW_IT_WORKS')
+        }}</router-link>
+        <router-link class="employee-page-link" to="/settings">{{
+          $t('HOME.SETTINGS')
+        }}</router-link>
+      </div>
     </div>
   </div>
 </template>

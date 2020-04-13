@@ -29,13 +29,15 @@
           >
         </template>
       </NavBar>
-      <div v-if="step.order === '0'" class="mb-8">
+      <div class="mb-8">
         <img src="@/assets/img/form-page-top.png" class="h-32 sm:h-full" />
       </div>
 
+      <div class="flex-grow"></div>
+
       <transition name="view" mode="out-in">
         <div
-          class="w-full max-w-lg flex flex-col flex-auto bg-white form-div items-center mx-2 sm:mx-4"
+          class="question-box w-full max-w-lg flex flex-col justify-between bg-white form-div items-center mx-2 sm:mx-4"
         >
           <p v-if="step.order !== '0'" class="directions">
             {{ $t('FORM.ANSWER_A_FEW_QUESTIONS') }}
@@ -370,11 +372,6 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem;
-
-  .next,
-  .prev {
-    padding: 1rem;
-  }
 }
 
 .boolean-answer-button,
@@ -479,5 +476,9 @@ export default {
       margin-left: 0.5rem;
     }
   }
+}
+
+.question-box {
+  min-height: 50vh;
 }
 </style>

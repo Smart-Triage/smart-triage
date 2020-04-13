@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrapper">
     <NavBar></NavBar>
-    <div class="main-content">
+    <div class="page-content">
       <!-- TODO: spinner v-if spinner -->
       <pre>{{ cert }}</pre>
       <button

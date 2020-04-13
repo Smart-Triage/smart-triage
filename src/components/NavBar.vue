@@ -1,7 +1,10 @@
 <template>
   <header
     class="sticky top-0 w-full h-12 flex justify-between items-center px-2 mt-2"
-    :class="{ offline: !networkOnLine }"
+    :class="{
+      offline: !networkOnLine,
+      'transparent-background': bgTransparent
+    }"
   >
     <!-- LEFT SLOT -->
     <div class="left flex items-center leading-none">
@@ -30,7 +33,10 @@
 import { mapState } from 'vuex'
 
 export default {
-  props: { backBtn: { type: Boolean, default: false } },
+  props: {
+    backBtn: { type: Boolean, default: false },
+    bgTransparent: { type: Boolean, default: false }
+  },
   computed: {
     ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle'])
   },
@@ -41,8 +47,13 @@ export default {
 <style lang="scss" scoped>
 @import '@/theme/variables.scss';
 
+.transparent-background {
+  background-color: transparent;
+}
+
 header {
   background-color: $bg-color;
+  color: black;
   z-index: 100;
 }
 
