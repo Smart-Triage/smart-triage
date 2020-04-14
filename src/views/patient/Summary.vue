@@ -25,10 +25,7 @@
 
       <PatientSummary :patient="currentPatient"></PatientSummary>
 
-      <div
-        v-if="!currentPatient.confirmed"
-        class="flex flex-col items-center card"
-      >
+      <div v-if="!currentPatient.confirmed" class="items-center card">
         <div class="flex flex-row w-full justify-between mb-2">
           <p class="text-left text-xs">
             {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
@@ -65,15 +62,13 @@
         v-if="
           (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
         "
-        class="link btn-primary icon-button show-qr-code-btn not-active-qr"
+        class="btn-primary w-full max-w-sm flex justify-center mx-4 mb-8 p-8 not-active-qr weird-safari-button-fix"
       >
-        <div>
-          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
-        </div>
+        {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
       </div>
       <button
         v-else
-        class="link btn-primary icon-button show-qr-code-btn"
+        class="btn-primary icon-button w-full max-w-sm flex justify-center mx-4 mb-8 p-4"
         @click="showModal = true"
       >
         <ion-icon name="qr-code-outline"></ion-icon>
@@ -188,16 +183,6 @@ export default {
   text-align: center;
 }
 
-.show-qr-code-btn {
-  padding: 1rem;
-  width: calc(100% - 2em);
-  max-width: 25rem;
-  display: flex;
-  justify-content: center;
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
 .not-active-qr {
   background-color: #d5d8de;
   color: #0d1f3c;
@@ -205,5 +190,9 @@ export default {
 
 .card {
   @apply my-8;
+}
+
+.weird-safari-button-fix {
+  min-height: 3rem;
 }
 </style>
