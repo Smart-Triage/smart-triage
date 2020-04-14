@@ -55,6 +55,43 @@
 
         <PatientSummary :patient="currentPatient"></PatientSummary>
 
+        <div
+          v-if="currentPatient && currentPatient.confirmation === undefined"
+          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 flex items-center font-semibold"
+        >
+          <label for="enter-temperature">
+            {{ $t('EMPLOYEE.ENTER_TEMPERATURE') }}:
+          </label>
+          <input
+            id="enter-temperature"
+            v-model="patientTemperature"
+            type="number"
+            min="36"
+            max="42"
+            step="0.1"
+            class="flex-grow p-2 rounded-full ml-4 text-center"
+            required
+          />
+        </div>
+
+        <div
+          v-else
+          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 flex items-center font-semibold"
+        >
+          <label for="measured-temperature">
+            {{ $t('EMPLOYEE.MEASURED_TEMPERATURE') }}
+          </label>
+          <input
+            id="measured-temperature"
+            :value="currentPatient.confirmation.measuredTemperature"
+            type="number"
+            min="36"
+            max="42"
+            step="0.1"
+            class="flex-grow p-2 rounded-full ml-4 text-center"
+            disabled
+          />
+        </div>
         <!-- <RiskScale
         :value="currentPatient.totalPoints"
         :max="getMaxPoints"
@@ -72,7 +109,7 @@
             currentPatient &&
             currentPatient.isCovidSuspected === undefined
         "
-        class="confirmation-buttons"
+        class="confirmation-buttons pb-12"
       >
         <button
           class="btn-primary show-confirmation-btn patient-suspect icon-button"
@@ -158,7 +195,8 @@ export default {
     showingConfirmationQR: false,
     scannedAtLeastOnce: false,
     showPatientSummary: false,
-    signedPatient: null
+    signedPatient: null,
+    patientTemperature: null
   }),
   computed: {
     ...mapState('app', ['appTitle']),
@@ -248,7 +286,8 @@ export default {
         value: {
           confirmedByName: 'Jan Novák',
           confirmedById: this.user.id,
-          timestamp: new Date()
+          timestamp: new Date(),
+          measuredTemperature: this.patientTemperature
         }
       })
       await this.setCurrentPatientValueByKey({
@@ -404,5 +443,10 @@ export default {
   .button-text {
     font-size: 1rem;
   }
+}
+
+.temperature-input {
+  background-color: #32227f15;
+  color: $secondary-color;
 }
 </style>

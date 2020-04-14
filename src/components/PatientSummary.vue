@@ -139,19 +139,22 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 
 export default {
   props: {
     patient: { type: Object, required: true },
     allowEdit: { type: Boolean, default: true }
   },
-  data: () => ({
-    patientInfoHidden: false,
-    patientSymptomsHidden: true
-  }),
+  data() {
+    return {
+      patientInfoHidden: false,
+      patientSymptomsHidden: this.appMode === 'patient'
+    }
+  },
   computed: {
     ...mapGetters('questions', ['getFormSteps']),
+    ...mapState('settings', ['appMode']),
     formStepsToShow() {
       if (!this.patient) return []
       const stepsToShow = []

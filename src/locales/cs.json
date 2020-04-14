@@ -71,7 +71,9 @@
     "CONFIRM_AS_COVID_NON_SUSPECT": "Potvrdit pacienta jako COVID NON suspect",
     "PATIENT_CONFIRMATION_CODE": "Potvrzovací kód pro pacienta",
     "CLOSE_PATIENT": "Zavřít pacienta",
-    "SCAN_NEXT_PATIENT": "Další pacient"
+    "SCAN_NEXT_PATIENT": "Další pacient",
+    "ENTER_TEMPERATURE": "Zadejte naměřenou teplotu",
+    "MEASURED_TEMPERATURE": "Naměřená teplota"
   },
   "HOW_IT_WORKS": {
     "HOW_IT_WORKS": "Jak to funguje",

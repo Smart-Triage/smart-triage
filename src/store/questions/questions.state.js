@@ -13,6 +13,7 @@ export default {
         order: '1',
         question: 'Známky infekce jako je bolest v krku, kašel, ztráta čichu?',
         answerType: 'boolean',
+        highlightIf: true,
         next: '2'
       },
       {
@@ -20,12 +21,14 @@ export default {
         question:
           'Projevy horečky jako je zimnice + třesavka + nezvyklá únava + pocení?',
         answerType: 'boolean',
+        highlightIf: true,
         next: '3'
       },
       {
         order: '3',
         question: 'Zvýšená tepota? Nově vzniklý kašel nebo dušnost?',
         answerType: 'boolean',
+        highlightIf: true,
         next: '4'
       },
       {
@@ -33,6 +36,7 @@ export default {
         question:
           'Setkal(a) jste se v posledních 14 dnech s někým nakaženým COVID-19?',
         answerType: 'boolean',
+        highlightIf: true,
         next: '5'
       },
       {
@@ -40,6 +44,7 @@ export default {
         question:
           'Byl(a) jste v posledních 14 dnech Vy nebo někdo blízký v zahraničí?',
         answerType: 'boolean',
+        highlightIf: true,
         next: 'end'
       }
     ],
