@@ -23,7 +23,7 @@
       </template>
     </FullScreenModal>
 
-    <div class="page-content">
+    <div class="page-content" style="display:block">
       <div
         v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
         class="header-info"
