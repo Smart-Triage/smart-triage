@@ -64,13 +64,14 @@
           </label>
           <input
             id="enter-temperature"
-            v-model="patientTemperature"
+            :value="currentPatient.measuredTemperature"
             type="number"
             min="36"
             max="42"
             step="0.1"
             class="flex-grow p-2 rounded-full ml-4 text-center"
             required
+            @input="setMeasuredTemperature($event.target.value)"
           />
         </div>
 
@@ -83,7 +84,7 @@
           </label>
           <input
             id="measured-temperature"
-            :value="currentPatient.confirmation.measuredTemperature"
+            :value="currentPatient.measuredTemperature"
             type="number"
             min="36"
             max="42"
@@ -286,8 +287,7 @@ export default {
         value: {
           confirmedByName: 'Jan Novák',
           confirmedById: this.user.id,
-          timestamp: new Date(),
-          measuredTemperature: this.patientTemperature
+          timestamp: new Date()
         }
       })
       await this.setCurrentPatientValueByKey({
@@ -387,6 +387,12 @@ export default {
       await this.setCurrentPatientValueByKey({
         key: 'totalPoints',
         value: totalPoints
+      })
+    },
+    setMeasuredTemperature(temperature) {
+      this.setCurrentPatientValueByKey({
+        key: 'measuredTemperature',
+        value: temperature
       })
     }
   }
