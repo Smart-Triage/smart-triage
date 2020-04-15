@@ -26,7 +26,8 @@ export default function validatePatient(
         'confirmation',
         'confirmed',
         'isCovidSuspected',
-        'finished'
+        'finished',
+        'measuredTemperature'
       ]
 
       requiredKeys.forEach(key => {

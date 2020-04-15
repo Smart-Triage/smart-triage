@@ -1,5 +1,5 @@
 <template>
-  <div class="page-wrapper">
+  <div v-if="user" class="page-wrapper">
     <NavBar v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
       <template v-slot:right>
         <div class="flex items-center">
@@ -23,7 +23,7 @@
       </template>
     </FullScreenModal>
 
-    <div class="page-content">
+    <div class="page-content" style="display:block">
       <div
         v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
         class="header-info"
@@ -41,7 +41,7 @@
       </p>
 
       <div
-        v-if="showPatientSummary && scannedPatient !== null"
+        v-if="showPatientSummary && currentPatient !== null"
         class="w-full max-w-md summary-view"
       >
         <NavBar>
@@ -53,13 +53,48 @@
         </NavBar>
         <h1 class="mb-4">{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
 
-        <PatientSummary
-          :patient="scannedPatient"
-          :employee="true"
-        ></PatientSummary>
+        <PatientSummary :patient="currentPatient"></PatientSummary>
 
+        <div
+          v-if="currentPatient && currentPatient.confirmation === undefined"
+          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 flex items-center font-semibold"
+        >
+          <label for="enter-temperature">
+            {{ $t('EMPLOYEE.ENTER_TEMPERATURE') }}:
+          </label>
+          <input
+            id="enter-temperature"
+            :value="currentPatient.measuredTemperature"
+            type="number"
+            min="36"
+            max="42"
+            step="0.1"
+            class="flex-grow p-2 rounded-full ml-4 text-center"
+            required
+            @input="setMeasuredTemperature($event.target.value)"
+          />
+        </div>
+
+        <div
+          v-else
+          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 flex items-center font-semibold"
+        >
+          <label for="measured-temperature">
+            {{ $t('EMPLOYEE.MEASURED_TEMPERATURE') }}
+          </label>
+          <input
+            id="measured-temperature"
+            :value="currentPatient.measuredTemperature"
+            type="number"
+            min="36"
+            max="42"
+            step="0.1"
+            class="flex-grow p-2 rounded-full ml-4 text-center"
+            disabled
+          />
+        </div>
         <!-- <RiskScale
-        :value="scannedPatient.totalPoints"
+        :value="currentPatient.totalPoints"
         :max="getMaxPoints"
       ></RiskScale> -->
       </div>
@@ -72,10 +107,10 @@
       <div
         v-if="
           showPatientSummary &&
-            scannedPatient &&
-            scannedPatient.isCovidSuspected === undefined
+            currentPatient &&
+            currentPatient.isCovidSuspected === undefined
         "
-        class="confirmation-buttons"
+        class="confirmation-buttons pb-12"
       >
         <button
           class="btn-primary show-confirmation-btn patient-suspect icon-button"
@@ -106,7 +141,7 @@
           size="300"
           level="H"
         ></qrcode-vue>
-        <button class="link btn-primary" @click="showEmployeeHomepage">
+        <button class="link btn-primary" @click="closePatient">
           {{ $t('EMPLOYEE.CLOSE_PATIENT') }}
         </button>
       </div>
@@ -133,11 +168,14 @@
       </div>
     </div>
   </div>
+  <div v-else>
+    <router-link to="/login">Login</router-link>
+  </div>
 </template>
 
 <script>
 import QrcodeVue from 'qrcode.vue'
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
 // import RiskScale from '@/components/RiskScale'
@@ -159,10 +197,11 @@ export default {
     scannedAtLeastOnce: false,
     showPatientSummary: false,
     signedPatient: null,
-    scannedPatient: null
+    patientTemperature: null
   }),
   computed: {
     ...mapState('app', ['appTitle']),
+    ...mapGetters('patients', ['currentPatient']),
     ...mapGetters('questions', ['getMaxPoints', 'getFormSteps']),
     ...mapState('authentication', ['user']),
     ...mapState('employee', ['fullName'])
@@ -196,6 +235,7 @@ export default {
     }
   },
   mounted() {
+    this.setAppMode('employee')
     const viewFromhash = window.location.hash.substr(1).trim()
     switch (viewFromhash) {
       case 'scanning':
@@ -212,10 +252,14 @@ export default {
     }
   },
   methods: {
+    ...mapActions('settings', ['setAppMode']),
+    ...mapMutations('patients', ['setCurrentPatientValueByKey']),
+    ...mapActions('patients', ['updateOrAddPatient', 'deletePatientById']),
     addPatient(patient) {
       this.scanning = false
       this.scannedAtLeastOnce = true
-      this.scannedPatient = patient
+      patient.isScannedByEmployee = true
+      this.updateOrAddPatient(patient)
       this.recalculatePoints()
       this.viewPatientSummary()
     },
@@ -225,22 +269,35 @@ export default {
       this.showPatientSummary = false
       this.$router.push('')
     },
+    closePatient() {
+      this.deletePatientById(this.currentPatient.id)
+      this.showEmployeeHomepage()
+    },
     scan() {
       this.scanning = true
       this.$router.push('#scanning')
     },
     async viewConfirmationQR(isCovidSuspected) {
-      this.scannedPatient.confirmed = true
-      this.scannedPatient.confirmation = {
-        confirmedByName: this.fullName,
-        confirmedById: this.user.id,
-        timestamp: new Date()
-      }
-      this.scannedPatient.isCovidSuspected = isCovidSuspected
+      await this.setCurrentPatientValueByKey({
+        key: 'confirmed',
+        value: true
+      })
+      await this.setCurrentPatientValueByKey({
+        key: 'confirmation',
+        value: {
+          confirmedByName: 'Jan Novák',
+          confirmedById: this.user.id,
+          timestamp: new Date()
+        }
+      })
+      await this.setCurrentPatientValueByKey({
+        key: 'isCovidSuspected',
+        value: isCovidSuspected
+      })
 
       // SIGN THE CONFIRMATION
       const signedData = await this.signConfirmation(
-        JSON.stringify(this.scannedPatient)
+        JSON.stringify(this.currentPatient)
       )
       if (signedData) {
         this.signedPatient = JSON.stringify(signedData)
@@ -297,11 +354,11 @@ export default {
       this.showPatientSummary = true
       this.$router.push('#patient-summary')
     },
-    recalculatePoints() {
+    async recalculatePoints() {
       let totalPoints = 0
       this.getFormSteps.forEach(step => {
-        const answer = this.scannedPatient.answers[
-          Object.keys(this.scannedPatient.answers).find(
+        const answer = this.currentPatient.answers[
+          Object.keys(this.currentPatient.answers).find(
             key => key === step.order
           )
         ]
@@ -327,7 +384,16 @@ export default {
         }
       })
 
-      this.scannedPatient.totalPoints = totalPoints
+      await this.setCurrentPatientValueByKey({
+        key: 'totalPoints',
+        value: totalPoints
+      })
+    },
+    setMeasuredTemperature(temperature) {
+      this.setCurrentPatientValueByKey({
+        key: 'measuredTemperature',
+        value: temperature
+      })
     }
   }
 }
@@ -383,5 +449,10 @@ export default {
   .button-text {
     font-size: 1rem;
   }
+}
+
+.temperature-input {
+  background-color: #32227f15;
+  color: $secondary-color;
 }
 </style>

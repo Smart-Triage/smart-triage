@@ -8,7 +8,9 @@
     >
       <NavBar>
         <template v-slot:left>
-          <router-link class="close" to="/home"
+          <router-link
+            class="close"
+            :to="appMode === 'employee' ? '/employee#patient-summary' : '/home'"
             ><ion-icon name="close" size="large"></ion-icon
           ></router-link>
         </template>
@@ -24,7 +26,9 @@
           <router-link
             v-if="currentPatient.finished"
             class="skip-to-summary"
-            to="/summary"
+            :to="
+              appMode === 'employee' ? '/employee#patient-summary' : '/summary'
+            "
             >{{ $t('FORM.SKIP_TO_SUMMARY') }}</router-link
           >
         </template>
@@ -144,7 +148,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 
@@ -160,6 +164,7 @@ export default {
   computed: {
     ...mapGetters('questions', ['getFormSteps']),
     ...mapGetters('patients', ['currentPatient']),
+    ...mapState('settings', ['appMode']),
     currentStep() {
       return this.getFormSteps.find(step => step.order === this.currentStepNum)
     },
@@ -226,10 +231,13 @@ export default {
       )
     }
     const stepNumFromUrl = this.$route.hash.substr(1).trim()
-
-    // Check if hash in URL is a valid step
-    if (this.getFormSteps.map(step => step.order).indexOf(stepNumFromUrl) > -1)
-      this.$router.replace('')
+    if (stepNumFromUrl.length > 1) {
+      // Check if hash in URL is a valid step
+      if (
+        this.getFormSteps.map(step => step.order).indexOf(stepNumFromUrl) > -1
+      )
+        this.$router.replace('')
+    }
 
     // Set correct hash in URL
     if (stepNumFromUrl !== this.currentStepNum)
@@ -250,6 +258,9 @@ export default {
         key: 'visitedSteps',
         value: cloneDeep(this.visitedSteps)
       })
+
+      // Update hash in URL with correct step number
+      this.$router.push(`#${this.currentStepNum}`)
     },
     next(answer) {
       if (answer === null) {
@@ -332,7 +343,10 @@ export default {
       })
 
       // When on last step navigate to summary
-      if (this.currentStepNum === 'end') this.$router.push('/summary')
+      if (this.currentStepNum === 'end')
+        this.$router.push(
+          this.appMode === 'employee' ? 'employee#patient-summary' : '/summary'
+        )
       // Else update hash in URL with correct step number
       else this.$router.push(`#${this.currentStepNum}`)
     }

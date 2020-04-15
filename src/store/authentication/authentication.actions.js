@@ -2,6 +2,7 @@ import router from '@/router'
 import { isNil } from 'lodash'
 import { createNewUserFromFirebaseAuthUser } from '@/misc/helpers'
 import UsersDB from '@/firebase/users-db'
+import store from '@/store'
 
 export default {
   /**
@@ -15,6 +16,7 @@ export default {
       : userFromFirebase
 
     commit('setUser', user)
+    store.dispatch('settings/enableAppMode', 'employee', { root: true })
   },
 
   /**

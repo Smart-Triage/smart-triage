@@ -4,8 +4,24 @@
     <div class="page-content">
       <h1>{{ $t('SETTINGS.SETTINGS') }}</h1>
       <p class="p-4">
-        <strong>{{ $t('SETTINGS.APP_LANGUAGE') }}</strong
-        ><LocaleChanger class="px-4"></LocaleChanger>
+        <strong>{{ $t('SETTINGS.APP_LANGUAGE') }}</strong>
+        <LocaleChanger class="px-4"></LocaleChanger>
+      </p>
+      <p v-if="availableAppModes.length > 1" class="p-4">
+        <strong>{{ $t('SETTINGS.APP_MODE') }}</strong>
+        <select
+          :value="appMode"
+          class="p-2 px-4 rounded-full"
+          @change="setAppMode($event.target.value)"
+        >
+          <option
+            v-for="mode in availableAppModes"
+            :key="`${mode}-mode`"
+            :value="mode"
+            :selected="appMode === mode"
+            >{{ $t(`SETTINGS.${mode.toUpperCase()}`) }}</option
+          >
+        </select>
       </p>
       <button class="link btn-primary mt-auto p-4" @click="deleteAllData">
         {{ $t('SETTINGS.DELETE_ALL_DATA') }}
@@ -21,12 +37,17 @@
 <script>
 import LocaleChanger from '@/components/LocaleChanger'
 import firebase from 'firebase/app'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
     LocaleChanger
   },
+  computed: {
+    ...mapState('settings', ['appMode', 'availableAppModes'])
+  },
   methods: {
+    ...mapActions('settings', ['setAppMode']),
     async deleteAllData() {
       // eslint-disable-next-line no-alert
       const r = window.confirm(this.$t('ALERT.DELETE_ALL_DATA'))

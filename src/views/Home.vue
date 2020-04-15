@@ -77,8 +77,12 @@ export default {
     ...mapState('app', ['appTitle']),
     ...mapState('patients', ['patients'])
   },
+  mounted() {
+    this.setAppMode('patient')
+  },
   methods: {
     ...mapActions('patients', ['createNewPatient']),
+    ...mapActions('settings', ['setAppMode']),
     async createPatient() {
       await this.createNewPatient()
       this.$router.push('/form')
