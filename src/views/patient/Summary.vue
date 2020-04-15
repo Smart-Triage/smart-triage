@@ -68,7 +68,7 @@
       </div>
       <button
         v-else
-        class="btn-primary icon-button w-full max-w-sm flex justify-center mx-4 mb-8 p-4"
+        class="btn-primary icon-button w-full max-w-sm flex justify-center mx-4 mb-8 p-4 weird-safari-button-fix"
         @click="showModal = true"
       >
         <ion-icon name="qr-code-outline"></ion-icon>
