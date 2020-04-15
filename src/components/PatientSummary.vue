@@ -43,33 +43,33 @@
         ></ion-icon>
       </div>
     </button>
-      <div
-        class="info-container questionInfo text-left"
-        :class="{ hideInfo: patientInfoHidden }"
+    <div
+      class="info-container questionInfo text-left"
+      :class="{ hideInfo: patientInfoHidden }"
+    >
+      <p>
+        <b>{{ $t('FULL_NAME') }}</b>
+      </p>
+      <span>{{ patient.firstName + ' ' + patient.lastName }}</span>
+      <hr class="dividerInfo" />
+      <p>
+        <b>{{ $t('PERSONAL_IDENTIFICATION_NUMBER') }}</b>
+      </p>
+      <span>{{ patient.birthNumber }}</span>
+      <hr class="dividerInfo" />
+      <p>
+        <b>{{ $t('PHONE_NUMBER') }}</b>
+      </p>
+      <span>{{ patient.phoneNumber }}</span>
+      <hr class="dividerInfo" />
+      <button
+        v-if="allowEdit && !patient.confirmed"
+        class="edit-btn"
+        @click="edit('0')"
       >
-        <p>
-          <b>{{ $t('FULL_NAME') }}</b>
-        </p>
-        <span>{{ patient.firstName + ' ' + patient.lastName }}</span>
-        <hr class="dividerInfo" />
-        <p>
-          <b>{{ $t('PERSONAL_IDENTIFICATION_NUMBER') }}</b>
-        </p>
-        <span>{{ patient.birthNumber }}</span>
-        <hr class="dividerInfo" />
-        <p>
-          <b>{{ $t('PHONE_NUMBER') }}</b>
-        </p>
-        <span>{{ patient.phoneNumber }}</span>
-        <hr class="dividerInfo" />
-        <button
-          v-if="!employee && !patient.confirmed"
-          class="edit-btn"
-          @click="edit('0')"
-        >
-          {{ $t('EDIT') }}
-        </button>
-      </div>
+        {{ $t('EDIT') }}
+      </button>
+    </div>
     <button
       :class="{ changecolor: !patientSymptomsHidden }"
       class="patient-item accordion-button"
@@ -128,7 +128,7 @@
         <hr class="dividerInfo" />
       </div>
       <button
-        v-if="!employee && !patient.confirmed"
+        v-if="allowEdit && !patient.confirmed"
         class="edit-btn"
         @click="edit('1')"
       >
@@ -139,19 +139,22 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 
 export default {
   props: {
     patient: { type: Object, required: true },
-    employee: { type: Boolean, default: false }
+    allowEdit: { type: Boolean, default: true }
   },
-  data: () => ({
-    patientInfoHidden: false,
-    patientSymptomsHidden: true
-  }),
+  data() {
+    return {
+      patientInfoHidden: false,
+      patientSymptomsHidden: this.appMode === 'patient'
+    }
+  },
   computed: {
     ...mapGetters('questions', ['getFormSteps']),
+    ...mapState('settings', ['appMode']),
     formStepsToShow() {
       if (!this.patient) return []
       const stepsToShow = []
@@ -165,9 +168,11 @@ export default {
   methods: {
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
     edit(stepNum) {
+      const visitedSteps = ['0']
+      if (stepNum === '1') visitedSteps.push('1')
       this.setCurrentPatientValueByKey({
         key: 'visitedSteps',
-        value: [stepNum]
+        value: visitedSteps
       })
       this.$router.push('/form')
     }

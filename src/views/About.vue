@@ -32,6 +32,7 @@
       <div class="text-xs mx-auto py-3">
         {{ $store.state.app.appTitle }} {{ $t('ABOUT.VERSION') }}
         {{ $store.getters.appVersion }}
+        ({{ $store.getters.buildDate | formatDate }})
       </div>
     </div>
   </div>
