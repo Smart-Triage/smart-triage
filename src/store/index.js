@@ -21,13 +21,17 @@ const vuexLocal = new VuexPersistence({
   })
 })
 
+console.log(process.env)
+
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
-    appVersion: process.env.VUE_APP_VERSION || '0'
+    appVersion: process.env.VUE_APP_VERSION || '0',
+    buildDate: process.env.VUE_APP_BUILD_DATE || ''
   },
   getters: {
-    appVersion: state => state.appVersion
+    appVersion: state => state.appVersion,
+    buildDate: state => state.buildDate
   },
   modules: {
     authentication,
