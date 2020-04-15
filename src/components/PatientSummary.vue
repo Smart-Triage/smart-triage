@@ -168,9 +168,11 @@ export default {
   methods: {
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
     edit(stepNum) {
+      const visitedSteps = ['0']
+      if (stepNum === '1') visitedSteps.push('1')
       this.setCurrentPatientValueByKey({
         key: 'visitedSteps',
-        value: [stepNum]
+        value: visitedSteps
       })
       this.$router.push('/form')
     }

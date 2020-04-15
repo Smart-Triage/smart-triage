@@ -231,10 +231,13 @@ export default {
       )
     }
     const stepNumFromUrl = this.$route.hash.substr(1).trim()
-
-    // Check if hash in URL is a valid step
-    if (this.getFormSteps.map(step => step.order).indexOf(stepNumFromUrl) > -1)
-      this.$router.replace('')
+    if (stepNumFromUrl.length > 1) {
+      // Check if hash in URL is a valid step
+      if (
+        this.getFormSteps.map(step => step.order).indexOf(stepNumFromUrl) > -1
+      )
+        this.$router.replace('')
+    }
 
     // Set correct hash in URL
     if (stepNumFromUrl !== this.currentStepNum)
@@ -255,6 +258,9 @@ export default {
         key: 'visitedSteps',
         value: cloneDeep(this.visitedSteps)
       })
+
+      // Update hash in URL with correct step number
+      this.$router.push(`#${this.currentStepNum}`)
     },
     next(answer) {
       if (answer === null) {
