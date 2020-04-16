@@ -1,12 +1,14 @@
 <template>
-  <div class="container">
+  <div class="page-wrapper">
     <NavBar :back-btn="true"></NavBar>
-    <h1>{{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}</h1>
-    <QRScanner
-      only-valid-patient="true"
-      :scanning-confirmation-code="true"
-      @data="processConfirmation"
-    ></QRScanner>
+    <div class="page-content">
+      <h1>{{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}</h1>
+      <QRScanner
+        :only-valid-patient="true"
+        :scanning-confirmation-code="true"
+        @data="processConfirmation"
+      ></QRScanner>
+    </div>
   </div>
 </template>
 

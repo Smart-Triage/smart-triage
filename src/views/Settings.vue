@@ -1,44 +1,71 @@
 <template>
-  <div class="main-container">
+  <div class="page-wrapper">
     <NavBar :back-btn="true"></NavBar>
-    <h1>{{ $t('SETTINGS.SETTINGS') }}</h1>
-    <p class="p-4">
-      <strong>{{ $t('SETTINGS.APP_LANGUAGE') }}</strong
-      ><LocaleChanger class="px-4"></LocaleChanger>
-    </p>
-    <button class="link btn-primary mt-auto p-4" @click="deleteAllData">
-      {{ $t('SETTINGS.DELETE_ALL_DATA') }}
-    </button>
+    <div class="page-content">
+      <h1>{{ $t('SETTINGS.SETTINGS') }}</h1>
+      <p class="p-4">
+        <strong>{{ $t('SETTINGS.APP_LANGUAGE') }}</strong>
+        <LocaleChanger class="px-4"></LocaleChanger>
+      </p>
+      <p v-if="availableAppModes.length > 1" class="p-4">
+        <strong>{{ $t('SETTINGS.APP_MODE') }}</strong>
+        <select
+          :value="appMode"
+          class="p-2 px-4 rounded-full"
+          @change="setAppMode($event.target.value)"
+        >
+          <option
+            v-for="mode in availableAppModes"
+            :key="`${mode}-mode`"
+            :value="mode"
+            :selected="appMode === mode"
+            >{{ $t(`SETTINGS.${mode.toUpperCase()}`) }}</option
+          >
+        </select>
+      </p>
+      <button class="link btn-primary mt-auto p-4" @click="deleteAllData">
+        {{ $t('SETTINGS.DELETE_ALL_DATA') }}
+      </button>
 
-    <router-link class="p-4" to="/about">{{
-      $t('SETTINGS.ABOUT')
-    }}</router-link>
+      <router-link class="p-4" to="/about">{{
+        $t('SETTINGS.ABOUT')
+      }}</router-link>
+    </div>
   </div>
 </template>
 
 <script>
 import LocaleChanger from '@/components/LocaleChanger'
+import firebase from 'firebase/app'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
     LocaleChanger
   },
+  computed: {
+    ...mapState('settings', ['appMode', 'availableAppModes'])
+  },
   methods: {
-    deleteAllData() {
+    ...mapActions('settings', ['setAppMode']),
+    async deleteAllData() {
       // eslint-disable-next-line no-alert
       const r = window.confirm(this.$t('ALERT.DELETE_ALL_DATA'))
       if (r === true) {
         localStorage.clear()
         sessionStorage.clear()
-        window.indexedDB
-          .databases()
-          .then(databases => {
+
+        await firebase.auth().signOut()
+
+        if (window.indexedDB.databases !== undefined) {
+          await window.indexedDB.databases().then(databases => {
             databases.forEach(db => window.indexedDB.deleteDatabase(db.name))
           })
-          .then(() => {
-            // eslint-disable-next-line no-alert
-            alert(this.$t('ALERT.ALL_DATA_CLEARED'))
-          })
+        }
+
+        // eslint-disable-next-line no-alert
+        alert(this.$t('ALERT.ALL_DATA_CLEARED'))
+
         window.location.reload()
       }
     }

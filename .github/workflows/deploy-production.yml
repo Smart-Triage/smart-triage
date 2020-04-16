@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: npm ci --cache-min=9999 --no-audit --progress=false
       # - name: Check prettier
-        # run: npm run prettier:check
+      # run: npm run prettier:check
       - name: Check linter
         run: npm run lint
       # - name: Check unit tests
@@ -66,6 +66,6 @@ jobs:
       - name: Deploy project to firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --non-interactive
+          args: deploy --non-interactive --only hosting:prod
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

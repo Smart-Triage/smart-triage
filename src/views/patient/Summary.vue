@@ -1,10 +1,13 @@
 <template>
-  <div v-if="currentPatient" class="main-container">
+  <div v-if="currentPatient" class="page-wrapper">
     <NavBar>
       <template v-slot:left>
         <router-link to="/home">
           <ion-icon name="close" size="large"></ion-icon>
         </router-link>
+      </template>
+      <template v-slot:center>
+        {{ $t('SUMMARY.SUMMARY') }}
       </template>
       <template v-slot:right>
         <button class="icon-button" @click="deletePatient">
@@ -13,92 +16,88 @@
       </template>
     </NavBar>
 
-    <h1 class="page-title">{{ $t('SUMMARY.SUMMARY') }}</h1>
-    <img
-      class="mx-auto my-4"
-      src="@/assets/img/home-page-welcome-img.png"
-      alt=""
-    />
+    <div class="page-content">
+      <img
+        class="mx-auto my-4"
+        src="@/assets/img/home-page-welcome-img.png"
+        alt=""
+      />
 
-    <PatientSummary :patient="currentPatient"></PatientSummary>
+      <PatientSummary :patient="currentPatient"></PatientSummary>
 
-    <div
-      v-if="!currentPatient.confirmed"
-      class="flex flex-col items-center card"
-    >
-      <div class="flex flex-row w-full justify-between mb-2">
-        <p class="text-left text-xs">
-          {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
-        </p>
-        <div>
-          <input
-            id="agree"
-            v-model="personalInfoAgreed"
-            type="checkbox"
-            value="agree"
-            class="m-4 self-center"
-          />
+      <div v-if="!currentPatient.confirmed" class="items-center card">
+        <div class="flex flex-row w-full justify-between mb-2">
+          <p class="text-left text-xs">
+            {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
+          </p>
+          <div>
+            <input
+              id="agree"
+              v-model="personalInfoAgreed"
+              type="checkbox"
+              value="agree"
+              class="m-4 self-center"
+            />
+          </div>
+        </div>
+        <div class="flex flex-row w-full justify-between">
+          <p class="text-left text-xs">
+            {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
+          </p>
+
+          <div>
+            <input
+              id="agree2"
+              v-model="allIsTrueAgreed"
+              type="checkbox"
+              value="agree"
+              class="m-4 self-center"
+              @change="agreedToTerms()"
+            />
+          </div>
         </div>
       </div>
-      <div class="flex flex-row w-full justify-between">
-        <p class="text-left text-xs">
-          {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
-        </p>
 
-        <div>
-          <input
-            id="agree2"
-            v-model="allIsTrueAgreed"
-            type="checkbox"
-            value="agree"
-            class="m-4 self-center"
-            @change="agreedToTerms()"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div
-      v-if="
-        (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
-      "
-      class="link btn-primary icon-button show-qr-code-btn not-active-qr"
-    >
-      <div>
+      <div
+        v-if="
+          (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
+        "
+        class="btn-primary w-full max-w-sm flex justify-center mx-4 mb-8 p-8 not-active-qr weird-safari-button-fix"
+      >
         {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
       </div>
-    </div>
-    <button
-      v-else
-      class="link btn-primary icon-button show-qr-code-btn"
-      @click="showModal = true"
-    >
-      <ion-icon name="qr-code-outline"></ion-icon>
-      <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
-    </button>
+      <button
+        v-else
+        class="btn-primary icon-button w-full max-w-sm flex justify-center mx-4 mb-8 p-4 weird-safari-button-fix"
+        @click="showModal = true"
+      >
+        <ion-icon name="qr-code-outline"></ion-icon>
+        <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
+      </button>
 
-    <!-- <router-link to="/home" class="link btn-primary icon-button"
+      <!-- <router-link to="/home" class="link btn-primary icon-button"
         ><ion-icon name="person-add-outline"></ion-icon>
         <div class="button-text">Add another person</div>
       </router-link> -->
-    <ModalWindow v-if="showModal">
-      <template v-slot:header>
-        <h2 class="p-0">{{ $t('SUMMARY.WARNING') }}</h2>
-      </template>
-      <template v-slot:body>
-        <p>
-          {{ $t('SUMMARY.WARNING_TEXT') }}
-        </p>
-      </template>
-      <template v-slot:footer>
-        <button class="btn-secondary mb-3" @click="showModal = false">
-          {{ $t('BACK') }}
-        </button>
-        <router-link to="/patient-qr-code" class="btn-primary">
-          <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
-        </router-link>
-      </template>
-    </ModalWindow>
+      <ModalWindow v-if="showModal">
+        <template v-slot:header>
+          <h2 class="p-0">{{ $t('SUMMARY.WARNING') }}</h2>
+        </template>
+        <template v-slot:body>
+          <p>
+            {{ $t('SUMMARY.WARNING_TEXT') }}
+          </p>
+        </template>
+        <template v-slot:footer>
+          <button class="btn-secondary mb-3" @click="showModal = false">
+            {{ $t('BACK') }}
+          </button>
+          <router-link to="/patient-qr-code" class="btn-primary">
+            <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
+          </router-link>
+        </template>
+      </ModalWindow>
+    </div>
   </div>
   <div v-else>
     <p>{{ $t('SOMETHING_WENT_WRONG') }}</p>
@@ -184,16 +183,6 @@ export default {
   text-align: center;
 }
 
-.show-qr-code-btn {
-  padding: 1rem;
-  width: calc(100% - 2em);
-  max-width: 25rem;
-  display: flex;
-  justify-content: center;
-  margin-left: 1em;
-  margin-right: 1em;
-}
-
 .not-active-qr {
   background-color: #d5d8de;
   color: #0d1f3c;
@@ -201,5 +190,9 @@ export default {
 
 .card {
   @apply my-8;
+}
+
+.weird-safari-button-fix {
+  min-height: 3rem;
 }
 </style>

@@ -40,17 +40,24 @@ h2 {
   @apply pr-4 flex self-center;
 }
 
-.main-container {
-  min-height: calc(100vh - 3rem);
-  @apply flex
+.page-wrapper {
+  overflow-y: auto;
+  @apply flex-grow
+  w-full
+  flex
   flex-col
-  text-center
-  items-center
-  max-w-sm
-  text-center
-  justify-between
-  px-6
-  mx-auto;
+  items-center;
+
+  .page-content {
+    @apply flex-grow
+    max-w-lg
+    mx-6
+    flex
+    flex-col
+    text-center
+    items-center
+    justify-between;
+  }
 }
 
 .card {
@@ -70,7 +77,7 @@ h2 {
 }
 
 .bottom-link {
-  @apply p-4 mt-8 w-full max-w-md flex justify-around;
+  @apply p-4 mt-8 w-full max-w-md flex justify-around mx-auto;
 }
 
 .self-justify-end {

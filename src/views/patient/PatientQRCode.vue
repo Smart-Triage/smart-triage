@@ -1,68 +1,71 @@
 <template>
-  <div class="w-full" :class="{ 'bg-confirmed': currentPatient.confirmed }">
-    <div class="main-container">
-      <NavBar>
-        <template v-slot:left>
-          <router-link to="/summary"
-            ><ion-icon name="close" size="large"></ion-icon
-          ></router-link>
-        </template>
-      </NavBar>
-      <div class="main-content flex-grow">
-        <div class="flex flex-col justify-start items-center">
-          <h1 class="text-2xl leading-tight">
-            {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
-          </h1>
-          <img class="w-1/2" src="@/assets/img/scan-code.png" alt="" />
-          <p class="my-4">
-            <strong>
-              {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
-            </strong>
-          </p>
-        </div>
+  <div
+    class="page-wrapper"
+    :class="{ 'bg-confirmed': currentPatient.confirmed }"
+  >
+    <NavBar :bg-transparent="true">
+      <template v-slot:left>
+        <router-link
+          to="/summary"
+          :class="{ 'text-white': currentPatient.confirmed }"
+          ><ion-icon name="close" size="large"></ion-icon
+        ></router-link>
+      </template>
+    </NavBar>
+    <div class="page-content">
+      <div class="flex flex-col justify-start items-center">
+        <h1 class="text-2xl leading-tight">
+          {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
+        </h1>
+        <img class="w-1/2" src="@/assets/img/scan-code.png" alt="" />
+        <p class="my-4">
+          <strong>
+            {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
+          </strong>
+        </p>
+      </div>
+      <div
+        v-if="
+          currentPatient.confirmation &&
+            currentPatient.confirmation.confirmedById.length > 1 &&
+            currentPatient.confirmation.timestamp
+        "
+        class="is-confirmed"
+      >
         <div
-          v-if="
-            currentPatient.confirmation &&
-              currentPatient.confirmation.confirmedById.length > 1 &&
-              currentPatient.confirmation.timestamp
-          "
-          class="is-confirmed"
+          class="confirmation-info"
+          :class="{ 'covid-suspedted': currentPatient.isCovidSuspected }"
         >
-          <div
-            class="confirmation-info"
-            :class="{ 'covid-suspedted': currentPatient.isCovidSuspected }"
-          >
-            <div>
-              {{ $t('PATIENT_QR_CODE.CONFIRMED_BY') }}
-              {{ currentPatient.confirmation.confirmedByName }}
-            </div>
-            <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
-            <div v-if="currentPatient.isCovidSuspected === true">
-              {{ $t('PATIENT_QR_CODE.COVID_SUSPECTED') }}
-            </div>
-            <div v-if="currentPatient.isCovidSuspected === false">
-              {{ $t('PATIENT_QR_CODE.COVID_NOT_SUSPECTED') }}
-            </div>
+          <div>
+            {{ $t('PATIENT_QR_CODE.CONFIRMED_BY') }}
+            {{ currentPatient.confirmation.confirmedByName }}
+          </div>
+          <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
+          <div v-if="currentPatient.isCovidSuspected === true">
+            {{ $t('PATIENT_QR_CODE.COVID_SUSPECTED') }}
+          </div>
+          <div v-if="currentPatient.isCovidSuspected === false">
+            {{ $t('PATIENT_QR_CODE.COVID_NOT_SUSPECTED') }}
           </div>
         </div>
-        <!-- {{ currentPatient.firstName + ' ' + currentPatient.lastName }} -->
-        <QrcodeVue
-          class="qrcode"
-          :value="stringyfiedPatient"
-          size="300"
-          level="H"
-        ></QrcodeVue>
-
-        <router-link
-          v-if="!currentPatient.confirmed"
-          class="btn-primary scan-confirmation-btn icon-button my-6"
-          to="/scan-confirmation-qr-code"
-          ><ion-icon name="scan-outline"></ion-icon>
-          <p class="button-text">
-            {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
-          </p></router-link
-        >
       </div>
+      <!-- {{ currentPatient.firstName + ' ' + currentPatient.lastName }} -->
+      <QrcodeVue
+        class="qrcode"
+        :value="stringyfiedPatient"
+        size="300"
+        level="H"
+      ></QrcodeVue>
+
+      <router-link
+        v-if="!currentPatient.confirmed"
+        class="btn-primary scan-confirmation-btn icon-button my-6"
+        to="/scan-confirmation-qr-code"
+        ><ion-icon name="scan-outline"></ion-icon>
+        <p class="button-text">
+          {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
+        </p></router-link
+      >
     </div>
   </div>
 </template>
@@ -91,7 +94,8 @@ export default {
               'isCovidSuspected',
               'finished',
               'signature',
-              'termsAccepted'
+              'termsAccepted',
+              'measuredTemperature'
             ].indexOf(key) > -1
         )
         .reduce(
@@ -122,11 +126,6 @@ export default {
   padding-bottom: 3rem;
   height: 100%;
   min-height: 100vh;
-  @supports (-webkit-appearance: none) {
-    .os-android & {
-      min-height: calc(100vh - 56px);
-    }
-  }
 }
 
 .button-qr-close {

@@ -1,39 +1,48 @@
 <template>
-  <div v-if="dataIsReady">
+  <div v-if="dataIsReady" class=" w-full h-full">
     <div
       v-for="step in getFormSteps"
       :key="step.order"
-      class="step"
+      class="step w-full h-full"
       :class="{ hidden: step.order !== currentStepNum }"
     >
       <NavBar>
         <template v-slot:left>
-          <router-link class="close" to="/home"
+          <router-link
+            class="close"
+            :to="appMode === 'employee' ? '/employee#patient-summary' : '/home'"
             ><ion-icon name="close" size="large"></ion-icon
           ></router-link>
+        </template>
+        <template v-slot:center>
+          <span v-if="step.order === '0'">
+            {{ $t('FORM.PERSONAL_DETAILS') }}
+          </span>
+          <span v-else>
+            {{ $t('FORM.QUESTIONNAIRE') }}
+          </span>
         </template>
         <template v-slot:right>
           <router-link
             v-if="currentPatient.finished"
             class="skip-to-summary"
-            to="/summary"
+            :to="
+              appMode === 'employee' ? '/employee#patient-summary' : '/summary'
+            "
             >{{ $t('FORM.SKIP_TO_SUMMARY') }}</router-link
           >
         </template>
       </NavBar>
-      <div
-        v-if="step.order === '0'"
-        class="flex-auto flex flex-col items-center"
-      >
-        <h1 class="">{{ $t('FORM.PERSONAL_DETAILS') }}</h1>
-        <img class="my-1" src="@/assets/img/form-page-top.png" alt />
-      </div>
-      <div v-if="step.order !== '0'" class="">
-        <h1 class="mb-10">{{ $t('FORM.QUESTIONNAIRE') }}</h1>
+      <div class="mb-8">
+        <img src="@/assets/img/form-page-top.png" class="h-32 sm:h-full" />
       </div>
 
+      <div class="flex-grow"></div>
+
       <transition name="view" mode="out-in">
-        <div class="flex flex-col flex-auto bg-white form-div items-center">
+        <div
+          class="question-box w-full max-w-lg flex flex-col justify-between bg-white form-div items-center mx-2 sm:mx-4"
+        >
           <p v-if="step.order !== '0'" class="directions">
             {{ $t('FORM.ANSWER_A_FEW_QUESTIONS') }}
           </p>
@@ -139,7 +148,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 
@@ -155,6 +164,7 @@ export default {
   computed: {
     ...mapGetters('questions', ['getFormSteps']),
     ...mapGetters('patients', ['currentPatient']),
+    ...mapState('settings', ['appMode']),
     currentStep() {
       return this.getFormSteps.find(step => step.order === this.currentStepNum)
     },
@@ -221,10 +231,13 @@ export default {
       )
     }
     const stepNumFromUrl = this.$route.hash.substr(1).trim()
-
-    // Check if hash in URL is a valid step
-    if (this.getFormSteps.map(step => step.order).indexOf(stepNumFromUrl) > -1)
-      this.$router.replace('')
+    if (stepNumFromUrl.length > 1) {
+      // Check if hash in URL is a valid step
+      if (
+        this.getFormSteps.map(step => step.order).indexOf(stepNumFromUrl) > -1
+      )
+        this.$router.replace('')
+    }
 
     // Set correct hash in URL
     if (stepNumFromUrl !== this.currentStepNum)
@@ -245,6 +258,9 @@ export default {
         key: 'visitedSteps',
         value: cloneDeep(this.visitedSteps)
       })
+
+      // Update hash in URL with correct step number
+      this.$router.push(`#${this.currentStepNum}`)
     },
     next(answer) {
       if (answer === null) {
@@ -327,7 +343,10 @@ export default {
       })
 
       // When on last step navigate to summary
-      if (this.currentStepNum === 'end') this.$router.push('/summary')
+      if (this.currentStepNum === 'end')
+        this.$router.push(
+          this.appMode === 'employee' ? 'employee#patient-summary' : '/summary'
+        )
       // Else update hash in URL with correct step number
       else this.$router.push(`#${this.currentStepNum}`)
     }
@@ -359,13 +378,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  min-height: 100vh;
-  @supports (-webkit-appearance: none) {
-    .os-android & {
-      min-height: calc(100vh - 56px);
-    }
-  }
 }
 
 .buttons {
@@ -374,11 +386,6 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem;
-
-  .next,
-  .prev {
-    padding: 1rem;
-  }
 }
 
 .boolean-answer-button,
@@ -485,26 +492,7 @@ export default {
   }
 }
 
-/*.main-container {*/
-/*  height: 100%;*/
-/*  min-height: 100vh;*/
-/*  @supports (-webkit-appearance: none) {*/
-/*    .os-android & {*/
-/*      min-height: calc(100vh - 56px);*/
-/*    }*/
-/*  }*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-
-/*  .home-page-top-img {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    flex: 2;*/
-/*    img {*/
-/*      margin: 0 0 2em 0;*/
-/*    }*/
-/*  }*/
-/*}*/
+.question-box {
+  min-height: 50vh;
+}
 </style>

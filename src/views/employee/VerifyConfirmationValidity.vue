@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="page-wrapper">
     <div v-if="scannig" class="scanner-view">
       <QRScanner
-        only-valid-patient="true"
+        :only-valid-patient="true"
         :verifying="true"
         @data="verify"
       ></QRScanner>

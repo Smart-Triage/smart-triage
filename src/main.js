@@ -18,7 +18,6 @@ import '@/firebase/authentication'
 import '@/misc/handle-apple-install-prompt'
 import 'pwacompat'
 
-import '@/assets/styles/tailwind.css'
 import '@/theme/general.scss'
 
 Vue.use(UUID)
@@ -31,7 +30,7 @@ Vue.component('NavBar', NavBar)
 
 Vue.filter('formatDate', value => {
   if (value) {
-    return moment(String(value)).format('MM/DD/YYYY HH:mm')
+    return moment(String(value)).format('DD.MM.YYYY HH:mm')
   }
   return ''
 })
