@@ -285,7 +285,7 @@ export default {
       await this.setCurrentPatientValueByKey({
         key: 'confirmation',
         value: {
-          confirmedByName: 'Jan Novák',
+          confirmedByName: this.fullName,
           confirmedById: this.user.id,
           timestamp: new Date()
         }
