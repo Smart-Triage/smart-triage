@@ -37,6 +37,7 @@
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
+import Constants from '@/misc/constants'
 
 export default {
   computed: {
@@ -70,7 +71,8 @@ export default {
     isExpired(patient) {
       return (
         patient.invalid ||
-        patient.validityTimestamp + 60 * 1000 < new Date().getTime()
+        patient.validityTimestamp + Constants.FORM_VALIDITY_PERIOD <
+          new Date().getTime()
       )
     },
     checkAndProcessExpiration(patient) {
