@@ -19,7 +19,8 @@ export default function validatePatient(
         'birthNumber',
         'phoneNumber',
         'answers',
-        'termsAccepted'
+        'termsAccepted',
+        'validityTimestamp'
       ]
       if (scanningConfirmationCode || verifying) requiredKeys.push('signature')
       const optionalKeys = [

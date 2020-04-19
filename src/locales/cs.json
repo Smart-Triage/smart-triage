@@ -44,7 +44,10 @@
     "YOU_HAVE_TO_ACCEPT_TXT": "Souhlasím, že všechny uvedené údaje jsou pravdivé. Uvedení nepravidvých informací může být posuzováno jako trestný čin",
     "YOU_HAVE_TO_ACCEPT_BTN": "Musíte souhlasit s podmínkami",
     "WARNING": "Upozornění",
-    "WARNING_TEXT": "Tyto informace zjišťujeme za účelem snížení rizika přenosu infekce virem COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých informací může být posuzováno jako trestný čin."
+    "WARNING_TEXT": "Tyto informace zjišťujeme za účelem snížení rizika přenosu infekce virem COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých informací může být posuzováno jako trestný čin.",
+    "VALIDITY_TIMEOUT": "Platnost dotazníku vypršela",
+    "VALIDITY_TIMEOUT_TEXT": "Dotazník je platný pouze po dobu 24 hodin z důvodu relevance odpovědí a je nutné ho vyplnit znovu.",
+    "VALIDITY_TIMEOUT_CONFIRMATION": "OK"
   },
   "PATIENT_SUMMARY": {
     "CONFIRMED_BY": "Potvrdil/a",
@@ -56,7 +59,8 @@
   "PATIENT_LIST": {
     "CONFIRMED": "Potvrzeno",
     "FINISHED": "Dokončeno",
-    "NOT_FINISHED": "Nedokončeno"
+    "NOT_FINISHED": "Nedokončeno",
+    "VALIDITY_TIMEOUT": "Platnost vypršela"
   },
   "NEW_CONTENT_AVAILABLE": {
     "LOADING": "Načítání nového obsahu",

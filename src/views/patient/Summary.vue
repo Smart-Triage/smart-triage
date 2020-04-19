@@ -97,6 +97,24 @@
           </router-link>
         </template>
       </ModalWindow>
+      <ModalWindow v-if="showValidityTimeoutModal">
+        <template v-slot:header>
+          <h2 class="p-0">{{ $t('SUMMARY.VALIDITY_TIMEOUT') }}</h2>
+        </template>
+        <template v-slot:body>
+          <p>
+            {{ $t('SUMMARY.VALIDITY_TIMEOUT_TEXT') }}
+          </p>
+        </template>
+        <template v-slot:footer>
+          <button
+            class="btn-secondary mb-3"
+            @click="invalidatePatientAndRedirect"
+          >
+            {{ $t('SUMMARY.VALIDITY_TIMEOUT_CONFIRMATION') }}
+          </button>
+        </template>
+      </ModalWindow>
     </div>
   </div>
   <div v-else>
@@ -109,13 +127,15 @@
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 import PatientSummary from '@/components/PatientSummary'
 import ModalWindow from '@/components/ModalWindow'
+import Constants from '@/misc/constants'
 
 export default {
   components: { PatientSummary, ModalWindow },
   data: () => ({
     allIsTrueAgreed: false,
     personalInfoAgreed: false,
-    showModal: false
+    showModal: false,
+    showValidityTimeoutModal: false
   }),
   computed: {
     ...mapState('patients', ['patients']),
@@ -125,12 +145,21 @@ export default {
   mounted() {
     if (this.currentPatient === undefined) {
       this.$router.push('/home')
-    } else {
+    } else if (
+      this.currentPatient.validityTimestamp + Constants.FORM_VALIDITY_PERIOD >
+      new Date().getTime()
+    ) {
       this.setCurrentPatientValueByKey({ key: 'finished', value: true })
+    } else {
+      // 24 hour validity period ran out, inform the user and make him go back
+      this.showValidityTimeoutModal = true
     }
   },
   methods: {
-    ...mapActions('patients', ['deletePatientById']),
+    ...mapActions('patients', [
+      'deletePatientById',
+      'invalidatePatientFormById'
+    ]),
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
     deletePatient(e) {
       e.stopPropagation()
@@ -143,6 +172,12 @@ export default {
           this.$router.push('/home')
         })
       }
+    },
+    invalidatePatientAndRedirect() {
+      this.showValidityTimeoutModal = false
+      this.invalidatePatientFormById(this.currentPatient.id).then(() => {
+        this.$router.push('/home')
+      })
     },
     agreedToTerms() {
       this.setCurrentPatientValueByKey({

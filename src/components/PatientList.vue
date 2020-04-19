@@ -22,8 +22,11 @@
       </div>
       <div class="patient-item-right">
         <span v-if="patient.confirmed">{{ $t('PATIENT_LIST.CONFIRMED') }}</span>
-        <span v-else-if="patient.finished">{{
+        <span v-else-if="patient.finished && !isExpired(patient)">{{
           $t('PATIENT_LIST.FINISHED')
+        }}</span>
+        <span v-else-if="isExpired(patient)">{{
+          $t('PATIENT_LIST.VALIDITY_TIMEOUT')
         }}</span>
         <span v-else>{{ $t('PATIENT_LIST.NOT_FINISHED') }}</span>
         <ion-icon name="arrow-forward-outline"></ion-icon>
@@ -33,21 +36,47 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 
 export default {
   computed: {
     ...mapState('patients', ['patients'])
   },
+  mounted() {
+    // I'm sorry, but why in the everliving fuck is for-of restricted? Why is this abomination of a syntax preferable?
+    // this truly is the objectively worst eslint setting imaginable holy shit this is unreal
+    this.patients.forEach(patient => {
+      if (this.isExpired(patient)) {
+        this.invalidatePatientFormById(patient.id)
+      }
+    })
+  },
   methods: {
     ...mapMutations('patients', [
       'setCurrentPatientId',
-      'setCurrentPatientFormStep'
+      'setCurrentPatientFormStep',
+      'setCurrentPatientValueByKey'
     ]),
-    selectPatient(patient) {
+    ...mapActions('patients', ['invalidatePatientFormById']),
+    async selectPatient(patient) {
       this.setCurrentPatientId(patient.id)
+      if (this.isExpired(patient)) {
+        await this.invalidatePatientFormById(patient.id)
+      }
+      this.setCurrentPatientValueByKey({ key: 'invalid', value: false })
       if (patient.finished) this.$router.push('/summary')
       else this.$router.push('/form')
+    },
+    isExpired(patient) {
+      return (
+        patient.invalid ||
+        patient.validityTimestamp + 60 * 1000 < new Date().getTime()
+      )
+    },
+    checkAndProcessExpiration(patient) {
+      if (this.isExpired(patient)) {
+        this.invalidatePatientFormById(patient.id)
+      }
     }
   }
 }
