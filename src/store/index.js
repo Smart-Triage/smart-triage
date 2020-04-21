@@ -21,8 +21,6 @@ const vuexLocal = new VuexPersistence({
   })
 })
 
-console.log(process.env)
-
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {

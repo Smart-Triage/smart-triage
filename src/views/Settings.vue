@@ -9,19 +9,17 @@
       </p>
       <p v-if="availableAppModes.length > 1" class="p-4">
         <strong>{{ $t('SETTINGS.APP_MODE') }}</strong>
-        <select
-          :value="appMode"
-          class="p-2 px-4 rounded-full"
-          @change="setAppMode($event.target.value)"
-        >
-          <option
-            v-for="mode in availableAppModes"
-            :key="`${mode}-mode`"
-            :value="mode"
-            :selected="appMode === mode"
-            >{{ $t(`SETTINGS.${mode.toUpperCase()}`) }}</option
-          >
-        </select>
+        <span class="px-4">
+          <select :value="appMode" @change="setAppMode($event.target.value)">
+            <option
+              v-for="mode in availableAppModes"
+              :key="`${mode}-mode`"
+              :value="mode"
+              :selected="appMode === mode"
+              >{{ $t(`SETTINGS.${mode.toUpperCase()}`) }}</option
+            >
+          </select>
+        </span>
       </p>
       <button class="link btn-primary mt-auto p-4" @click="deleteAllData">
         {{ $t('SETTINGS.DELETE_ALL_DATA') }}

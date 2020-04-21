@@ -67,13 +67,15 @@
     "WELCOME": "Vítejte v zaměstnanecké aplikaci pro triáž pacientů",
     "TAP_SCAN_TO_BEGIN": "Začněte klepnutím na Další pacient",
     "PATIENT_SUMMARY": "Přehled pacienta",
-    "CONFIRM_AS_COVID_SUSPECT": "Potvrdit pacienta jako COVID suspect",
-    "CONFIRM_AS_COVID_NON_SUSPECT": "Potvrdit pacienta jako COVID NON suspect",
+    "IS_INFECTION_SUSPECTED": "Podezření na infekci",
+    "CONFIRM": "Potvrdit",
     "PATIENT_CONFIRMATION_CODE": "Potvrzovací kód pro pacienta",
     "CLOSE_PATIENT": "Zavřít pacienta",
     "SCAN_NEXT_PATIENT": "Další pacient",
     "ENTER_TEMPERATURE": "Zadejte naměřenou teplotu",
-    "MEASURED_TEMPERATURE": "Naměřená teplota"
+    "MEASURED_TEMPERATURE": "Naměřená teplota",
+    "SCAN_PATIENT": "Naskenujte QR kód pacienta",
+    "SELECT_INFECTION_SUSPECTION": "Zadejte podezření na infekci"
   },
   "HOW_IT_WORKS": {
     "HOW_IT_WORKS": "Jak to funguje",

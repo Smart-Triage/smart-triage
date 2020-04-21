@@ -59,13 +59,14 @@
 
       <router-link
         v-if="!currentPatient.confirmed"
-        class="btn-primary scan-confirmation-btn icon-button my-6"
+        class="flex items-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-6"
         to="/scan-confirmation-qr-code"
-        ><ion-icon name="scan-outline"></ion-icon>
-        <p class="button-text">
-          {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
-        </p></router-link
       >
+        <ion-icon name="scan-outline"></ion-icon>
+        <span class="ml-2">
+          {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
+        </span>
+      </router-link>
     </div>
   </div>
 </template>

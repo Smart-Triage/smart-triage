@@ -2,9 +2,9 @@
   <div v-if="user" class="page-wrapper">
     <NavBar v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
       <template v-slot:right>
-        <div class="flex items-center">
+        <div class="flex items-center text-gray-700">
           <ion-icon name="person-circle-outline" size="large"></ion-icon>
-          <span class="ml-2">{{ fullName }}</span>
+          <span class="ml-2 font-semibold">{{ fullName }}</span>
         </div>
       </template>
     </NavBar>
@@ -16,6 +16,9 @@
               <ion-icon name="arrow-back-outline" size="large"></ion-icon>
             </button>
           </template>
+          <template v-slot:center>
+            <span>{{ $t('EMPLOYEE.SCAN_PATIENT') }}</span>
+          </template>
         </NavBar>
       </template>
       <template v-slot:body>
@@ -24,6 +27,7 @@
     </FullScreenModal>
 
     <div class="page-content" style="display:block">
+      <!-- EMPLOYEE HOMEPAGE -->
       <div
         v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
         class="header-info"
@@ -33,31 +37,46 @@
 
         <img
           src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
-          alt=""
+          alt="Scanning a QR code"
         />
-      </div>
-      <p v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
-        {{ $t('EMPLOYEE.TAP_SCAN_TO_BEGIN') }}
-      </p>
 
+        <button class="btn-primary flex items-center m-4" @click="scan">
+          <ion-icon name="scan-outline"></ion-icon>
+          <span class="ml-2">{{ $t('EMPLOYEE.SCAN_NEXT_PATIENT') }}</span>
+        </button>
+        <div class="bottom-link">
+          <router-link class="employee-page-link" to="/how-it-works">{{
+            $t('HOME.HOW_IT_WORKS')
+          }}</router-link>
+          <router-link class="employee-page-link" to="/settings">{{
+            $t('HOME.SETTINGS')
+          }}</router-link>
+        </div>
+      </div>
+
+      <!-- EMPLOYEE - PATIENT SUMMARY PAGE -->
       <div
         v-if="showPatientSummary && currentPatient !== null"
         class="w-full max-w-md summary-view"
       >
         <NavBar>
+          <template v-slot:center>
+            <span v-if="showPatientSummary">
+              {{ $t('EMPLOYEE.PATIENT_SUMMARY') }}
+            </span>
+          </template>
           <template v-slot:left>
             <button class="icon-button" @click="showEmployeeHomepage">
               <ion-icon name="close-outline" size="large"></ion-icon>
             </button>
           </template>
         </NavBar>
-        <h1 class="mb-4">{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
 
         <PatientSummary :patient="currentPatient"></PatientSummary>
 
         <div
           v-if="currentPatient && currentPatient.confirmation === undefined"
-          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 flex items-center font-semibold"
+          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 mt-2 flex items-center font-semibold"
         >
           <label for="enter-temperature">
             {{ $t('EMPLOYEE.ENTER_TEMPERATURE') }}:
@@ -77,7 +96,7 @@
 
         <div
           v-else
-          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 flex items-center font-semibold"
+          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 mt-2 flex items-center font-semibold"
         >
           <label for="measured-temperature">
             {{ $t('EMPLOYEE.MEASURED_TEMPERATURE') }}
@@ -93,10 +112,6 @@
             disabled
           />
         </div>
-        <!-- <RiskScale
-        :value="currentPatient.totalPoints"
-        :max="getMaxPoints"
-      ></RiskScale> -->
       </div>
 
       <!-- <router-link
@@ -110,25 +125,48 @@
             currentPatient &&
             currentPatient.isCovidSuspected === undefined
         "
-        class="confirmation-buttons pb-12"
+        class="flex flex-col items-center pb-4 pt-4 bg-white rounded-t-xl"
       >
-        <button
-          class="btn-primary show-confirmation-btn patient-suspect icon-button"
-          @click="viewConfirmationQR(true)"
-        >
-          <ion-icon name="checkmark-outline"></ion-icon>
-          <div class="button-text">
-            {{ $t('EMPLOYEE.CONFIRM_AS_COVID_SUSPECT') }}
-          </div>
-        </button>
+        <div class="w-full font-semibold text-lg">
+          {{ $t('EMPLOYEE.IS_INFECTION_SUSPECTED') }}
+        </div>
+        <div class="w-full flex justify-around items-center my-2">
+          <button
+            :class="{
+              'bg-primary text-white': isCovidSuspected === true,
+              'bg-gray-300 text-black': isCovidSuspected !== true
+            }"
+            class="flex icon-button px-12 py-2 rounded-full cursor-pointer"
+            @click="isCovidSuspected = true"
+          >
+            {{ $t('YES') }}
+          </button>
 
+          <button
+            :class="{
+              'bg-primary text-white': isCovidSuspected === false,
+              'bg-gray-300 text-black': isCovidSuspected !== false
+            }"
+            class="flex icon-button px-12 py-2 rounded-full cursor-pointer"
+            @click="isCovidSuspected = false"
+          >
+            {{ $t('NO') }}
+          </button>
+        </div>
         <button
-          class="btn-primary show-confirmation-btn patient-non-suspect icon-button"
-          @click="viewConfirmationQR(false)"
+          class="flex items-center px-8 py-2 mt-8 rounded-full bg-secondary text-white text-lg disabled:opacity-50"
+          :disabled="isCovidSuspected === null"
+          @click="viewConfirmationQR"
         >
-          <ion-icon name="checkmark-outline"></ion-icon>
-          <div class="button-text">
-            {{ $t('EMPLOYEE.CONFIRM_AS_COVID_NON_SUSPECT') }}
+          <ion-icon
+            v-if="isCovidSuspected !== null"
+            name="checkmark-outline"
+          ></ion-icon>
+          <div v-if="isCovidSuspected !== null" class="ml-2">
+            {{ $t('EMPLOYEE.CONFIRM') }}
+          </div>
+          <div v-else>
+            {{ $t('EMPLOYEE.SELECT_INFECTION_SUSPECTION') }}
           </div>
         </button>
       </div>
@@ -144,27 +182,6 @@
         <button class="link btn-primary" @click="closePatient">
           {{ $t('EMPLOYEE.CLOSE_PATIENT') }}
         </button>
-      </div>
-
-      <div
-        v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
-        class="employee-page-buttons"
-      >
-        <button class="btn-primary scan-next-patient icon-button" @click="scan">
-          <ion-icon name="scan-outline"></ion-icon>
-          <div class="button-text">{{ $t('EMPLOYEE.SCAN_NEXT_PATIENT') }}</div>
-        </button>
-      </div>
-      <div
-        v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
-        class="bottom-link"
-      >
-        <router-link class="employee-page-link" to="/how-it-works">{{
-          $t('HOME.HOW_IT_WORKS')
-        }}</router-link>
-        <router-link class="employee-page-link" to="/settings">{{
-          $t('HOME.SETTINGS')
-        }}</router-link>
       </div>
     </div>
   </div>
@@ -197,7 +214,8 @@ export default {
     scannedAtLeastOnce: false,
     showPatientSummary: false,
     signedPatient: null,
-    patientTemperature: null
+    patientTemperature: null,
+    isCovidSuspected: null
   }),
   computed: {
     ...mapState('app', ['appTitle']),
@@ -208,6 +226,7 @@ export default {
   },
   watch: {
     $route(to) {
+      this.isCovidSuspected = null
       // Watch for url changes, and display correct view based on URL hash value
       const viewFromhash = to.hash.substr(1).trim()
       switch (viewFromhash) {
@@ -277,7 +296,7 @@ export default {
       this.scanning = true
       this.$router.push('#scanning')
     },
-    async viewConfirmationQR(isCovidSuspected) {
+    async viewConfirmationQR() {
       await this.setCurrentPatientValueByKey({
         key: 'confirmed',
         value: true
@@ -292,7 +311,7 @@ export default {
       })
       await this.setCurrentPatientValueByKey({
         key: 'isCovidSuspected',
-        value: isCovidSuspected
+        value: this.isCovidSuspected
       })
 
       // SIGN THE CONFIRMATION
@@ -415,40 +434,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.confirmation-buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.show-confirmation-btn {
-  cursor: pointer;
-  font-size: 1.1rem;
-  background-color: $primary-color;
-  color: white;
-  padding: 0.8rem 1.5rem 0.8rem 1.2rem;
-  margin: 0.5rem 0;
-
-  &.patient-suspect {
-    background-color: $negative-color;
-  }
-
-  &.patient-non-suspect {
-    background-color: $positive-color;
-  }
-}
-
-.scan-next-patient {
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  padding: 0.8rem 1.2rem;
-  color: white;
-
-  .button-text {
-    font-size: 1rem;
-  }
 }
 
 .temperature-input {

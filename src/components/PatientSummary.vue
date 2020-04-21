@@ -44,24 +44,32 @@
       </div>
     </button>
     <div
-      class="info-container questionInfo text-left"
+      class="info-container text-left"
       :class="{ hideInfo: patientInfoHidden }"
     >
-      <p>
-        <b>{{ $t('FULL_NAME') }}</b>
-      </p>
-      <span>{{ patient.firstName + ' ' + patient.lastName }}</span>
-      <hr class="dividerInfo" />
-      <p>
-        <b>{{ $t('PERSONAL_IDENTIFICATION_NUMBER') }}</b>
-      </p>
-      <span>{{ patient.birthNumber }}</span>
-      <hr class="dividerInfo" />
-      <p>
-        <b>{{ $t('PHONE_NUMBER') }}</b>
-      </p>
-      <span>{{ patient.phoneNumber }}</span>
-      <hr class="dividerInfo" />
+      <div class="flex flex-col border-b border-gray-700 my-1">
+        <span class="text-secondary">{{ $t('FULL_NAME') }}</span>
+        <span class="font-semibold text-xl">
+          {{ patient.firstName + ' ' + patient.lastName }}
+        </span>
+      </div>
+
+      <div class="flex flex-col border-b border-gray-700 my-1">
+        <span class="text-secondary">{{
+          $t('PERSONAL_IDENTIFICATION_NUMBER')
+        }}</span>
+        <span class="font-semibold text-xl">
+          {{ patient.birthNumber }}
+        </span>
+      </div>
+
+      <div class="flex flex-col border-b border-gray-700 my-1">
+        <span class="text-secondary">{{ $t('PHONE_NUMBER') }}</span>
+        <span class="font-semibold text-xl">
+          {{ patient.phoneNumber }}
+        </span>
+      </div>
+
       <button
         v-if="allowEdit && !patient.confirmed"
         class="edit-btn"
@@ -96,36 +104,57 @@
       <div
         v-for="step in formStepsToShow"
         :key="step.order"
-        class="questionInfo"
+        class="flex border-b border-gray-700"
       >
-        <p>
-          <b>{{ step.question }}</b>
-        </p>
-        <span v-if="step.answerType === 'boolean'">{{
-          patient.answers[step.order] === true ? $t('YES') : $t('NO')
-        }}</span>
-        <span v-else-if="step.answerType === 'one-of'">
-          {{
-            getFormSteps
-              .find(s => s.order === step.order)
-              .options.find(o => o.value === patient.answers[step.order]).text
-          }}
-        </span>
-        <span v-else-if="step.answerType === 'checkbox'">
-          <span
-            v-for="option in patient.answers[step.order]"
-            :key="option.value"
-            >{{
-              option.isChecked
-                ? getFormSteps
-                    .find(s => s.order === step.order)
-                    .options.find(o => o.value === option.value).text + ', '
-                : ''
-            }}</span
+        <div class="font-semibold">
+          <div
+            class="font-medium text-secondary"
+            :class="{
+              'font-semibold':
+                appMode === 'employee' &&
+                step.highlightIf === patient.answers[step.order]
+            }"
           >
-        </span>
-        <span v-else>{{ patient.answers[step.order] }}</span>
-        <hr class="dividerInfo" />
+            {{ step.question }}
+          </div>
+          <span v-if="step.answerType === 'boolean'">{{
+            patient.answers[step.order] === true ? $t('YES') : $t('NO')
+          }}</span>
+          <span v-else-if="step.answerType === 'one-of'">
+            {{
+              getFormSteps
+                .find(s => s.order === step.order)
+                .options.find(o => o.value === patient.answers[step.order]).text
+            }}
+          </span>
+          <span v-else-if="step.answerType === 'checkbox'">
+            <span
+              v-for="option in patient.answers[step.order]"
+              :key="option.value"
+              >{{
+                option.isChecked
+                  ? getFormSteps
+                      .find(s => s.order === step.order)
+                      .options.find(o => o.value === option.value).text + ', '
+                  : ''
+              }}</span
+            >
+          </span>
+          <span v-else>{{ patient.answers[step.order] }}</span>
+        </div>
+        <div
+          v-if="
+            appMode === 'employee' &&
+              step.highlightIf === patient.answers[step.order]
+          "
+          class="flex items-center"
+        >
+          <ion-icon
+            name="alert-circle-outline"
+            size="large"
+            class="text-red-500"
+          ></ion-icon>
+        </div>
       </div>
       <button
         v-if="allowEdit && !patient.confirmed"
@@ -184,21 +213,6 @@ export default {
 @import '@/theme/variables.scss';
 @import '@/theme/general.scss';
 
-.dividerInfo {
-  border-color: $secondary-color;
-  z-index: 10;
-}
-
-.questionInfo {
-  p {
-    color: $secondary-color;
-    margin: 0.5rem 0;
-  }
-  span {
-    color: black;
-  }
-}
-
 .accordion-button {
   @apply flex
   justify-between
@@ -232,7 +246,7 @@ ion-icon {
   display: flex;
   flex-direction: column;
   background-color: #32227f15;
-  padding: 4em 2em 2em 2em;
+  padding: 3em 2em 1em 2em;
   width: 100%;
   border-radius: 1.1em;
 }
@@ -243,9 +257,9 @@ ion-icon {
   background-color: $secondary-color;
   color: white;
   border-radius: 2em;
-  padding: 0.8em 4em;
+  padding: 0.5em 2em;
   width: fit-content;
-  margin: 2rem auto 0 auto;
+  margin: 1rem auto 0 auto;
 }
 
 .patient-item {

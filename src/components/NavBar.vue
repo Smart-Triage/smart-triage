@@ -1,6 +1,6 @@
 <template>
   <header
-    class="sticky top-0 w-full h-12 flex justify-between items-center px-2 sm:px-8 mt-2"
+    class="sticky top-0 w-full h-12 flex justify-between items-center px-2 sm:px-8 pt-2"
     :class="{
       offline: !networkOnLine,
       'transparent-background': bgTransparent
