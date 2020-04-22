@@ -339,7 +339,7 @@ export default {
       if (this.currentStepNum === 'end' && !this.visitedSteps.includes('end')) {
         this.setCurrentPatientValueByKey({
           key: 'validityTimestamp',
-          value: new Date().getTime()
+          value: new Date()
         })
       }
 

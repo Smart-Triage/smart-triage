@@ -69,7 +69,11 @@
       <button
         v-else
         class="btn-primary icon-button w-full max-w-sm flex justify-center mx-4 mb-8 p-4 weird-safari-button-fix"
-        @click="showModal = true"
+        @click="
+          !isExpired(currentPatient)
+            ? (showModal = true)
+            : (showValidityTimeoutModal = true)
+        "
       >
         <ion-icon name="qr-code-outline"></ion-icon>
         <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
@@ -143,11 +147,13 @@ export default {
   },
 
   mounted() {
+    console.log(this.isExpired(this.currentPatient))
     if (this.currentPatient === undefined) {
       this.$router.push('/home')
-    } else if (
-      this.currentPatient.validityTimestamp + Constants.FORM_VALIDITY_PERIOD >
-      new Date().getTime()
+    } else if (!this.isExpired(this.currentPatient)
+      /* this.currentPatient.validityTimestamp.getTime() +
+        Constants.FORM_VALIDITY_PERIOD >
+      new Date().getTime() */
     ) {
       this.setCurrentPatientValueByKey({ key: 'finished', value: true })
     } else {
@@ -184,6 +190,17 @@ export default {
         key: 'termsAccepted',
         value: this.personalInfoAgreed
       })
+    },
+    isExpired(patient) {
+      if (!patient.validityTimestamp) {
+        return false
+      }
+      return (
+        !patient.confirmed &&
+        (patient.invalid ||
+          patient.validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
+            new Date().getTime())
+      )
     }
   }
 }

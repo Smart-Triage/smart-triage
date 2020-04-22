@@ -69,10 +69,14 @@ export default {
       else this.$router.push('/form')
     },
     isExpired(patient) {
+      if (!patient.validityTimestamp) {
+        return false
+      }
       return (
-        patient.invalid ||
-        patient.validityTimestamp + Constants.FORM_VALIDITY_PERIOD <
-          new Date().getTime()
+        !patient.confirmed &&
+        (patient.invalid ||
+          patient.validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
+            new Date().getTime())
       )
     },
     checkAndProcessExpiration(patient) {
