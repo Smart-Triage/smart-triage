@@ -2,7 +2,9 @@
   <div class="page-wrapper">
     <NavBar :back-btn="true"></NavBar>
     <div class="page-content">
-      <h1>{{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}</h1>
+      <p class="text-3xl leading-tight">
+        {{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}
+      </p>
       <QRScanner
         :only-valid-patient="true"
         :scanning-confirmation-code="true"

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="page-wrapper pb-12"
+    class="page-wrapper"
     :class="{ 'bg-confirmed': currentPatient.confirmed }"
   >
     <NavBar :bg-transparent="true">
@@ -13,17 +13,15 @@
       </template>
     </NavBar>
     <div class="page-content">
-      <div class="flex flex-col justify-start items-center">
-        <h1 class="text-2xl leading-tight">
-          {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
-        </h1>
-        <!-- <img class="w-1/2" src="@/assets/img/scan-code.png" alt="" /> -->
-        <p class="my-4">
-          <strong>
-            {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
-          </strong>
-        </p>
-      </div>
+      <p class="text-3xl leading-tight">
+        {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
+      </p>
+      <!-- <img class="w-1/2" src="@/assets/img/scan-code.png" alt="" /> -->
+      <p class="my-4">
+        <strong>
+          {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
+        </strong>
+      </p>
       <div v-if="isConfirmed" class="is-confirmed w-full">
         <ConfirmationBox :patient="currentPatient"></ConfirmationBox>
       </div>
@@ -37,7 +35,7 @@
 
       <router-link
         v-if="!currentPatient.confirmed"
-        class="flex items-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-6"
+        class="flex-shrink-0 flex items-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-6"
         to="/scan-confirmation-qr-code"
       >
         <ion-icon name="scan-outline"></ion-icon>
