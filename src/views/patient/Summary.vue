@@ -68,15 +68,14 @@
       </div>
       <button
         v-else
-        class="btn-primary icon-button w-full max-w-sm flex justify-center mx-4 mb-8 p-4 weird-safari-button-fix"
+        class="w-full max-w-sm flex justify-center items-center bg-primary rounded-full text-white text-lg mx-4 mb-8 p-2 weird-safari-button-fix"
         @click="
           !isExpired(currentPatient)
             ? (showModal = true)
             : (showValidityTimeoutModal = true)
-        "
-      >
+        ">
         <ion-icon name="qr-code-outline"></ion-icon>
-        <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
+        <div class="ml-2">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
       </button>
 
       <!-- <router-link to="/home" class="link btn-primary icon-button"

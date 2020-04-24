@@ -40,10 +40,21 @@
           alt="Scanning a QR code"
         />
 
+        <!-- SCAN NEXT PATIENT -->
         <button class="btn-primary flex items-center m-4" @click="scan">
           <ion-icon name="scan-outline"></ion-icon>
           <span class="ml-2">{{ $t('EMPLOYEE.SCAN_NEXT_PATIENT') }}</span>
         </button>
+
+        <!-- FILL PATIENT DATA MANUALLY -->
+        <!-- <button
+          class="btn-primary flex items-center m-4"
+          @click="fillPatientManually"
+        >
+          <ion-icon name="scan-outline"></ion-icon>
+          <span class="ml-2">{{ $t('EMPLOYEE.FILL_PATIENT_MANUALLY') }}</span>
+        </button> -->
+
         <div class="bottom-link">
           <router-link class="employee-page-link" to="/how-it-works">{{
             $t('HOME.HOW_IT_WORKS')
@@ -448,6 +459,9 @@ export default {
         patient.validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
           new Date().getTime()
       )
+    },
+    fillPatientManually() {
+      this.$router.push('/form')
     }
   }
 }

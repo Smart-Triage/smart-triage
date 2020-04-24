@@ -176,6 +176,10 @@ export default {
     }
   },
   mounted() {
+    if (this.currentPatient.confirmed === true) {
+      this.$router.push('/home')
+    }
+
     if (!this.currentPatient.visitedSteps) {
       // If visitedSteps are not defined set te default value ['0']
       this.setCurrentPatientValueByKey({

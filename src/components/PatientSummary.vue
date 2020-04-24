@@ -1,32 +1,9 @@
 <template>
   <div v-if="patient">
-    <div
-      v-if="
-        patient.confirmation &&
-          patient.confirmation.confirmedById.length > 1 &&
-          patient.confirmation.timestamp
-      "
-      class="is-confirmed"
-    >
-      <div
-        class="confirmation-info"
-        :class="{ 'covid-suspedted': patient.isCovidSuspected }"
-      >
-        <div>
-          {{ $t('PATIENT_SUMMARY.CONFIRMED_BY') }}
-          {{ patient.confirmation.confirmedByName }}
-        </div>
-        <div>{{ patient.confirmation.timestamp | formatDate }}</div>
-        <div v-if="patient.isCovidSuspected === true">
-          {{ $t('PATIENT_SUMMARY.COVID_SUSPECTED') }}
-        </div>
-        <div v-if="patient.isCovidSuspected === false">
-          {{ $t('PATIENT_SUMMARY.COVID_NOT_SUSPECTED') }}
-        </div>
-      </div>
+    <div v-if="isConfirmed" class="is-confirmed">
+      <ConfirmationBox :patient="patient"></ConfirmationBox>
     </div>
     <button
-      :class="{ changecolor: !patientInfoHidden }"
       class="patient-item accordion-button"
       @click="patientInfoHidden = !patientInfoHidden"
     >
@@ -63,7 +40,7 @@
         </span>
       </div>
 
-      <div class="flex flex-col border-b border-gray-700 my-1">
+      <div class="flex flex-col border-b border-gray-700 my-1 py-1">
         <span class="text-secondary">{{ $t('PHONE_NUMBER') }}</span>
         <span class="font-semibold text-xl">
           {{ patient.phoneNumber }}
@@ -79,7 +56,6 @@
       </button>
     </div>
     <button
-      :class="{ changecolor: !patientSymptomsHidden }"
       class="patient-item accordion-button"
       @click="patientSymptomsHidden = !patientSymptomsHidden"
     >
@@ -104,7 +80,7 @@
       <div
         v-for="step in formStepsToShow"
         :key="step.order"
-        class="flex border-b border-gray-700"
+        class="flex border-b border-gray-700 my-1 py-1"
       >
         <div class="font-semibold">
           <div
@@ -169,16 +145,25 @@
 
 <script>
 import { mapGetters, mapMutations, mapState } from 'vuex'
+import ConfirmationBox from '@/components/ConfirmationBox'
 
 export default {
+  components: { ConfirmationBox },
   props: {
     patient: { type: Object, required: true },
     allowEdit: { type: Boolean, default: true }
   },
   data() {
     return {
-      patientInfoHidden: false,
-      patientSymptomsHidden: this.appMode === 'patient'
+      patientInfoHidden:
+        this.patient.confirmation &&
+        this.patient.confirmation.confirmedById.length > 1 &&
+        this.patient.confirmation.timestamp,
+      patientSymptomsHidden:
+        this.appMode === 'patient' ||
+        (this.patient.confirmation &&
+          this.patient.confirmation.confirmedById.length > 1 &&
+          this.patient.confirmation.timestamp)
     }
   },
   computed: {
@@ -192,6 +177,13 @@ export default {
           stepsToShow.push(step)
       })
       return stepsToShow
+    },
+    isConfirmed() {
+      return !!(
+        this.patient.confirmation &&
+        this.patient.confirmation.confirmedById.length > 1 &&
+        this.patient.confirmation.timestamp
+      )
     }
   },
   methods: {
@@ -293,22 +285,6 @@ ion-icon {
     ion-icon {
       margin-left: 1rem;
     }
-  }
-}
-
-.confirmation-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: $positive-color;
-  color: white;
-  border-radius: 5rem;
-  margin: 0 1rem;
-
-  &.covid-suspedted {
-    background-color: $negative-color;
   }
 }
 </style>
