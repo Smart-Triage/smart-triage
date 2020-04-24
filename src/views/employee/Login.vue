@@ -87,20 +87,6 @@ export default {
     errorMessage: '',
     keyStore: null
   }),
-  head() {
-    return {
-      title: {
-        inner: 'Login'
-      },
-      meta: [
-        {
-          name: 'description',
-          content: `Sign in or sign up to ${this.appTitle}`,
-          id: 'desc'
-        }
-      ]
-    }
-  },
   computed: {
     ...mapState('authentication', ['user']),
     ...mapState('app', ['networkOnLine', 'appTitle'])
