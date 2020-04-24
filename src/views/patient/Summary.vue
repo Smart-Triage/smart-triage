@@ -28,20 +28,6 @@
       <div v-if="!currentPatient.confirmed" class="items-center card">
         <div class="flex flex-row w-full justify-between mb-2">
           <p class="text-left text-xs">
-            {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
-          </p>
-          <div>
-            <input
-              id="agree"
-              v-model="personalInfoAgreed"
-              type="checkbox"
-              value="agree"
-              class="m-4 self-center"
-            />
-          </div>
-        </div>
-        <div class="flex flex-row w-full justify-between">
-          <p class="text-left text-xs">
             {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
           </p>
 
@@ -53,6 +39,21 @@
               value="agree"
               class="m-4 self-center"
               @change="agreedToTerms()"
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-row w-full justify-between">
+          <p class="text-left text-xs">
+            {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
+          </p>
+          <div>
+            <input
+              id="agree"
+              v-model="personalInfoAgreed"
+              type="checkbox"
+              value="agree"
+              class="m-4 self-center"
             />
           </div>
         </div>
