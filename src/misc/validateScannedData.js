@@ -67,7 +67,8 @@ export default function validatePatient(
           currentPatient.lastName !== patient.lastName ||
           currentPatient.birthNumber !== patient.birthNumber ||
           currentPatient.phoneNumber !== patient.phoneNumber ||
-          Number.isNaN(patient.validityTimestamp)
+          new Date(currentPatient.validityTimestamp).getTime() !==
+            patient.validityTimestamp.getTime()
         ) {
           reject(
             new Error(
