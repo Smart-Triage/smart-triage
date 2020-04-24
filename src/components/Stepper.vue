@@ -37,6 +37,8 @@
         <img src="@/assets/img/form-page-top.png" class="h-32 sm:h-full" />
       </div>
 
+      <ProgressBar :actualStep="step.order"></ProgressBar>
+
       <div class="flex-grow"></div>
 
       <transition name="view" mode="out-in">
@@ -151,9 +153,10 @@
 import { mapGetters, mapMutations, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
+import ProgressBar from '@/components/ProgressBar'
 
 export default {
-  components: { PatientForm },
+  components: { ProgressBar, PatientForm },
   data: () => ({
     currentStepNum: '0',
     visitedSteps: ['0'],
