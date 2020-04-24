@@ -36,7 +36,7 @@
     "INFORMATION_IS_SAFE": "Vaše osobní informace jsou v bezpečí.",
     "NO_DATA_IS_SENT_OVER_THE_INTERNET": "Žádná data se neodesílají přes internet."
   },
-  "APP_IN_DEVELOPMENT": "Zkušební mód. Aplikace je stále ve vývoji.",
+  "APP_IN_DEVELOPMENT": "Testovací režim. Aplikace je stále ve vývoji.",
   "SUMMARY": {
     "SUMMARY": "Shrnutí",
     "SHOW_QR_CODE": "Zobrazit QR kód",
