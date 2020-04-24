@@ -10,6 +10,8 @@ export default function validatePatient(
     try {
       patient = JSON.parse(data)
 
+      console.log(patient)
+
       // Validate JSON schema
       const incommingKeys = Object.keys(patient)
       const requiredKeys = [
@@ -65,7 +67,7 @@ export default function validatePatient(
           currentPatient.lastName !== patient.lastName ||
           currentPatient.birthNumber !== patient.birthNumber ||
           currentPatient.phoneNumber !== patient.phoneNumber ||
-          !Number.isNaN(patient.validityTimestamp)
+          Number.isNaN(patient.validityTimestamp)
         ) {
           reject(
             new Error(
