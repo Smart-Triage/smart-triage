@@ -72,10 +72,11 @@ export default {
       if (!patient.validityTimestamp) {
         return false
       }
+      const validityTimestamp = new Date(patient.validityTimestamp)
       return (
         !patient.confirmed &&
         (patient.invalid ||
-          patient.validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
+          validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
             new Date().getTime())
       )
     },
