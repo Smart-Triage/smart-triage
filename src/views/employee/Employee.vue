@@ -195,6 +195,21 @@
         </button>
       </div>
     </div>
+    <ModalWindow v-if="showExpirationModal">
+      <template v-slot:header>
+        <h2 class="p-0">{{ $t('EMPLOYEE.VALIDITY_TIMEOUT') }}</h2>
+      </template>
+      <template v-slot:body>
+        <p>
+          {{ $t('EMPLOYEE.VALIDITY_TIMEOUT_TEXT') }}
+        </p>
+      </template>
+      <template v-slot:footer>
+        <button class="btn-secondary mb-3" @click="closeExpirationModal">
+          {{ $t('EMPLOYEE.VALIDITY_TIMEOUT_CONFIRMATION') }}
+        </button>
+      </template>
+    </ModalWindow>
   </div>
   <div v-else>
     <router-link to="/login">Login</router-link>
@@ -210,13 +225,16 @@ import PatientSummary from '@/components/PatientSummary'
 import KeyStore from '@/misc/KeyStore'
 import { str2ab, ab2str } from '@/misc/helpers'
 import FullScreenModal from '@/components/modals/FullScreenModal'
+import ModalWindow from '@/components/ModalWindow'
+import Constants from '@/misc/constants'
 
 export default {
   components: {
     QRScanner,
     PatientSummary,
     QrcodeVue,
-    FullScreenModal
+    FullScreenModal,
+    ModalWindow
     // RiskScale
   },
   data: () => ({
@@ -224,6 +242,7 @@ export default {
     showingConfirmationQR: false,
     scannedAtLeastOnce: false,
     showPatientSummary: false,
+    showExpirationModal: false,
     signedPatient: null,
     patientTemperature: null,
     isCovidSuspected: null
@@ -289,9 +308,18 @@ export default {
       this.scanning = false
       this.scannedAtLeastOnce = true
       patient.isScannedByEmployee = true
-      this.updateOrAddPatient(patient)
-      this.recalculatePoints()
-      this.viewPatientSummary()
+      if (!this.isExpired(patient)) {
+        this.updateOrAddPatient(patient)
+        this.recalculatePoints()
+        this.viewPatientSummary()
+      } else {
+        this.showExpirationModal = true
+      }
+    },
+    closeExpirationModal() {
+      this.showExpirationModal = false
+      this.$router.back()
+      // this.$router.push('')
     },
     showEmployeeHomepage() {
       this.scanning = false
@@ -424,6 +452,13 @@ export default {
         key: 'measuredTemperature',
         value: temperature
       })
+    },
+    isExpired(patient) {
+      return (
+        !patient.confirmed &&
+        patient.validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
+          new Date().getTime()
+      )
     },
     fillPatientManually() {
       this.$router.push('/form')

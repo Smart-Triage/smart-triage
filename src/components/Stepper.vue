@@ -338,6 +338,15 @@ export default {
           value: cloneDeep(this.answers)
         })
       }
+
+      // if end step is visited for the first time, save the timestamp with which the 24-hour timeout period will be initiated.
+      if (this.currentStepNum === 'end' && !this.visitedSteps.includes('end')) {
+        this.setCurrentPatientValueByKey({
+          key: 'validityTimestamp',
+          value: new Date()
+        })
+      }
+
       // Add this steps to visited steps
       this.visitedSteps.push(cloneDeep(this.currentStepNum))
       // Update visited step in vuex store

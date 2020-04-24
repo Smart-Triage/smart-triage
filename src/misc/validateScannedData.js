@@ -19,7 +19,8 @@ export default function validatePatient(
         'birthNumber',
         'phoneNumber',
         'answers',
-        'termsAccepted'
+        'termsAccepted',
+        'validityTimestamp'
       ]
       if (scanningConfirmationCode || verifying) requiredKeys.push('signature')
       const optionalKeys = [
@@ -34,6 +35,9 @@ export default function validatePatient(
         if (incommingKeys.indexOf(key) === -1)
           throw Error(`Error: Missing key "${key}" in JSON`)
       })
+
+      // we want a timestamp in a proper object format, validation comes later on
+      patient.validityTimestamp = new Date(patient.validityTimestamp)
 
       const incommingAnswers = Object.keys(patient.answers)
       const requiredAnswers = getFormSteps
@@ -60,7 +64,8 @@ export default function validatePatient(
           currentPatient.firstName !== patient.firstName ||
           currentPatient.lastName !== patient.lastName ||
           currentPatient.birthNumber !== patient.birthNumber ||
-          currentPatient.phoneNumber !== patient.phoneNumber
+          currentPatient.phoneNumber !== patient.phoneNumber ||
+          !Number.isNaN(patient.validityTimestamp)
         ) {
           reject(
             new Error(

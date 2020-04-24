@@ -75,7 +75,8 @@ export default {
               'finished',
               'signature',
               'termsAccepted',
-              'measuredTemperature'
+              'measuredTemperature',
+              'validityTimestamp'
             ].indexOf(key) > -1
         )
         .reduce(

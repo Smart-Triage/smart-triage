@@ -69,8 +69,11 @@
       <button
         v-else
         class="w-full max-w-sm flex justify-center items-center bg-primary rounded-full text-white text-lg mx-4 mb-8 p-2 weird-safari-button-fix"
-        @click="showModal = true"
-      >
+        @click="
+          !isExpired(currentPatient)
+            ? (showModal = true)
+            : (showValidityTimeoutModal = true)
+        ">
         <ion-icon name="qr-code-outline"></ion-icon>
         <div class="ml-2">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
       </button>
@@ -97,6 +100,24 @@
           </router-link>
         </template>
       </ModalWindow>
+      <ModalWindow v-if="showValidityTimeoutModal">
+        <template v-slot:header>
+          <h2 class="p-0">{{ $t('SUMMARY.VALIDITY_TIMEOUT') }}</h2>
+        </template>
+        <template v-slot:body>
+          <p>
+            {{ $t('SUMMARY.VALIDITY_TIMEOUT_TEXT') }}
+          </p>
+        </template>
+        <template v-slot:footer>
+          <button
+            class="btn-secondary mb-3"
+            @click="invalidatePatientAndRedirect"
+          >
+            {{ $t('SUMMARY.VALIDITY_TIMEOUT_CONFIRMATION') }}
+          </button>
+        </template>
+      </ModalWindow>
     </div>
   </div>
   <div v-else>
@@ -109,13 +130,15 @@
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 import PatientSummary from '@/components/PatientSummary'
 import ModalWindow from '@/components/ModalWindow'
+import Constants from '@/misc/constants'
 
 export default {
   components: { PatientSummary, ModalWindow },
   data: () => ({
     allIsTrueAgreed: false,
     personalInfoAgreed: false,
-    showModal: false
+    showModal: false,
+    showValidityTimeoutModal: false
   }),
   computed: {
     ...mapState('patients', ['patients']),
@@ -123,14 +146,25 @@ export default {
   },
 
   mounted() {
+    console.log(this.isExpired(this.currentPatient))
     if (this.currentPatient === undefined) {
       this.$router.push('/home')
-    } else {
+    } else if (!this.isExpired(this.currentPatient)
+      /* this.currentPatient.validityTimestamp.getTime() +
+        Constants.FORM_VALIDITY_PERIOD >
+      new Date().getTime() */
+    ) {
       this.setCurrentPatientValueByKey({ key: 'finished', value: true })
+    } else {
+      // 24 hour validity period ran out, inform the user and make him go back
+      this.showValidityTimeoutModal = true
     }
   },
   methods: {
-    ...mapActions('patients', ['deletePatientById']),
+    ...mapActions('patients', [
+      'deletePatientById',
+      'invalidatePatientFormById'
+    ]),
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
     deletePatient(e) {
       e.stopPropagation()
@@ -144,11 +178,28 @@ export default {
         })
       }
     },
+    invalidatePatientAndRedirect() {
+      this.showValidityTimeoutModal = false
+      this.invalidatePatientFormById(this.currentPatient.id).then(() => {
+        this.$router.push('/home')
+      })
+    },
     agreedToTerms() {
       this.setCurrentPatientValueByKey({
         key: 'termsAccepted',
         value: this.personalInfoAgreed
       })
+    },
+    isExpired(patient) {
+      if (!patient.validityTimestamp) {
+        return false
+      }
+      return (
+        !patient.confirmed &&
+        (patient.invalid ||
+          patient.validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
+            new Date().getTime())
+      )
     }
   }
 }
