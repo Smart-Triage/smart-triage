@@ -73,7 +73,8 @@
           !isExpired(currentPatient)
             ? (showModal = true)
             : (showValidityTimeoutModal = true)
-        ">
+        "
+      >
         <ion-icon name="qr-code-outline"></ion-icon>
         <div class="ml-2">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
       </button>
@@ -149,7 +150,8 @@ export default {
     console.log(this.isExpired(this.currentPatient))
     if (this.currentPatient === undefined) {
       this.$router.push('/home')
-    } else if (!this.isExpired(this.currentPatient)
+    } else if (
+      !this.isExpired(this.currentPatient)
       /* this.currentPatient.validityTimestamp.getTime() +
         Constants.FORM_VALIDITY_PERIOD >
       new Date().getTime() */

@@ -37,7 +37,7 @@
         <img src="@/assets/img/form-page-top.png" class="h-32 sm:h-full" />
       </div>
 
-      <ProgressBar :actualStep="step.order"></ProgressBar>
+      <ProgressBar :actual-step="step.order"></ProgressBar>
 
       <div class="flex-grow"></div>
 
