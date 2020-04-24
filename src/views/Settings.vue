@@ -42,7 +42,8 @@ export default {
     LocaleChanger
   },
   computed: {
-    ...mapState('settings', ['appMode', 'availableAppModes'])
+    ...mapState('settings', ['appMode', 'availableAppModes']),
+    ...mapState('authentication', ['user'])
   },
   methods: {
     ...mapActions('settings', ['setAppMode']),
@@ -53,7 +54,7 @@ export default {
         localStorage.clear()
         sessionStorage.clear()
 
-        await firebase.auth().signOut()
+        if (this.user) await firebase.auth().signOut()
 
         if (window.indexedDB.databases !== undefined) {
           await window.indexedDB.databases().then(databases => {

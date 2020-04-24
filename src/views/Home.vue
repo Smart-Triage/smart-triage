@@ -5,11 +5,20 @@
       <div class="mt-4 mb-2">
         <img
           class="mb-8 mx-auto"
+          src="@/assets/img/logo.svg"
+          alt="Smart Triage logo"
+        />
+        <p class="text-xl text-secondary font-semibold">
+          Vyplňte dotazník v mobilu <br />
+          a zkraťte si čekání ve frontě
+        </p>
+        <img
+          class="my-8 mx-auto"
           src="@/assets/img/home-page-welcome-img.png"
           alt=""
         />
-        <p>{{ $t('HOME.WELCOME') }}</p>
-        <h1 class="text-5xl">{{ $t('HOME.TITLE') }}</h1>
+        <!-- <p>{{ $t('HOME.WELCOME') }}</p> -->
+        <!-- <h1 class="text-5xl">{{ $t('HOME.TITLE') }}</h1> -->
         <p>
           {{ $t('HOME.INFO') }}
         </p>
@@ -22,8 +31,8 @@
       <div class="w-full">
         <div v-if="patients.length === 0">
           <button class="btn-primary" @click="createPatient">
-            <ion-icon class="btn-icon" name="person-add-outline"></ion-icon>
-            <span>{{ $t('HOME.BEGIN') }}</span>
+            <ion-icon class="btn-icon text-xl" name="create-outline"></ion-icon>
+            <span>{{ $t('HOME.FILL_FORM') }}</span>
           </button>
         </div>
         <div v-else>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="page-wrapper"
+    class="page-wrapper pb-12"
     :class="{ 'bg-confirmed': currentPatient.confirmed }"
   >
     <NavBar :bg-transparent="true">
@@ -17,37 +17,15 @@
         <h1 class="text-2xl leading-tight">
           {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
         </h1>
-        <img class="w-1/2" src="@/assets/img/scan-code.png" alt="" />
+        <!-- <img class="w-1/2" src="@/assets/img/scan-code.png" alt="" /> -->
         <p class="my-4">
           <strong>
             {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
           </strong>
         </p>
       </div>
-      <div
-        v-if="
-          currentPatient.confirmation &&
-            currentPatient.confirmation.confirmedById.length > 1 &&
-            currentPatient.confirmation.timestamp
-        "
-        class="is-confirmed"
-      >
-        <div
-          class="confirmation-info"
-          :class="{ 'covid-suspedted': currentPatient.isCovidSuspected }"
-        >
-          <div>
-            {{ $t('PATIENT_QR_CODE.CONFIRMED_BY') }}
-            {{ currentPatient.confirmation.confirmedByName }}
-          </div>
-          <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
-          <div v-if="currentPatient.isCovidSuspected === true">
-            {{ $t('PATIENT_QR_CODE.COVID_SUSPECTED') }}
-          </div>
-          <div v-if="currentPatient.isCovidSuspected === false">
-            {{ $t('PATIENT_QR_CODE.COVID_NOT_SUSPECTED') }}
-          </div>
-        </div>
+      <div v-if="isConfirmed" class="is-confirmed w-full">
+        <ConfirmationBox :patient="currentPatient"></ConfirmationBox>
       </div>
       <!-- {{ currentPatient.firstName + ' ' + currentPatient.lastName }} -->
       <QrcodeVue
@@ -74,9 +52,10 @@
 <script>
 import QrcodeVue from 'qrcode.vue'
 import { mapGetters } from 'vuex'
+import ConfirmationBox from '@/components/ConfirmationBox'
 
 export default {
-  components: { QrcodeVue },
+  components: { QrcodeVue, ConfirmationBox },
   computed: {
     ...mapGetters('patients', ['currentPatient']),
     stringyfiedPatient() {
@@ -105,6 +84,13 @@ export default {
         )
 
       return JSON.stringify(filteredPatient)
+    },
+    isConfirmed() {
+      return !!(
+        this.currentPatient.confirmation &&
+        this.currentPatient.confirmation.confirmedById.length > 1 &&
+        this.currentPatient.confirmation.timestamp
+      )
     }
   },
   created() {
