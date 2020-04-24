@@ -85,6 +85,10 @@ const router = new Router({
         )
     },
     {
+      path: '/zamestnanec',
+      redirect: { name: 'employee' }
+    },
+    {
       path: '/verify',
       name: 'verify',
       component: () =>
