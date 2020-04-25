@@ -6,10 +6,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "src",
-    "tests",
-    "src/store/questions/questions.actions.js",
-    "src/postcss.config.js"
-  ]
+  "include": ["src", "tests"]
 }
