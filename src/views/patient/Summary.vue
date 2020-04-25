@@ -18,6 +18,7 @@
 
     <div class="page-content">
       <img
+        v-if="!currentPatient.confirmed"
         class="mx-auto my-4"
         src="@/assets/img/home-page-welcome-img.png"
         alt=""
@@ -56,6 +57,37 @@
               class="m-4 self-center"
             />
           </div>
+        </div>
+      </div>
+
+      <!-- FEEDBACK -->
+      <portal to="modals">
+        <FeedbackModal
+          :open="feedbackModalVisible"
+          :liking-app="likingApp"
+          @close="feedbackModalClosed"
+        ></FeedbackModal>
+      </portal>
+      <div
+        v-if="currentPatient.confirmed && !currentPatient.hasGivenFeedback"
+        class="flex flex-col items-center bg-white rounded-xl p-4"
+      >
+        {{ $t('SUMMARY.DO_YOU_LIKE_OUR_APP') }}?
+        <div class="w-full flex justify-around mt-2">
+          <button
+            href="#"
+            class="flex items-center bg-green-500 px-4 py-2 text-white rounded-full"
+            @click="showFeedBackModal(true)"
+          >
+            <ion-icon name="thumbs-up-outline"></ion-icon>
+          </button>
+          <button
+            href="#"
+            class="flex items-center bg-red-500 px-4  py-2 text-white rounded-full"
+            @click="showFeedBackModal(false)"
+          >
+            <ion-icon name="thumbs-down-outline"></ion-icon>
+          </button>
         </div>
       </div>
 
@@ -133,14 +165,17 @@ import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 import PatientSummary from '@/components/PatientSummary'
 import ModalWindow from '@/components/ModalWindow'
 import Constants from '@/misc/constants'
+import FeedbackModal from '@/components/modals/FeedbackModal'
 
 export default {
-  components: { PatientSummary, ModalWindow },
+  components: { PatientSummary, ModalWindow, FeedbackModal },
   data: () => ({
     allIsTrueAgreed: false,
     personalInfoAgreed: false,
     showModal: false,
-    showValidityTimeoutModal: false
+    showValidityTimeoutModal: false,
+    feedbackModalVisible: false,
+    likingApp: ''
   }),
   computed: {
     ...mapState('patients', ['patients']),
@@ -204,6 +239,14 @@ export default {
           validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
             new Date().getTime())
       )
+    },
+    showFeedBackModal(like) {
+      this.likingApp = like
+      this.feedbackModalVisible = true
+    },
+    feedbackModalClosed() {
+      this.feedbackModalVisible = false
+      this.setCurrentPatientValueByKey({ key: 'hasGivenFeedback', value: true })
     }
   }
 }
