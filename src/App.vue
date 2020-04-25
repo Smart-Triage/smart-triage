@@ -57,12 +57,6 @@ export default {
 }
 </script>
 
-<style lang="postcss">
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-</style>
-
 <style lang="scss">
 @import '@/theme/variables.scss';
 
