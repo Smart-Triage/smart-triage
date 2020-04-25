@@ -11,24 +11,24 @@
       :refreshing-app="refreshingApp"
       @refresh="serviceWorkerSkipWaiting"
     ></new-content-available-toastr>
-    <apple-add-to-home-screen-modal
+    <!-- <apple-add-to-home-screen-modal
       v-if="showAddToHomeScreenModalForApple"
       class="apple-add-to-home-screen-modal"
       @close="closeAddToHomeScreenModalForApple(false)"
     >
-    </apple-add-to-home-screen-modal>
+    </apple-add-to-home-screen-modal> -->
   </div>
 </template>
 <script>
 import NewContentAvailableToastr from '@/components/NewContentAvailableToastr'
-import AppleAddToHomeScreenModal from '@/components/AppleAddToHomeScreenModal'
+// import AppleAddToHomeScreenModal from '@/components/AppleAddToHomeScreenModal'
 import { mapState, mapActions, mapGetters } from 'vuex'
 import InDevelopementOverlay from '@/components/InDevelopementOverlay'
 
 export default {
   components: {
     NewContentAvailableToastr,
-    AppleAddToHomeScreenModal,
+    // AppleAddToHomeScreenModal,
     InDevelopementOverlay
   },
   computed: {
