@@ -1,9 +1,7 @@
 <template>
   <div class="modal-mask">
     <div class="modal-wrapper">
-      <div
-        class="modal-container flex flex-col items-center text-center bg-white"
-      >
+      <div class="modal-container flex flex-col items-center text-center">
         <div class="modal-header w-full">
           <slot name="header"> </slot>
         </div>
@@ -26,7 +24,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import '@/theme/variables.scss';
+
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -48,7 +48,7 @@ export default {
   width: 100vw;
   height: 100vh;
   margin: 0px auto;
-  color: white;
+  background-color: $bg-color;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
