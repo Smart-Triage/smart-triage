@@ -216,10 +216,10 @@ import QrcodeVue from 'qrcode.vue'
 import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
-// import RiskScale from '@/components/RiskScale'
 import KeyStore from '@/misc/KeyStore'
 import { str2ab, ab2str } from '@/misc/helpers'
 import FullScreenModal from '@/components/modals/FullScreenModal'
+import getFormStepsMixin from '@/misc/getFormStepsMixin'
 
 export default {
   components: {
@@ -227,8 +227,8 @@ export default {
     PatientSummary,
     QrcodeVue,
     FullScreenModal
-    // RiskScale
   },
+  mixins: [getFormStepsMixin],
   data: () => ({
     scanning: false,
     showingConfirmationQR: false,
@@ -241,17 +241,19 @@ export default {
   computed: {
     ...mapState('app', ['appTitle']),
     ...mapGetters('patients', ['currentPatient']),
-    ...mapGetters('questions', ['getMaxPoints', 'getFormSteps']),
     ...mapState('authentication', ['user']),
     ...mapGetters('employee', ['fullName']),
     ...mapState('employee', ['hospital', 'hospitalDatabase']),
     hospitalName() {
-      const hospital = this.hospitalDatabase.find(h => h.code === this.hospital)
+      const hospital = this.$config.hospitalDatabase.find(
+        h => h.code === this.hospital
+      )
       if (hospital.longName.length < 20) return hospital.longName
       return hospital.shortName
     },
     hospitalLogo() {
-      return this.hospitalDatabase.find(h => h.code === this.hospital).logo
+      return this.$config.hospitalDatabase.find(h => h.code === this.hospital)
+        .logo
     }
   },
   watch: {

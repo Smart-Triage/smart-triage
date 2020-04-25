@@ -5,8 +5,11 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 import i18n from '@/plugins/i18n'
+import vueConfig from 'vue-config'
 
 import NavBar from '@/components/NavBar'
+
+import config from '@/config/default.json'
 
 import App from './App.vue'
 import router from './router'
@@ -22,6 +25,7 @@ import '@/theme/general.scss'
 
 Vue.use(UUID)
 Vue.use(VueAxios, axios)
+Vue.use(vueConfig, config)
 
 Vue.config.productionTip = false
 Vue.config.ignoredElements = [/^ion-/]

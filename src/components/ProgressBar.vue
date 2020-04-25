@@ -13,15 +13,15 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import getFormStepsMixin from '@/misc/getFormStepsMixin'
 
 export default {
   name: 'ProgressBar',
+  mixins: [getFormStepsMixin],
   props: {
     actualStep: { type: String, required: true, defaultValue: 1 }
   },
   computed: {
-    ...mapGetters('questions', ['getFormSteps']),
     styleObject() {
       return {
         width: `${(parseInt(this.updatedStep, 10) / this.getFormSteps.length) *

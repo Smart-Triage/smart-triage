@@ -17,11 +17,13 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
   computed: {
-    ...mapState('settings', ['locale', 'supportedLocales'])
+    supportedLocales() {
+      return this.$config.supportedLocales
+    }
   },
   methods: {
     ...mapMutations('settings', ['setLocale'])

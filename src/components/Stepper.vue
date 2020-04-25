@@ -154,9 +154,11 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
+import getFormStepsMixin from '@/misc/getFormStepsMixin'
 
 export default {
   components: { ProgressBar, PatientForm },
+  mixins: [getFormStepsMixin],
   data: () => ({
     currentStepNum: '0',
     visitedSteps: ['0'],
@@ -165,7 +167,6 @@ export default {
     answers: {}
   }),
   computed: {
-    ...mapGetters('questions', ['getFormSteps']),
     ...mapGetters('patients', ['currentPatient']),
     ...mapState('settings', ['appMode']),
     currentStep() {

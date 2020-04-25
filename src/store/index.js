@@ -5,7 +5,6 @@ import authentication from './authentication'
 import app from './app'
 import patients from './patients'
 import settings from './settings'
-import questions from './questions'
 import employee from './employee'
 
 Vue.use(Vuex)
@@ -36,7 +35,6 @@ export default new Vuex.Store({
     app,
     patients,
     settings,
-    questions,
     employee
   },
   plugins: [vuexLocal.plugin]

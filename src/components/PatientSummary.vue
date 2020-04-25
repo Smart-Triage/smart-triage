@@ -4,7 +4,7 @@
       <ConfirmationBox :patient="patient"></ConfirmationBox>
     </div>
     <button
-      class="patient-item accordion-button"
+      class="patient-item flex justify-between items-center cursor-pointer my-2 relative z-20"
       @click="patientInfoHidden = !patientInfoHidden"
     >
       <div class="patient-item-left">
@@ -56,7 +56,7 @@
       </button>
     </div>
     <button
-      class="patient-item accordion-button"
+      class="patient-item flex justify-between items-center cursor-pointer my-2 relative z-20"
       @click="patientSymptomsHidden = !patientSymptomsHidden"
     >
       <div class="patient-item-left">
@@ -144,11 +144,13 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 import ConfirmationBox from '@/components/ConfirmationBox'
+import getFormStepsMixin from '@/misc/getFormStepsMixin'
 
 export default {
   components: { ConfirmationBox },
+  mixins: [getFormStepsMixin],
   props: {
     patient: { type: Object, required: true },
     allowEdit: { type: Boolean, default: true }
@@ -167,7 +169,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('questions', ['getFormSteps']),
     ...mapState('settings', ['appMode']),
     formStepsToShow() {
       if (!this.patient) return []
@@ -204,16 +205,6 @@ export default {
 <style lang="scss">
 @import '@/theme/variables.scss';
 @import '@/theme/general.scss';
-
-.accordion-button {
-  @apply flex
-  justify-between
-  items-center
-  cursor-pointer
-  my-2
-  relative
-  z-20;
-}
 
 ion-icon {
   font-size: 1.3em;

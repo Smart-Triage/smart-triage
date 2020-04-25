@@ -61,7 +61,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('questions', ['getFormSteps']),
     ...mapGetters('patients', ['currentPatient'])
   },
   methods: {
@@ -73,8 +72,7 @@ export default {
           result,
           this.currentPatient,
           this.scanningConfirmationCode,
-          this.verifying,
-          this.getFormSteps
+          this.verifying
         )
           .then(patient => {
             this.$emit('data', patient)
