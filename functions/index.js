@@ -74,7 +74,12 @@ app.post('/checkEmployeeRegistrationCode', async (req, res) => {
           // Send token back to client
           return res
             .status(200)
-            .send({ success: true, userId: newDoc.id, token: customToken })
+            .send({
+              success: true,
+              userId: newDoc.id,
+              token: customToken,
+              hospital: docData.hospital
+            })
         } catch (error) {
           console.log('Error creating custom token:', error)
           return res.send(SERVER_ERROR)

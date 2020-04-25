@@ -34,8 +34,15 @@
         <!-- Auth UI -->
         <form class="w-full flex flex-col items-center" @submit="register">
           <input
-            v-model="fullName"
-            :placeholder="$t('FULL_NAME')"
+            v-model="firstName"
+            :placeholder="$t('FIRST_NAME')"
+            type="text"
+            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
+            required
+          />
+          <input
+            v-model="lastName"
+            :placeholder="$t('LAST_NAME')"
             type="text"
             class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
             required
@@ -82,7 +89,8 @@ import PublicKeysDB from '@/firebase/public-keys-db'
 export default {
   data: () => ({
     loginError: null,
-    fullName: '',
+    firstName: '',
+    lastName: '',
     registrationCode: '',
     errorMessage: '',
     keyStore: null
@@ -126,7 +134,7 @@ export default {
   },
   methods: {
     ...mapMutations('authentication', ['setUser']),
-    ...mapMutations('employee', ['setFullName']),
+    ...mapMutations('employee', ['setFirstName', 'setLastName', 'setHospital']),
 
     /* REGISTER EMPLOYEE */
     async register(e) {
@@ -151,7 +159,9 @@ export default {
           .signInWithCustomToken(res.token)
           .then(async userCredential => {
             this.createKeyPair(userCredential)
-            this.setFullName(this.fullName)
+            this.setFirstName(this.firstName)
+            this.setLastName(this.lastName)
+            this.setHospital(res.hospital)
           })
       } catch (err) {
         // Handle Errors here.

@@ -1,10 +1,16 @@
 <template>
   <div v-if="user" class="page-wrapper">
     <NavBar v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
+      <template v-slot:left>
+        <div class="flex items-center text-gray-700">
+          {{ hospitalLogo }}
+          <span class="ml-2 font-semibold">{{ hospitalName }}</span>
+        </div>
+      </template>
       <template v-slot:right>
         <div class="flex items-center text-gray-700">
-          <ion-icon name="person-circle-outline" size="large"></ion-icon>
           <span class="ml-2 font-semibold">{{ fullName }}</span>
+          <ion-icon name="person-circle-outline" size="large"></ion-icon>
         </div>
       </template>
     </NavBar>
@@ -32,7 +38,11 @@
         v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
         class="header-info"
       >
-        <h1>{{ appTitle }}</h1>
+        <img
+          class="mx-auto"
+          src="@/assets/img/logo.svg"
+          alt="Smart Triage logo"
+        />
         <p class="my-4">{{ $t('EMPLOYEE.WELCOME') }}</p>
 
         <img
@@ -195,21 +205,6 @@
         </button>
       </div>
     </div>
-    <ModalWindow v-if="showExpirationModal">
-      <template v-slot:header>
-        <h2 class="p-0">{{ $t('EMPLOYEE.VALIDITY_TIMEOUT') }}</h2>
-      </template>
-      <template v-slot:body>
-        <p>
-          {{ $t('EMPLOYEE.VALIDITY_TIMEOUT_TEXT') }}
-        </p>
-      </template>
-      <template v-slot:footer>
-        <button class="btn-secondary mb-3" @click="closeExpirationModal">
-          {{ $t('EMPLOYEE.VALIDITY_TIMEOUT_CONFIRMATION') }}
-        </button>
-      </template>
-    </ModalWindow>
   </div>
   <div v-else>
     <router-link to="/login">Login</router-link>
@@ -225,16 +220,13 @@ import PatientSummary from '@/components/PatientSummary'
 import KeyStore from '@/misc/KeyStore'
 import { str2ab, ab2str } from '@/misc/helpers'
 import FullScreenModal from '@/components/modals/FullScreenModal'
-import ModalWindow from '@/components/ModalWindow'
-import Constants from '@/misc/constants'
 
 export default {
   components: {
     QRScanner,
     PatientSummary,
     QrcodeVue,
-    FullScreenModal,
-    ModalWindow
+    FullScreenModal
     // RiskScale
   },
   data: () => ({
@@ -242,7 +234,6 @@ export default {
     showingConfirmationQR: false,
     scannedAtLeastOnce: false,
     showPatientSummary: false,
-    showExpirationModal: false,
     signedPatient: null,
     patientTemperature: null,
     isCovidSuspected: null
@@ -252,7 +243,16 @@ export default {
     ...mapGetters('patients', ['currentPatient']),
     ...mapGetters('questions', ['getMaxPoints', 'getFormSteps']),
     ...mapState('authentication', ['user']),
-    ...mapState('employee', ['fullName'])
+    ...mapGetters('employee', ['fullName']),
+    ...mapState('employee', ['hospital', 'hospitalDatabase']),
+    hospitalName() {
+      const hospital = this.hospitalDatabase.find(h => h.code === this.hospital)
+      if (hospital.longName.length < 20) return hospital.longName
+      return hospital.shortName
+    },
+    hospitalLogo() {
+      return this.hospitalDatabase.find(h => h.code === this.hospital).logo
+    }
   },
   watch: {
     $route(to) {
@@ -308,18 +308,9 @@ export default {
       this.scanning = false
       this.scannedAtLeastOnce = true
       patient.isScannedByEmployee = true
-      if (!this.isExpired(patient)) {
-        this.updateOrAddPatient(patient)
-        this.recalculatePoints()
-        this.viewPatientSummary()
-      } else {
-        this.showExpirationModal = true
-      }
-    },
-    closeExpirationModal() {
-      this.showExpirationModal = false
-      this.$router.back()
-      // this.$router.push('')
+      this.updateOrAddPatient(patient)
+      this.recalculatePoints()
+      this.viewPatientSummary()
     },
     showEmployeeHomepage() {
       this.scanning = false
@@ -452,13 +443,6 @@ export default {
         key: 'measuredTemperature',
         value: temperature
       })
-    },
-    isExpired(patient) {
-      return (
-        !patient.confirmed &&
-        patient.validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
-          new Date().getTime()
-      )
     },
     fillPatientManually() {
       this.$router.push('/form')
