@@ -40,9 +40,11 @@ import { QrcodeStream } from 'vue-qrcode-reader'
 import { mapGetters } from 'vuex'
 
 import validatePatient from '@/misc/validateScannedData'
+import getFormStepsMixin from '@/misc/getFormStepsMixin'
 
 export default {
   components: { QrcodeStream },
+  mixins: [getFormStepsMixin],
   props: {
     scanningConfirmationCode: {
       type: Boolean,
@@ -72,7 +74,8 @@ export default {
           result,
           this.currentPatient,
           this.scanningConfirmationCode,
-          this.verifying
+          this.verifying,
+          this.getFormSteps
         )
           .then(patient => {
             this.$emit('data', patient)

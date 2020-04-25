@@ -1,12 +1,9 @@
-import getFormStepsMixin from '@/misc/getFormStepsMixin'
-
-const { getFormSteps } = getFormStepsMixin.methods
-
 export default function validatePatient(
   data,
   currentPatient,
   scanningConfirmationCode,
-  verifying
+  verifying,
+  getFormSteps
 ) {
   return new Promise((resolve, reject) => {
     let patient
