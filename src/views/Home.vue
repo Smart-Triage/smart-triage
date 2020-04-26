@@ -128,7 +128,9 @@
         alt="Charles University logo"
       />
     </div>
-    <div class="home-text home-h2-secondary p-6 mt-4 border-app">
+    <div
+      class="footer home-h2-secondary p-6 mt-4 border-app text-left w-full max-w-lg"
+    >
       <img
         class="mb-8 mx-auto "
         src="@/assets/img/logo.svg"
@@ -146,6 +148,7 @@
       <p>
         <a href="">{{ $t('HOME.FOOTER.FOR_EMPLOYEES') }}</a>
       </p>
+      <div class="divider"></div>
       <p>
         <a href="">{{ $t('HOME.FOOTER.ABOUT_US') }}</a>
       </p>
@@ -155,7 +158,9 @@
       <p>
         <a href="">{{ $t('HOME.FOOTER.TERMS_OF_SERVICE') }}</a>
       </p>
-      <p>{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
+      <div class="copyright">
+        <p class="mx-auto mt-6">{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -221,5 +226,19 @@ export default {
       @apply mt-4 font-semibold text-xl;
     }
   }
+}
+
+.divider {
+  height: 2px;
+  @apply my-4 w-20 bg-black;
+}
+
+.footer {
+  color: black;
+  @apply font-semibold leading-8;
+}
+
+.copyright {
+  text-align: center;
 }
 </style>
