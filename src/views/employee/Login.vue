@@ -26,7 +26,7 @@
       </div>
 
       <p v-if="loginError" class="bg-red-500 text-white p-2 m-2 rounded">
-        {{ $t(`ERROR.${loginError}`) }}
+        {{ $t(`SERVER_ERROR.${loginError}`) }}
       </p>
 
       <!-- Auth UI -->
@@ -114,14 +114,18 @@ export default {
   mounted() {
     if (!window.crypto || !window.crypto.subtle) {
       alert(
-        'Your current browser does not support the Web Cryptography API! This page will not work.'
+        `${this.$t('ALERT.UNSUPPORTED_BROWSER')}. ${this.$t(
+          'TRY_DIFFERENT_BROWSER'
+        )}`
       )
       return
     }
 
     if (!window.indexedDB) {
       alert(
-        'Your current browser does not support IndexedDB. This page will not work.'
+        `${this.$t('ALERT.UNSUPPORTED_BROWSER')}. ${this.$t(
+          'TRY_DIFFERENT_BROWSER'
+        )}`
       )
       return
     }

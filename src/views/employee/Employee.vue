@@ -213,7 +213,7 @@
     </div>
   </div>
   <div v-else>
-    <router-link to="/login">Login</router-link>
+    <router-link to="/login">{{ $t('LOGIN') }}</router-link>
   </div>
 </template>
 

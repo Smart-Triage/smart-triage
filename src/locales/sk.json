@@ -1,114 +1,192 @@
 {
-  "YES": "Áno",
-  "NO": "Nie",
-  "NEXT": "Ďalší",
-  "FIRST_NAME": "Krstné meno",
-  "LAST_NAME": "Priezvisko",
-  "FULL_NAME": "Celé meno",
-  "PERSONAL_IDENTIFICATION_NUMBER": "Rodné číslo",
-  "PHONE_NUMBER": "Telefónne číslo",
-  "SOMETHING_WENT_WRONG": "Niečo sa pokazilo",
-  "GO_TO_HOMEPAGE": "Ísť na domovskú obrazovku",
-  "EDIT": "Upraviť",
-  "ADMIN": {
-    "CREATE_CERTIFICATE": "Vytvoriť certifikát",
-    "UPLOAD_CERTIFICATE": "Nahrať certifikát"
-  },
-  "HOME": {
-    "WELCOME": "COVID-19",
-    "TITLE": "Triáž",
-    "INFO": "Prosím vyplňte tento formulár pred príchodom do nemocnice pre urýchlenie a obmedzenie blízkeho kontaktu s personálom",
-    "FILL_FORM": "Začať",
-    "NOT_GOING_ALONE": "Nejdete sami?",
-    "FILL_FOR_ANOTHER_PERSON": "Vyplniť pre ďalšiu osobu",
-    "HOW_IT_WORKS": "Ako to funguje?",
-    "SETTINGS": "Nastavenia"
-  },
-  "FORM": {
-    "PERSONAL_DETAILS": "Osobné údaje",
-    "QUESTIONNAIRE": "Dotazník",
-    "ANSWER_A_FEW_QUESTIONS": "Prosím, vyplňte informácie o svojom zdravotnom stave",
-    "SKIP_TO_SUMMARY": "Prejsť na Zhrnutie",
-    "INFORMATION_IS_SAFE": "Vaše osobné údaje sú v bezpečí.",
-    "NO_DATA_IS_SENT_OVER_THE_INTERNET": "Žiadne dáta sa neodosielajú cez internet."
-  },
-  "APP_IN_DEVELOPMENT": "Skúšobný mód. Aplikácia je stále vo vývoji.",
-  "SUMMARY": {
-    "SUMMARY": "Zhrnutie",
-    "SHOW_QR_CODE": "Zobraziť QR kód"
-  },
-  "PATIENT_SUMMARY": {
-    "CONFIRMED_BY": "Potvrdil/a",
-    "COVID_SUSPECTED": "Covid suspected",
-    "COVID_NOT_SUSPECTED": "Covid NOT suspected",
-    "PATIENT_INFO": "Osobné údaje",
-    "SYMPTOPMS": "Symptómy"
-  },
-  "PATIENT_LIST": {
-    "CONFIRMED": "Potvrdené",
-    "FINISHED": "Dokončené",
-    "NOT_FINISHED": "Nedokončené"
-  },
-  "NEW_CONTENT_AVAILABLE": {
-    "LOADING": "Načítavanie nového obsahu",
-    "AVAILABLE": "Dostupný nový obsah.",
-    "REFRESH": "Obnoviť"
-  },
-  "EMPLOYEE": {
-    "WELCOME": "Vitajte v zamestnaneckej aplikácii pre triáž pacientov",
-    "TAP_SCAN_TO_BEGIN": "Začnite klepnutím na Ďalší pacient",
-    "PATIENT_SUMMARY": "Prehľad pacienta",
-    "CONFIRM_AS_COVID_SUSPECT": "Potvrdiť pacienta ako COVID suspect",
-    "CONFIRM_AS_COVID_NON_SUSPECT": "Potvrdiť pacienta ako COVID NON suspect",
-    "PATIENT_CONFIRMATION_CODE": "Potvrdzovací kód pre pacienta",
-    "CLOSE_PATIENT": "Zavrieť pacienta",
-    "SCAN_NEXT_PATIENT": "Ďalší pacient"
-  },
-  "HOW_IT_WORKS": {
-    "HOW_IT_WORKS": "Ako to funguje",
-    "SHORT_DESCRIPTION": "Táto aplikácia je určená pre osoby, ktoré idú na vyšetrenie do nemocnice a nechcú čakať v dlhom rade. Tento formulár môžete vyplniť dopredu.",
-    "FILL_FORM": "Vyplňte formulár pre seba alebo pre dalšie osoby, ktoré sú s Vami",
-    "SHOW_QR_CODE_TO_STAFF": "Ukážte QR kód personálu nemocnice"
-  },
-  "ABOUT": {
-    "ABOUT_THIS_APP": "O aplikácii",
-    "APP_SHORT_DESCRIPTION": "Táto aplikácia bola vytvorená k urýchleniu triáže pacientov v nemocniciach počas pandémie COVID-19.",
-    "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
-    "CREATED_ON_HACKATHON": "Táto aplikácia bola vytvorená počas online hackathonu Hack Košice Digital 2020.",
-    "AUTHORS": "Autori",
-    "VERSION": "Verzia"
-  },
-  "PATIENT_QR_CODE": {
-    "FOLLOW_INSTRUCTIONS": "Počkajte na inštrukcie personálu nemocnice",
-    "WHEN_ASKED_SHOW_THIS_CODE": "Tu je Váš QR kód, ukážte ho zdravotníkovi.",
-    "CONFIRMED_BY": "Potvrdil",
-    "COVID_SUSPECTED": "Covid suspected",
-    "COVID_NOT_SUSPECTED": "Covid NOT suspected",
-    "SCAN_CONFIRMATION": "Naskenovať potvrdenie"
-  },
-  "SCAN_CONFIRMATION_QR_CODE": {
-    "SCAN_CONFIRMATION_QR_CODE": "Naskenujte potvrdzovací QR kód od zdravotníka"
-  },
-  "SETTINGS": {
-    "SETTINGS": "Nastavenia",
-    "ABOUT": "O aplikácii",
-    "APP_LANGUAGE": "Jazyk aplikácie",
-    "DELETE_ALL_DATA": "Vymazať všetky dáta"
-  },
-  "ALERT": {
-    "DELETE_ALL_DATA": "Vymazať všetky dáta? Túto operáciu nie je možné vrátiť.",
-    "ALL_DATA_CLEARED": "Všetky dáta vymazané"
-  },
-  "LOGIN": {
-    "ONLY_FOR_EMPLOYEES": "Táto časť aplikácie je určená iba pre zamestnancov nemocníc.",
-    "ENTER_REGISTRATION_CODE": "Zadajte registračný kód. Ak registračný kód nemáte, kontaktuje osobu poverenú triážou vo vašej nemocnici.",
-    "SEND": "Odoslať",
-    "CHECK_CONNECTION": "Skontrolujte pripojenie k internetu, táto funkcia nie je dostupná offline.",
-    "REGISTRATION_CODE": "Registračný kód",
-    "AUTHENTICATING": "Overovanie"
-  },
-  "ERROR": {
-    "server_error": "Ups. Niečo sa pokazilo. Skúste to znovu neskôr.",
-    "registration_key_invalid_error": "Tento registračný kód je neplatný"
-  }
+    "ABOUT": {
+        "ABOUT_THIS_APP": "O aplikácii",
+        "APP_SHORT_DESCRIPTION": "Táto aplikácia bola vytvorená k urýchleniu triáže pacientov v nemocniciach počas pandémie COVID-19.",
+        "AUTHORS": "Autori",
+        "CREATED_ON_HACKATHON": "Táto aplikácia bola vytvorená počas online hackathonu Hack Košice Digital 2020.",
+        "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
+        "VERSION": "Verzia"
+    },
+    "ADMIN": {
+        "CREATE_CERTIFICATE": "Vytvoriť certifikát",
+        "UPLOAD_CERTIFICATE": "Nahrať certifikát"
+    },
+    "ALERT": {
+        "ALL_DATA_CLEARED": "Všetky dáta vymazané",
+        "DELETE_ALL_DATA": "Vymazať všetky dáta? Túto operáciu nie je možné vrátiť.",
+        "DELETE_PATIENT": "Zmazať pacienta",
+        "UNSUPPORTED_BROWSER": "Nepodporovaný prehliadač"
+    },
+    "APP_IN_DEVELOPMENT": "Skúšobný mód. Aplikácia je stále vo vývoji.",
+    "BACK": "Späť",
+    "CB": {
+        "CONFIRMATION_ISSUED_FOR": "Potvrdenie vydané pre",
+        "CONFIRMED_BY": "Potvrdil/a",
+        "CONFIRMED_ON": "Potvrdené dňa",
+        "IS_COVID_SUSPECTED": "COVID-19 suspektní",
+        "MEASURED_TEMPERATURE": "Nameraná teplota"
+    },
+    "EDIT": "Upraviť",
+    "EMPLOYEE": {
+        "CLOSE_PATIENT": "Zavrieť pacienta",
+        "CONFIRM": "Potvrdiť",
+        "ENTER_TEMPERATURE": "Zadajte nameranú teplotu",
+        "IS_INFECTION_SUSPECTED": "Podozrenie na infekciu",
+        "LOGIN": "Prihlásiť sa",
+        "MEASURED_TEMPERATURE": "Nameraná teplota",
+        "PATIENT_CONFIRMATION_CODE": "Potvrdzovací kód pre pacienta",
+        "PATIENT_SUMMARY": "Prehľad pacienta",
+        "SCAN_NEXT_PATIENT": "Ďalší pacient",
+        "SCAN_PATIENT": "Naskenujte QR kód pacienta",
+        "SELECT_INFECTION_SUSPECTION": "Zadajte podozrenie na infekciu",
+        "TAP_SCAN_TO_BEGIN": "Začnite klepnutím na Ďalší pacient",
+        "VALIDITY_TIMEOUT": "Platnosť dotazníka vypršala",
+        "VALIDITY_TIMEOUT_CONFIRMATION": "OK",
+        "VALIDITY_TIMEOUT_TEXT": "Platnosť dotazníka tohto pacienta vypršala",
+        "WELCOME": "Vitajte v zamestnaneckej aplikácii pre triáž pacientov"
+    },
+    "ERROR": {
+        "ERROR": "Chyba",
+        "INVALID_QR_CODE": "Chyba pri čítaní QR kódu! Uistite sa, že čítate iba QR kódy generované touto aplikáciou a vaše (a pacientská) aplikácia je aktuálna. Potom to skúste znova",
+        "NotAllowedError": "Musíte povoliť využitie fotoaparátu",
+        "NotFoundError": "Toto zariadenie nepodporuje fotoaparát",
+        "NotReadableError": "Prístup k fotoaparátu odmietnutý. Skontrolujte, že fotoaparát nie je využívaný inou aplikáciou",
+        "NotSupportedError": "Je vyžadovaný bezpečný kontext (HTTPS)",
+        "OverconstrainedError": "Nainštalovaný fotoaparát nemožno použiť",
+        "StreamApiNotSupportedError": "Nepodporovaný prehliadač",
+        "WRONG_PATIENT": "Naskenoval/a ste neplatný QR kód. Uistite sa, že skenujete správneho pacienta a skúste to znova. Ak máte problémy, obráťte sa na personál nemocnice."
+    },
+    "FIRST_NAME": "Krstné meno",
+    "FORM": {
+        "ANSWER_A_FEW_QUESTIONS": "Prosím, vyplňte informácie o svojom zdravotnom stave",
+        "INFORMATION_IS_SAFE": "Vaše osobné údaje sú v bezpečí.",
+        "NO_DATA_IS_SENT_OVER_THE_INTERNET": "Žiadne dáta sa neodosielajú cez internet.",
+        "PERSONAL_DETAILS": "Osobné údaje",
+        "QUESTIONNAIRE": "Dotazník",
+        "SKIP_TO_SUMMARY": "Prejsť na Zhrnutie"
+    },
+    "FULL_NAME": "Celé meno",
+    "GO_TO_HOMEPAGE": "Ísť na domovskú obrazovku",
+    "HOME": {
+        "ABOUT_TRIAGE": {
+            "HOW_IT_WORKS_H": "Ako funguje chytrá triáž?",
+            "HOW_IT_WORKS_OL_1": "Vyplňte dotazník vo svojom smartphonu",
+            "HOW_IT_WORKS_OL_2": "Ukážte QR kód zdravotníckemu personálu, ktorý vyhodnotí vaše symptómy",
+            "HOW_IT_WORKS_OL_3": "Naskenujte si potvrdenie",
+            "HOW_IT_WORKS_OL_4": "Preukážte sa pri vstupe do nemocnice potvrdením v aplikácii",
+            "HOW_IT_WORKS_P": "",
+            "WHAT_IS_TRIAGE_H": "",
+            "WHAT_IS_TRIAGE_P": "",
+            "WHERE_IT_WORKS_H": "",
+            "WHERE_IT_WORKS_P": ""
+        },
+        "FILL_FORM": "Začať",
+        "FILL_FORM_IN_YOUR_PHONE": "Vyplňte dotazník v mobile",
+        "FILL_FOR_ANOTHER_PERSON": "Vyplniť pre ďalšiu osobu",
+        "HOW_IT_WORKS": "Ako to funguje?",
+        "INFO": "Prosím vyplňte tento formulár pred príchodom do nemocnice pre urýchlenie a obmedzenie blízkeho kontaktu s personálom",
+        "NOT_GOING_ALONE": "Nejdete sami?",
+        "PERSONAL_INFO": {
+            "APP_H": "",
+            "APP_P": "",
+            "WHATS_HAPPENING_H": "",
+            "WHATS_HAPPENING_P": ""
+        },
+        "SETTINGS": "Nastavenia",
+        "SHORTEN_THE_WAIT": "a skráťte si čakanie v rade",
+        "TITLE": "Triáž",
+        "WELCOME": "COVID-19"
+    },
+    "HOW_IT_WORKS": {
+        "FILL_FORM": "Vyplňte formulár pre seba alebo pre dalšie osoby, ktoré sú s Vami",
+        "FILL_FOR_OTHERS": "",
+        "HOW_IT_WORKS": "Ako to funguje",
+        "SHORT_DESCRIPTION": "Táto aplikácia je určená pre osoby, ktoré idú na vyšetrenie do nemocnice a nechcú čakať v dlhom rade. Tento formulár môžete vyplniť dopredu.",
+        "SHOW_QR_CODE_TO_STAFF": "Ukážte QR kód personálu nemocnice"
+    },
+    "LAST_NAME": "Priezvisko",
+    "LOADING": "Načítanie",
+    "LOGIN": {
+        "AUTHENTICATING": "Overovanie",
+        "CHECK_CONNECTION": "Skontrolujte pripojenie k internetu, táto funkcia nie je dostupná offline.",
+        "ENTER_REGISTRATION_CODE": "Zadajte registračný kód. Ak registračný kód nemáte, kontaktuje osobu poverenú triážou vo vašej nemocnici.",
+        "OFFLINE": "Skontrolujte pripojenie k internetu, prihlásenie nie je dostupné offline.",
+        "ONLY_FOR_EMPLOYEES": "Táto časť aplikácie je určená iba pre zamestnancov nemocníc.",
+        "REGISTRATION_CODE": "Registračný kód",
+        "SEND": "Odoslať"
+    },
+    "MODAL": {
+        "ADD_TO_HOMESCREEN": "Nainštalujte túto aplikáciu na domovskú obrazovku pre rýchly a jednoduchý prístup, keď ste na cestách",
+        "GIVE_US_FEEDBACK": "Zanechajte nám spätnú väzbu, vyplnením krátkeho dotazníka",
+        "HAVE_SUGGESTIONS": "Máte pripomienky",
+        "INSTALL": "Nainštalovať",
+        "JUST_TAP": "",
+        "LIKE_OUR_APP": "Páči sa Vám naša aplikácia",
+        "NOT_INTERESTED": "Nie, vďaka",
+        "SURE": "Dobre",
+        "THEN_ADD": "potom 'Pridať na domovskú obrazovku'"
+    },
+    "NEW_CONTENT_AVAILABLE": {
+        "AVAILABLE": "Dostupný nový obsah.",
+        "LOADING": "Načítavanie nového obsahu",
+        "REFRESH": "Obnoviť"
+    },
+    "NEXT": "Ďalší",
+    "NO": "Nie",
+    "PATIENT_LIST": {
+        "CONFIRMED": "Potvrdené",
+        "FINISHED": "Dokončené",
+        "NOT_FINISHED": "Nedokončené",
+        "VALIDITY_TIMEOUT": "Platnosť vypršala"
+    },
+    "PATIENT_QR_CODE": {
+        "CONFIRMED_BY": "Potvrdil",
+        "COVID_NOT_SUSPECTED": "Covid NOT suspected",
+        "COVID_SUSPECTED": "Covid suspected",
+        "FOLLOW_INSTRUCTIONS": "Počkajte na inštrukcie personálu nemocnice",
+        "SCAN_CONFIRMATION": "Naskenovať potvrdenie",
+        "WHEN_ASKED_SHOW_THIS_CODE": "Tu je Váš QR kód, ukážte ho zdravotníkovi."
+    },
+    "PATIENT_SUMMARY": {
+        "CONFIRMED_BY": "Potvrdil/a",
+        "COVID_NOT_SUSPECTED": "Covid NOT suspected",
+        "COVID_SUSPECTED": "Covid suspected",
+        "PATIENT_INFO": "Osobné údaje",
+        "SYMPTOPMS": "Symptómy"
+    },
+    "PERSONAL_IDENTIFICATION_NUMBER": "Rodné číslo",
+    "PHONE_NUMBER": "Telefónne číslo",
+    "SCAN_CONFIRMATION_QR_CODE": {
+        "SCAN_CONFIRMATION_QR_CODE": "Naskenujte potvrdzovací QR kód od zdravotníka"
+    },
+    "SERVER_ERROR": {
+        "registration_key_invalid_error": "Tento registračný kód je neplatný",
+        "server_error": "Ups. Niečo sa pokazilo. Skúste to znovu neskôr."
+    },
+    "SETTINGS": {
+        "ABOUT": "O aplikácii",
+        "ADMIN": "Administrátor",
+        "APP_LANGUAGE": "Jazyk aplikácie",
+        "APP_MODE": "Režim aplikácie",
+        "DELETE_ALL_DATA": "Vymazať všetky dáta",
+        "EMPLOYEE": "Zamestnanec",
+        "PATIENT": "Pacient",
+        "SETTINGS": "Nastavenia"
+    },
+    "SOMETHING_WENT_WRONG": "Niečo sa pokazilo",
+    "SUMMARY": {
+        "DO_YOU_LIKE_OUR_APP": "Páči sa Vám naša aplikácia",
+        "PERSONAL_INFORMATION": "Súhlasím so spracovaním osobných údajov",
+        "SHOW_QR_CODE": "Zobraziť QR kód",
+        "SUMMARY": "Zhrnutie",
+        "VALIDITY_TIMEOUT": "Platnosť dotazníka vypršala",
+        "VALIDITY_TIMEOUT_CONFIRMATION": "OK",
+        "VALIDITY_TIMEOUT_TEXT": "Dotazník je platný iba po dobu 24 hodín z dôvodu relevantnosti odpovedí a je nutné ho vyplniť znova",
+        "WARNING": "Upozornenie",
+        "WARNING_TEXT": "Tieto informácie zisťujeme s cieľom znížiť riziko prenosu infekcie COVID-19 v zdravotníckom zariadení. Uvedenie nepravdivých informácií môže byť posudzované ako trestný čin.",
+        "YOU_HAVE_TO_ACCEPT_BTN": "Musíte súhlasiť s podmienkami",
+        "YOU_HAVE_TO_ACCEPT_TXT": "Súhlasím, že všetky uvedené údaje sú pravdivé. Uvedenie nepravidvých informácií môže byť posudzované ako trestný čin"
+    },
+    "TRY_DIFFERENT_BROWSER": "Skúste využiť iný prehliadač. Odporúčame Google Chrome. Ak používate iPhone / iPad odporúčame využiť Safari",
+    "YES": "Áno"
 }

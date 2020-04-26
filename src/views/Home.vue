@@ -13,8 +13,8 @@
         alt="Smart Triage logo"
       />
       <p class="mt-4 text-xl text-secondary font-semibold">
-        Vyplňte dotazník v mobilu <br />
-        a zkraťte si čekání ve frontě
+        {{ $t('HOME.FILL_FORM_IN_YOUR_PHONE') }}<br />
+        {{ $t('HOME.SHORTEN_THE_WAIT') }}
       </p>
       <img
         class="h-32 my-8 mx-auto"

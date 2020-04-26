@@ -209,7 +209,9 @@ export default {
       e.stopPropagation()
       // eslint-disable-next-line no-alert
       const r = window.confirm(
-        `Delete patient ${this.currentPatient.firstName} ${this.currentPatient.lastName}?`
+        `${this.$t('ALERT.DELETE_PATIENT')} ${this.currentPatient.firstName} ${
+          this.currentPatient.lastName
+        }?`
       )
       if (r === true) {
         this.deletePatientById(this.currentPatient.id).then(() => {
