@@ -18,6 +18,7 @@
     "UNSUPPORTED_BROWSER": "Nepodporovaný prohlížeč"
   },
   "APP_IN_DEVELOPMENT": "Testovací režim. Aplikace je stále ve vývoji.",
+  "APP_TITLE": "Chytrá Triáž",
   "BACK": "Zpět",
   "CB": {
     "CONFIRMATION_ISSUED_FOR": "Potvrzení vydáno pro",
@@ -40,6 +41,7 @@
     "SCAN_PATIENT": "Naskenujte QR kód pacienta",
     "SELECT_INFECTION_SUSPECTION": "Zadejte podezření na infekci",
     "TAP_SCAN_TO_BEGIN": "Začněte klepnutím na Další pacient",
+    "TITLE": "Zaměstnanecká aplikace",
     "VALIDITY_TIMEOUT": "Platnost dotazníku vypršela",
     "VALIDITY_TIMEOUT_CONFIRMATION": "OK",
     "VALIDITY_TIMEOUT_TEXT": "Platnost dotazníku tohoto pacienta vypršela",
@@ -127,7 +129,8 @@
     "OFFLINE": "Zkontrolujte připojení k internetu, přihlášení není dostupné offline.",
     "ONLY_FOR_EMPLOYEES": "Tato část aplikace je určena pouze pro zaměstnance nemocnic.",
     "REGISTRATION_CODE": "Registrační kód",
-    "SEND": "Odeslat"
+    "SEND": "Odeslat",
+    "TITLE": "Přihlášení"
   },
   "MODAL": {
     "ADD_TO_HOMESCREEN": "Nainstalujte tuto aplikaci na domovskou obrazovku pro rychlý a snadný přístup, když jste na cestách",
@@ -159,6 +162,7 @@
     "COVID_SUSPECTED": "Covid suspected",
     "FOLLOW_INSTRUCTIONS": "Vyčkejte na instrukce personálu nemocnice",
     "SCAN_CONFIRMATION": "Naskenovat potvrzení",
+    "TITLE": "QR kód pacienta",
     "WHEN_ASKED_SHOW_THIS_CODE": "Zde je Váš QR kód, ukažte ho zdravotníkovi."
   },
   "PATIENT_SUMMARY": {

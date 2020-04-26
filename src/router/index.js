@@ -1,6 +1,7 @@
 import Vue from 'vue'
+import i18n from '@/plugins/i18n'
 import Router from 'vue-router'
-import Head from 'vue-head'
+import VueHead from 'vue-head'
 import Home from '@/views/Home'
 import CheckLogin from '@/views/employee/CheckLogin'
 import { isNil } from 'lodash'
@@ -10,8 +11,9 @@ Vue.use(Router)
 
 /* If you don't know about VueHead, please refer to https://github.com/ktquez/vue-head */
 
-Vue.use(Head, {
-  complement: process.env.VUE_APP_TITLE
+Vue.use(VueHead, {
+  separator: '-',
+  complement: i18n.t('APP_TITLE')
 })
 
 /* If you don't know about VueRouter, please refer to https://router.vuejs.org/ */

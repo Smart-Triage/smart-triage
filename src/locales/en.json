@@ -18,6 +18,7 @@
     "UNSUPPORTED_BROWSER": "Unsupported browser"
   },
   "APP_IN_DEVELOPMENT": "This app is in development",
+  "APP_TITLE": "Smart Triage",
   "BACK": "Back",
   "CB": {
     "CONFIRMATION_ISSUED_FOR": "Confirmation issued for",
@@ -40,6 +41,7 @@
     "SCAN_PATIENT": "Scan the patient's QR code",
     "SELECT_INFECTION_SUSPECTION": "Enter a suspected infection",
     "TAP_SCAN_TO_BEGIN": "Tap scan next patient to begin",
+    "TITLE": "Employee application",
     "VALIDITY_TIMEOUT": "The questionnaire expired",
     "VALIDITY_TIMEOUT_CONFIRMATION": "OK",
     "VALIDITY_TIMEOUT_TEXT": "This patient's questionnaire has expired",
@@ -127,7 +129,8 @@
     "OFFLINE": "Please check your connection, login feature is not available offline.",
     "ONLY_FOR_EMPLOYEES": "This part of the application is only available for hospital employees.",
     "REGISTRATION_CODE": "Registration code",
-    "SEND": "Send"
+    "SEND": "Send",
+    "TITLE": "Login"
   },
   "MODAL": {
     "ADD_TO_HOMESCREEN": "Install this application to your home screen for quickly and easy access when you're on the go",
@@ -159,6 +162,7 @@
     "COVID_SUSPECTED": "Covid suspected",
     "FOLLOW_INSTRUCTIONS": "Follow the instructions of the hospital staff",
     "SCAN_CONFIRMATION": "Scan confirmation",
+    "TITLE": "Patient's QR code",
     "WHEN_ASKED_SHOW_THIS_CODE": "When asked, show this code."
   },
   "PATIENT_SUMMARY": {

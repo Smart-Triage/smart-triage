@@ -45,6 +45,13 @@ export default {
   components: {
     LocaleChanger
   },
+  head() {
+    return {
+      title: {
+        inner: this.$t('SETTINGS.SETTINGS')
+      }
+    }
+  },
   computed: {
     ...mapState('settings', ['appMode', 'availableAppModes']),
     ...mapState('authentication', ['user'])

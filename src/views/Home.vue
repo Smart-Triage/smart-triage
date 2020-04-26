@@ -175,25 +175,26 @@ export default {
     PatientList,
     LocaleChanger
   },
-  data: () => ({
-    showModal: false
-  }),
   head() {
     return {
       title: {
-        inner: 'Home'
+        inner: this.$t('APP_TITLE'),
+        separator: ' ',
+        complement: ' '
       },
       meta: [
         {
           name: 'description',
-          content: `${this.appTitle} home page`,
+          content: `${this.$t('APP_TITLE')} home page`,
           id: 'desc'
         }
       ]
     }
   },
+  data: () => ({
+    showModal: false
+  }),
   computed: {
-    ...mapState('app', ['appTitle']),
     ...mapState('patients', ['patients'])
   },
   mounted() {

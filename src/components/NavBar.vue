@@ -40,7 +40,7 @@ export default {
     sticky: { type: Boolean, default: false }
   },
   computed: {
-    ...mapState('app', ['networkOnLine', 'appTitle', 'appShortTitle'])
+    ...mapState('app', ['networkOnLine'])
   },
   methods: {}
 }

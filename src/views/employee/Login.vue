@@ -86,6 +86,13 @@ import KeyStore from '@/misc/KeyStore'
 import PublicKeysDB from '@/firebase/public-keys-db'
 
 export default {
+  head() {
+    return {
+      title: {
+        inner: this.$t('LOGIN.TITLE')
+      }
+    }
+  },
   data: () => ({
     loginError: null,
     firstName: '',
@@ -96,7 +103,7 @@ export default {
   }),
   computed: {
     ...mapState('authentication', ['user']),
-    ...mapState('app', ['networkOnLine', 'appTitle'])
+    ...mapState('app', ['networkOnLine'])
   },
   watch: {
     user: {

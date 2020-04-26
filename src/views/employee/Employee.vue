@@ -238,6 +238,13 @@ export default {
     QrcodeVue,
     FullScreenModal
   },
+  head() {
+    return {
+      title: {
+        inner: this.$t('EMPLOYEE.TITLE')
+      }
+    }
+  },
   mixins: [getFormStepsMixin, hospitalDatabaseMixin],
   data: () => ({
     scanning: false,
@@ -249,7 +256,6 @@ export default {
     isCovidSuspected: null
   }),
   computed: {
-    ...mapState('app', ['appTitle']),
     ...mapGetters('patients', ['currentPatient']),
     ...mapState('authentication', ['user']),
     ...mapGetters('employee', ['fullName']),

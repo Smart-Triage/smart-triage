@@ -57,6 +57,13 @@ import ConfirmationBox from '@/components/ConfirmationBox'
 
 export default {
   components: { QrcodeVue, ConfirmationBox },
+  head() {
+    return {
+      title: {
+        inner: this.$t('PATIENT_QR_CODE.TITLE')
+      }
+    }
+  },
   computed: {
     ...mapGetters('patients', ['currentPatient']),
     stringyfiedPatient() {
