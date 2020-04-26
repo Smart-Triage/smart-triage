@@ -17,7 +17,7 @@
     "DELETE_PATIENT": "Delete patient",
     "UNSUPPORTED_BROWSER": "Unsupported browser"
   },
-  "APP_IN_DEVELOPMENT": "This app is in development",
+  "APP_IN_DEVELOPMENT": "Test mode. The application is still under development",
   "APP_TITLE": "Smart Triage",
   "BACK": "Back",
   "CB": {
