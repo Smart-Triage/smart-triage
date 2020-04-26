@@ -48,7 +48,7 @@
       </div>
 
       <button
-        v-if="allowEdit && !patient.confirmed"
+        v-if="!patient.confirmed && appMode !== 'employee'"
         class="edit-btn"
         @click="edit('0')"
       >
@@ -132,11 +132,7 @@
           ></ion-icon>
         </div>
       </div>
-      <button
-        v-if="allowEdit && !patient.confirmed"
-        class="edit-btn"
-        @click="edit('1')"
-      >
+      <button v-if="!patient.confirmed" class="edit-btn" @click="edit('1')">
         {{ $t('EDIT') }}
       </button>
     </div>
@@ -152,8 +148,7 @@ export default {
   components: { ConfirmationBox },
   mixins: [getFormStepsMixin],
   props: {
-    patient: { type: Object, required: true },
-    allowEdit: { type: Boolean, default: true }
+    patient: { type: Object, required: true }
   },
   data() {
     return {

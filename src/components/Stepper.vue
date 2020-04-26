@@ -131,7 +131,11 @@
 
           <div class="spacer"></div>
           <div v-if="currentStepNum !== '0'" class="buttons">
-            <button v-if="!isFirst" class="icon-button prev" @click="prev()">
+            <button
+              v-if="!(appMode === 'employee' && isSecond)"
+              class="icon-button prev"
+              @click="prev()"
+            >
               <ion-icon name="chevron-back-outline" size="large"></ion-icon>
             </button>
             <div class="spacer"></div>
@@ -175,8 +179,8 @@ export default {
     isLast() {
       return this.currentStepNum === '7'
     },
-    isFirst() {
-      return this.currentStepNum === '0'
+    isSecond() {
+      return this.currentStepNum === '1'
     }
   },
   mounted() {
