@@ -89,36 +89,36 @@
     >
       <h2>{{ $t('HOME.AUTHORS.WHO_IS_BEHIND_THIS_APP') }}</h2>
       <p>{{ $t('HOME.AUTHORS.US') }}</p>
-      <div class="flex flex-row">
-        <div class="m-4">
+      <div class="authors-pictures">
+        <div>
           <img
-            class="us-picture"
-            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            src="@/assets/img/avatar-lr.png"
             alt="Hand holding phone scanning QR code"
           />
+          <p>Ľuboš Repka</p>
         </div>
-        <div class="m-4">
+        <div>
           <img
-            class="us-picture"
-            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            src="@/assets/img/avatar-tk.png"
             alt="Hand holding phone scanning QR code"
           />
+          <p>Tom Kuna</p>
         </div>
       </div>
-      <div class="flex flex-row">
-        <div class="m-4">
+      <div class="authors-pictures">
+        <div>
           <img
-            class="us-picture"
-            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            src="@/assets/img/avatar-tt.png"
             alt="Hand holding phone scanning QR code"
           />
+          <p>Tomáš Trejdl</p>
         </div>
-        <div class="m-4">
+        <div>
           <img
-            class="us-picture"
-            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            src="@/assets/img/avatar-vk.png"
             alt="Hand holding phone scanning QR code"
           />
+          <p>Vasil Kostin</p>
         </div>
       </div>
       <p>{{ $t('HOME.AUTHORS.PARTNERS') }}</p>
@@ -206,7 +206,20 @@ export default {
 </script>
 
 <style lang="scss">
-.us-picture {
-  @apply rounded-full;
+@import '@/theme/variables.scss';
+.authors-pictures {
+  @apply flex flex-row;
+  div {
+    @apply m-8;
+
+    img {
+      @apply rounded-full;
+    }
+
+    p {
+      color: $secondary-color;
+      @apply mt-4 font-semibold text-xl;
+    }
+  }
 }
 </style>
