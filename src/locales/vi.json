@@ -1,0 +1,210 @@
+{
+  "ABOUT": {
+    "ABOUT_THIS_APP": "Về ứng dụng này",
+    "APP_SHORT_DESCRIPTION": "Ứng dụng này đã được tạo ra để giúp đỡ chia bệnh nhân trong thời Covid-19.",
+    "AUTHORS": "Tác giả",
+    "CREATED_ON_HACKATHON": "Ứng dụng này được tạo ra ở online Hack Košice Digital 2020.",
+    "TRIAGE_DESCRIPTION": "Triáž là quá trình xác định mức độ ưu tiên của điều trị bệnh nhân dựa trên mức độ nghiêm trọng của tình trạng của họ hoặc khả năng phục hồi.",
+    "VERSION": "Phiên bản"
+  },
+  "ADMIN": {
+    "CREATE_CERTIFICATE": "Tạo ra chứng chỉ",
+    "UPLOAD_CERTIFICATE": "Tải lên chứng chỉ"
+  },
+  "ALERT": {
+    "ALL_DATA_CLEARED": "Tất cả dữ liệu đã xóa hết rồi.",
+    "DELETE_ALL_DATA": "Xóa tất cả dữ liệu ? Sau khi xóa đi không thể trở về được.",
+    "DELETE_PATIENT": "",
+    "UNSUPPORTED_BROWSER": ""
+  },
+  "APP_IN_DEVELOPMENT": "ứng dụng này vẫn đang được phát triển",
+  "APP_TITLE": "",
+  "BACK": "Trở lại",
+  "CB": {
+    "CONFIRMATION_ISSUED_FOR": "",
+    "CONFIRMED_BY": "",
+    "CONFIRMED_ON": "",
+    "IS_COVID_SUSPECTED": "",
+    "MEASURED_TEMPERATURE": ""
+  },
+  "EDIT": "Sửa lại",
+  "EMPLOYEE": {
+    "CLOSE_PATIENT": "Đóng hồ sơ bệnh nhân",
+    "CONFIRM": "",
+    "ENTER_TEMPERATURE": "Ghi vào nhiệt độ",
+    "IS_INFECTION_SUSPECTED": "",
+    "LOGIN": "",
+    "MEASURED_TEMPERATURE": "Nhiệt độ đã được đo",
+    "PATIENT_CONFIRMATION_CODE": "Mã xác nhận của bệnh nhân",
+    "PATIENT_SUMMARY": "Thông tin tóm lại của bệnh nhân",
+    "SCAN_NEXT_PATIENT": "Bệnh nhân khác",
+    "SCAN_PATIENT": "",
+    "SELECT_INFECTION_SUSPECTION": "",
+    "TAP_SCAN_TO_BEGIN": "Bạn bắt đầu bằng bấm vào bệnh nhân tiếp theo",
+    "TITLE": "",
+    "VALIDITY_TIMEOUT": "",
+    "VALIDITY_TIMEOUT_CONFIRMATION": "",
+    "VALIDITY_TIMEOUT_TEXT": "",
+    "WELCOME": "Chào mừng bạn đến ứng dụng của nhân viên."
+  },
+  "ERROR": {
+    "ERROR": "",
+    "INVALID_QR_CODE": "",
+    "NotAllowedError": "",
+    "NotFoundError": "",
+    "NotReadableError": "",
+    "NotSupportedError": "",
+    "OverconstrainedError": "",
+    "StreamApiNotSupportedError": "",
+    "WRONG_PATIENT": ""
+  },
+  "FIRST_NAME": "Tên",
+  "FORM": {
+    "ANSWER_A_FEW_QUESTIONS": "Hiện nay  bạn có hiện tượng này không? Hoặc là có những hiện tượng này vào 24 giờ qua không?",
+    "INFORMATION_IS_SAFE": "Thông tin cá nhân của bạn được an toàn",
+    "NO_DATA_IS_SENT_OVER_THE_INTERNET": "Không có thông tin nào được gửi cua internet",
+    "PERSONAL_DETAILS": "Thông tin cá nhân",
+    "QUESTIONNAIRE": "Bảng câu hỏi",
+    "SKIP_TO_SUMMARY": "Bỏ qua đến tóm tắt"
+  },
+  "FULL_NAME": "Tên và họ",
+  "GO_TO_HOMEPAGE": "Trở về trang chính",
+  "HOME": {
+    "ABOUT_TRIAGE": {
+      "HOW_IT_WORKS_H": "",
+      "HOW_IT_WORKS_OL_1": "",
+      "HOW_IT_WORKS_OL_2": "",
+      "HOW_IT_WORKS_OL_3": "",
+      "HOW_IT_WORKS_OL_4": "",
+      "HOW_IT_WORKS_P": "",
+      "WHAT_IS_TRIAGE_H": "",
+      "WHAT_IS_TRIAGE_P": "",
+      "WHERE_IT_WORKS_H": "",
+      "WHERE_IT_WORKS_P": ""
+    },
+    "AUTHORS": {
+      "PARTNERS": "",
+      "US": "",
+      "WHO_IS_BEHIND_THIS_APP": ""
+    },
+    "FILL_FORM": "Bắt đầu",
+    "FILL_FORM_IN_YOUR_PHONE": "",
+    "FILL_FOR_ANOTHER_PERSON": "Điền đơn cho người khác",
+    "FOOTER": {
+      "ABOUT_US": "",
+      "CONTACT": "",
+      "COPYRIGHT": "",
+      "FAQ": "",
+      "FOR_EMPLOYEES": "",
+      "FOR_HOSPITALS": "",
+      "PRIVACY_POLICY": "",
+      "TERMS_OF_SERVICE": ""
+    },
+    "HOW_IT_WORKS": "Hoạt động như thế nào?",
+    "INFO": "Vui lòng điền vào  mẫu đơn này trước khi đến bệnh viện để tăng tốc độ thông qua và hạn chế tiếp xúc gần gũi với nhân viên",
+    "NOT_GOING_ALONE": "Bạn không đi một mình?",
+    "PERSONAL_INFO": {
+      "APP_H": "",
+      "APP_P": "",
+      "WHATS_HAPPENING_H": "",
+      "WHATS_HAPPENING_P": ""
+    },
+    "SETTINGS": "Cài đặt",
+    "SHORTEN_THE_WAIT": "",
+    "TITLE": "Triáž",
+    "WELCOME": "COVID-19"
+  },
+  "HOW_IT_WORKS": {
+    "FILL_FORM": "Bạn hãy điền bản khai này.",
+    "HOW_IT_WORKS": "Hoạt động như thế nào",
+    "SHORT_DESCRIPTION": "Ứng dụng này dành cho người muốn đi khám ở bệnh viện và không muốn xếp hàng đợi lâu. Bản khai này có thể điền trước.",
+    "SHOW_QR_CODE_TO_STAFF": "Bạn chỉ mã QR cho nhân viên bệnh viện."
+  },
+  "LAST_NAME": "Họ",
+  "LOADING": "",
+  "LOGIN": {
+    "AUTHENTICATING": "Đang xác minh",
+    "CHECK_CONNECTION": "Kiểm tra kết nối internet, ứng dụng này không dùng được offline",
+    "ENTER_REGISTRATION_CODE": "Bạn hãy ghi mã đăng ký. Nếu bạn không có mã đăng ký, hãy liên hệ với người phụ trách ứng dụng này ở bệnh viện.",
+    "OFFLINE": "",
+    "ONLY_FOR_EMPLOYEES": "Phần ứng dụng này chỉ dành cho nhân viên bệnh viện",
+    "REGISTRATION_CODE": "Mã đăng ký",
+    "SEND": "Gửi",
+    "TITLE": ""
+  },
+  "MODAL": {
+    "ADD_TO_HOMESCREEN": "",
+    "GIVE_US_FEEDBACK": "",
+    "HAVE_SUGGESTIONS": "",
+    "INSTALL": "",
+    "JUST_TAP": "",
+    "LIKE_OUR_APP": "",
+    "NOT_INTERESTED": "",
+    "SURE": "",
+    "THEN_ADD": ""
+  },
+  "NEW_CONTENT_AVAILABLE": {
+    "AVAILABLE": "Có nội dung mới",
+    "LOADING": "Đang tải nội dung mới",
+    "REFRESH": "Khôi phục lại"
+  },
+  "NEXT": "Tiếp tục",
+  "NO": "Không",
+  "PATIENT_LIST": {
+    "CONFIRMED": "Đã xác nhận rồi",
+    "FINISHED": "Kết thúc",
+    "NOT_FINISHED": "Chưa kết thúc",
+    "VALIDITY_TIMEOUT": ""
+  },
+  "PATIENT_QR_CODE": {
+    "CONFIRMED_BY": "Được xác nhận bởi ",
+    "COVID_NOT_SUSPECTED": "Không nghi ngờ có Covid",
+    "COVID_SUSPECTED": "Nghi ngờ có Covid",
+    "FOLLOW_INSTRUCTIONS": "Bạn chờ hướng dẫn từ nhân viên bệnh viện",
+    "SCAN_CONFIRMATION": "Quét xác nhận",
+    "TITLE": "",
+    "WHEN_ASKED_SHOW_THIS_CODE": "Đây là mã QR của bạn,bạn hãy chỉ cho nhân viên bệnh viện"
+  },
+  "PATIENT_SUMMARY": {
+    "CONFIRMED_BY": "Được xác nhận bởi",
+    "COVID_NOT_SUSPECTED": "Không nghi ngờ có Covid",
+    "COVID_SUSPECTED": "Nghi ngờ có Covid",
+    "PATIENT_INFO": "Thông tin cá nhân",
+    "SYMPTOPMS": "Triệu chứng"
+  },
+  "PERSONAL_IDENTIFICATION_NUMBER": "Số sinh",
+  "PHONE_NUMBER": "Số điện thoại",
+  "SCAN_CONFIRMATION_QR_CODE": {
+    "SCAN_CONFIRMATION_QR_CODE": "Bạn quét mã QR xác nhận đã nhận được từ nhân viên bệnh viện"
+  },
+  "SERVER_ERROR": {
+    "registration_key_invalid_error": "Mã đăng ký này không hợp lệ",
+    "server_error": "Có xai lỗi. Thử lại muộn hơn."
+  },
+  "SETTINGS": {
+    "ABOUT": "Về ứng dụng này",
+    "ADMIN": "Quản trị viên",
+    "APP_LANGUAGE": "Ngôn ngữ ứng dụng",
+    "APP_MODE": "Chế độ ứng dụng",
+    "DELETE_ALL_DATA": "Xóa hết tất cả dữ liệu",
+    "EMPLOYEE": "Nhân viên",
+    "PATIENT": "Bệnh nhân",
+    "SETTINGS": "Cài đặt"
+  },
+  "SOMETHING_WENT_WRONG": "Đã xảy ra lỗi",
+  "SUMMARY": {
+    "DO_YOU_LIKE_OUR_APP": "",
+    "PERSONAL_INFORMATION": "Tôi đồng ý với việc xử lý dữ liệu cá nhân của tôi",
+    "SHOW_QR_CODE": "Xem mã QR",
+    "SUMMARY": "Thông tin tóm lại",
+    "VALIDITY_TIMEOUT": "",
+    "VALIDITY_TIMEOUT_CONFIRMATION": "",
+    "VALIDITY_TIMEOUT_TEXT": "",
+    "WARNING": "Cảnh báo",
+    "WARNING_TEXT": "Chúng tôi sử  dụng những thông tin này để giảm nguy cơ lây nhiễm virus Covid-19 trong bệnh viện.Việc khai dữ liệu sai lệch có thể được coi là hành vi phạm tội.",
+    "YOU_HAVE_TO_ACCEPT_BTN": "Bạn phải đồng ý với điều kiện này.",
+    "YOU_HAVE_TO_ACCEPT_TXT": "Tôi đồng ý rằng tất cả các dữ liệu  trên là đúng sự thật. Việc khai dữ liệu sai lệch có thể được coi là hành vi phạm tội."
+  },
+  "TRY_DIFFERENT_BROWSER": "",
+  "YES": "Có"
+}

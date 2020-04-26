@@ -1,0 +1,210 @@
+{
+  "ABOUT": {
+    "ABOUT_THIS_APP": "О приложении",
+    "APP_SHORT_DESCRIPTION": "Это приложение предназначено для ускорения триады пациентов в больницах во время пандемии COVID-19.",
+    "AUTHORS": "Авторы",
+    "CREATED_ON_HACKATHON": "Это приложение было создано во время онлайн-хакатона Hack Košice Digital 2020 и Hack The Crisis Slovakia.",
+    "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
+    "VERSION": "Версия"
+  },
+  "ADMIN": {
+    "CREATE_CERTIFICATE": "Создать сертификат",
+    "UPLOAD_CERTIFICATE": "Загрузить сертификат"
+  },
+  "ALERT": {
+    "ALL_DATA_CLEARED": "Все данные удалены",
+    "DELETE_ALL_DATA": "Стереть все данные? Операция не может быть возвращена.",
+    "DELETE_PATIENT": "",
+    "UNSUPPORTED_BROWSER": ""
+  },
+  "APP_IN_DEVELOPMENT": "Пробная версия. Приложение находится в разработке.",
+  "APP_TITLE": "",
+  "BACK": "Назад",
+  "CB": {
+    "CONFIRMATION_ISSUED_FOR": "",
+    "CONFIRMED_BY": "",
+    "CONFIRMED_ON": "",
+    "IS_COVID_SUSPECTED": "",
+    "MEASURED_TEMPERATURE": ""
+  },
+  "EDIT": "редактировать",
+  "EMPLOYEE": {
+    "CLOSE_PATIENT": "Закрыть пациента",
+    "CONFIRM": "",
+    "ENTER_TEMPERATURE": "Напишите измеренную температуру",
+    "IS_INFECTION_SUSPECTED": "",
+    "LOGIN": "",
+    "MEASURED_TEMPERATURE": "Измеренная температура",
+    "PATIENT_CONFIRMATION_CODE": "Подтверждающий код для пациента",
+    "PATIENT_SUMMARY": "Обзор (резюме) пациента",
+    "SCAN_NEXT_PATIENT": "Следующий пациент",
+    "SCAN_PATIENT": "",
+    "SELECT_INFECTION_SUSPECTION": "",
+    "TAP_SCAN_TO_BEGIN": "Нажмите следующий пациент, чтобы начать",
+    "TITLE": "",
+    "VALIDITY_TIMEOUT": "",
+    "VALIDITY_TIMEOUT_CONFIRMATION": "",
+    "VALIDITY_TIMEOUT_TEXT": "",
+    "WELCOME": "Добро пожаловать в приложение для персонала для сортировки пациентов"
+  },
+  "ERROR": {
+    "ERROR": "",
+    "INVALID_QR_CODE": "",
+    "NotAllowedError": "",
+    "NotFoundError": "",
+    "NotReadableError": "",
+    "NotSupportedError": "",
+    "OverconstrainedError": "",
+    "StreamApiNotSupportedError": "",
+    "WRONG_PATIENT": ""
+  },
+  "FIRST_NAME": "Имя",
+  "FORM": {
+    "ANSWER_A_FEW_QUESTIONS": "У вас сейчас есть эти симптомы или вы наблюдали их в течение последних 24 часов?",
+    "INFORMATION_IS_SAFE": "Ваши персональные данные находятся в безопасности.",
+    "NO_DATA_IS_SENT_OVER_THE_INTERNET": "Мы не рассылаем ваши персональные данные через интернет.",
+    "PERSONAL_DETAILS": "Личная информация",
+    "QUESTIONNAIRE": "Анкета",
+    "SKIP_TO_SUMMARY": "Перейти к резюме"
+  },
+  "FULL_NAME": "Полное имя",
+  "GO_TO_HOMEPAGE": "Перейти на главную страницу",
+  "HOME": {
+    "ABOUT_TRIAGE": {
+      "HOW_IT_WORKS_H": "",
+      "HOW_IT_WORKS_OL_1": "",
+      "HOW_IT_WORKS_OL_2": "",
+      "HOW_IT_WORKS_OL_3": "",
+      "HOW_IT_WORKS_OL_4": "",
+      "HOW_IT_WORKS_P": "",
+      "WHAT_IS_TRIAGE_H": "",
+      "WHAT_IS_TRIAGE_P": "",
+      "WHERE_IT_WORKS_H": "",
+      "WHERE_IT_WORKS_P": ""
+    },
+    "AUTHORS": {
+      "PARTNERS": "",
+      "US": "",
+      "WHO_IS_BEHIND_THIS_APP": ""
+    },
+    "FILL_FORM": "Начать",
+    "FILL_FORM_IN_YOUR_PHONE": "",
+    "FILL_FOR_ANOTHER_PERSON": "Заполнить за другого человека",
+    "FOOTER": {
+      "ABOUT_US": "",
+      "CONTACT": "",
+      "COPYRIGHT": "",
+      "FAQ": "",
+      "FOR_EMPLOYEES": "",
+      "FOR_HOSPITALS": "",
+      "PRIVACY_POLICY": "",
+      "TERMS_OF_SERVICE": ""
+    },
+    "HOW_IT_WORKS": "Как это работает?",
+    "INFO": "Пожалуйста, заполните этот формуляр до прибытия в больницу, чтобы ускорить проход и ограничить тесный контакт с персоналом.",
+    "NOT_GOING_ALONE": "Вы пришли не одни?",
+    "PERSONAL_INFO": {
+      "APP_H": "",
+      "APP_P": "",
+      "WHATS_HAPPENING_H": "",
+      "WHATS_HAPPENING_P": ""
+    },
+    "SETTINGS": "Настройки",
+    "SHORTEN_THE_WAIT": "",
+    "TITLE": "Triáž",
+    "WELCOME": "COVID-19"
+  },
+  "HOW_IT_WORKS": {
+    "FILL_FORM": "Заполните формуляр для себя или для других людей, которые с вами.",
+    "HOW_IT_WORKS": "Как это работает",
+    "SHORT_DESCRIPTION": "Это приложение предназначено для людей, которые едут в больницу на обследование и не хотят ждать длинных очередей. Этот формуляр может быть заполнена заранее.",
+    "SHOW_QR_CODE_TO_STAFF": "Покажите QR-код персоналу больницы"
+  },
+  "LAST_NAME": "Фамилия",
+  "LOADING": "",
+  "LOGIN": {
+    "AUTHENTICATING": "аутентификация",
+    "CHECK_CONNECTION": "Проверьте подключение к интернету, эта функция недоступна в офлайн режиме.",
+    "ENTER_REGISTRATION_CODE": "Введите регистрационный код. Если у вас нет регистрационного кода, свяжитесь с лицом, отвечающим за сортирофки пациентов  в вашей больнице.",
+    "OFFLINE": "",
+    "ONLY_FOR_EMPLOYEES": "Эта часть приложения предназначена только для персонала больницы.",
+    "REGISTRATION_CODE": "Регистрационный код",
+    "SEND": "Отправить",
+    "TITLE": ""
+  },
+  "MODAL": {
+    "ADD_TO_HOMESCREEN": "",
+    "GIVE_US_FEEDBACK": "",
+    "HAVE_SUGGESTIONS": "",
+    "INSTALL": "",
+    "JUST_TAP": "",
+    "LIKE_OUR_APP": "",
+    "NOT_INTERESTED": "",
+    "SURE": "",
+    "THEN_ADD": ""
+  },
+  "NEW_CONTENT_AVAILABLE": {
+    "AVAILABLE": "Доступны следующие (новые) данные.",
+    "LOADING": "Загрузка данных",
+    "REFRESH": "Обновить"
+  },
+  "NEXT": "Дальше",
+  "NO": "Нет",
+  "PATIENT_LIST": {
+    "CONFIRMED": "Подтверждено",
+    "FINISHED": "Закончено",
+    "NOT_FINISHED": "Не закончено",
+    "VALIDITY_TIMEOUT": ""
+  },
+  "PATIENT_QR_CODE": {
+    "CONFIRMED_BY": "Подтверждено",
+    "COVID_NOT_SUSPECTED": "COVID неподозрительный",
+    "COVID_SUSPECTED": "COVID подозрительный",
+    "FOLLOW_INSTRUCTIONS": "Ждите инструкций персонала больницы",
+    "SCAN_CONFIRMATION": "Сканировать подтверждение",
+    "TITLE": "",
+    "WHEN_ASKED_SHOW_THIS_CODE": "Вот ваш QR-код, покажите его медицинскому работнику."
+  },
+  "PATIENT_SUMMARY": {
+    "CONFIRMED_BY": "Подтвердил/-a",
+    "COVID_NOT_SUSPECTED": "Нет признаков болезни COVID",
+    "COVID_SUSPECTED": "Подозрение на Covid (ковид подозревается?)",
+    "PATIENT_INFO": "Личные данные",
+    "SYMPTOPMS": "Симптомы"
+  },
+  "PERSONAL_IDENTIFICATION_NUMBER": "Идентификационный номер физического лица",
+  "PHONE_NUMBER": "Номер телефона",
+  "SCAN_CONFIRMATION_QR_CODE": {
+    "SCAN_CONFIRMATION_QR_CODE": "Отсканируйте подтверждающий QR-код от медицинского работника."
+  },
+  "SERVER_ERROR": {
+    "registration_key_invalid_error": "Этот регистрационный код недействителен",
+    "server_error": "Что-то пошло не так, попробуйте позже"
+  },
+  "SETTINGS": {
+    "ABOUT": "О приложении",
+    "ADMIN": "Администратор",
+    "APP_LANGUAGE": "Язык приложения",
+    "APP_MODE": "Режим приложения",
+    "DELETE_ALL_DATA": "Удалить все данные",
+    "EMPLOYEE": "Работник",
+    "PATIENT": "Пациент",
+    "SETTINGS": "Настройки"
+  },
+  "SOMETHING_WENT_WRONG": "Что-то пошло не так",
+  "SUMMARY": {
+    "DO_YOU_LIKE_OUR_APP": "",
+    "PERSONAL_INFORMATION": "Подтверждаю свое согласие на обработку персональных данных",
+    "SHOW_QR_CODE": "Показать QR код",
+    "SUMMARY": "Резюме",
+    "VALIDITY_TIMEOUT": "",
+    "VALIDITY_TIMEOUT_CONFIRMATION": "",
+    "VALIDITY_TIMEOUT_TEXT": "",
+    "WARNING": "Предупреждение",
+    "WARNING_TEXT": "Мы используем эту информацию для снижения риска передачи вирусной инфекции COVID-19 в медицинском учреждении. Предоставление ложной информации может считаться уголовным преступлением.",
+    "YOU_HAVE_TO_ACCEPT_BTN": "Вы должны согласиться с условиями",
+    "YOU_HAVE_TO_ACCEPT_TXT": "Подтверждаю, что вся приведенная выше информация является правдой. Предоставление ложной информации является уголовным преступлением"
+  },
+  "TRY_DIFFERENT_BROWSER": "",
+  "YES": "Да"
+}

@@ -3,6 +3,19 @@ import VueI18n from 'vue-i18n'
 
 Vue.use(VueI18n)
 
+// simple recursive remove keys with empty value
+function removeEmpty(obj) {
+  return Object.keys(obj)
+    .filter(k => obj[k] !== null && obj[k] !== undefined && obj[k] !== '') // Remove undef. and null and empty.string.
+    .reduce(
+      (newObj, k) =>
+        typeof obj[k] === 'object'
+          ? Object.assign(newObj, { [k]: removeEmpty(obj[k]) }) // Recurse.
+          : Object.assign(newObj, { [k]: obj[k] }), // Copy value.
+      {}
+    )
+}
+
 function loadLocaleMessages() {
   const locales = require.context(
     '@/locales',
@@ -17,7 +30,7 @@ function loadLocaleMessages() {
       messages[locale] = locales(key)
     }
   })
-  return messages
+  return removeEmpty(messages)
 }
 
 export default new VueI18n({
