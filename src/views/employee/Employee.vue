@@ -123,25 +123,6 @@
             @input="setMeasuredTemperature($event.target.value)"
           />
         </div>
-
-        <div
-          v-else
-          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 mt-2 flex items-center font-semibold"
-        >
-          <label for="measured-temperature">
-            {{ $t('EMPLOYEE.MEASURED_TEMPERATURE') }}
-          </label>
-          <input
-            id="measured-temperature"
-            :value="currentPatient.measuredTemperature"
-            type="number"
-            min="36"
-            max="42"
-            step="0.1"
-            class="flex-grow p-2 rounded-full ml-4 text-center"
-            disabled
-          />
-        </div>
       </div>
 
       <!-- <router-link
@@ -230,6 +211,7 @@ import { str2ab, ab2str } from '@/misc/helpers'
 import FullScreenModal from '@/components/modals/FullScreenModal'
 import getFormStepsMixin from '@/mixins/getFormStepsMixin'
 import hospitalDatabaseMixin from '@/mixins/hospitalDatabaseMixin'
+import stringifyPatientMixin from '@/mixins/stringifyPatientMixin'
 
 export default {
   components: {
@@ -245,7 +227,7 @@ export default {
       }
     }
   },
-  mixins: [getFormStepsMixin, hospitalDatabaseMixin],
+  mixins: [getFormStepsMixin, hospitalDatabaseMixin, stringifyPatientMixin],
   data: () => ({
     scanning: false,
     showingConfirmationQR: false,
@@ -359,7 +341,7 @@ export default {
 
       // SIGN THE CONFIRMATION
       const signedData = await this.signConfirmation(
-        JSON.stringify(this.currentPatient)
+        this.stringifyPatient(this.currentPatient)
       )
       if (signedData) {
         this.signedPatient = JSON.stringify(signedData)
