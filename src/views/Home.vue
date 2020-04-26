@@ -19,7 +19,7 @@
         />
         <!-- <p>{{ $t('HOME.WELCOME') }}</p> -->
         <!-- <h1 class="text-5xl">{{ $t('HOME.TITLE') }}</h1> -->
-        <p>
+        <p class="text-xl text-secondary font-semibold">
           {{ $t('HOME.INFO') }}
         </p>
       </div>
@@ -36,23 +36,54 @@
           </button>
         </div>
         <div v-else>
-          <p class="my-1">{{ $t('HOME.NOT_GOING_ALONE') }}</p>
           <button class="btn-primary" @click="createPatient">
             <ion-icon class="btn-icon" name="person-add-outline"></ion-icon>
             <span>{{ $t('HOME.FILL_FOR_ANOTHER_PERSON') }}</span>
           </button>
+          <p class="my-1 text-secondary">{{ $t('HOME.NOT_GOING_ALONE') }}</p>
         </div>
       </div>
 
       <!-- BOTTOM LINKS -->
-      <div class="bottom-link">
-        <router-link to="/how-it-works">
-          {{ $t('HOME.HOW_IT_WORKS') }}
-        </router-link>
-        <router-link to="/settings">
-          {{ $t('HOME.SETTINGS') }}
-        </router-link>
-      </div>
+      <!--      <div class="bottom-link">-->
+      <!--        <router-link to="/how-it-works">-->
+      <!--          {{ $t('HOME.HOW_IT_WORKS') }}-->
+      <!--        </router-link>-->
+      <!--        <router-link to="/settings">-->
+      <!--          {{ $t('HOME.SETTINGS') }}-->
+      <!--        </router-link>-->
+      <!--      </div>-->
+    </div>
+    <div
+      class="home-text home-h2-primary bg-white px-6 pb-4 mt-4 border-app rounded-b-none"
+    >
+      <h2>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_H') }}</h2>
+      <p>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_P') }}</p>
+      <h2>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_H') }}</h2>
+      <p>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_P') }}</p>
+      <ol
+        class="list-decimal list-inside my-6 text-secondary font-semibold leading-loose"
+      >
+        <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_1') }}</li>
+        <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_2') }}</li>
+        <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_3') }}</li>
+        <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_4') }}</li>
+      </ol>
+      <h2>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_H') }}</h2>
+      <p>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_P') }}</p>
+    </div>
+    <div
+      class="home-text home-h2-secondary px-6 pb-4 mt-4 border-app rounded-b-none"
+    >
+      <h2>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_H') }}</h2>
+      <p>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_P') }}</p>
+      <img
+        class="my-8 mx-auto"
+        src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+        alt="Hand holding phone scanning QR code"
+      />
+      <h2>{{ $t('HOME.PERSONAL_INFO.APP_H') }}</h2>
+      <p>{{ $t('HOME.PERSONAL_INFO.APP_P') }}</p>
     </div>
   </div>
 </template>
