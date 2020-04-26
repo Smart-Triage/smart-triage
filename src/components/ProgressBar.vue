@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-3/5 items-center">
+  <div class="flex w-3/5 items-center max-w-sm">
     <div class="relative bg-gray-200 h-3 p-px flex flex-1 rounded-full">
       <span
         :style="styleObject"
