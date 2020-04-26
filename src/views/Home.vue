@@ -114,10 +114,7 @@
             alt="Hand holding phone scanning QR code"
           />
           <p>
-            <a
-              href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-trejdl-081444156/"
-              >Tomáš Trejdl
-            </a>
+            <a href="https://www.linkedin.com/in/tomastrejdl/">Tomáš Trejdl </a>
           </p>
         </div>
         <div>
