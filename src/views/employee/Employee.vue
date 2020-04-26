@@ -44,7 +44,7 @@
         v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
         class="header-info"
       >
-        <img class="h-12" src="@/assets/img/logo.svg" alt="Smart Triage logo" />
+        <img src="@/assets/img/logo.svg" alt="Smart Triage logo" />
         <p class="my-4">{{ $t('EMPLOYEE.WELCOME') }}</p>
 
         <img

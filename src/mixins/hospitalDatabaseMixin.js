@@ -15,7 +15,7 @@ export default {
       const hospital = this.$config.hospitalDatabase.find(
         h => h.code === hospitalCode
       )
-      if (hospital.logoPath) return hospital.logoPath
+      if (hospital && hospital.logoPath) return hospital.logoPath
       return 'img/hospital-logos/hospital-regular.png'
     }
   }
