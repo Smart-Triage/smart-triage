@@ -70,7 +70,7 @@
       </portal>
       <div
         v-if="currentPatient.confirmed && !currentPatient.hasGivenFeedback"
-        class="flex flex-col items-center bg-white rounded-xl p-4"
+        class="flex flex-col items-center bg-white rounded-2xl px-8 py-4 m-4"
       >
         {{ $t('SUMMARY.DO_YOU_LIKE_OUR_APP') }}?
         <div class="w-full flex justify-around mt-2">
@@ -91,6 +91,7 @@
         </div>
       </div>
 
+      <!-- ACCEPT TERMS AND SHOW QR CODE -->
       <div
         v-if="
           (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed

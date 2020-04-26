@@ -130,7 +130,8 @@
     "SEND": "Odeslat",
     "CHECK_CONNECTION": "Zkontrolujte připojení k internetu, tato funkce není dostupná offline.",
     "REGISTRATION_CODE": "Registrační kód",
-    "AUTHENTICATING": "Ověřování"
+    "AUTHENTICATING": "Ověřování",
+    "OFFLINE": "Zkontrolujte připojení k internetu, přihlášení není dostupné offline."
   },
   "ERROR": {
     "server_error": "Ups. Něco se pokazilo. Zkuste to znovu později",
@@ -142,5 +143,12 @@
     "GIVE_US_FEEDBACK": "Zanechte nám zpětnou vazbu, vyplněním krátkého dotazníku",
     "NOT_INTERESTED": "Ne, díky",
     "SURE": "Dobře"
+  },
+  "CB": {
+    "CONFIRMED_BY": "Potvrdil",
+    "CONFIRMED_ON": "Potvrzeno dne",
+    "MEASURED_TEMPERATURE": "Naměřená teplota",
+    "IS_COVID_SUSPECTED": "COVID-19 suspektní",
+    "CONFIRMATION_ISSUED_FOR": "Potvrzení vydáno pro"
   }
 }

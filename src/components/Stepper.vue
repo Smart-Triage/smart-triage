@@ -154,7 +154,7 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
-import getFormStepsMixin from '@/misc/getFormStepsMixin'
+import getFormStepsMixin from '@/mixins/getFormStepsMixin'
 
 export default {
   components: { ProgressBar, PatientForm },

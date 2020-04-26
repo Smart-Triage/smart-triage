@@ -8,7 +8,7 @@
     >
       <transition name="slide-up" appear>
         <div
-          class="max-w-sm w-full bg-white rounded-xl p-6 mt-8 z-50 shadow-lg"
+          class="max-w-sm w-full bg-white rounded-2xl p-6 mt-8 z-50 shadow-lg"
           @click.stop
         >
           <h1 class="font-normal text-xl text-center mb-6">
@@ -29,7 +29,7 @@
             </button>
             <a
               href="https://forms.google.com"
-              class="bg-primary text-white font-semibold px-4 py-2 rounded hover:bg-blue-dark"
+              class="bg-primary text-white font-semibold px-4 py-2 rounded-full hover:bg-blue-dark"
             >
               {{ $t('MODAL.SURE') }}
             </a>

@@ -3,8 +3,14 @@
     <NavBar v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
       <template v-slot:left>
         <div class="flex items-center text-gray-700">
-          {{ hospitalLogo }}
-          <span class="ml-2 font-semibold">{{ hospitalName }}</span>
+          <img
+            class="h-8 object-contain"
+            :src="getHospitalLogoPath(hospital)"
+            alt="hospital logo"
+          />
+          <span class="ml-2 font-semibold">
+            {{ getHospitalName(hospital) }}
+          </span>
         </div>
       </template>
       <template v-slot:right>
@@ -38,11 +44,7 @@
         v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
         class="header-info"
       >
-        <img
-          class="mx-auto"
-          src="@/assets/img/logo.svg"
-          alt="Smart Triage logo"
-        />
+        <img class="h-12" src="@/assets/img/logo.svg" alt="Smart Triage logo" />
         <p class="my-4">{{ $t('EMPLOYEE.WELCOME') }}</p>
 
         <img
@@ -219,7 +221,8 @@ import PatientSummary from '@/components/PatientSummary'
 import KeyStore from '@/misc/KeyStore'
 import { str2ab, ab2str } from '@/misc/helpers'
 import FullScreenModal from '@/components/modals/FullScreenModal'
-import getFormStepsMixin from '@/misc/getFormStepsMixin'
+import getFormStepsMixin from '@/mixins/getFormStepsMixin'
+import hospitalDatabaseMixin from '@/mixins/hospitalDatabaseMixin'
 
 export default {
   components: {
@@ -228,7 +231,7 @@ export default {
     QrcodeVue,
     FullScreenModal
   },
-  mixins: [getFormStepsMixin],
+  mixins: [getFormStepsMixin, hospitalDatabaseMixin],
   data: () => ({
     scanning: false,
     showingConfirmationQR: false,
@@ -243,18 +246,7 @@ export default {
     ...mapGetters('patients', ['currentPatient']),
     ...mapState('authentication', ['user']),
     ...mapGetters('employee', ['fullName']),
-    ...mapState('employee', ['hospital', 'hospitalDatabase']),
-    hospitalName() {
-      const hospital = this.$config.hospitalDatabase.find(
-        h => h.code === this.hospital
-      )
-      if (hospital.longName.length < 20) return hospital.longName
-      return hospital.shortName
-    },
-    hospitalLogo() {
-      return this.$config.hospitalDatabase.find(h => h.code === this.hospital)
-        .logo
-    }
+    ...mapState('employee', ['hospital'])
   },
   watch: {
     $route(to) {
@@ -338,7 +330,8 @@ export default {
         value: {
           confirmedByName: this.fullName,
           confirmedById: this.user.id,
-          timestamp: new Date()
+          timestamp: new Date(),
+          issuedForHospital: this.hospital
         }
       })
       await this.setCurrentPatientValueByKey({
