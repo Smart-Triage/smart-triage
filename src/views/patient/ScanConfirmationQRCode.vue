@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper">
-    <NavBar :back-btn="true"></NavBar>
+    <NavBar sticky back-button></NavBar>
     <div class="page-content">
       <p class="text-3xl leading-tight">
         {{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}

@@ -3,7 +3,7 @@
     class="page-wrapper"
     :class="{ 'bg-confirmed': currentPatient.confirmed }"
   >
-    <NavBar :bg-transparent="true">
+    <NavBar sticky bg-transparent>
       <template v-slot:left>
         <router-link
           to="/summary"

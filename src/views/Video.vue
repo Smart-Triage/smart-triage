@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center">
-    <NavBar>
+    <NavBar sticky>
       <template v-slot:center>
         <h1>Smart Triage</h1>
       </template>

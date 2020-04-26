@@ -1,6 +1,6 @@
 <template>
   <div v-if="currentPatient" class="page-wrapper">
-    <NavBar>
+    <NavBar sticky>
       <template v-slot:left>
         <router-link to="/home">
           <ion-icon name="close" size="large"></ion-icon>

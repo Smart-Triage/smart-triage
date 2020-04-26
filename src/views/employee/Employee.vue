@@ -1,6 +1,9 @@
 <template>
   <div v-if="user" class="page-wrapper">
-    <NavBar v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
+    <NavBar
+      v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
+      sticky
+    >
       <template v-slot:left>
         <div class="flex items-center text-gray-700">
           <img
@@ -22,7 +25,7 @@
     </NavBar>
     <FullScreenModal v-if="scanning">
       <template v-slot:header>
-        <NavBar :bg-transparent="true">
+        <NavBar sticky bg-transparent>
           <template v-slot:left>
             <button class="text-black" @click="showEmployeeHomepage">
               <ion-icon name="arrow-back-outline" size="large"></ion-icon>
@@ -86,7 +89,7 @@
         v-if="showPatientSummary && currentPatient !== null"
         class="w-full max-w-md summary-view"
       >
-        <NavBar>
+        <NavBar sticky>
           <template v-slot:center>
             <span v-if="showPatientSummary">
               {{ $t('EMPLOYEE.PATIENT_SUMMARY') }}

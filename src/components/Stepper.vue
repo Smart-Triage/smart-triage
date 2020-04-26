@@ -6,7 +6,7 @@
       class="step w-full h-full"
       :class="{ hidden: step.order !== currentStepNum }"
     >
-      <NavBar>
+      <NavBar sticky>
         <template v-slot:left>
           <router-link
             class="close"

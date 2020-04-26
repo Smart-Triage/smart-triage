@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper">
-    <NavBar></NavBar>
+    <NavBar sticky></NavBar>
     <div class="page-content">
       <!-- TODO: spinner v-if spinner -->
       <pre>{{ cert }}</pre>
