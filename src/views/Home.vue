@@ -89,36 +89,36 @@
     >
       <h2>{{ $t('HOME.AUTHORS.WHO_IS_BEHIND_THIS_APP') }}</h2>
       <p>{{ $t('HOME.AUTHORS.US') }}</p>
-      <div class="flex flex-row">
-        <div class="m-4">
+      <div class="authors-pictures">
+        <div>
           <img
-            class="us-picture"
-            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            src="@/assets/img/avatar-lr.png"
             alt="Hand holding phone scanning QR code"
           />
+          <p>Ľuboš Repka</p>
         </div>
-        <div class="m-4">
+        <div>
           <img
-            class="us-picture"
-            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            src="@/assets/img/avatar-tk.png"
             alt="Hand holding phone scanning QR code"
           />
+          <p>Tom Kuna</p>
         </div>
       </div>
-      <div class="flex flex-row">
-        <div class="m-4">
+      <div class="authors-pictures">
+        <div>
           <img
-            class="us-picture"
-            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            src="@/assets/img/avatar-tt.png"
             alt="Hand holding phone scanning QR code"
           />
+          <p>Tomáš Trejdl</p>
         </div>
-        <div class="m-4">
+        <div>
           <img
-            class="us-picture"
-            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            src="@/assets/img/avatar-vk.png"
             alt="Hand holding phone scanning QR code"
           />
+          <p>Vasil Kostin</p>
         </div>
       </div>
       <p>{{ $t('HOME.AUTHORS.PARTNERS') }}</p>
@@ -128,7 +128,9 @@
         alt="Charles University logo"
       />
     </div>
-    <div class="home-text home-h2-secondary p-6 mt-4 border-app">
+    <div
+      class="footer home-h2-secondary p-6 mt-4 border-app text-left w-full max-w-lg"
+    >
       <img
         class="mb-8 mx-auto "
         src="@/assets/img/logo.svg"
@@ -146,6 +148,7 @@
       <p>
         <a href="">{{ $t('HOME.FOOTER.FOR_EMPLOYEES') }}</a>
       </p>
+      <div class="divider"></div>
       <p>
         <a href="">{{ $t('HOME.FOOTER.ABOUT_US') }}</a>
       </p>
@@ -155,7 +158,9 @@
       <p>
         <a href="">{{ $t('HOME.FOOTER.TERMS_OF_SERVICE') }}</a>
       </p>
-      <p>{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
+      <div class="copyright">
+        <p class="mx-auto mt-6">{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -206,7 +211,34 @@ export default {
 </script>
 
 <style lang="scss">
-.us-picture {
-  @apply rounded-full;
+@import '@/theme/variables.scss';
+.authors-pictures {
+  @apply flex flex-row;
+  div {
+    @apply m-8;
+
+    img {
+      @apply rounded-full;
+    }
+
+    p {
+      color: $secondary-color;
+      @apply mt-4 font-semibold text-xl;
+    }
+  }
+}
+
+.divider {
+  height: 2px;
+  @apply my-4 w-20 bg-black;
+}
+
+.footer {
+  color: black;
+  @apply font-semibold leading-8;
+}
+
+.copyright {
+  text-align: center;
 }
 </style>

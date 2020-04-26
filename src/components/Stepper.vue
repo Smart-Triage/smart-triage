@@ -52,7 +52,7 @@
             {{ step.question }}
           </p>
 
-          <div v-if="step.order === '0'">
+          <div v-if="step.order === '0'" class="w-full">
             <PatientForm
               v-if="currentStepNum === '0'"
               :form-fields="step.formFields"
