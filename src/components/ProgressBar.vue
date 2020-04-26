@@ -1,12 +1,12 @@
 <template>
   <div class="flex w-3/5 items-center">
-    <div class="relative bg-gray-200 h-2 p-px flex flex-1">
+    <div class="relative bg-gray-200 h-3 p-px flex flex-1 rounded-full">
       <span
         :style="styleObject"
-        class="block relative h-full rounded-sm bg-red-600 overflow-hidden"
+        class="block relative h-full rounded-sm bg-primary-color overflow-hidden rounded-full"
       ></span>
     </div>
-    <div class="p-1 font-bold">
+    <div class="my-4 ml-4 px-4 py-2 font-bold bg-white rounded-full">
       <span>{{ currentProgress }}</span>
     </div>
   </div>
