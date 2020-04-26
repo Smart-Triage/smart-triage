@@ -374,8 +374,8 @@ export default {
         return false
       }
 
-      console.log(keyFromStore)
-      console.log('dataToSign: ', dataToSign)
+      // console.log(keyFromStore)
+      // console.log('dataToSign: ', dataToSign)
 
       return window.crypto.subtle
         .sign(
@@ -388,12 +388,12 @@ export default {
         )
         .then(signature => {
           // returns an ArrayBuffer containing the signature
-          console.log(new Uint8Array(signature))
+          // console.log(new Uint8Array(signature))
           const signedData = {
             ...JSON.parse(dataToSign),
             signature: ab2str(signature)
           }
-          console.log(signedData)
+          // console.log(signedData)
           return signedData
         })
         .catch(err => {

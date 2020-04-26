@@ -10,7 +10,7 @@ export default function validatePatient(
     try {
       patient = JSON.parse(data)
 
-      console.log(patient)
+      // console.log(patient)
 
       // Validate JSON schema
       const incommingKeys = Object.keys(patient)

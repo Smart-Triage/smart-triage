@@ -33,7 +33,7 @@ export default {
   methods: {
     ...mapActions('patients', ['updateOrAddPatient']),
     processConfirmation(confirmedPatient) {
-      console.log(confirmedPatient)
+      // console.log(confirmedPatient)
       this.updateOrAddPatient(confirmedPatient).then(() => {
         this.$router.push('/summary')
       })

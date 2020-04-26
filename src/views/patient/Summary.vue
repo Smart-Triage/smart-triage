@@ -184,7 +184,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.isExpired(this.currentPatient))
     if (this.currentPatient === undefined) {
       this.$router.push('/')
     } else if (
