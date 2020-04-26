@@ -101,7 +101,7 @@
         {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
       </div>
       <button
-        v-else
+        v-else-if="!currentPatient.confirmed"
         class="w-full max-w-sm flex justify-center items-center bg-primary rounded-full text-white text-lg mx-4 mb-8 p-2 weird-safari-button-fix"
         @click="
           !isExpired(currentPatient)
@@ -112,12 +112,20 @@
         <ion-icon name="qr-code-outline"></ion-icon>
         <div class="ml-2">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
       </button>
+      <router-link
+        v-if="currentPatient.confirmed"
+        to="/patient-qr-code"
+        class="w-full max-w-sm flex justify-center items-center bg-primary rounded-full text-white text-lg mx-4 mb-8 p-2 weird-safari-button-fix"
+      >
+        <ion-icon name="qr-code-outline"></ion-icon>
+        <div class="button-text ml-2">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
+      </router-link>
 
       <!-- <router-link to="/" class="link btn-primary icon-button"
         ><ion-icon name="person-add-outline"></ion-icon>
         <div class="button-text">Add another person</div>
       </router-link> -->
-      <ModalWindow v-if="showModal">
+      <ModalWindow v-if="showModal && !currentPatient.confirmed">
         <template v-slot:header>
           <h2 class="p-0">{{ $t('SUMMARY.WARNING') }}</h2>
         </template>
