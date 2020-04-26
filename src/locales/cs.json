@@ -44,6 +44,21 @@
       "WHATS_HAPPENING_P": "Osobní údaje jsou uchovány ve vašem telefonu, žádná data se neodesílají přes internet. Vyplněný dotazník s osobními údaji předáváte pomocí QR kódu.  Zdravotnický personál tento kód naskenuje z displeje vašeho smartphonu, vyhodnotí vaše symptomy, vy si naskenujete potvrzovací kód a Vaše data jsou ihned odstraněna ze zařízení zdravotnického personálu.",
       "APP_H": "Aplikace",
       "APP_P": "Chytrá triáž je webová aplikace, není potřeba nic stahovat ani instalovat. Dotazník lze vyplnit přímo zde, v internetovém prohlížeči. Pro operační systémy Android a Windows doporučujeme nejnovější verzi prohlížeče Google Chrome. Pokud máte zařízení s iOS (iPhone, iPad, iPod) doporučujeme prohlížeč Safari. Aplikace potřebuje pro svůj chod přístup k fotoaparátu."
+    },
+    "AUTHORS": {
+      "WHO_IS_BEHIND_THIS_APP": "Kdo stojí za touto aplikací?",
+      "US": "Jsme tým studentů z 2. a 3. LF UK a FIT ČVUT.",
+      "PARTNERS": "Tento projekt je pod záštitou Univerzity Karlovy"
+    },
+    "FOOTER": {
+      "CONTACT": "Kontakt",
+      "FAQ": "FAQ",
+      "FOR_HOSPITALS": "Pro nemocnice",
+      "FOR_EMPLOYEES": "Pro zaměstnance",
+      "ABOUT_US": "O Nás (tým)",
+      "PRIVACY_POLICY": "Privacy policy",
+      "TERMS_OF_SERVICE": "Terms of service",
+      "COPYRIGHT": "© Smart Triage 2020"
     }
   },
   "FORM": {
