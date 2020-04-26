@@ -411,16 +411,21 @@
   },
   "hospitalDatabase": [
     {
+      "code": "unknown",
+      "shortName": "Nedefinováno",
+      "longName": "Nedefinováno"
+    },
+    {
       "code": "test",
       "shortName": "Testovací",
       "longName": "Testovací nemocnice",
-      "logo": "🏥"
+      "logoPath": "./img/hospital-logos/hospital-regular.png"
     },
     {
       "code": "fnkv",
       "shortName": "FNKV",
       "longName": "Fakultní nemocnice Královské Vinohrady",
-      "logo": "🏥"
+      "logoPath": "./img/hospital-logos/fnkv-logo.png"
     }
   ]
 }

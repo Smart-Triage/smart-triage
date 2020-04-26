@@ -6,8 +6,12 @@ module.exports = {
         secondary: '#4b4399'
       },
       borderRadius: {
-        xl: '1rem',
-        '2xl': '2rem'
+        xl: '1.25rem',
+        '2xl': '1.5rem',
+        '3xl': '1.875rem',
+        '4xl': '2.25rem',
+        '5xl': '3rem',
+        '6xl': '4rem'
       }
     }
   },

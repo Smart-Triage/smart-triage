@@ -1,0 +1,38 @@
+/* Vue Transition definitions */
+.view-enter-active,
+.view-leave-active {
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease;
+}
+.view-enter {
+  opacity: 0;
+  transform: translateX(+100px);
+}
+.view-enter-to,
+.view-leave {
+  opacity: 1;
+  transform: translateX(0px);
+}
+.view-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-up-enter,
+.slide-up-leave-to {
+  transform: translateY(100px);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

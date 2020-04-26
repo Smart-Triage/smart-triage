@@ -27,6 +27,7 @@
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "node-forge": "^0.9.1",
+    "portal-vue": "^2.1.7",
     "pwacompat": "^2.0.10",
     "qrcode.vue": "^1.7.0",
     "register-service-worker": "^1.7.1",

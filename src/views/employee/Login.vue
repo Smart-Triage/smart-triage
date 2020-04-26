@@ -1,70 +1,69 @@
 <template>
   <div class="page-wrapper">
-    <div>
-      <NavBar> </NavBar>
-      <div class="page-content">
-        <img
-          class="mb-8 mx-auto"
-          src="@/assets/img/home-page-welcome-img.png"
-          alt=""
-        />
-        <h1 class="mb-4">{{ appTitle }}</h1>
-        <p class="mb-4">
-          <strong>{{ $t('LOGIN.ONLY_FOR_EMPLOYEES') }}</strong>
-        </p>
+    <div class="page-content">
+      <img
+        class="h-16 my-4 mx-auto"
+        src="@/assets/img/logo.svg"
+        alt="Smart Triage logo"
+      />
+      <p class="mb-4">
+        <strong>{{ $t('LOGIN.ONLY_FOR_EMPLOYEES') }}</strong>
+      </p>
 
-        <p class="mb-4">
-          {{ $t('LOGIN.ENTER_REGISTRATION_CODE') }}
-        </p>
+      <p class="mb-4">
+        {{ $t('LOGIN.ENTER_REGISTRATION_CODE') }}
+      </p>
 
-        <!-- Loader -->
+      <!-- Loader -->
 
-        <div v-show="user === undefined" data-test="loader">
-          {{ $t('LOGIN.AUTHENTICATING') }}...
-        </div>
+      <div v-show="user === undefined" data-test="loader">
+        {{ $t('LOGIN.AUTHENTICATING') }}...
+      </div>
 
-        <!-- Offline instruction -->
-        <div v-show="!networkOnLine" data-test="offline-instruction">
-          {{ $t('LOGIN.SEND') }}
-        </div>
+      <!-- Offline instruction -->
+      <div v-show="!networkOnLine" data-test="offline-instruction">
+        {{ $t('LOGIN.OFFLINE') }}
+      </div>
 
-        <p v-if="loginError" class="bg-red-500 text-white p-2 m-2 rounded">
-          {{ $t(`ERROR.${loginError}`) }}
-        </p>
-        <!-- Auth UI -->
-        <form class="w-full flex flex-col items-center" @submit="register">
+      <p v-if="loginError" class="bg-red-500 text-white p-2 m-2 rounded">
+        {{ $t(`ERROR.${loginError}`) }}
+      </p>
+
+      <!-- Auth UI -->
+      <form class="w-full flex flex-col items-center" @submit="register">
+        <div class="flex my-2">
           <input
             v-model="firstName"
             :placeholder="$t('FIRST_NAME')"
             type="text"
-            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
+            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app mr-2"
             required
           />
           <input
             v-model="lastName"
             :placeholder="$t('LAST_NAME')"
             type="text"
-            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
+            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app ml-2"
             required
           />
-          <input
-            v-model="registrationCode"
-            :placeholder="$t('LOGIN.REGISTRATION_CODE')"
-            type="text"
-            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
-            required
-          />
+        </div>
+        <input
+          v-model="registrationCode"
+          :placeholder="$t('LOGIN.REGISTRATION_CODE')"
+          type="text"
+          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
+          required
+        />
 
-          <button
-            v-show="user !== undefined && !user && networkOnLine"
-            type="submit"
-            data-test="login-btn"
-            class="btn-primary my-4"
-          >
-            {{ $t('LOGIN.SEND') }}
-          </button>
-        </form>
-      </div>
+        <button
+          v-show="user !== undefined && !user && networkOnLine"
+          type="submit"
+          data-test="login-btn"
+          class="btn-primary my-2"
+        >
+          {{ $t('LOGIN.SEND') }}
+        </button>
+      </form>
       <div class="bottom-link">
         <router-link class="employee-page-link" to="/how-it-works">{{
           $t('HOME.HOW_IT_WORKS')
@@ -161,7 +160,8 @@ export default {
             this.createKeyPair(userCredential)
             this.setFirstName(this.firstName)
             this.setLastName(this.lastName)
-            this.setHospital(res.hospital)
+            if (res.hospital) this.setHospital(res.hospital)
+            else this.setHospital('unknown')
           })
       } catch (err) {
         // Handle Errors here.

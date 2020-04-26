@@ -54,7 +54,7 @@ export default {
 header {
   background-color: $bg-color;
   color: black;
-  z-index: 100;
+  z-index: 30;
 }
 
 .offline {

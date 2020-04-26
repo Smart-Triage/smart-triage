@@ -6,6 +6,7 @@ import VueAxios from 'vue-axios'
 
 import i18n from '@/plugins/i18n'
 import vueConfig from 'vue-config'
+import PortalVue from 'portal-vue'
 
 import NavBar from '@/components/NavBar'
 
@@ -27,6 +28,7 @@ import './assets/css/tailwind.css'
 Vue.use(UUID)
 Vue.use(VueAxios, axios)
 Vue.use(vueConfig, config)
+Vue.use(PortalVue)
 
 Vue.config.productionTip = false
 Vue.config.ignoredElements = [/^ion-/]

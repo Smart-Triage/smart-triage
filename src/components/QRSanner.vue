@@ -40,7 +40,7 @@ import { QrcodeStream } from 'vue-qrcode-reader'
 import { mapGetters } from 'vuex'
 
 import validatePatient from '@/misc/validateScannedData'
-import getFormStepsMixin from '@/misc/getFormStepsMixin'
+import getFormStepsMixin from '@/mixins/getFormStepsMixin'
 
 export default {
   components: { QrcodeStream },

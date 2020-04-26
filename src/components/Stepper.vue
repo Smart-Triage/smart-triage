@@ -10,7 +10,7 @@
         <template v-slot:left>
           <router-link
             class="close"
-            :to="appMode === 'employee' ? '/employee#patient-summary' : '/home'"
+            :to="appMode === 'employee' ? '/employee#patient-summary' : '/'"
             ><ion-icon name="close" size="large"></ion-icon
           ></router-link>
         </template>
@@ -154,7 +154,7 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
-import getFormStepsMixin from '@/misc/getFormStepsMixin'
+import getFormStepsMixin from '@/mixins/getFormStepsMixin'
 
 export default {
   components: { ProgressBar, PatientForm },
@@ -181,7 +181,7 @@ export default {
   },
   mounted() {
     if (this.currentPatient.confirmed === true) {
-      this.$router.push('/home')
+      this.$router.push('/')
     }
 
     if (!this.currentPatient.visitedSteps) {

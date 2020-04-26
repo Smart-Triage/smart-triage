@@ -112,7 +112,8 @@
     "SEND": "Send",
     "CHECK_CONNECTION": "Please check your connection, this feature is not available offline.",
     "REGISTRATION_CODE": "Registration code",
-    "AUTHENTICATING": "Authenticating"
+    "AUTHENTICATING": "Authenticating",
+    "OFFLINE": "Please check your connection, login feature is not available offline."
   },
   "ERROR": {
     "server_error": "Ups. Something went wrong. Try again later",

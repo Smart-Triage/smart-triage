@@ -80,7 +80,8 @@
     "WARNING_TEXT": "Tyto informace zjišťujeme za účelem snížení rizika přenosu infekce virem COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých informací může být posuzováno jako trestný čin.",
     "VALIDITY_TIMEOUT": "Platnost dotazníku vypršela",
     "VALIDITY_TIMEOUT_TEXT": "Dotazník je platný pouze po dobu 24 hodin z důvodu relevance odpovědí a je nutné ho vyplnit znovu.",
-    "VALIDITY_TIMEOUT_CONFIRMATION": "OK"
+    "VALIDITY_TIMEOUT_CONFIRMATION": "OK",
+    "DO_YOU_LIKE_OUR_APP": "Líbí se Vám naše aplikace"
   },
   "PATIENT_SUMMARY": {
     "CONFIRMED_BY": "Potvrdil/a",
@@ -162,10 +163,25 @@
     "SEND": "Odeslat",
     "CHECK_CONNECTION": "Zkontrolujte připojení k internetu, tato funkce není dostupná offline.",
     "REGISTRATION_CODE": "Registrační kód",
-    "AUTHENTICATING": "Ověřování"
+    "AUTHENTICATING": "Ověřování",
+    "OFFLINE": "Zkontrolujte připojení k internetu, přihlášení není dostupné offline."
   },
   "ERROR": {
     "server_error": "Ups. Něco se pokazilo. Zkuste to znovu později",
     "registration_key_invalid_error": "Tento registrační kód je neplatný"
+  },
+  "MODAL": {
+    "LIKE_OUR_APP": "Libí se Vám naše aplikace",
+    "HAVE_SUGGESTIONS": "Máte připomínky",
+    "GIVE_US_FEEDBACK": "Zanechte nám zpětnou vazbu, vyplněním krátkého dotazníku",
+    "NOT_INTERESTED": "Ne, díky",
+    "SURE": "Dobře"
+  },
+  "CB": {
+    "CONFIRMED_BY": "Potvrdil",
+    "CONFIRMED_ON": "Potvrzeno dne",
+    "MEASURED_TEMPERATURE": "Naměřená teplota",
+    "IS_COVID_SUSPECTED": "COVID-19 suspektní",
+    "CONFIRMATION_ISSUED_FOR": "Potvrzení vydáno pro"
   }
 }
