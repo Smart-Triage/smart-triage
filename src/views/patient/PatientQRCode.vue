@@ -94,7 +94,7 @@ export default {
   },
   created() {
     if (!this.currentPatient) {
-      this.$router.push('/home')
+      this.$router.push('/')
     }
   }
 }

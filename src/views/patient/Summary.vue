@@ -113,7 +113,7 @@
         <div class="ml-2">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
       </button>
 
-      <!-- <router-link to="/home" class="link btn-primary icon-button"
+      <!-- <router-link to="/" class="link btn-primary icon-button"
         ><ion-icon name="person-add-outline"></ion-icon>
         <div class="button-text">Add another person</div>
       </router-link> -->
@@ -157,7 +157,7 @@
   </div>
   <div v-else>
     <p>{{ $t('SOMETHING_WENT_WRONG') }}</p>
-    <router-link to="/home"> {{ $t('GO_TO_HOMEPAGE') }}</router-link>
+    <router-link to="/"> {{ $t('GO_TO_HOMEPAGE') }}</router-link>
   </div>
 </template>
 
@@ -186,7 +186,7 @@ export default {
   mounted() {
     console.log(this.isExpired(this.currentPatient))
     if (this.currentPatient === undefined) {
-      this.$router.push('/home')
+      this.$router.push('/')
     } else if (
       !this.isExpired(this.currentPatient)
       /* this.currentPatient.validityTimestamp.getTime() +
@@ -213,14 +213,14 @@ export default {
       )
       if (r === true) {
         this.deletePatientById(this.currentPatient.id).then(() => {
-          this.$router.push('/home')
+          this.$router.push('/')
         })
       }
     },
     invalidatePatientAndRedirect() {
       this.showValidityTimeoutModal = false
       this.invalidatePatientFormById(this.currentPatient.id).then(() => {
-        this.$router.push('/home')
+        this.$router.push('/')
       })
     },
     agreedToTerms() {

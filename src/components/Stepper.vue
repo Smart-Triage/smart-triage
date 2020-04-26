@@ -10,7 +10,7 @@
         <template v-slot:left>
           <router-link
             class="close"
-            :to="appMode === 'employee' ? '/employee#patient-summary' : '/home'"
+            :to="appMode === 'employee' ? '/employee#patient-summary' : '/'"
             ><ion-icon name="close" size="large"></ion-icon
           ></router-link>
         </template>
@@ -181,7 +181,7 @@ export default {
   },
   mounted() {
     if (this.currentPatient.confirmed === true) {
-      this.$router.push('/home')
+      this.$router.push('/')
     }
 
     if (!this.currentPatient.visitedSteps) {

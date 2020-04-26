@@ -25,7 +25,7 @@ const router = new Router({
   },
   routes: [
     {
-      path: '/home',
+      path: '/',
       name: 'home',
       component: Home,
       meta: {
@@ -184,7 +184,7 @@ const router = new Router({
         authNotRequired: true
       }
     },
-    { path: '*', redirect: '/home' }
+    { path: '*', redirect: '/' }
   ]
 })
 
