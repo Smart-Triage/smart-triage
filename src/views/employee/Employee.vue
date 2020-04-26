@@ -203,12 +203,12 @@
 
       <div v-if="showingConfirmationQR" class="confirmation-view">
         <h1>{{ $t('EMPLOYEE.PATIENT_CONFIRMATION_CODE') }}</h1>
-        <qrcode-vue
+        <QrcodeVue
           class="qrcode bg-white p-4 m-2"
           :value="signedPatient"
-          size="300"
-          level="H"
-        ></qrcode-vue>
+          :size="qrCodeSize"
+          level="M"
+        ></QrcodeVue>
         <button class="link btn-primary" @click="closePatient">
           {{ $t('EMPLOYEE.CLOSE_PATIENT') }}
         </button>
@@ -253,7 +253,12 @@ export default {
     ...mapGetters('patients', ['currentPatient']),
     ...mapState('authentication', ['user']),
     ...mapGetters('employee', ['fullName']),
-    ...mapState('employee', ['hospital'])
+    ...mapState('employee', ['hospital']),
+    qrCodeSize() {
+      if (window.innerWidth < 400) return window.innerWidth * 0.85
+      if (window.innerWidth < 500) return window.innerWidth * 0.8
+      return 400
+    }
   },
   watch: {
     $route(to) {
