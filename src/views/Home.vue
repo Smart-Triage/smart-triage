@@ -57,9 +57,7 @@
       <!--        </router-link>-->
       <!--      </div>-->
     </div>
-    <div
-      class="home-text home-h2-primary bg-white px-6 pb-4 mt-4 border-app rounded-b-none"
-    >
+    <div class="home-text home-h2-primary bg-white px-6 pb-6 mt-4 border-app">
       <h2>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_H') }}</h2>
       <p>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_P') }}</p>
       <h2>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_H') }}</h2>
@@ -75,9 +73,7 @@
       <h2>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_H') }}</h2>
       <p>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_P') }}</p>
     </div>
-    <div
-      class="home-text home-h2-secondary px-6 pb-4 mt-4 border-app rounded-b-none"
-    >
+    <div class="home-text home-h2-secondary p-6 mt-4 border-app">
       <h2>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_H') }}</h2>
       <p>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_P') }}</p>
       <img
@@ -87,6 +83,79 @@
       />
       <h2>{{ $t('HOME.PERSONAL_INFO.APP_H') }}</h2>
       <p>{{ $t('HOME.PERSONAL_INFO.APP_P') }}</p>
+    </div>
+    <div
+      class="text-center w-full max-w-lg home-h2-secondary bg-white px-6 pb-4 mt-4 border-app"
+    >
+      <h2>{{ $t('HOME.AUTHORS.WHO_IS_BEHIND_THIS_APP') }}</h2>
+      <p>{{ $t('HOME.AUTHORS.US') }}</p>
+      <div class="flex flex-row">
+        <div class="m-4">
+          <img
+            class="us-picture"
+            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            alt="Hand holding phone scanning QR code"
+          />
+        </div>
+        <div class="m-4">
+          <img
+            class="us-picture"
+            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            alt="Hand holding phone scanning QR code"
+          />
+        </div>
+      </div>
+      <div class="flex flex-row">
+        <div class="m-4">
+          <img
+            class="us-picture"
+            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            alt="Hand holding phone scanning QR code"
+          />
+        </div>
+        <div class="m-4">
+          <img
+            class="us-picture"
+            src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+            alt="Hand holding phone scanning QR code"
+          />
+        </div>
+      </div>
+      <p>{{ $t('HOME.AUTHORS.PARTNERS') }}</p>
+      <img
+        class="my-8 mx-auto"
+        src="@/assets/img/charles-university-logo.png"
+        alt="Charles University logo"
+      />
+    </div>
+    <div class="home-text home-h2-secondary p-6 mt-4 border-app">
+      <img
+        class="mb-8 mx-auto "
+        src="@/assets/img/logo.svg"
+        alt="Smart Triage logo"
+      />
+      <p>
+        <a href="">{{ $t('HOME.FOOTER.CONTACT') }}</a>
+      </p>
+      <p>
+        <a href="">{{ $t('HOME.FOOTER.FAQ') }}</a>
+      </p>
+      <p>
+        <a href="">{{ $t('HOME.FOOTER.FOR_HOSPITALS') }}</a>
+      </p>
+      <p>
+        <a href="">{{ $t('HOME.FOOTER.FOR_EMPLOYEES') }}</a>
+      </p>
+      <p>
+        <a href="">{{ $t('HOME.FOOTER.ABOUT_US') }}</a>
+      </p>
+      <p>
+        <a href="">{{ $t('HOME.FOOTER.PRIVACY_POLICY') }}</a>
+      </p>
+      <p>
+        <a href="">{{ $t('HOME.FOOTER.TERMS_OF_SERVICE') }}</a>
+      </p>
+      <p>{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
     </div>
   </div>
 </template>
@@ -135,3 +204,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.us-picture {
+  @apply rounded-full;
+}
+</style>

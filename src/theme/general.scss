@@ -10,10 +10,7 @@ h2 {
 }
 
 .home-text {
-  @apply max-w-lg text-center;
-  h2 {
-    @apply text-2xl font-semibold mb-3 mt-5;
-  }
+  @apply max-w-lg text-center w-full;
   p {
     @apply text-justify;
   }
@@ -22,12 +19,14 @@ h2 {
 .home-h2-primary {
   h2 {
     color: $primary-color;
+    @apply text-2xl font-semibold mb-3 mt-5;
   }
 }
 
 .home-h2-secondary {
   h2 {
     color: $secondary-color;
+    @apply text-2xl font-semibold mb-3 mt-5;
   }
 }
 

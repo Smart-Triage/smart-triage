@@ -80,9 +80,24 @@
             "WHERE_IT_WORKS_H": "Kde můžu tuto aplikaci použít?",
             "WHERE_IT_WORKS_P": "V týdnu od 27.4. do 30.4. probíhá testovací provoz na triážním místě 4 ve Fakultní nemocnici Královské Vinohrady"
         },
+        "AUTHORS": {
+            "PARTNERS": "Tento projekt je pod záštitou Univerzity Karlovy",
+            "US": "Jsme tým studentů z 2. a 3. LF UK a FIT ČVUT.",
+            "WHO_IS_BEHIND_THIS_APP": "Kdo stojí za touto aplikací?"
+        },
         "FILL_FORM": "Vyplnit dotazník",
         "FILL_FORM_IN_YOUR_PHONE": "Vyplňte dotazník v mobilu",
         "FILL_FOR_ANOTHER_PERSON": "Vyplnit pro další osobu",
+        "FOOTER": {
+            "ABOUT_US": "O Nás (tým)",
+            "CONTACT": "Kontakt",
+            "COPYRIGHT": "© Smart Triage 2020",
+            "FAQ": "FAQ",
+            "FOR_EMPLOYEES": "Pro zaměstnance",
+            "FOR_HOSPITALS": "Pro nemocnice",
+            "PRIVACY_POLICY": "Privacy policy",
+            "TERMS_OF_SERVICE": "Terms of service"
+        },
         "HOW_IT_WORKS": "Jak to funguje?",
         "INFO": "Dotazník má platnost 24 hodin, můžete si ho tedy vyplnit v pohodlí domova",
         "NOT_GOING_ALONE": "Lze vyplnit i pro více osob v jednom telefonu",
