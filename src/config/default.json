@@ -29,7 +29,7 @@
       },
       {
         "order": "3",
-        "question": "Zvýšená tepota? Nově vzniklý kašel nebo dušnost?",
+        "question": "Zvýšená teplota? Nově vzniklý kašel nebo dušnost?",
         "answerType": "boolean",
         "highlightIf": true,
         "next": "4"
@@ -174,6 +174,50 @@
     "en": [
       {
         "order": "0",
+        "question": "Personal data",
+        "answerType": "form",
+        "formFields": ["firstName", "lastName", "birthNumber", "phoneNumber"],
+        "next": "1"
+      },
+      {
+        "order": "1",
+        "question": "Signs of infection such as sore throat, cough, loss of smell?",
+        "answerType": "boolean",
+        "highlightIf": true,
+        "next": "2"
+      },
+      {
+        "order": "2",
+        "question": "Symptoms of fever such as chills + chills + unusual tiredness + sweating?",
+        "answerType": "boolean",
+        "highlightIf": true,
+        "next": "3"
+      },
+      {
+        "order": "3",
+        "question": "Elevated temperature? New onset cough or shortness of breath?",
+        "answerType": "boolean",
+        "highlightIf": true,
+        "next": "4"
+      },
+      {
+        "order": "4",
+        "question": "Have you met anyone infected with COVID-19 in the last 14 days?",
+        "answerType": "boolean",
+        "highlightIf": true,
+        "next": "5"
+      },
+      {
+        "order": "5",
+        "question": "Have you or anyone close been abroad in the last 14 days?",
+        "answerType": "boolean",
+        "highlightIf": true,
+        "next": "end"
+      }
+    ],
+    "en_old": [
+      {
+        "order": "0",
         "question": "Patient personal details",
         "answerType": "form",
         "formFields": ["firstName", "lastName", "birthNumber", "phoneNumber"],
@@ -294,6 +338,50 @@
     ],
 
     "sk": [
+      {
+        "order": "0",
+        "question": "Osobné údaje",
+        "answerType": "form",
+        "formFields": ["firstName", "lastName", "birthNumber", "phoneNumber"],
+        "next": "1"
+      },
+      {
+        "order": "1",
+        "question": "Známky infekcie ako je bolesť hrdla, kašeľ, strata čuchu?",
+        "answerType": "boolean",
+        "highlightIf": true,
+        "next": "2"
+      },
+      {
+        "order": "2",
+        "question": "Prejavy horúčky ako je zimnica + triaška + nezvyklá únava + potenie?",
+        "answerType": "boolean",
+        "highlightIf": true,
+        "next": "3"
+      },
+      {
+        "order": "3",
+        "question": "Zvýšená teplota? Novovzniknutý kašeľ alebo dýchavičnosť?",
+        "answerType": "boolean",
+        "highlightIf": true,
+        "next": "4"
+      },
+      {
+        "order": "4",
+        "question": "Stretol (a) ste sa v posledných 14 dňoch s niekým nakazeným COVID-19?",
+        "answerType": "boolean",
+        "highlightIf": true,
+        "next": "5"
+      },
+      {
+        "order": "5",
+        "question": "Bol (a) ste v posledných 14 dňoch Vy alebo niekto blízky v zahraničí?",
+        "answerType": "boolean",
+        "highlightIf": true,
+        "next": "end"
+      }
+    ],
+    "sk_old": [
       {
         "order": "0",
         "question": "Osobné údaje",

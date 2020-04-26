@@ -1,6 +1,6 @@
 <template>
   <div v-if="currentPatient" class="page-wrapper">
-    <NavBar>
+    <NavBar sticky>
       <template v-slot:left>
         <router-link to="/home">
           <ion-icon name="close" size="large"></ion-icon>
@@ -184,7 +184,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.isExpired(this.currentPatient))
     if (this.currentPatient === undefined) {
       this.$router.push('/')
     } else if (
@@ -209,7 +208,9 @@ export default {
       e.stopPropagation()
       // eslint-disable-next-line no-alert
       const r = window.confirm(
-        `Delete patient ${this.currentPatient.firstName} ${this.currentPatient.lastName}?`
+        `${this.$t('ALERT.DELETE_PATIENT')} ${this.currentPatient.firstName} ${
+          this.currentPatient.lastName
+        }?`
       )
       if (r === true) {
         this.deletePatientById(this.currentPatient.id).then(() => {

@@ -54,7 +54,7 @@ export default {
           }, {})
       )
 
-      console.log(patientData)
+      // console.log(patientData)
 
       window.crypto.subtle
         .importKey(
@@ -84,7 +84,7 @@ export default {
               // returns a boolean on whether the signature is true or not
               this.scannig = false
               this.checkedPatient = { ...JSON.parse(patientData), isValid }
-              console.log(this.checkedPatient)
+              // console.log(this.checkedPatient)
             })
             .catch(err => {
               console.error(err)

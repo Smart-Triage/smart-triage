@@ -1,187 +1,206 @@
 {
-  "YES": "Ano",
-  "NO": "Ne",
-  "NEXT": "Další",
-  "FIRST_NAME": "Křestní jméno",
-  "LAST_NAME": "Příjmení",
-  "FULL_NAME": "Celé jméno",
-  "PERSONAL_IDENTIFICATION_NUMBER": "Rodné číslo",
-  "PHONE_NUMBER": "Telefonní číslo",
-
-  "SOMETHING_WENT_WRONG": "Něco se pokazilo",
-  "GO_TO_HOMEPAGE": "Jít na domovskou obrazoku",
-
-  "EDIT": "Upravit",
-  "BACK": "Zpět",
-
-  "ADMIN": {
-    "CREATE_CERTIFICATE": "Vytvořit certifikát",
-    "UPLOAD_CERTIFICATE": "Nahrát certifikát"
-  },
-  "HOME": {
-    "WELCOME": "COVID-19",
-    "TITLE": "Triáž",
-    "INFO": "Dotazník má platnost 24 hodin, můžete si ho tedy vyplnit v pohodlí domova",
-    "FILL_FORM": "Vyplnit dotazník",
-    "NOT_GOING_ALONE": "Lze vyplnit i pro více osob v jednom telefonu",
-    "FILL_FOR_ANOTHER_PERSON": "Vyplnit pro další osobu",
-    "HOW_IT_WORKS": "Jak to funguje?",
-    "SETTINGS": "Nastavení",
-    "ABOUT_TRIAGE": {
-      "WHAT_IS_TRIAGE_H": "Co je to triáž?",
-      "WHAT_IS_TRIAGE_P": "Pro ochranu pacientů a zaměstnanců probíhá v nemocnicích tzv. triáž, neboli třídění pacientů podle rizika nakažení. Pacient podá zdravotnickému personálu informace o svém zdravotním stavu a nedávném kontaktu s osobami potenciálně nakaženými, či návštěvě rizikových oblastí. Zdravotnický personál vyhodnotí riziko, jestli je pacient nakažen infekční nemocí a podle toho pošle pacienta na správné oddělení v nemocnici.",
-      "HOW_IT_WORKS_H": "Jak funguje chytrá triáž?",
-      "HOW_IT_WORKS_P": "Chytrá triáž urychluje proces vyplnění vstupního dotazníku a snižuje tak dobu kontaktu zdravotnického personálu s pacientem a tedy snižuje riziko nákazy. Naše aplikace nabízí bezdotykový proces předání osobních informací.",
-      "HOW_IT_WORKS_OL_1": "Vyplňte dotazník ve svém smartphonu",
-      "HOW_IT_WORKS_OL_2": "Ukažte QR kód zdravotnickému personálu, který vyhodnotí vaše symptomy",
-      "HOW_IT_WORKS_OL_3": "Naskenujte si potvrzení",
-      "HOW_IT_WORKS_OL_4": "Prokažte se u vstupu do nemocnice potvrzením v aplikaci",
-      "WHERE_IT_WORKS_H": "Kde můžu tuto aplikaci použít?",
-      "WHERE_IT_WORKS_P": "V týdnu od 27.4. do 30.4. probíhá testovací provoz na triážním místě 4 ve Fakultní nemocnici Královské Vinohrady."
+    "ABOUT": {
+        "ABOUT_THIS_APP": "O aplikaci",
+        "APP_SHORT_DESCRIPTION": "Tato aplikace byla vytvořena k urychlení triáže pacientů v nemocnicích během pandemie COVID-19.",
+        "AUTHORS": "Autoři",
+        "CREATED_ON_HACKATHON": "Tato aplikace byla vytvořena během online hackathonu Hack Košice Digital 2020.",
+        "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
+        "VERSION": "Verze"
     },
-    "PERSONAL_INFO": {
-      "WHATS_HAPPENING_H": "Co se děje s osobními údaji?",
-      "WHATS_HAPPENING_P": "Osobní údaje jsou uchovány ve vašem telefonu, žádná data se neodesílají přes internet. Vyplněný dotazník s osobními údaji předáváte pomocí QR kódu.  Zdravotnický personál tento kód naskenuje z displeje vašeho smartphonu, vyhodnotí vaše symptomy, vy si naskenujete potvrzovací kód a Vaše data jsou ihned odstraněna ze zařízení zdravotnického personálu.",
-      "APP_H": "Aplikace",
-      "APP_P": "Chytrá triáž je webová aplikace, není potřeba nic stahovat ani instalovat. Dotazník lze vyplnit přímo zde, v internetovém prohlížeči. Pro operační systémy Android a Windows doporučujeme nejnovější verzi prohlížeče Google Chrome. Pokud máte zařízení s iOS (iPhone, iPad, iPod) doporučujeme prohlížeč Safari. Aplikace potřebuje pro svůj chod přístup k fotoaparátu."
+    "ADMIN": {
+        "CREATE_CERTIFICATE": "Vytvořit certifikát",
+        "UPLOAD_CERTIFICATE": "Nahrát certifikát"
     },
-    "AUTHORS": {
-      "WHO_IS_BEHIND_THIS_APP": "Kdo stojí za touto aplikací?",
-      "US": "Jsme tým studentů z 2. a 3. LF UK a FIT ČVUT.",
-      "PARTNERS": "Tento projekt je pod záštitou Univerzity Karlovy"
+    "ALERT": {
+        "ALL_DATA_CLEARED": "Všechna data vymazána",
+        "DELETE_ALL_DATA": "Vymazat všechna data? Tu operaci není možné vrátit.",
+        "DELETE_PATIENT": "Smazat pacienta",
+        "UNSUPPORTED_BROWSER": "Nepodporovaný prohlížeč"
     },
-    "FOOTER": {
-      "CONTACT": "Kontakt",
-      "FAQ": "FAQ",
-      "FOR_HOSPITALS": "Pro nemocnice",
-      "FOR_EMPLOYEES": "Pro zaměstnance",
-      "ABOUT_US": "O Nás (tým)",
-      "PRIVACY_POLICY": "Privacy policy",
-      "TERMS_OF_SERVICE": "Terms of service",
-      "COPYRIGHT": "© Smart Triage 2020"
-    }
-  },
-  "FORM": {
-    "PERSONAL_DETAILS": "Osobní informace",
-    "QUESTIONNAIRE": "Dotazník",
-    "ANSWER_A_FEW_QUESTIONS": "Máte nyní tyto příznaky, nebo jste je pozoroval(a) v posledních 24 hodinách?",
-    "SKIP_TO_SUMMARY": "Přejít na Shrnutí",
-    "INFORMATION_IS_SAFE": "Vaše osobní informace jsou v bezpečí.",
-    "NO_DATA_IS_SENT_OVER_THE_INTERNET": "Žádná data se neodesílají přes internet."
-  },
-  "APP_IN_DEVELOPMENT": "Testovací režim. Aplikace je stále ve vývoji.",
-  "SUMMARY": {
-    "SUMMARY": "Shrnutí",
-    "SHOW_QR_CODE": "Zobrazit QR kód",
-    "PERSONAL_INFORMATION": "Souhlasím se zpracováním osobních údajů",
-    "YOU_HAVE_TO_ACCEPT_TXT": "Souhlasím, že všechny uvedené údaje jsou pravdivé. Uvedení nepravidvých informací může být posuzováno jako trestný čin",
-    "YOU_HAVE_TO_ACCEPT_BTN": "Musíte souhlasit s podmínkami",
-    "WARNING": "Upozornění",
-    "WARNING_TEXT": "Tyto informace zjišťujeme za účelem snížení rizika přenosu infekce virem COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých informací může být posuzováno jako trestný čin.",
-    "VALIDITY_TIMEOUT": "Platnost dotazníku vypršela",
-    "VALIDITY_TIMEOUT_TEXT": "Dotazník je platný pouze po dobu 24 hodin z důvodu relevance odpovědí a je nutné ho vyplnit znovu.",
-    "VALIDITY_TIMEOUT_CONFIRMATION": "OK",
-    "DO_YOU_LIKE_OUR_APP": "Líbí se Vám naše aplikace"
-  },
-  "PATIENT_SUMMARY": {
-    "CONFIRMED_BY": "Potvrdil/a",
-    "COVID_SUSPECTED": "Covid suspected",
-    "COVID_NOT_SUSPECTED": "Covid NOT suspected",
-    "PATIENT_INFO": "Osobní údaje",
-    "SYMPTOPMS": "Symptomy"
-  },
-  "PATIENT_LIST": {
-    "CONFIRMED": "Potvrzeno",
-    "FINISHED": "Dokončeno",
-    "NOT_FINISHED": "Nedokončeno",
-    "VALIDITY_TIMEOUT": "Platnost vypršela"
-  },
-  "NEW_CONTENT_AVAILABLE": {
-    "LOADING": "Načítání nového obsahu",
-    "AVAILABLE": "Dostupný nový obsah.",
-    "REFRESH": "Obnovit"
-  },
-  "EMPLOYEE": {
-    "WELCOME": "Vítejte v zaměstnanecké aplikaci pro triáž pacientů",
-    "TAP_SCAN_TO_BEGIN": "Začněte klepnutím na Další pacient",
-    "PATIENT_SUMMARY": "Přehled pacienta",
-    "IS_INFECTION_SUSPECTED": "Podezření na infekci",
-    "CONFIRM": "Potvrdit",
-    "PATIENT_CONFIRMATION_CODE": "Potvrzovací kód pro pacienta",
-    "CLOSE_PATIENT": "Zavřít pacienta",
-    "SCAN_NEXT_PATIENT": "Další pacient",
-    "ENTER_TEMPERATURE": "Zadejte naměřenou teplotu",
-    "MEASURED_TEMPERATURE": "Naměřená teplota",
-    "SCAN_PATIENT": "Naskenujte QR kód pacienta",
-    "SELECT_INFECTION_SUSPECTION": "Zadejte podezření na infekci",
-    "VALIDITY_TIMEOUT": "Platnost dotazníku vypršela",
-    "VALIDITY_TIMEOUT_TEXT": "Platnost dotazníku tohoto pacienta vypršela.",
-    "VALIDITY_TIMEOUT_CONFIRMATION": "OK"
-  },
-  "HOW_IT_WORKS": {
-    "HOW_IT_WORKS": "Jak to funguje",
-    "SHORT_DESCRIPTION": "Tato aplikace je určena pro osoby, které jdou na vyšetření do nemocnice a nechtějí čekat dlouhé fronty. Tento formulář lze vyplnit předem.",
-    "FILL_FORM": "Vyplňte formulář pro sebe nebe pro další osoby, které jsou s Vámi",
-    "SHOW_QR_CODE_TO_STAFF": "Ukažte QR kód personálu nemocnice"
-  },
-  "ABOUT": {
-    "ABOUT_THIS_APP": "O aplikaci",
-    "APP_SHORT_DESCRIPTION": "Tato aplikace byla vytvořena k urychlení triáže pacientů v nemocnicích během pandemie COVID-19.",
-    "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
-    "CREATED_ON_HACKATHON": "Tato aplikace byla vytvořena během online hackathonu Hack Košice Digital 2020.",
-    "AUTHORS": "Autoři",
-    "VERSION": "Verze"
-  },
-  "PATIENT_QR_CODE": {
-    "FOLLOW_INSTRUCTIONS": "Vyčkejte na instrukce personálu nemocnice",
-    "WHEN_ASKED_SHOW_THIS_CODE": "Zde je Váš QR kód, ukažte ho zdravotníkovi.",
-    "CONFIRMED_BY": "Potvrdil",
-    "COVID_SUSPECTED": "Covid suspected",
-    "COVID_NOT_SUSPECTED": "Covid NOT suspected",
-    "SCAN_CONFIRMATION": "Naskenovat potvrzení"
-  },
-  "SCAN_CONFIRMATION_QR_CODE": {
-    "SCAN_CONFIRMATION_QR_CODE": "Naskenujte potvrzovací QR kód od zdravotníka"
-  },
-  "SETTINGS": {
-    "SETTINGS": "Nastavení",
-    "ABOUT": "O aplikaci",
-    "APP_LANGUAGE": "Jazyk apliakce",
-    "DELETE_ALL_DATA": "Vymazat všechna data",
-    "APP_MODE": "Režim aplikace",
-    "PATIENT": "Pacient",
-    "EMPLOYEE": "Zaměstnanec",
-    "ADMIN": "Administrátor"
-  },
-  "ALERT": {
-    "DELETE_ALL_DATA": "Vymazat všechna data? Tu operaci není možné vrátit.",
-    "ALL_DATA_CLEARED": "Všechna data vymazána"
-  },
-  "LOGIN": {
-    "ONLY_FOR_EMPLOYEES": "Tato část aplikace je určena pouze pro zaměstnance nemocnic.",
-    "ENTER_REGISTRATION_CODE": "Zadejte registrační kód. Pokud registrační kód nemáte, kontaktuje osobu pověřenou triáží ve vaší nemocnici.",
-    "SEND": "Odeslat",
-    "CHECK_CONNECTION": "Zkontrolujte připojení k internetu, tato funkce není dostupná offline.",
-    "REGISTRATION_CODE": "Registrační kód",
-    "AUTHENTICATING": "Ověřování",
-    "OFFLINE": "Zkontrolujte připojení k internetu, přihlášení není dostupné offline."
-  },
-  "ERROR": {
-    "server_error": "Ups. Něco se pokazilo. Zkuste to znovu později",
-    "registration_key_invalid_error": "Tento registrační kód je neplatný"
-  },
-  "MODAL": {
-    "LIKE_OUR_APP": "Libí se Vám naše aplikace",
-    "HAVE_SUGGESTIONS": "Máte připomínky",
-    "GIVE_US_FEEDBACK": "Zanechte nám zpětnou vazbu, vyplněním krátkého dotazníku",
-    "NOT_INTERESTED": "Ne, díky",
-    "SURE": "Dobře"
-  },
-  "CB": {
-    "CONFIRMED_BY": "Potvrdil",
-    "CONFIRMED_ON": "Potvrzeno dne",
-    "MEASURED_TEMPERATURE": "Naměřená teplota",
-    "IS_COVID_SUSPECTED": "COVID-19 suspektní",
-    "CONFIRMATION_ISSUED_FOR": "Potvrzení vydáno pro"
-  }
+    "APP_IN_DEVELOPMENT": "Testovací režim. Aplikace je stále ve vývoji.",
+    "BACK": "Zpět",
+    "CB": {
+        "CONFIRMATION_ISSUED_FOR": "Potvrzení vydáno pro",
+        "CONFIRMED_BY": "Potvrdil/a",
+        "CONFIRMED_ON": "Potvrzeno dne",
+        "IS_COVID_SUSPECTED": "COVID-19 suspektní",
+        "MEASURED_TEMPERATURE": "Naměřená teplota"
+    },
+    "EDIT": "Upravit",
+    "EMPLOYEE": {
+        "CLOSE_PATIENT": "Zavřít pacienta",
+        "CONFIRM": "Potvrdit",
+        "ENTER_TEMPERATURE": "Zadejte naměřenou teplotu",
+        "IS_INFECTION_SUSPECTED": "Podezření na infekci",
+        "LOGIN": "Přihlásit se",
+        "MEASURED_TEMPERATURE": "Naměřená teplota",
+        "PATIENT_CONFIRMATION_CODE": "Potvrzovací kód pro pacienta",
+        "PATIENT_SUMMARY": "Přehled pacienta",
+        "SCAN_NEXT_PATIENT": "Další pacient",
+        "SCAN_PATIENT": "Naskenujte QR kód pacienta",
+        "SELECT_INFECTION_SUSPECTION": "Zadejte podezření na infekci",
+        "TAP_SCAN_TO_BEGIN": "Začněte klepnutím na Další pacient",
+        "VALIDITY_TIMEOUT": "Platnost dotazníku vypršela",
+        "VALIDITY_TIMEOUT_CONFIRMATION": "OK",
+        "VALIDITY_TIMEOUT_TEXT": "Platnost dotazníku tohoto pacienta vypršela",
+        "WELCOME": "Vítejte v zaměstnanecké aplikaci pro triáž pacientů"
+    },
+    "ERROR": {
+        "ERROR": "Chyba",
+        "INVALID_QR_CODE": "Chyba při čtení QR kódu! Ujistěte se, že čtete pouze QR kódy generované touto aplikací a vaše (a pacientská) aplikace je aktuální. Pak to zkuste znovu",
+        "NotAllowedError": "Musíte povolit využití fotoaparátu",
+        "NotFoundError": "Toto zařízení nepodporuje fotoaparát",
+        "NotReadableError": "Přístup k fotoaparátu odepřen. Zkontrolujte, že fotoaparát není využíván jinou aplikací",
+        "NotSupportedError": "Je vyžadován bezpečný kontext (HTTPS)",
+        "OverconstrainedError": "Nainstalovaný fotoaparát nelze použít",
+        "StreamApiNotSupportedError": "Nepodporovaný prohlížeč",
+        "WRONG_PATIENT": "Naskenoval/a jste neplatný QR kód. Ujistěte se, že skenujete správného pacienta a zkuste to znovu. Pokud máte problémy, obraťte se na personál nemocnice."
+    },
+    "FIRST_NAME": "Křestní jméno",
+    "FORM": {
+        "ANSWER_A_FEW_QUESTIONS": "Máte nyní tyto příznaky, nebo jste je pozoroval(a) v posledních 24 hodinách?",
+        "INFORMATION_IS_SAFE": "Vaše osobní informace jsou v bezpečí.",
+        "NO_DATA_IS_SENT_OVER_THE_INTERNET": "Žádná data se neodesílají přes internet.",
+        "PERSONAL_DETAILS": "Osobní informace",
+        "QUESTIONNAIRE": "Dotazník",
+        "SKIP_TO_SUMMARY": "Přejít na Shrnutí"
+    },
+    "FULL_NAME": "Celé jméno",
+    "GO_TO_HOMEPAGE": "Jít na domovskou obrazoku",
+    "HOME": {
+        "ABOUT_TRIAGE": {
+            "HOW_IT_WORKS_H": "Jak funguje chytrá triáž?",
+            "HOW_IT_WORKS_OL_1": "Vyplňte dotazník ve svém smartphonu",
+            "HOW_IT_WORKS_OL_2": "Ukažte QR kód zdravotnickému personálu, který vyhodnotí vaše symptomy",
+            "HOW_IT_WORKS_OL_3": "Naskenujte si potvrzení",
+            "HOW_IT_WORKS_OL_4": "Prokažte se u vstupu do nemocnice potvrzením v aplikaci",
+            "HOW_IT_WORKS_P": "Chytrá triáž urychluje proces vyplnění vstupního dotazníku a snižuje tak dobu kontaktu zdravotnického personálu s pacientem a tedy snižuje riziko nákazy. Naše aplikace nabízí bezdotykový proces předání osobních informací.",
+            "WHAT_IS_TRIAGE_H": "Co je to triáž?",
+            "WHAT_IS_TRIAGE_P": "Pro ochranu pacientů a zaměstnanců probíhá v nemocnicích tzv. triáž, neboli třídění pacientů podle rizika nakažení. Pacient podá zdravotnickému personálu informace o svém zdravotním stavu a nedávném kontaktu s osobami potenciálně nakaženými, či návštěvě rizikových oblastí. Zdravotnický personál vyhodnotí riziko, jestli je pacient nakažen infekční nemocí a podle toho pošle pacienta na správné oddělení v nemocnici.",
+            "WHERE_IT_WORKS_H": "Kde můžu tuto aplikaci použít?",
+            "WHERE_IT_WORKS_P": "V týdnu od 27.4. do 30.4. probíhá testovací provoz na triážním místě 4 ve Fakultní nemocnici Královské Vinohrady v Praze"
+        },
+        "AUTHORS": {
+            "PARTNERS": "Tento projekt je pod záštitou Univerzity Karlovy",
+            "US": "Jsme tým studentů z 2. a 3. LF UK a FIT ČVUT.",
+            "WHO_IS_BEHIND_THIS_APP": "Kdo stojí za touto aplikací?"
+        },
+        "FILL_FORM": "Vyplnit dotazník",
+        "FILL_FORM_IN_YOUR_PHONE": "Vyplňte dotazník v mobilu",
+        "FILL_FOR_ANOTHER_PERSON": "Vyplnit pro další osobu",
+        "FOOTER": {
+            "ABOUT_US": "O Nás (tým)",
+            "CONTACT": "Kontakt",
+            "COPYRIGHT": "© Smart Triage 2020",
+            "FAQ": "FAQ",
+            "FOR_EMPLOYEES": "Pro zaměstnance",
+            "FOR_HOSPITALS": "Pro nemocnice",
+            "PRIVACY_POLICY": "Zásady ochrany osobních údajů",
+            "TERMS_OF_SERVICE": "Podmínky služby"
+        },
+        "HOW_IT_WORKS": "Jak to funguje?",
+        "INFO": "Dotazník má platnost 24 hodin, můžete si ho tedy vyplnit v pohodlí domova",
+        "NOT_GOING_ALONE": "Lze vyplnit i pro více osob v jednom telefonu",
+        "PERSONAL_INFO": {
+            "APP_H": "Aplikace",
+            "APP_P": "Chytrá triáž je webová aplikace, není potřeba nic stahovat ani instalovat. Dotazník lze vyplnit přímo zde, v internetovém prohlížeči. Pro operační systémy Android a Windows doporučujeme nejnovější verzi prohlížeče Google Chrome. Pokud máte zařízení s iOS (iPhone, iPad) doporučujeme prohlížeč Safari. Aplikace potřebuje pro svůj chod přístup k fotoaparátu.",
+            "WHATS_HAPPENING_H": "Co se děje s osobními údaji?",
+            "WHATS_HAPPENING_P": "Osobní údaje jsou uchovány ve vašem telefonu, žádná data se neodesílají přes internet. Vyplněný dotazník s osobními údaji předáváte pomocí QR kódu.  Zdravotnický personál tento kód naskenuje z displeje vašeho smartphonu, vyhodnotí vaše symptomy, vy si naskenujete potvrzovací kód a Vaše data jsou ihned odstraněna ze zařízení zdravotnického personálu."
+        },
+        "SETTINGS": "Nastavení",
+        "SHORTEN_THE_WAIT": "a zkraťte si čekání ve frontě",
+        "TITLE": "Triáž",
+        "WELCOME": "COVID-19"
+    },
+    "HOW_IT_WORKS": {
+        "FILL_FORM": "Vyplňte formulář pro sebe nebe pro další osoby, které jsou s Vámi",
+        "HOW_IT_WORKS": "Jak to funguje",
+        "SHORT_DESCRIPTION": "Tato aplikace je určena pro osoby, které jdou na vyšetření do nemocnice a nechtějí čekat dlouhé fronty. Tento formulář lze vyplnit předem.",
+        "SHOW_QR_CODE_TO_STAFF": "Ukažte QR kód personálu nemocnice"
+    },
+    "LAST_NAME": "Příjmení",
+    "LOADING": "Načítání",
+    "LOGIN": {
+        "AUTHENTICATING": "Ověřování",
+        "CHECK_CONNECTION": "Zkontrolujte připojení k internetu, tato funkce není dostupná offline.",
+        "ENTER_REGISTRATION_CODE": "Zadejte registrační kód. Pokud registrační kód nemáte, kontaktuje osobu pověřenou triáží ve vaší nemocnici.",
+        "OFFLINE": "Zkontrolujte připojení k internetu, přihlášení není dostupné offline.",
+        "ONLY_FOR_EMPLOYEES": "Tato část aplikace je určena pouze pro zaměstnance nemocnic.",
+        "REGISTRATION_CODE": "Registrační kód",
+        "SEND": "Odeslat"
+    },
+    "MODAL": {
+        "ADD_TO_HOMESCREEN": "Nainstalujte tuto aplikaci na domovskou obrazovku pro rychlý a snadný přístup, když jste na cestách",
+        "GIVE_US_FEEDBACK": "Zanechte nám zpětnou vazbu, vyplněním krátkého dotazníku",
+        "HAVE_SUGGESTIONS": "Máte připomínky",
+        "INSTALL": "Nainstalovat",
+        "JUST_TAP": "Zvolte",
+        "LIKE_OUR_APP": "Libí se Vám naše aplikace",
+        "NOT_INTERESTED": "Ne, díky",
+        "SURE": "Dobře",
+        "THEN_ADD": "pak 'Přidat na domovskou obrazovku'"
+    },
+    "NEW_CONTENT_AVAILABLE": {
+        "AVAILABLE": "Dostupný nový obsah.",
+        "LOADING": "Načítání nového obsahu",
+        "REFRESH": "Obnovit"
+    },
+    "NEXT": "Další",
+    "NO": "Ne",
+    "PATIENT_LIST": {
+        "CONFIRMED": "Potvrzeno",
+        "FINISHED": "Dokončeno",
+        "NOT_FINISHED": "Nedokončeno",
+        "VALIDITY_TIMEOUT": "Platnost vypršela"
+    },
+    "PATIENT_QR_CODE": {
+        "CONFIRMED_BY": "Potvrdil",
+        "COVID_NOT_SUSPECTED": "Covid NOT suspected",
+        "COVID_SUSPECTED": "Covid suspected",
+        "FOLLOW_INSTRUCTIONS": "Vyčkejte na instrukce personálu nemocnice",
+        "SCAN_CONFIRMATION": "Naskenovat potvrzení",
+        "WHEN_ASKED_SHOW_THIS_CODE": "Zde je Váš QR kód, ukažte ho zdravotníkovi."
+    },
+    "PATIENT_SUMMARY": {
+        "CONFIRMED_BY": "Potvrdil/a",
+        "COVID_NOT_SUSPECTED": "Covid NOT suspected",
+        "COVID_SUSPECTED": "Covid suspected",
+        "PATIENT_INFO": "Osobní údaje",
+        "SYMPTOPMS": "Symptomy"
+    },
+    "PERSONAL_IDENTIFICATION_NUMBER": "Rodné číslo",
+    "PHONE_NUMBER": "Telefonní číslo",
+    "SCAN_CONFIRMATION_QR_CODE": {
+        "SCAN_CONFIRMATION_QR_CODE": "Naskenujte potvrzovací QR kód od zdravotníka"
+    },
+    "SERVER_ERROR": {
+        "registration_key_invalid_error": "Tento registrační kód je neplatný",
+        "server_error": "Ups. Něco se pokazilo. Zkuste to znovu později"
+    },
+    "SETTINGS": {
+        "ABOUT": "O aplikaci",
+        "ADMIN": "Administrátor",
+        "APP_LANGUAGE": "Jazyk apliakce",
+        "APP_MODE": "Režim aplikace",
+        "DELETE_ALL_DATA": "Vymazat všechna data",
+        "EMPLOYEE": "Zaměstnanec",
+        "PATIENT": "Pacient",
+        "SETTINGS": "Nastavení"
+    },
+    "SOMETHING_WENT_WRONG": "Něco se pokazilo",
+    "SUMMARY": {
+        "DO_YOU_LIKE_OUR_APP": "Líbí se Vám naše aplikace",
+        "PERSONAL_INFORMATION": "Souhlasím se zpracováním osobních údajů",
+        "SHOW_QR_CODE": "Zobrazit QR kód",
+        "SUMMARY": "Shrnutí",
+        "VALIDITY_TIMEOUT": "Platnost dotazníku vypršela",
+        "VALIDITY_TIMEOUT_CONFIRMATION": "OK",
+        "VALIDITY_TIMEOUT_TEXT": "Dotazník je platný pouze po dobu 24 hodin z důvodu relevance odpovědí a je nutné ho vyplnit znovu",
+        "WARNING": "Upozornění",
+        "WARNING_TEXT": "Tyto informace zjišťujeme za účelem snížení rizika přenosu infekce  COVID-19 ve zdravotnickém zařízení. Uvedení nepravdivých informací může být posuzováno jako trestný čin.",
+        "YOU_HAVE_TO_ACCEPT_BTN": "Musíte souhlasit s podmínkami",
+        "YOU_HAVE_TO_ACCEPT_TXT": "Souhlasím, že všechny uvedené údaje jsou pravdivé. Uvedení nepravidvých informací může být posuzováno jako trestný čin"
+    },
+    "TRY_DIFFERENT_BROWSER": "Zkuste využít jiný prohlížeč. Doporučujeme Google Chrome. Pokud používáte iPhone/iPad doporučujeme využít Safari",
+    "YES": "Ano"
 }
