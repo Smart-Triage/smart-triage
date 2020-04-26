@@ -95,7 +95,9 @@
             src="@/assets/img/avatar-lr.png"
             alt="Hand holding phone scanning QR code"
           />
-          <p>Ľuboš Repka</p>
+          <p>
+            <a href="https://www.linkedin.com/in/luborepka/">Ľuboš Repka</a>
+          </p>
         </div>
         <div>
           <img
@@ -111,14 +113,21 @@
             src="@/assets/img/avatar-tt.png"
             alt="Hand holding phone scanning QR code"
           />
-          <p>Tomáš Trejdl</p>
+          <p>
+            <a
+              href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-trejdl-081444156/"
+              >Tomáš Trejdl
+            </a>
+          </p>
         </div>
         <div>
           <img
             src="@/assets/img/avatar-vk.png"
             alt="Hand holding phone scanning QR code"
           />
-          <p>Vasil Kostin</p>
+          <p>
+            <a href="https://www.linkedin.com/in/vasilkostin/">Vasil Kostin</a>
+          </p>
         </div>
       </div>
       <p>{{ $t('HOME.AUTHORS.PARTNERS') }}</p>
