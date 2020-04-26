@@ -8,6 +8,16 @@ h2 {
   @apply text-2xl;
 }
 
+.home-text {
+  h2 {
+    color: $primary-color;
+    @apply text-2xl font-semibold mb-3 mt-5;
+  }
+  p {
+    @apply text-justify;
+  }
+}
+
 .btn-primary {
   background-color: $primary-color;
   border-radius: 2em;
