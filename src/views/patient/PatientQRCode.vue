@@ -3,7 +3,7 @@
     class="page-wrapper"
     :class="{ 'bg-confirmed': currentPatient.confirmed }"
   >
-    <NavBar sticky bg-transparent>
+    <NavBar bg-transparent>
       <template v-slot:left>
         <router-link
           to="/summary"
@@ -13,25 +13,28 @@
       </template>
     </NavBar>
     <div class="page-content">
-      <p class="text-3xl leading-tight">
+      <p class="text-xl leading-tight">
         {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
       </p>
-      <!-- <img class="w-1/2" src="@/assets/img/scan-code.png" alt="" /> -->
       <p class="my-4">
         <strong>
           {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
         </strong>
       </p>
-      <div v-if="isConfirmed" class="is-confirmed w-full">
+
+      <!-- QR CODE -->
+      <div class="bg-white p-4">
+        <QrcodeVue
+          :value="stringyfiedPatient"
+          :size="qrCodeSize"
+          level="M"
+        ></QrcodeVue>
+      </div>
+
+      <!-- CONFIRMATION BOX -->
+      <div v-if="isConfirmed" class="is-confirmed w-full mt-4">
         <ConfirmationBox :patient="currentPatient"></ConfirmationBox>
       </div>
-      <!-- {{ currentPatient.firstName + ' ' + currentPatient.lastName }} -->
-      <QrcodeVue
-        class="qrcode"
-        :value="stringyfiedPatient"
-        size="300"
-        level="H"
-      ></QrcodeVue>
 
       <router-link
         v-if="!currentPatient.confirmed"
@@ -90,6 +93,11 @@ export default {
         this.currentPatient.confirmation.confirmedById.length > 1 &&
         this.currentPatient.confirmation.timestamp
       )
+    },
+    qrCodeSize() {
+      if (window.innerWidth < 400) return window.innerWidth * 0.85
+      if (window.innerWidth < 500) return window.innerWidth * 0.8
+      return 400
     }
   },
   created() {
@@ -143,11 +151,6 @@ export default {
 .bg-confirmed {
   background-color: $secondary-color;
   color: white;
-}
-
-.qrcode {
-  background-color: white;
-  padding: 2rem;
 }
 
 .confirmation-info {
