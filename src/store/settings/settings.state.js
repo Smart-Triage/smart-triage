@@ -1,5 +1,7 @@
+import { getLocaleFromBrowser } from '@/plugins/i18n'
+
 export default {
-  locale: process.env.VUE_APP_I18N_LOCALE,
+  locale: getLocaleFromBrowser(),
   appMode: 'patient',
   availableAppModes: ['patient']
 }

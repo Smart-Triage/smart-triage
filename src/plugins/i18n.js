@@ -33,8 +33,14 @@ function loadLocaleMessages() {
   return removeEmpty(messages)
 }
 
+export function getLocaleFromBrowser() {
+  if (navigator.languages !== undefined)
+    return navigator.languages[0].split('-')[0]
+  return navigator.language.split('-')[0]
+}
+
 export default new VueI18n({
-  locale: process.env.VUE_APP_I18N_LOCALE || 'en',
+  locale: getLocaleFromBrowser() || process.env.VUE_APP_I18N_LOCALE || 'en',
   fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
   messages: loadLocaleMessages()
 })
