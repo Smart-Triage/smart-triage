@@ -74,23 +74,38 @@
             "HOW_IT_WORKS_OL_2": "Ukážte QR kód zdravotníckemu personálu, ktorý vyhodnotí vaše symptómy",
             "HOW_IT_WORKS_OL_3": "Naskenujte si potvrdenie",
             "HOW_IT_WORKS_OL_4": "Preukážte sa pri vstupe do nemocnice potvrdením v aplikácii",
-            "HOW_IT_WORKS_P": "",
-            "WHAT_IS_TRIAGE_H": "",
-            "WHAT_IS_TRIAGE_P": "",
-            "WHERE_IT_WORKS_H": "",
-            "WHERE_IT_WORKS_P": ""
+            "HOW_IT_WORKS_P": "Chytrá triáž urýchľuje proces vyplnenie vstupného dotazníka a znižuje tak dobu kontaktu zdravotníckeho personálu s pacientom a teda znižuje riziko nákazy. Naša aplikácia ponúka bezdotykový proces odovzdania osobných informácií.",
+            "WHAT_IS_TRIAGE_H": "Čo je to triáž?",
+            "WHAT_IS_TRIAGE_P": "Pre ochranu pacientov a zamestnancov prebieha v nemocniciach tzv. triáž, čiže triedenie pacientov podľa rizika nákazy. Pacient podá zdravotníckemu personálu informácie o svojom zdravotnom stave a nedávnom kontaktu s osobami potenciálne nakazenými, či návšteve rizikových oblastí. Zdravotnícky personál vyhodnotí riziko, či je pacient nakazený infekčnou chorobou a podľa toho pošle pacienta na správne oddelenie v nemocnici.",
+            "WHERE_IT_WORKS_H": "Kde môžem túto aplikáciu použiť?",
+            "WHERE_IT_WORKS_P": "V týždni od 27.4. do 30.4. prebieha testovacia prevádzka na triážním mieste 4 vo Fakultnej nemocnici Královské Vinohrady v Prahe"
+        },
+        "AUTHORS": {
+            "PARTNERS": "Tento projekt je pod záštitou Univerzity Karlovej",
+            "US": "Sme tím študentov z 2. a 3. LF UK a FIT ČVUT.",
+            "WHO_IS_BEHIND_THIS_APP": "Kto stojí za touto aplikáciou?"
         },
         "FILL_FORM": "Začať",
         "FILL_FORM_IN_YOUR_PHONE": "Vyplňte dotazník v mobile",
         "FILL_FOR_ANOTHER_PERSON": "Vyplniť pre ďalšiu osobu",
+        "FOOTER": {
+            "ABOUT_US": "O Nás (tím)",
+            "CONTACT": "Kontakt",
+            "COPYRIGHT": "© Smart Triage 2020",
+            "FAQ": "FAQ",
+            "FOR_EMPLOYEES": "Pre zamestnancov",
+            "FOR_HOSPITALS": "Pre nemocnice",
+            "PRIVACY_POLICY": "Zásady ochrany osobných údajov",
+            "TERMS_OF_SERVICE": "Podmienky služby"
+        },
         "HOW_IT_WORKS": "Ako to funguje?",
         "INFO": "Prosím vyplňte tento formulár pred príchodom do nemocnice pre urýchlenie a obmedzenie blízkeho kontaktu s personálom",
         "NOT_GOING_ALONE": "Nejdete sami?",
         "PERSONAL_INFO": {
-            "APP_H": "",
-            "APP_P": "",
-            "WHATS_HAPPENING_H": "",
-            "WHATS_HAPPENING_P": ""
+            "APP_H": "Aplikácia",
+            "APP_P": "Chytrá triáž je webová aplikácia, nie je potrebné nič sťahovať ani inštalovať. Dotazník možno vyplniť priamo tu, v internetovom prehliadači. Pre operačné systémy Android a Windows odporúčame najnovšiu verziu prehliadača Google Chrome. Ak máte zariadenie s iOS (iPhone, iPad) odporúčame prehliadač Safari. Aplikácia potrebuje pre svoj chod prístup k fotoaparátu.",
+            "WHATS_HAPPENING_H": "Čo sa deje s osobnými údajmi?",
+            "WHATS_HAPPENING_P": "Osobné údaje sú uchované vo vašom telefóne, žiadne dáta sa neodosielajú cez internet. Vyplnený dotazník s osobnými údajmi odovzdávate pomocou QR kódu. Zdravotnícky personál tento kód zoskenuje z displeja vášho smartphonu, vyhodnotí vaše symptómy, vy si naskenujete potvrdzovací kód a Vaše dáta sú ihneď odstránená zo zariadenia zdravotníckeho personálu."
         },
         "SETTINGS": "Nastavenia",
         "SHORTEN_THE_WAIT": "a skráťte si čakanie v rade",
@@ -99,7 +114,6 @@
     },
     "HOW_IT_WORKS": {
         "FILL_FORM": "Vyplňte formulár pre seba alebo pre dalšie osoby, ktoré sú s Vami",
-        "FILL_FOR_OTHERS": "",
         "HOW_IT_WORKS": "Ako to funguje",
         "SHORT_DESCRIPTION": "Táto aplikácia je určená pre osoby, ktoré idú na vyšetrenie do nemocnice a nechcú čakať v dlhom rade. Tento formulár môžete vyplniť dopredu.",
         "SHOW_QR_CODE_TO_STAFF": "Ukážte QR kód personálu nemocnice"
@@ -120,7 +134,7 @@
         "GIVE_US_FEEDBACK": "Zanechajte nám spätnú väzbu, vyplnením krátkeho dotazníka",
         "HAVE_SUGGESTIONS": "Máte pripomienky",
         "INSTALL": "Nainštalovať",
-        "JUST_TAP": "",
+        "JUST_TAP": "Zvoľte",
         "LIKE_OUR_APP": "Páči sa Vám naša aplikácia",
         "NOT_INTERESTED": "Nie, vďaka",
         "SURE": "Dobre",

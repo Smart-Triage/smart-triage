@@ -78,7 +78,7 @@
             "WHAT_IS_TRIAGE_H": "Co je to triáž?",
             "WHAT_IS_TRIAGE_P": "Pro ochranu pacientů a zaměstnanců probíhá v nemocnicích tzv. triáž, neboli třídění pacientů podle rizika nakažení. Pacient podá zdravotnickému personálu informace o svém zdravotním stavu a nedávném kontaktu s osobami potenciálně nakaženými, či návštěvě rizikových oblastí. Zdravotnický personál vyhodnotí riziko, jestli je pacient nakažen infekční nemocí a podle toho pošle pacienta na správné oddělení v nemocnici.",
             "WHERE_IT_WORKS_H": "Kde můžu tuto aplikaci použít?",
-            "WHERE_IT_WORKS_P": "V týdnu od 27.4. do 30.4. probíhá testovací provoz na triážním místě 4 ve Fakultní nemocnici Královské Vinohrady"
+            "WHERE_IT_WORKS_P": "V týdnu od 27.4. do 30.4. probíhá testovací provoz na triážním místě 4 ve Fakultní nemocnici Královské Vinohrady v Praze"
         },
         "AUTHORS": {
             "PARTNERS": "Tento projekt je pod záštitou Univerzity Karlovy",
@@ -95,15 +95,15 @@
             "FAQ": "FAQ",
             "FOR_EMPLOYEES": "Pro zaměstnance",
             "FOR_HOSPITALS": "Pro nemocnice",
-            "PRIVACY_POLICY": "Privacy policy",
-            "TERMS_OF_SERVICE": "Terms of service"
+            "PRIVACY_POLICY": "Zásady ochrany osobních údajů",
+            "TERMS_OF_SERVICE": "Podmínky služby"
         },
         "HOW_IT_WORKS": "Jak to funguje?",
         "INFO": "Dotazník má platnost 24 hodin, můžete si ho tedy vyplnit v pohodlí domova",
         "NOT_GOING_ALONE": "Lze vyplnit i pro více osob v jednom telefonu",
         "PERSONAL_INFO": {
             "APP_H": "Aplikace",
-            "APP_P": "Chytrá triáž je webová aplikace, není potřeba nic stahovat ani instalovat. Dotazník lze vyplnit přímo zde, v internetovém prohlížeči. Pro operační systémy Android a Windows doporučujeme nejnovější verzi prohlížeče Google Chrome. Pokud máte zařízení s iOS (iPhone, iPad, iPod) doporučujeme prohlížeč Safari. Aplikace potřebuje pro svůj chod přístup k fotoaparátu.",
+            "APP_P": "Chytrá triáž je webová aplikace, není potřeba nic stahovat ani instalovat. Dotazník lze vyplnit přímo zde, v internetovém prohlížeči. Pro operační systémy Android a Windows doporučujeme nejnovější verzi prohlížeče Google Chrome. Pokud máte zařízení s iOS (iPhone, iPad) doporučujeme prohlížeč Safari. Aplikace potřebuje pro svůj chod přístup k fotoaparátu.",
             "WHATS_HAPPENING_H": "Co se děje s osobními údaji?",
             "WHATS_HAPPENING_P": "Osobní údaje jsou uchovány ve vašem telefonu, žádná data se neodesílají přes internet. Vyplněný dotazník s osobními údaji předáváte pomocí QR kódu.  Zdravotnický personál tento kód naskenuje z displeje vašeho smartphonu, vyhodnotí vaše symptomy, vy si naskenujete potvrzovací kód a Vaše data jsou ihned odstraněna ze zařízení zdravotnického personálu."
         },
@@ -114,7 +114,6 @@
     },
     "HOW_IT_WORKS": {
         "FILL_FORM": "Vyplňte formulář pro sebe nebe pro další osoby, které jsou s Vámi",
-        "FILL_FOR_OTHERS": "",
         "HOW_IT_WORKS": "Jak to funguje",
         "SHORT_DESCRIPTION": "Tato aplikace je určena pro osoby, které jdou na vyšetření do nemocnice a nechtějí čekat dlouhé fronty. Tento formulář lze vyplnit předem.",
         "SHOW_QR_CODE_TO_STAFF": "Ukažte QR kód personálu nemocnice"
