@@ -2,7 +2,7 @@
   <div class="page-wrapper">
     <div class="page-content">
       <img
-        class="my-4 mx-auto"
+        class="h-16 my-4 mx-auto"
         src="@/assets/img/logo.svg"
         alt="Smart Triage logo"
       />

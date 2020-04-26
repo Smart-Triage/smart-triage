@@ -10,7 +10,11 @@
       <p v-if="availableAppModes.length > 1" class="p-4">
         <strong>{{ $t('SETTINGS.APP_MODE') }}</strong>
         <span class="px-4">
-          <select :value="appMode" @change="setAppMode($event.target.value)">
+          <select
+            class="px-4 py-1 rounded-full bg-white"
+            :value="appMode"
+            @change="setAppMode($event.target.value)"
+          >
             <option
               v-for="mode in availableAppModes"
               :key="`${mode}-mode`"

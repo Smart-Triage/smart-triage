@@ -1,28 +1,31 @@
 <template>
   <div class="page-wrapper">
+    <NavBar>
+      <template v-slot:right>
+        <LocaleChanger short no-background></LocaleChanger>
+      </template>
+    </NavBar>
     <div class="page-content">
       <!-- HEADER -->
-      <div class="mt-4 mb-2">
-        <img
-          class="mb-8 mx-auto"
-          src="@/assets/img/logo.svg"
-          alt="Smart Triage logo"
-        />
-        <p class="text-xl text-secondary font-semibold">
-          Vyplňte dotazník v mobilu <br />
-          a zkraťte si čekání ve frontě
-        </p>
-        <img
-          class="my-8 mx-auto"
-          src="@/assets/img/home-page-welcome-img.png"
-          alt=""
-        />
-        <!-- <p>{{ $t('HOME.WELCOME') }}</p> -->
-        <!-- <h1 class="text-5xl">{{ $t('HOME.TITLE') }}</h1> -->
-        <p class="text-xl text-secondary font-semibold">
-          {{ $t('HOME.INFO') }}
-        </p>
-      </div>
+      <img
+        class="h-16 mx-auto"
+        src="@/assets/img/logo.svg"
+        alt="Smart Triage logo"
+      />
+      <p class="mt-4 text-xl text-secondary font-semibold">
+        Vyplňte dotazník v mobilu <br />
+        a zkraťte si čekání ve frontě
+      </p>
+      <img
+        class="h-32 my-8 mx-auto"
+        src="@/assets/img/home-page-welcome-img.png"
+        alt=""
+      />
+      <!-- <p>{{ $t('HOME.WELCOME') }}</p> -->
+      <!-- <h1 class="text-5xl">{{ $t('HOME.TITLE') }}</h1> -->
+      <p class="text-xl text-secondary font-semibold">
+        {{ $t('HOME.INFO') }}
+      </p>
 
       <!-- PATIENT LIST -->
       <PatientList class="w-full my-1"></PatientList>
@@ -91,10 +94,12 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import PatientList from '@/components/PatientList'
+import LocaleChanger from '@/components/LocaleChanger'
 
 export default {
   components: {
-    PatientList
+    PatientList,
+    LocaleChanger
   },
   data: () => ({
     showModal: false
