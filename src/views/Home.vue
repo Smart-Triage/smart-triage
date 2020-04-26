@@ -54,7 +54,9 @@
       <!--        </router-link>-->
       <!--      </div>-->
     </div>
-    <div class="home-text bg-white px-4 pb-4 mt-4 border-app rounded-b-none">
+    <div
+      class="home-text home-h2-primary bg-white px-6 pb-4 mt-4 border-app rounded-b-none"
+    >
       <h2>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_H') }}</h2>
       <p>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_P') }}</p>
       <h2>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_H') }}</h2>
@@ -69,6 +71,19 @@
       </ol>
       <h2>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_H') }}</h2>
       <p>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_P') }}</p>
+    </div>
+    <div
+      class="home-text home-h2-secondary px-6 pb-4 mt-4 border-app rounded-b-none"
+    >
+      <h2>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_H') }}</h2>
+      <p>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_P') }}</p>
+      <img
+        class="my-8 mx-auto"
+        src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+        alt="Hand holding phone scanning QR code"
+      />
+      <h2>{{ $t('HOME.PERSONAL_INFO.APP_H') }}</h2>
+      <p>{{ $t('HOME.PERSONAL_INFO.APP_P') }}</p>
     </div>
   </div>
 </template>
