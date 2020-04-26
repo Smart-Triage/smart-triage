@@ -9,6 +9,7 @@ h2 {
 }
 
 .home-text {
+  @apply max-w-lg text-center;
   h2 {
     color: $primary-color;
     @apply text-2xl font-semibold mb-3 mt-5;
