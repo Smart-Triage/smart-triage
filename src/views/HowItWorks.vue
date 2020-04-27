@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper">
-    <NavBar :back-btn="true"></NavBar>
+    <NavBar sticky back-button></NavBar>
     <div class="page-content">
       <h1 class="">{{ $t('HOW_IT_WORKS.HOW_IT_WORKS') }}?</h1>
       <img
@@ -24,7 +24,15 @@
 </template>
 
 <script>
-export default {}
+export default {
+  head() {
+    return {
+      title: {
+        inner: this.$t('HOW_IT_WORKS.HOW_IT_WORKS')
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

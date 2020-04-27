@@ -1,63 +1,69 @@
 <template>
   <div class="page-wrapper">
-    <div>
-      <NavBar> </NavBar>
-      <div class="page-content">
-        <img
-          class="mb-8 mx-auto"
-          src="@/assets/img/home-page-welcome-img.png"
-          alt=""
-        />
-        <h1 class="mb-4">{{ appTitle }}</h1>
-        <p class="mb-4">
-          <strong>{{ $t('LOGIN.ONLY_FOR_EMPLOYEES') }}</strong>
-        </p>
+    <div class="page-content">
+      <img
+        class="h-16 my-4 mx-auto"
+        src="@/assets/img/logo.svg"
+        alt="Smart Triage logo"
+      />
+      <p class="mb-4">
+        <strong>{{ $t('LOGIN.ONLY_FOR_EMPLOYEES') }}</strong>
+      </p>
 
-        <p class="mb-4">
-          {{ $t('LOGIN.ENTER_REGISTRATION_CODE') }}
-        </p>
+      <p class="mb-4">
+        {{ $t('LOGIN.ENTER_REGISTRATION_CODE') }}
+      </p>
 
-        <!-- Loader -->
+      <!-- Loader -->
 
-        <div v-show="user === undefined" data-test="loader">
-          {{ $t('LOGIN.AUTHENTICATING') }}...
-        </div>
-
-        <!-- Offline instruction -->
-        <div v-show="!networkOnLine" data-test="offline-instruction">
-          {{ $t('LOGIN.SEND') }}
-        </div>
-
-        <p v-if="loginError" class="bg-red-500 text-white p-2 m-2 rounded">
-          {{ $t(`ERROR.${loginError}`) }}
-        </p>
-        <!-- Auth UI -->
-        <form class="w-full flex flex-col items-center" @submit="register">
-          <input
-            v-model="fullName"
-            :placeholder="$t('FULL_NAME')"
-            type="text"
-            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
-            required
-          />
-          <input
-            v-model="registrationCode"
-            :placeholder="$t('LOGIN.REGISTRATION_CODE')"
-            type="text"
-            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
-            required
-          />
-
-          <button
-            v-show="user !== undefined && !user && networkOnLine"
-            type="submit"
-            data-test="login-btn"
-            class="btn-primary my-4"
-          >
-            {{ $t('LOGIN.SEND') }}
-          </button>
-        </form>
+      <div v-show="user === undefined" data-test="loader">
+        {{ $t('LOGIN.AUTHENTICATING') }}...
       </div>
+
+      <!-- Offline instruction -->
+      <div v-show="!networkOnLine" data-test="offline-instruction">
+        {{ $t('LOGIN.OFFLINE') }}
+      </div>
+
+      <p v-if="loginError" class="bg-red-500 text-white p-2 m-2 rounded">
+        {{ $t(`SERVER_ERROR.${loginError}`) }}
+      </p>
+
+      <!-- Auth UI -->
+      <form class="w-full flex flex-col items-center" @submit="register">
+        <div class="flex my-2">
+          <input
+            v-model="firstName"
+            :placeholder="$t('FIRST_NAME')"
+            type="text"
+            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app mr-2"
+            required
+          />
+          <input
+            v-model="lastName"
+            :placeholder="$t('LAST_NAME')"
+            type="text"
+            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app ml-2"
+            required
+          />
+        </div>
+        <input
+          v-model="registrationCode"
+          :placeholder="$t('LOGIN.REGISTRATION_CODE')"
+          type="text"
+          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
+          required
+        />
+
+        <button
+          v-show="user !== undefined && !user && networkOnLine"
+          type="submit"
+          data-test="login-btn"
+          class="btn-primary my-2"
+        >
+          {{ $t('LOGIN.SEND') }}
+        </button>
+      </form>
       <div class="bottom-link">
         <router-link class="employee-page-link" to="/how-it-works">{{
           $t('HOME.HOW_IT_WORKS')
@@ -80,30 +86,24 @@ import KeyStore from '@/misc/KeyStore'
 import PublicKeysDB from '@/firebase/public-keys-db'
 
 export default {
+  head() {
+    return {
+      title: {
+        inner: this.$t('LOGIN.TITLE')
+      }
+    }
+  },
   data: () => ({
     loginError: null,
-    fullName: '',
+    firstName: '',
+    lastName: '',
     registrationCode: '',
     errorMessage: '',
     keyStore: null
   }),
-  head() {
-    return {
-      title: {
-        inner: 'Login'
-      },
-      meta: [
-        {
-          name: 'description',
-          content: `Sign in or sign up to ${this.appTitle}`,
-          id: 'desc'
-        }
-      ]
-    }
-  },
   computed: {
     ...mapState('authentication', ['user']),
-    ...mapState('app', ['networkOnLine', 'appTitle'])
+    ...mapState('app', ['networkOnLine'])
   },
   watch: {
     user: {
@@ -121,14 +121,18 @@ export default {
   mounted() {
     if (!window.crypto || !window.crypto.subtle) {
       alert(
-        'Your current browser does not support the Web Cryptography API! This page will not work.'
+        `${this.$t('ALERT.UNSUPPORTED_BROWSER')}. ${this.$t(
+          'TRY_DIFFERENT_BROWSER'
+        )}`
       )
       return
     }
 
     if (!window.indexedDB) {
       alert(
-        'Your current browser does not support IndexedDB. This page will not work.'
+        `${this.$t('ALERT.UNSUPPORTED_BROWSER')}. ${this.$t(
+          'TRY_DIFFERENT_BROWSER'
+        )}`
       )
       return
     }
@@ -140,7 +144,7 @@ export default {
   },
   methods: {
     ...mapMutations('authentication', ['setUser']),
-    ...mapMutations('employee', ['setFullName']),
+    ...mapMutations('employee', ['setFirstName', 'setLastName', 'setHospital']),
 
     /* REGISTER EMPLOYEE */
     async register(e) {
@@ -165,7 +169,10 @@ export default {
           .signInWithCustomToken(res.token)
           .then(async userCredential => {
             this.createKeyPair(userCredential)
-            this.setFullName(this.fullName)
+            this.setFirstName(this.firstName)
+            this.setLastName(this.lastName)
+            if (res.hospital) this.setHospital(res.hospital)
+            else this.setHospital('unknown')
           })
       } catch (err) {
         // Handle Errors here.

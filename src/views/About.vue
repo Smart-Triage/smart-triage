@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper">
-    <NavBar :back-btn="true"></NavBar>
+    <NavBar sticky back-button></NavBar>
     <div class="page-content">
       <h1 class="mb-6">{{ $t('ABOUT.ABOUT_THIS_APP') }}</h1>
       <img class="m-6" src="@/assets/img/home-page-welcome-img.png" alt="" />
@@ -30,7 +30,7 @@
         </ul>
       </div>
       <div class="text-xs mx-auto py-3">
-        {{ $store.state.app.appTitle }} {{ $t('ABOUT.VERSION') }}
+        {{ $t('APP_TITLE') }} {{ $t('ABOUT.VERSION') }}
         {{ $store.getters.appVersion }}
         ({{ $store.getters.buildDate | formatDate }})
       </div>

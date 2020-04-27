@@ -3,31 +3,25 @@
     <div class="modal-wrapper">
       <div class="close" @click="$emit('close')"></div>
       <div class="main-content">
-        <!-- <img class="app-logo" src="@/assets/logo.png" /> -->
-        <h3 class="title">Install {{ appTitle }}</h3>
-        <p class="description">
-          Install this application to your home screen for quickly and easy
-          access when you're on the go.
-        </p>
+        <img class="app-logo" src="@/assets/img/icon.svg" />
+        <h3 class="title">{{ $t('MODAL.INSTALL') }} {{ $t('APP_TITLE') }}</h3>
+        <p class="description">{{ $t('MODAL.ADD_TO_HOMESCREEN') }}.</p>
       </div>
 
       <div class="footer">
-        Just tap
+        {{ $t('MODAL.JUST_TAP') }}
         <img
           class="apple-navigation-action-img"
           src="@/assets/img/apple-navigation-action.png"
-        />then 'Add to Home Screen'
+        />
+        {{ $t('MODAL.THEN_ADD') }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
-export default {
-  computed: mapState('app', ['appTitle'])
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>

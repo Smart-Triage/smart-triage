@@ -1,33 +1,10 @@
 <template>
   <div v-if="patient">
-    <div
-      v-if="
-        patient.confirmation &&
-          patient.confirmation.confirmedById.length > 1 &&
-          patient.confirmation.timestamp
-      "
-      class="is-confirmed"
-    >
-      <div
-        class="confirmation-info"
-        :class="{ 'covid-suspedted': patient.isCovidSuspected }"
-      >
-        <div>
-          {{ $t('PATIENT_SUMMARY.CONFIRMED_BY') }}
-          {{ patient.confirmation.confirmedByName }}
-        </div>
-        <div>{{ patient.confirmation.timestamp | formatDate }}</div>
-        <div v-if="patient.isCovidSuspected === true">
-          {{ $t('PATIENT_SUMMARY.COVID_SUSPECTED') }}
-        </div>
-        <div v-if="patient.isCovidSuspected === false">
-          {{ $t('PATIENT_SUMMARY.COVID_NOT_SUSPECTED') }}
-        </div>
-      </div>
+    <div v-if="isConfirmed" class="is-confirmed">
+      <ConfirmationBox :patient="patient"></ConfirmationBox>
     </div>
     <button
-      :class="{ changecolor: !patientInfoHidden }"
-      class="patient-item accordion-button"
+      class="patient-item flex justify-between items-center cursor-pointer my-2 relative z-20"
       @click="patientInfoHidden = !patientInfoHidden"
     >
       <div class="patient-item-left">
@@ -44,26 +21,34 @@
       </div>
     </button>
     <div
-      class="info-container questionInfo text-left"
+      class="info-container text-left"
       :class="{ hideInfo: patientInfoHidden }"
     >
-      <p>
-        <b>{{ $t('FULL_NAME') }}</b>
-      </p>
-      <span>{{ patient.firstName + ' ' + patient.lastName }}</span>
-      <hr class="dividerInfo" />
-      <p>
-        <b>{{ $t('PERSONAL_IDENTIFICATION_NUMBER') }}</b>
-      </p>
-      <span>{{ patient.birthNumber }}</span>
-      <hr class="dividerInfo" />
-      <p>
-        <b>{{ $t('PHONE_NUMBER') }}</b>
-      </p>
-      <span>{{ patient.phoneNumber }}</span>
-      <hr class="dividerInfo" />
+      <div class="flex flex-col border-b border-gray-700 my-1">
+        <span class="text-secondary">{{ $t('FULL_NAME') }}</span>
+        <span class="font-semibold text-xl">
+          {{ patient.firstName + ' ' + patient.lastName }}
+        </span>
+      </div>
+
+      <div class="flex flex-col border-b border-gray-700 my-1">
+        <span class="text-secondary">{{
+          $t('PERSONAL_IDENTIFICATION_NUMBER')
+        }}</span>
+        <span class="font-semibold text-xl">
+          {{ patient.birthNumber }}
+        </span>
+      </div>
+
+      <div class="flex flex-col border-b border-gray-700 my-1 py-1">
+        <span class="text-secondary">{{ $t('PHONE_NUMBER') }}</span>
+        <span class="font-semibold text-xl">
+          {{ patient.phoneNumber }}
+        </span>
+      </div>
+
       <button
-        v-if="allowEdit && !patient.confirmed"
+        v-if="!patient.confirmed && appMode !== 'employee'"
         class="edit-btn"
         @click="edit('0')"
       >
@@ -71,8 +56,7 @@
       </button>
     </div>
     <button
-      :class="{ changecolor: !patientSymptomsHidden }"
-      class="patient-item accordion-button"
+      class="patient-item flex justify-between items-center cursor-pointer my-2 relative z-20"
       @click="patientSymptomsHidden = !patientSymptomsHidden"
     >
       <div class="patient-item-left">
@@ -96,42 +80,59 @@
       <div
         v-for="step in formStepsToShow"
         :key="step.order"
-        class="questionInfo"
+        class="flex border-b border-gray-700 my-1 py-1"
       >
-        <p>
-          <b>{{ step.question }}</b>
-        </p>
-        <span v-if="step.answerType === 'boolean'">{{
-          patient.answers[step.order] === true ? $t('YES') : $t('NO')
-        }}</span>
-        <span v-else-if="step.answerType === 'one-of'">
-          {{
-            getFormSteps
-              .find(s => s.order === step.order)
-              .options.find(o => o.value === patient.answers[step.order]).text
-          }}
-        </span>
-        <span v-else-if="step.answerType === 'checkbox'">
-          <span
-            v-for="option in patient.answers[step.order]"
-            :key="option.value"
-            >{{
-              option.isChecked
-                ? getFormSteps
-                    .find(s => s.order === step.order)
-                    .options.find(o => o.value === option.value).text + ', '
-                : ''
-            }}</span
+        <div class="font-semibold">
+          <div
+            class="font-medium text-secondary"
+            :class="{
+              'font-semibold':
+                appMode === 'employee' &&
+                step.highlightIf === patient.answers[step.order]
+            }"
           >
-        </span>
-        <span v-else>{{ patient.answers[step.order] }}</span>
-        <hr class="dividerInfo" />
+            {{ step.question }}
+          </div>
+          <span v-if="step.answerType === 'boolean'">{{
+            patient.answers[step.order] === true ? $t('YES') : $t('NO')
+          }}</span>
+          <span v-else-if="step.answerType === 'one-of'">
+            {{
+              getFormSteps
+                .find(s => s.order === step.order)
+                .options.find(o => o.value === patient.answers[step.order]).text
+            }}
+          </span>
+          <span v-else-if="step.answerType === 'checkbox'">
+            <span
+              v-for="option in patient.answers[step.order]"
+              :key="option.value"
+              >{{
+                option.isChecked
+                  ? getFormSteps
+                      .find(s => s.order === step.order)
+                      .options.find(o => o.value === option.value).text + ', '
+                  : ''
+              }}</span
+            >
+          </span>
+          <span v-else>{{ patient.answers[step.order] }}</span>
+        </div>
+        <div
+          v-if="
+            appMode === 'employee' &&
+              step.highlightIf === patient.answers[step.order]
+          "
+          class="flex items-center"
+        >
+          <ion-icon
+            name="alert-circle-outline"
+            size="large"
+            class="text-red-500"
+          ></ion-icon>
+        </div>
       </div>
-      <button
-        v-if="allowEdit && !patient.confirmed"
-        class="edit-btn"
-        @click="edit('1')"
-      >
+      <button v-if="!patient.confirmed" class="edit-btn" @click="edit('1')">
         {{ $t('EDIT') }}
       </button>
     </div>
@@ -139,21 +140,30 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
+import ConfirmationBox from '@/components/ConfirmationBox'
+import getFormStepsMixin from '@/mixins/getFormStepsMixin'
 
 export default {
+  components: { ConfirmationBox },
+  mixins: [getFormStepsMixin],
   props: {
-    patient: { type: Object, required: true },
-    allowEdit: { type: Boolean, default: true }
+    patient: { type: Object, required: true }
   },
   data() {
     return {
-      patientInfoHidden: false,
-      patientSymptomsHidden: this.appMode === 'patient'
+      patientInfoHidden:
+        this.patient.confirmation &&
+        this.patient.confirmation.confirmedById.length > 1 &&
+        this.patient.confirmation.timestamp,
+      patientSymptomsHidden:
+        this.appMode === 'patient' ||
+        (this.patient.confirmation &&
+          this.patient.confirmation.confirmedById.length > 1 &&
+          this.patient.confirmation.timestamp)
     }
   },
   computed: {
-    ...mapGetters('questions', ['getFormSteps']),
     ...mapState('settings', ['appMode']),
     formStepsToShow() {
       if (!this.patient) return []
@@ -163,6 +173,13 @@ export default {
           stepsToShow.push(step)
       })
       return stepsToShow
+    },
+    isConfirmed() {
+      return !!(
+        this.patient.confirmation &&
+        this.patient.confirmation.confirmedById.length > 1 &&
+        this.patient.confirmation.timestamp
+      )
     }
   },
   methods: {
@@ -183,31 +200,6 @@ export default {
 <style lang="scss">
 @import '@/theme/variables.scss';
 @import '@/theme/general.scss';
-
-.dividerInfo {
-  border-color: $secondary-color;
-  z-index: 10;
-}
-
-.questionInfo {
-  p {
-    color: $secondary-color;
-    margin: 0.5rem 0;
-  }
-  span {
-    color: black;
-  }
-}
-
-.accordion-button {
-  @apply flex
-  justify-between
-  items-center
-  cursor-pointer
-  my-2
-  relative
-  z-20;
-}
 
 ion-icon {
   font-size: 1.3em;
@@ -232,7 +224,7 @@ ion-icon {
   display: flex;
   flex-direction: column;
   background-color: #32227f15;
-  padding: 4em 2em 2em 2em;
+  padding: 3em 2em 1em 2em;
   width: 100%;
   border-radius: 1.1em;
 }
@@ -243,9 +235,9 @@ ion-icon {
   background-color: $secondary-color;
   color: white;
   border-radius: 2em;
-  padding: 0.8em 4em;
+  padding: 0.5em 2em;
   width: fit-content;
-  margin: 2rem auto 0 auto;
+  margin: 1rem auto 0 auto;
 }
 
 .patient-item {
@@ -279,22 +271,6 @@ ion-icon {
     ion-icon {
       margin-left: 1rem;
     }
-  }
-}
-
-.confirmation-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: $positive-color;
-  color: white;
-  border-radius: 5rem;
-  margin: 0 1rem;
-
-  &.covid-suspedted {
-    background-color: $negative-color;
   }
 }
 </style>

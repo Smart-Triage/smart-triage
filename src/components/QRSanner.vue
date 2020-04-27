@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p v-if="error" class="error">Error: {{ error }}</p>
+    <div v-if="error" class="p-4 mx-4 bg-red-500 text-white rounded-xl">
+      {{ $t(`ERROR.${error}`) }}. {{ $t(`ERROR.TRY_DIFFERENT_BROWSER`) }}.
+    </div>
 
     <qrcode-stream @decode="onDecode" @init="onInit">
       <div class="qr-border">
@@ -40,9 +42,11 @@ import { QrcodeStream } from 'vue-qrcode-reader'
 import { mapGetters } from 'vuex'
 
 import validatePatient from '@/misc/validateScannedData'
+import getFormStepsMixin from '@/mixins/getFormStepsMixin'
 
 export default {
   components: { QrcodeStream },
+  mixins: [getFormStepsMixin],
   props: {
     scanningConfirmationCode: {
       type: Boolean,
@@ -61,7 +65,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('questions', ['getFormSteps']),
     ...mapGetters('patients', ['currentPatient'])
   },
   methods: {
@@ -80,7 +83,7 @@ export default {
             this.$emit('data', patient)
           })
           .catch(err => {
-            this.error = err
+            this.error = err.message
             console.error(err)
           })
       } else {
@@ -91,19 +94,7 @@ export default {
       try {
         await promise
       } catch (error) {
-        if (error.name === 'NotAllowedError') {
-          this.error = 'ERROR: you need to grant camera access permisson'
-        } else if (error.name === 'NotFoundError') {
-          this.error = 'ERROR: no camera on this device'
-        } else if (error.name === 'NotSupportedError') {
-          this.error = 'ERROR: secure context required (HTTPS, localhost)'
-        } else if (error.name === 'NotReadableError') {
-          this.error = 'ERROR: is the camera already in use?'
-        } else if (error.name === 'OverconstrainedError') {
-          this.error = 'ERROR: installed cameras are not suitable'
-        } else if (error.name === 'StreamApiNotSupportedError') {
-          this.error = 'ERROR: Stream API is not supported in this browser'
-        }
+        this.error = error.name
       }
     }
   }
@@ -111,11 +102,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.error {
-  font-weight: bold;
-  color: red;
-}
-
 .qr-border {
   height: 100%;
   width: 100%;

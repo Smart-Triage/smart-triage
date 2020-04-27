@@ -1,20 +1,38 @@
 <template>
   <div v-if="user" class="page-wrapper">
-    <NavBar v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
+    <NavBar
+      v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
+      sticky
+    >
+      <template v-slot:left>
+        <div class="flex items-center text-gray-700">
+          <img
+            class="h-8 object-contain"
+            :src="getHospitalLogoPath(hospital)"
+            alt="hospital logo"
+          />
+          <span class="ml-2 font-semibold">
+            {{ getHospitalName(hospital) }}
+          </span>
+        </div>
+      </template>
       <template v-slot:right>
-        <div class="flex items-center">
+        <div class="flex items-center text-gray-700">
+          <span class="ml-2 font-semibold">{{ fullName }}</span>
           <ion-icon name="person-circle-outline" size="large"></ion-icon>
-          <span class="ml-2">{{ fullName }}</span>
         </div>
       </template>
     </NavBar>
     <FullScreenModal v-if="scanning">
       <template v-slot:header>
-        <NavBar :bg-transparent="true">
+        <NavBar sticky bg-transparent>
           <template v-slot:left>
             <button class="text-black" @click="showEmployeeHomepage">
               <ion-icon name="arrow-back-outline" size="large"></ion-icon>
             </button>
+          </template>
+          <template v-slot:center>
+            <span>{{ $t('EMPLOYEE.SCAN_PATIENT') }}</span>
           </template>
         </NavBar>
       </template>
@@ -24,40 +42,71 @@
     </FullScreenModal>
 
     <div class="page-content" style="display:block">
+      <!-- EMPLOYEE HOMEPAGE -->
       <div
         v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
         class="header-info"
       >
-        <h1>{{ appTitle }}</h1>
+        <img
+          class="h-16 mx-auto"
+          src="@/assets/img/logo.svg"
+          alt="Smart Triage logo"
+        />
         <p class="my-4">{{ $t('EMPLOYEE.WELCOME') }}</p>
 
         <img
           src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
-          alt=""
+          alt="Scanning a QR code"
         />
-      </div>
-      <p v-if="!scanning && !showingConfirmationQR && !showPatientSummary">
-        {{ $t('EMPLOYEE.TAP_SCAN_TO_BEGIN') }}
-      </p>
 
+        <!-- SCAN NEXT PATIENT -->
+        <button class="btn-primary flex items-center m-4" @click="scan">
+          <ion-icon name="scan-outline"></ion-icon>
+          <span class="ml-2">{{ $t('EMPLOYEE.SCAN_NEXT_PATIENT') }}</span>
+        </button>
+
+        <!-- FILL PATIENT DATA MANUALLY -->
+        <!-- <button
+          class="btn-primary flex items-center m-4"
+          @click="fillPatientManually"
+        >
+          <ion-icon name="scan-outline"></ion-icon>
+          <span class="ml-2">{{ $t('EMPLOYEE.FILL_PATIENT_MANUALLY') }}</span>
+        </button> -->
+
+        <div class="bottom-link">
+          <router-link class="employee-page-link" to="/how-it-works">{{
+            $t('HOME.HOW_IT_WORKS')
+          }}</router-link>
+          <router-link class="employee-page-link" to="/settings">{{
+            $t('HOME.SETTINGS')
+          }}</router-link>
+        </div>
+      </div>
+
+      <!-- EMPLOYEE - PATIENT SUMMARY PAGE -->
       <div
         v-if="showPatientSummary && currentPatient !== null"
         class="w-full max-w-md summary-view"
       >
-        <NavBar>
+        <NavBar sticky>
+          <template v-slot:center>
+            <span v-if="showPatientSummary">
+              {{ $t('EMPLOYEE.PATIENT_SUMMARY') }}
+            </span>
+          </template>
           <template v-slot:left>
             <button class="icon-button" @click="showEmployeeHomepage">
               <ion-icon name="close-outline" size="large"></ion-icon>
             </button>
           </template>
         </NavBar>
-        <h1 class="mb-4">{{ $t('EMPLOYEE.PATIENT_SUMMARY') }}</h1>
 
         <PatientSummary :patient="currentPatient"></PatientSummary>
 
         <div
           v-if="currentPatient && currentPatient.confirmation === undefined"
-          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 flex items-center font-semibold"
+          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 mt-2 flex items-center font-semibold"
         >
           <label for="enter-temperature">
             {{ $t('EMPLOYEE.ENTER_TEMPERATURE') }}:
@@ -74,29 +123,6 @@
             @input="setMeasuredTemperature($event.target.value)"
           />
         </div>
-
-        <div
-          v-else
-          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 flex items-center font-semibold"
-        >
-          <label for="measured-temperature">
-            {{ $t('EMPLOYEE.MEASURED_TEMPERATURE') }}
-          </label>
-          <input
-            id="measured-temperature"
-            :value="currentPatient.measuredTemperature"
-            type="number"
-            min="36"
-            max="42"
-            step="0.1"
-            class="flex-grow p-2 rounded-full ml-4 text-center"
-            disabled
-          />
-        </div>
-        <!-- <RiskScale
-        :value="currentPatient.totalPoints"
-        :max="getMaxPoints"
-      ></RiskScale> -->
       </div>
 
       <!-- <router-link
@@ -110,66 +136,68 @@
             currentPatient &&
             currentPatient.isCovidSuspected === undefined
         "
-        class="confirmation-buttons pb-12"
+        class="flex flex-col items-center pb-4 pt-4 bg-white rounded-t-xl"
       >
-        <button
-          class="btn-primary show-confirmation-btn patient-suspect icon-button"
-          @click="viewConfirmationQR(true)"
-        >
-          <ion-icon name="checkmark-outline"></ion-icon>
-          <div class="button-text">
-            {{ $t('EMPLOYEE.CONFIRM_AS_COVID_SUSPECT') }}
-          </div>
-        </button>
+        <div class="w-full font-semibold text-lg">
+          {{ $t('EMPLOYEE.IS_INFECTION_SUSPECTED') }}
+        </div>
+        <div class="w-full flex justify-around items-center my-2">
+          <button
+            :class="{
+              'bg-primary text-white': isCovidSuspected === true,
+              'bg-gray-300 text-black': isCovidSuspected !== true
+            }"
+            class="flex icon-button px-12 py-2 rounded-full cursor-pointer"
+            @click="isCovidSuspected = true"
+          >
+            {{ $t('YES') }}
+          </button>
 
+          <button
+            :class="{
+              'bg-primary text-white': isCovidSuspected === false,
+              'bg-gray-300 text-black': isCovidSuspected !== false
+            }"
+            class="flex icon-button px-12 py-2 rounded-full cursor-pointer"
+            @click="isCovidSuspected = false"
+          >
+            {{ $t('NO') }}
+          </button>
+        </div>
         <button
-          class="btn-primary show-confirmation-btn patient-non-suspect icon-button"
-          @click="viewConfirmationQR(false)"
+          class="flex items-center px-8 py-2 mt-8 rounded-full bg-secondary text-white text-lg disabled:opacity-50"
+          :disabled="isCovidSuspected === null"
+          @click="viewConfirmationQR"
         >
-          <ion-icon name="checkmark-outline"></ion-icon>
-          <div class="button-text">
-            {{ $t('EMPLOYEE.CONFIRM_AS_COVID_NON_SUSPECT') }}
+          <ion-icon
+            v-if="isCovidSuspected !== null"
+            name="checkmark-outline"
+          ></ion-icon>
+          <div v-if="isCovidSuspected !== null" class="ml-2">
+            {{ $t('EMPLOYEE.CONFIRM') }}
+          </div>
+          <div v-else>
+            {{ $t('EMPLOYEE.SELECT_INFECTION_SUSPECTION') }}
           </div>
         </button>
       </div>
 
       <div v-if="showingConfirmationQR" class="confirmation-view">
         <h1>{{ $t('EMPLOYEE.PATIENT_CONFIRMATION_CODE') }}</h1>
-        <qrcode-vue
+        <QrcodeVue
           class="qrcode bg-white p-4 m-2"
           :value="signedPatient"
-          size="300"
-          level="H"
-        ></qrcode-vue>
+          :size="qrCodeSize"
+          level="M"
+        ></QrcodeVue>
         <button class="link btn-primary" @click="closePatient">
           {{ $t('EMPLOYEE.CLOSE_PATIENT') }}
         </button>
       </div>
-
-      <div
-        v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
-        class="employee-page-buttons"
-      >
-        <button class="btn-primary scan-next-patient icon-button" @click="scan">
-          <ion-icon name="scan-outline"></ion-icon>
-          <div class="button-text">{{ $t('EMPLOYEE.SCAN_NEXT_PATIENT') }}</div>
-        </button>
-      </div>
-      <div
-        v-if="!scanning && !showingConfirmationQR && !showPatientSummary"
-        class="bottom-link"
-      >
-        <router-link class="employee-page-link" to="/how-it-works">{{
-          $t('HOME.HOW_IT_WORKS')
-        }}</router-link>
-        <router-link class="employee-page-link" to="/settings">{{
-          $t('HOME.SETTINGS')
-        }}</router-link>
-      </div>
     </div>
   </div>
   <div v-else>
-    <router-link to="/login">Login</router-link>
+    <router-link to="/login">{{ $t('LOGIN') }}</router-link>
   </div>
 </template>
 
@@ -178,10 +206,12 @@ import QrcodeVue from 'qrcode.vue'
 import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
-// import RiskScale from '@/components/RiskScale'
 import KeyStore from '@/misc/KeyStore'
 import { str2ab, ab2str } from '@/misc/helpers'
 import FullScreenModal from '@/components/modals/FullScreenModal'
+import getFormStepsMixin from '@/mixins/getFormStepsMixin'
+import hospitalDatabaseMixin from '@/mixins/hospitalDatabaseMixin'
+import stringifyPatientMixin from '@/mixins/stringifyPatientMixin'
 
 export default {
   components: {
@@ -189,25 +219,38 @@ export default {
     PatientSummary,
     QrcodeVue,
     FullScreenModal
-    // RiskScale
   },
+  head() {
+    return {
+      title: {
+        inner: this.$t('EMPLOYEE.TITLE')
+      }
+    }
+  },
+  mixins: [getFormStepsMixin, hospitalDatabaseMixin, stringifyPatientMixin],
   data: () => ({
     scanning: false,
     showingConfirmationQR: false,
     scannedAtLeastOnce: false,
     showPatientSummary: false,
     signedPatient: null,
-    patientTemperature: null
+    patientTemperature: null,
+    isCovidSuspected: null
   }),
   computed: {
-    ...mapState('app', ['appTitle']),
     ...mapGetters('patients', ['currentPatient']),
-    ...mapGetters('questions', ['getMaxPoints', 'getFormSteps']),
     ...mapState('authentication', ['user']),
-    ...mapState('employee', ['fullName'])
+    ...mapGetters('employee', ['fullName']),
+    ...mapState('employee', ['hospital']),
+    qrCodeSize() {
+      if (window.innerWidth < 400) return window.innerWidth * 0.85
+      if (window.innerWidth < 500) return window.innerWidth * 0.8
+      return 400
+    }
   },
   watch: {
     $route(to) {
+      this.isCovidSuspected = null
       // Watch for url changes, and display correct view based on URL hash value
       const viewFromhash = to.hash.substr(1).trim()
       switch (viewFromhash) {
@@ -277,7 +320,7 @@ export default {
       this.scanning = true
       this.$router.push('#scanning')
     },
-    async viewConfirmationQR(isCovidSuspected) {
+    async viewConfirmationQR() {
       await this.setCurrentPatientValueByKey({
         key: 'confirmed',
         value: true
@@ -285,19 +328,20 @@ export default {
       await this.setCurrentPatientValueByKey({
         key: 'confirmation',
         value: {
-          confirmedByName: 'Jan Novák',
+          confirmedByName: this.fullName,
           confirmedById: this.user.id,
-          timestamp: new Date()
+          timestamp: new Date(),
+          issuedForHospital: this.hospital
         }
       })
       await this.setCurrentPatientValueByKey({
         key: 'isCovidSuspected',
-        value: isCovidSuspected
+        value: this.isCovidSuspected
       })
 
       // SIGN THE CONFIRMATION
       const signedData = await this.signConfirmation(
-        JSON.stringify(this.currentPatient)
+        this.stringifyPatient(this.currentPatient)
       )
       if (signedData) {
         this.signedPatient = JSON.stringify(signedData)
@@ -323,8 +367,8 @@ export default {
         return false
       }
 
-      console.log(keyFromStore)
-      console.log('dataToSign: ', dataToSign)
+      // console.log(keyFromStore)
+      // console.log('dataToSign: ', dataToSign)
 
       return window.crypto.subtle
         .sign(
@@ -337,12 +381,12 @@ export default {
         )
         .then(signature => {
           // returns an ArrayBuffer containing the signature
-          console.log(new Uint8Array(signature))
+          // console.log(new Uint8Array(signature))
           const signedData = {
             ...JSON.parse(dataToSign),
             signature: ab2str(signature)
           }
-          console.log(signedData)
+          // console.log(signedData)
           return signedData
         })
         .catch(err => {
@@ -394,6 +438,9 @@ export default {
         key: 'measuredTemperature',
         value: temperature
       })
+    },
+    fillPatientManually() {
+      this.$router.push('/form')
     }
   }
 }
@@ -415,40 +462,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.confirmation-buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.show-confirmation-btn {
-  cursor: pointer;
-  font-size: 1.1rem;
-  background-color: $primary-color;
-  color: white;
-  padding: 0.8rem 1.5rem 0.8rem 1.2rem;
-  margin: 0.5rem 0;
-
-  &.patient-suspect {
-    background-color: $negative-color;
-  }
-
-  &.patient-non-suspect {
-    background-color: $positive-color;
-  }
-}
-
-.scan-next-patient {
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  padding: 0.8rem 1.2rem;
-  color: white;
-
-  .button-text {
-    font-size: 1rem;
-  }
 }
 
 .temperature-input {

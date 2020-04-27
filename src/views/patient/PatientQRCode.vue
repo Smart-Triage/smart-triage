@@ -3,7 +3,7 @@
     class="page-wrapper"
     :class="{ 'bg-confirmed': currentPatient.confirmed }"
   >
-    <NavBar :bg-transparent="true">
+    <NavBar bg-transparent>
       <template v-slot:left>
         <router-link
           to="/summary"
@@ -13,59 +13,39 @@
       </template>
     </NavBar>
     <div class="page-content">
-      <div class="flex flex-col justify-start items-center">
-        <h1 class="text-2xl leading-tight">
-          {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
-        </h1>
-        <img class="w-1/2" src="@/assets/img/scan-code.png" alt="" />
-        <p class="my-4">
-          <strong>
-            {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
-          </strong>
-        </p>
+      <p class="text-xl leading-tight">
+        {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
+      </p>
+      <p class="my-4">
+        <strong>
+          {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
+        </strong>
+      </p>
+
+      <!-- QR CODE -->
+      <div class="bg-white p-4">
+        <QrcodeVue
+          :value="stringifyPatient(currentPatient)"
+          :size="qrCodeSize"
+          level="M"
+        ></QrcodeVue>
       </div>
-      <div
-        v-if="
-          currentPatient.confirmation &&
-            currentPatient.confirmation.confirmedById.length > 1 &&
-            currentPatient.confirmation.timestamp
-        "
-        class="is-confirmed"
-      >
-        <div
-          class="confirmation-info"
-          :class="{ 'covid-suspedted': currentPatient.isCovidSuspected }"
-        >
-          <div>
-            {{ $t('PATIENT_QR_CODE.CONFIRMED_BY') }}
-            {{ currentPatient.confirmation.confirmedByName }}
-          </div>
-          <div>{{ currentPatient.confirmation.timestamp | formatDate }}</div>
-          <div v-if="currentPatient.isCovidSuspected === true">
-            {{ $t('PATIENT_QR_CODE.COVID_SUSPECTED') }}
-          </div>
-          <div v-if="currentPatient.isCovidSuspected === false">
-            {{ $t('PATIENT_QR_CODE.COVID_NOT_SUSPECTED') }}
-          </div>
-        </div>
+
+      <!-- CONFIRMATION BOX -->
+      <div v-if="isConfirmed" class="is-confirmed w-full mt-4">
+        <ConfirmationBox :patient="currentPatient"></ConfirmationBox>
       </div>
-      <!-- {{ currentPatient.firstName + ' ' + currentPatient.lastName }} -->
-      <QrcodeVue
-        class="qrcode"
-        :value="stringyfiedPatient"
-        size="300"
-        level="H"
-      ></QrcodeVue>
 
       <router-link
         v-if="!currentPatient.confirmed"
-        class="btn-primary scan-confirmation-btn icon-button my-6"
+        class="flex-shrink-0 flex items-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-6"
         to="/scan-confirmation-qr-code"
-        ><ion-icon name="scan-outline"></ion-icon>
-        <p class="button-text">
-          {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
-        </p></router-link
       >
+        <ion-icon name="scan-outline"></ion-icon>
+        <span class="ml-2">
+          {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
+        </span>
+      </router-link>
     </div>
   </div>
 </template>
@@ -73,42 +53,37 @@
 <script>
 import QrcodeVue from 'qrcode.vue'
 import { mapGetters } from 'vuex'
+import ConfirmationBox from '@/components/ConfirmationBox'
+import stringifyPatientMixin from '@/mixins/stringifyPatientMixin'
 
 export default {
-  components: { QrcodeVue },
+  components: { QrcodeVue, ConfirmationBox },
+  head() {
+    return {
+      title: {
+        inner: this.$t('PATIENT_QR_CODE.TITLE')
+      }
+    }
+  },
+  mixins: [stringifyPatientMixin],
   computed: {
     ...mapGetters('patients', ['currentPatient']),
-    stringyfiedPatient() {
-      const filteredPatient = Object.keys(this.currentPatient)
-        .filter(
-          key =>
-            [
-              'id',
-              'firstName',
-              'lastName',
-              'birthNumber',
-              'phoneNumber',
-              'answers',
-              'confirmed',
-              'confirmation',
-              'isCovidSuspected',
-              'finished',
-              'signature',
-              'termsAccepted',
-              'measuredTemperature'
-            ].indexOf(key) > -1
-        )
-        .reduce(
-          (res, key) => Object.assign(res, { [key]: this.currentPatient[key] }),
-          {}
-        )
-
-      return JSON.stringify(filteredPatient)
+    isConfirmed() {
+      return !!(
+        this.currentPatient.confirmation &&
+        this.currentPatient.confirmation.confirmedById.length > 1 &&
+        this.currentPatient.confirmation.timestamp
+      )
+    },
+    qrCodeSize() {
+      if (window.innerWidth < 400) return window.innerWidth * 0.85
+      if (window.innerWidth < 500) return window.innerWidth * 0.8
+      return 400
     }
   },
   created() {
     if (!this.currentPatient) {
-      this.$router.push('/home')
+      this.$router.push('/')
     }
   }
 }
@@ -157,11 +132,6 @@ export default {
 .bg-confirmed {
   background-color: $secondary-color;
   color: white;
-}
-
-.qrcode {
-  background-color: white;
-  padding: 2rem;
 }
 
 .confirmation-info {

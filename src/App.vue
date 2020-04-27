@@ -11,24 +11,27 @@
       :refreshing-app="refreshingApp"
       @refresh="serviceWorkerSkipWaiting"
     ></new-content-available-toastr>
-    <apple-add-to-home-screen-modal
+    <!-- <apple-add-to-home-screen-modal
       v-if="showAddToHomeScreenModalForApple"
       class="apple-add-to-home-screen-modal"
       @close="closeAddToHomeScreenModalForApple(false)"
     >
-    </apple-add-to-home-screen-modal>
+    </apple-add-to-home-screen-modal> -->
+
+    <!-- MODALS -->
+    <portal-target name="modals"></portal-target>
   </div>
 </template>
 <script>
 import NewContentAvailableToastr from '@/components/NewContentAvailableToastr'
-import AppleAddToHomeScreenModal from '@/components/AppleAddToHomeScreenModal'
+// import AppleAddToHomeScreenModal from '@/components/AppleAddToHomeScreenModal'
 import { mapState, mapActions, mapGetters } from 'vuex'
 import InDevelopementOverlay from '@/components/InDevelopementOverlay'
 
 export default {
   components: {
     NewContentAvailableToastr,
-    AppleAddToHomeScreenModal,
+    // AppleAddToHomeScreenModal,
     InDevelopementOverlay
   },
   computed: {
@@ -56,12 +59,6 @@ export default {
   }
 }
 </script>
-
-<style lang="postcss">
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-</style>
 
 <style lang="scss">
 @import '@/theme/variables.scss';
@@ -100,24 +97,5 @@ export default {
     margin: auto;
     z-index: 1000;
   }
-}
-
-/* Vue Transition definitions */
-.view-enter-active,
-.view-leave-active {
-  transition: opacity 0.2s ease-in-out, transform 0.2s ease;
-}
-.view-enter {
-  opacity: 0;
-  transform: translateX(+100px);
-}
-.view-enter-to,
-.view-leave {
-  opacity: 1;
-  transform: translateX(0px);
-}
-.view-leave-to {
-  opacity: 0;
-  transform: translateX(-100px);
 }
 </style>

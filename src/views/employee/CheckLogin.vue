@@ -1,7 +1,5 @@
 <template>
-  <h1 class="loading-title">
-    Loading...
-  </h1>
+  <h1 class="loading-title">{{ $t('LOADING') }}...</h1>
 </template>
 
 <script>

@@ -1,28 +1,13 @@
-// import * as admin from 'firebase-admin'
-
-// admin.initializeApp()
-// export const db = admin.firestore()
-
-// export * from './src/access-codes'
-
-// const functions = require('firebase-functions')
-
-// const accessCodes = require('./src/access-codes')
-
-// module.exports = {
-//   accessCodes: functions.https.onRequest(accessCodes)
-// }
-
 const functions = require('firebase-functions')
 const cors = require('cors')
 const express = require('express')
 
 const admin = require('firebase-admin')
 
-const FieldValue = admin.firestore.FieldValue
+const { FieldValue } = admin.firestore
 
 // admin.initializeApp(functions.config().firebase)
-const serviceAccount = require('./triage-app-8e193-firebase-adminsdk-x99td-280e478654.json')
+const serviceAccount = require('./triage-app-8e193-firebase-adminsdk-x99td-86ba7c12ad.json')
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -58,7 +43,6 @@ app.post('/checkEmployeeRegistrationCode', async (req, res) => {
 
       const doc = snapshot.docs[0]
       const docData = doc.data()
-      // eslint-disable-next-line promise/always-return
       if (docData.usedOnTimestamp !== undefined) {
         console.log('Error: Key already used')
 
@@ -88,9 +72,12 @@ app.post('/checkEmployeeRegistrationCode', async (req, res) => {
             .createCustomToken(newDoc.id, additionalClaims)
 
           // Send token back to client
-          return res
-            .status(200)
-            .send({ success: true, userId: newDoc.id, token: customToken })
+          return res.status(200).send({
+            success: true,
+            userId: newDoc.id,
+            token: customToken,
+            hospital: docData.hospital
+          })
         } catch (error) {
           console.log('Error creating custom token:', error)
           return res.send(SERVER_ERROR)

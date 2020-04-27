@@ -6,11 +6,11 @@
       class="step w-full h-full"
       :class="{ hidden: step.order !== currentStepNum }"
     >
-      <NavBar>
+      <NavBar sticky>
         <template v-slot:left>
           <router-link
             class="close"
-            :to="appMode === 'employee' ? '/employee#patient-summary' : '/home'"
+            :to="appMode === 'employee' ? '/employee#patient-summary' : '/'"
             ><ion-icon name="close" size="large"></ion-icon
           ></router-link>
         </template>
@@ -37,7 +37,7 @@
         <img src="@/assets/img/form-page-top.png" class="h-32 sm:h-full" />
       </div>
 
-      <ProgressBar :actualStep="step.order"></ProgressBar>
+      <ProgressBar :actual-step="step.order"></ProgressBar>
 
       <div class="flex-grow"></div>
 
@@ -52,7 +52,7 @@
             {{ step.question }}
           </p>
 
-          <div v-if="step.order === '0'">
+          <div v-if="step.order === '0'" class="w-full">
             <PatientForm
               v-if="currentStepNum === '0'"
               :form-fields="step.formFields"
@@ -131,7 +131,11 @@
 
           <div class="spacer"></div>
           <div v-if="currentStepNum !== '0'" class="buttons">
-            <button v-if="!isFirst" class="icon-button prev" @click="prev()">
+            <button
+              v-if="!(appMode === 'employee' && isSecond)"
+              class="icon-button prev"
+              @click="prev()"
+            >
               <ion-icon name="chevron-back-outline" size="large"></ion-icon>
             </button>
             <div class="spacer"></div>
@@ -154,9 +158,11 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
+import getFormStepsMixin from '@/mixins/getFormStepsMixin'
 
 export default {
   components: { ProgressBar, PatientForm },
+  mixins: [getFormStepsMixin],
   data: () => ({
     currentStepNum: '0',
     visitedSteps: ['0'],
@@ -165,7 +171,6 @@ export default {
     answers: {}
   }),
   computed: {
-    ...mapGetters('questions', ['getFormSteps']),
     ...mapGetters('patients', ['currentPatient']),
     ...mapState('settings', ['appMode']),
     currentStep() {
@@ -174,11 +179,15 @@ export default {
     isLast() {
       return this.currentStepNum === '7'
     },
-    isFirst() {
-      return this.currentStepNum === '0'
+    isSecond() {
+      return this.currentStepNum === '1'
     }
   },
   mounted() {
+    if (this.currentPatient.confirmed === true) {
+      this.$router.push('/')
+    }
+
     if (!this.currentPatient.visitedSteps) {
       // If visitedSteps are not defined set te default value ['0']
       this.setCurrentPatientValueByKey({
@@ -337,6 +346,19 @@ export default {
           value: cloneDeep(this.answers)
         })
       }
+
+      // if end step is visited for the first time, save the timestamp with which the 24-hour timeout period will be initiated.
+      if (
+        this.currentStepNum === 'end' &&
+        !this.visitedSteps.includes('end') &&
+        this.appMode === 'patient'
+      ) {
+        this.setCurrentPatientValueByKey({
+          key: 'validityTimestamp',
+          value: new Date()
+        })
+      }
+
       // Add this steps to visited steps
       this.visitedSteps.push(cloneDeep(this.currentStepNum))
       // Update visited step in vuex store

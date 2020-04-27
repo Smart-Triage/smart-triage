@@ -3,7 +3,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Smart-Triage/smart-triage">
-    <img src="https://raw.githubusercontent.com/Smart-Triage/smart-triage/master/src/assets/img/home-page-welcome-img.png" alt="Logo" height="120">
+    <img src="https://nemocnice.online/img/email-assets/logo_text.png" alt="Logo" height="120">
   </a>
 
   <h3 align="center">Smart Triage</h3>
@@ -86,7 +86,7 @@ See the [open issues](https://github.com/Smart-Triage/smart-triage/issues) for a
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-Want to help? 
+Want to help?
 
 1.  Contact us at [info@nemocnice.online](mailto:info@nemocnice.online)
 1.  Get a task assigned [https://github.com/Smart-Triage/smart-triage/projects](https://github.com/Smart-Triage/smart-triage/projects)

@@ -1,8 +1,10 @@
 <template>
   <div class="page-wrapper">
-    <NavBar :back-btn="true"></NavBar>
+    <NavBar sticky back-button></NavBar>
     <div class="page-content">
-      <h1>{{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}</h1>
+      <p class="text-3xl leading-tight">
+        {{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}
+      </p>
       <QRScanner
         :only-valid-patient="true"
         :scanning-confirmation-code="true"
@@ -20,18 +22,25 @@ export default {
   components: {
     QRScanner
   },
+  head() {
+    return {
+      title: {
+        inner: this.$t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE')
+      }
+    }
+  },
   computed: {
     ...mapGetters('patients', ['currentPatient'])
   },
   created() {
     if (!this.currentPatient) {
-      this.$router.push('/home')
+      this.$router.push('/')
     }
   },
   methods: {
     ...mapActions('patients', ['updateOrAddPatient']),
     processConfirmation(confirmedPatient) {
-      console.log(confirmedPatient)
+      // console.log(confirmedPatient)
       this.updateOrAddPatient(confirmedPatient).then(() => {
         this.$router.push('/summary')
       })

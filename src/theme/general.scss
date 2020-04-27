@@ -1,4 +1,5 @@
 @import '@/theme/variables';
+@import '@/theme/transitions';
 
 h1 {
   @apply text-4xl;
@@ -6,6 +7,27 @@ h1 {
 
 h2 {
   @apply text-2xl;
+}
+
+.home-text {
+  @apply max-w-lg text-center w-full;
+  p {
+    @apply text-justify;
+  }
+}
+
+.home-h2-primary {
+  h2 {
+    color: $primary-color;
+    @apply text-2xl font-semibold mb-3 mt-5;
+  }
+}
+
+.home-h2-secondary {
+  h2 {
+    color: $secondary-color;
+    @apply text-2xl font-semibold mb-3 mt-5;
+  }
 }
 
 .btn-primary {
@@ -86,4 +108,8 @@ h2 {
 
 .border-app {
   border-radius: 2em;
+}
+
+.bg-primary-color {
+  background-color: $primary-color;
 }

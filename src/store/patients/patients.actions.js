@@ -43,5 +43,12 @@ export default {
 
   clearCurrentPatient: async ({ commit }) => {
     commit('setCurrentPatientId', '')
+  },
+
+  invalidatePatientFormById: async ({ commit }, patientId) => {
+    return new Promise(resolve => {
+      commit('invalidatePatientFormById', patientId)
+      resolve()
+    })
   }
 }

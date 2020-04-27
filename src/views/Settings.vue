@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper">
-    <NavBar :back-btn="true"></NavBar>
+    <NavBar sticky back-button></NavBar>
     <div class="page-content">
       <h1>{{ $t('SETTINGS.SETTINGS') }}</h1>
       <p class="p-4">
@@ -9,19 +9,21 @@
       </p>
       <p v-if="availableAppModes.length > 1" class="p-4">
         <strong>{{ $t('SETTINGS.APP_MODE') }}</strong>
-        <select
-          :value="appMode"
-          class="p-2 px-4 rounded-full"
-          @change="setAppMode($event.target.value)"
-        >
-          <option
-            v-for="mode in availableAppModes"
-            :key="`${mode}-mode`"
-            :value="mode"
-            :selected="appMode === mode"
-            >{{ $t(`SETTINGS.${mode.toUpperCase()}`) }}</option
+        <span class="px-4">
+          <select
+            class="px-4 py-1 rounded-full bg-white"
+            :value="appMode"
+            @change="setAppMode($event.target.value)"
           >
-        </select>
+            <option
+              v-for="mode in availableAppModes"
+              :key="`${mode}-mode`"
+              :value="mode"
+              :selected="appMode === mode"
+              >{{ $t(`SETTINGS.${mode.toUpperCase()}`) }}</option
+            >
+          </select>
+        </span>
       </p>
       <button class="link btn-primary mt-auto p-4" @click="deleteAllData">
         {{ $t('SETTINGS.DELETE_ALL_DATA') }}
@@ -43,8 +45,16 @@ export default {
   components: {
     LocaleChanger
   },
+  head() {
+    return {
+      title: {
+        inner: this.$t('SETTINGS.SETTINGS')
+      }
+    }
+  },
   computed: {
-    ...mapState('settings', ['appMode', 'availableAppModes'])
+    ...mapState('settings', ['appMode', 'availableAppModes']),
+    ...mapState('authentication', ['user'])
   },
   methods: {
     ...mapActions('settings', ['setAppMode']),
@@ -55,7 +65,7 @@ export default {
         localStorage.clear()
         sessionStorage.clear()
 
-        await firebase.auth().signOut()
+        if (this.user) await firebase.auth().signOut()
 
         if (window.indexedDB.databases !== undefined) {
           await window.indexedDB.databases().then(databases => {

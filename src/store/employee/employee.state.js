@@ -1,3 +1,5 @@
 export default {
-  fullName: ''
+  firstName: null,
+  lastName: null,
+  hospital: null
 }
