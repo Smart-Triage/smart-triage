@@ -161,6 +161,11 @@
         <p>
           <a href="">{{ $t('HOME.FOOTER.FOR_EMPLOYEES') }}</a>
         </p>
+        <p>
+          <router-link to="/settings">
+            {{ $t('HOME.SETTINGS') }}
+          </router-link>
+        </p>
         <div class="divider"></div>
         <p>
           <a href="">{{ $t('HOME.FOOTER.ABOUT_US') }}</a>
