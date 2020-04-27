@@ -24,7 +24,15 @@
 </template>
 
 <script>
-export default {}
+export default {
+  head() {
+    return {
+      title: {
+        inner: this.$t('HOW_IT_WORKS.HOW_IT_WORKS')
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

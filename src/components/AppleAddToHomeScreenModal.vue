@@ -4,7 +4,7 @@
       <div class="close" @click="$emit('close')"></div>
       <div class="main-content">
         <img class="app-logo" src="@/assets/img/icon.svg" />
-        <h3 class="title">{{ $t('MODAL.INSTALL') }} {{ appTitle }}</h3>
+        <h3 class="title">{{ $t('MODAL.INSTALL') }} {{ $t('APP_TITLE') }}</h3>
         <p class="description">{{ $t('MODAL.ADD_TO_HOMESCREEN') }}.</p>
       </div>
 
@@ -21,11 +21,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
-export default {
-  computed: mapState('app', ['appTitle'])
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>

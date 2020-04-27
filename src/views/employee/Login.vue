@@ -1,9 +1,21 @@
 <template>
   <div class="page-wrapper">
+    <NavBar slim>
+      <template v-slot:right>
+        <LocaleChanger short no-background></LocaleChanger>
+      </template>
+    </NavBar>
     <div class="page-content">
       <img
-        class="h-16 my-4 mx-auto"
+        v-if="locale == 'cs' || locale == 'sk'"
+        class="h-16 mx-auto"
         src="@/assets/img/logo.svg"
+        alt="Smart Triage logo"
+      />
+      <img
+        v-else
+        class="h-16 mx-auto"
+        src="@/assets/img/logo_en.svg"
         alt="Smart Triage logo"
       />
       <p class="mb-4">
@@ -84,8 +96,19 @@ import { isNil } from 'lodash'
 import firebase from 'firebase/app'
 import KeyStore from '@/misc/KeyStore'
 import PublicKeysDB from '@/firebase/public-keys-db'
+import LocaleChanger from '@/components/LocaleChanger'
 
 export default {
+  components: {
+    LocaleChanger
+  },
+  head() {
+    return {
+      title: {
+        inner: this.$t('LOGIN.TITLE')
+      }
+    }
+  },
   data: () => ({
     loginError: null,
     firstName: '',
@@ -96,7 +119,8 @@ export default {
   }),
   computed: {
     ...mapState('authentication', ['user']),
-    ...mapState('app', ['networkOnLine', 'appTitle'])
+    ...mapState('app', ['networkOnLine']),
+    ...mapState('settings', ['locale'])
   },
   watch: {
     user: {

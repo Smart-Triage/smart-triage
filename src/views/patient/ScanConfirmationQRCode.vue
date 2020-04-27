@@ -22,6 +22,13 @@ export default {
   components: {
     QRScanner
   },
+  head() {
+    return {
+      title: {
+        inner: this.$t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE')
+      }
+    }
+  },
   computed: {
     ...mapGetters('patients', ['currentPatient'])
   },

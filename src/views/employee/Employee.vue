@@ -48,8 +48,15 @@
         class="header-info"
       >
         <img
+          v-if="locale == 'cs' || locale == 'sk'"
           class="h-16 mx-auto"
           src="@/assets/img/logo.svg"
+          alt="Smart Triage logo"
+        />
+        <img
+          v-else
+          class="h-16 mx-auto"
+          src="@/assets/img/logo_en.svg"
           alt="Smart Triage logo"
         />
         <p class="my-4">{{ $t('EMPLOYEE.WELCOME') }}</p>
@@ -121,25 +128,6 @@
             class="flex-grow p-2 rounded-full ml-4 text-center"
             required
             @input="setMeasuredTemperature($event.target.value)"
-          />
-        </div>
-
-        <div
-          v-else
-          class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 mt-2 flex items-center font-semibold"
-        >
-          <label for="measured-temperature">
-            {{ $t('EMPLOYEE.MEASURED_TEMPERATURE') }}
-          </label>
-          <input
-            id="measured-temperature"
-            :value="currentPatient.measuredTemperature"
-            type="number"
-            min="36"
-            max="42"
-            step="0.1"
-            class="flex-grow p-2 rounded-full ml-4 text-center"
-            disabled
           />
         </div>
       </div>
@@ -230,6 +218,7 @@ import { str2ab, ab2str } from '@/misc/helpers'
 import FullScreenModal from '@/components/modals/FullScreenModal'
 import getFormStepsMixin from '@/mixins/getFormStepsMixin'
 import hospitalDatabaseMixin from '@/mixins/hospitalDatabaseMixin'
+import stringifyPatientMixin from '@/mixins/stringifyPatientMixin'
 
 export default {
   components: {
@@ -238,7 +227,14 @@ export default {
     QrcodeVue,
     FullScreenModal
   },
-  mixins: [getFormStepsMixin, hospitalDatabaseMixin],
+  head() {
+    return {
+      title: {
+        inner: this.$t('EMPLOYEE.TITLE')
+      }
+    }
+  },
+  mixins: [getFormStepsMixin, hospitalDatabaseMixin, stringifyPatientMixin],
   data: () => ({
     scanning: false,
     showingConfirmationQR: false,
@@ -249,11 +245,11 @@ export default {
     isCovidSuspected: null
   }),
   computed: {
-    ...mapState('app', ['appTitle']),
     ...mapGetters('patients', ['currentPatient']),
     ...mapState('authentication', ['user']),
     ...mapGetters('employee', ['fullName']),
     ...mapState('employee', ['hospital']),
+    ...mapState('settings', ['locale']),
     qrCodeSize() {
       if (window.innerWidth < 400) return window.innerWidth * 0.85
       if (window.innerWidth < 500) return window.innerWidth * 0.8
@@ -353,7 +349,7 @@ export default {
 
       // SIGN THE CONFIRMATION
       const signedData = await this.signConfirmation(
-        JSON.stringify(this.currentPatient)
+        this.stringifyPatient(this.currentPatient)
       )
       if (signedData) {
         this.signedPatient = JSON.stringify(signedData)

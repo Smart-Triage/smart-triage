@@ -25,7 +25,7 @@
       <!-- QR CODE -->
       <div class="bg-white p-4">
         <QrcodeVue
-          :value="stringyfiedPatient"
+          :value="stringifyPatient(currentPatient)"
           :size="qrCodeSize"
           level="M"
         ></QrcodeVue>
@@ -54,39 +54,20 @@
 import QrcodeVue from 'qrcode.vue'
 import { mapGetters } from 'vuex'
 import ConfirmationBox from '@/components/ConfirmationBox'
+import stringifyPatientMixin from '@/mixins/stringifyPatientMixin'
 
 export default {
   components: { QrcodeVue, ConfirmationBox },
+  head() {
+    return {
+      title: {
+        inner: this.$t('PATIENT_QR_CODE.TITLE')
+      }
+    }
+  },
+  mixins: [stringifyPatientMixin],
   computed: {
     ...mapGetters('patients', ['currentPatient']),
-    stringyfiedPatient() {
-      const filteredPatient = Object.keys(this.currentPatient)
-        .filter(
-          key =>
-            [
-              'id',
-              'firstName',
-              'lastName',
-              'birthNumber',
-              'phoneNumber',
-              'answers',
-              'confirmed',
-              'confirmation',
-              'isCovidSuspected',
-              'finished',
-              'signature',
-              'termsAccepted',
-              'measuredTemperature',
-              'validityTimestamp'
-            ].indexOf(key) > -1
-        )
-        .reduce(
-          (res, key) => Object.assign(res, { [key]: this.currentPatient[key] }),
-          {}
-        )
-
-      return JSON.stringify(filteredPatient)
-    },
     isConfirmed() {
       return !!(
         this.currentPatient.confirmation &&

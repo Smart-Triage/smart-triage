@@ -348,7 +348,11 @@ export default {
       }
 
       // if end step is visited for the first time, save the timestamp with which the 24-hour timeout period will be initiated.
-      if (this.currentStepNum === 'end' && !this.visitedSteps.includes('end')) {
+      if (
+        this.currentStepNum === 'end' &&
+        !this.visitedSteps.includes('end') &&
+        this.appMode === 'patient'
+      ) {
         this.setCurrentPatientValueByKey({
           key: 'validityTimestamp',
           value: new Date()

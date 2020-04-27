@@ -177,6 +177,13 @@ import Constants from '@/misc/constants'
 import FeedbackModal from '@/components/modals/FeedbackModal'
 
 export default {
+  head() {
+    return {
+      title: {
+        inner: this.$t('SUMMARY.SUMMARY')
+      }
+    }
+  },
   components: { PatientSummary, ModalWindow, FeedbackModal },
   data: () => ({
     allIsTrueAgreed: false,

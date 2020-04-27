@@ -37,6 +37,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -56,6 +64,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -79,6 +95,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -98,6 +122,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -121,6 +153,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -140,6 +180,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -168,6 +216,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -187,6 +243,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -215,6 +279,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -234,6 +306,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -257,6 +337,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -276,6 +364,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -301,6 +397,43 @@
                         <language>sk-SK</language>
                         <approved>false</approved>
                     </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
+                <name>APP_TITLE</name>
+                <definition_loaded>false</definition_loaded>
+                <description></description>
+                <comment></comment>
+                <default_text></default_text>
+                <translations>
+                    <translation>
+                        <language>cs-CZ</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>en-US</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>sk-SK</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
                 </translations>
             </concept_node>
             <concept_node>
@@ -320,6 +453,14 @@
                     </translation>
                     <translation>
                         <language>sk-SK</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
@@ -346,6 +487,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -365,6 +514,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -388,6 +545,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -407,6 +572,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -430,6 +603,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                 </children>
@@ -451,6 +632,14 @@
                     </translation>
                     <translation>
                         <language>sk-SK</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
@@ -477,6 +666,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -496,6 +693,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -519,6 +724,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -538,6 +751,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -561,6 +782,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -580,6 +809,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -603,6 +840,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -622,6 +867,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -645,6 +898,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -664,6 +925,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -687,6 +956,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -706,6 +983,43 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
+                        <name>TITLE</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>cs-CZ</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -729,6 +1043,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -748,6 +1070,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -771,6 +1101,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -790,6 +1128,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -818,6 +1164,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -837,6 +1191,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -860,6 +1222,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -879,6 +1249,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -902,6 +1280,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -921,6 +1307,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -944,6 +1338,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -963,6 +1365,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -986,6 +1396,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                 </children>
@@ -1007,6 +1425,14 @@
                     </translation>
                     <translation>
                         <language>sk-SK</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
@@ -1033,6 +1459,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -1052,6 +1486,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -1075,6 +1517,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -1094,6 +1544,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -1117,6 +1575,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -1136,6 +1602,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -1161,6 +1635,14 @@
                         <language>sk-SK</language>
                         <approved>false</approved>
                     </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
                 </translations>
             </concept_node>
             <concept_node>
@@ -1180,6 +1662,14 @@
                     </translation>
                     <translation>
                         <language>sk-SK</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
@@ -1209,6 +1699,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1228,6 +1726,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1251,6 +1757,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1270,6 +1784,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1293,6 +1815,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1312,6 +1842,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1335,6 +1873,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1354,6 +1900,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1377,6 +1931,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1396,6 +1958,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1424,6 +1994,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1445,6 +2023,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1464,6 +2050,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1489,6 +2083,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -1510,6 +2112,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -1529,6 +2139,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -1555,6 +2173,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1574,6 +2200,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1597,6 +2231,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1616,6 +2258,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1639,6 +2289,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1658,6 +2316,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1681,6 +2347,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1700,6 +2374,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1725,6 +2407,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -1746,6 +2436,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -1765,6 +2463,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -1791,6 +2497,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1810,6 +2524,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1833,6 +2555,14 @@
                                         <language>sk-SK</language>
                                         <approved>false</approved>
                                     </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
+                                        <approved>false</approved>
+                                    </translation>
                                 </translations>
                             </concept_node>
                             <concept_node>
@@ -1852,6 +2582,14 @@
                                     </translation>
                                     <translation>
                                         <language>sk-SK</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>ru-RU</language>
+                                        <approved>false</approved>
+                                    </translation>
+                                    <translation>
+                                        <language>vi-VN</language>
                                         <approved>false</approved>
                                     </translation>
                                 </translations>
@@ -1877,6 +2615,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -1896,6 +2642,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -1919,6 +2673,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -1938,6 +2700,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -1966,6 +2736,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -1985,6 +2763,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2008,6 +2794,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2027,6 +2821,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2052,6 +2854,14 @@
                         <language>sk-SK</language>
                         <approved>false</approved>
                     </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
                 </translations>
             </concept_node>
             <concept_node>
@@ -2071,6 +2881,14 @@
                     </translation>
                     <translation>
                         <language>sk-SK</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
@@ -2097,6 +2915,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2116,6 +2942,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2139,6 +2973,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2158,6 +3000,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2181,6 +3031,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2202,6 +3060,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2221,6 +3087,43 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
+                        <name>TITLE</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>cs-CZ</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2249,6 +3152,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2268,6 +3179,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2291,6 +3210,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2310,6 +3237,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2333,6 +3268,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2352,6 +3295,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2375,6 +3326,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2396,6 +3355,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2415,6 +3382,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2443,6 +3418,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2464,6 +3447,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2483,6 +3474,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2508,6 +3507,14 @@
                         <language>sk-SK</language>
                         <approved>false</approved>
                     </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
                 </translations>
             </concept_node>
             <concept_node>
@@ -2527,6 +3534,14 @@
                     </translation>
                     <translation>
                         <language>sk-SK</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
@@ -2553,6 +3568,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2572,6 +3595,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2595,6 +3626,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2614,6 +3653,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2642,6 +3689,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2661,6 +3716,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2684,6 +3747,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2703,6 +3774,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2726,6 +3805,43 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
+                        </translations>
+                    </concept_node>
+                    <concept_node>
+                        <name>TITLE</name>
+                        <definition_loaded>false</definition_loaded>
+                        <description></description>
+                        <comment></comment>
+                        <default_text></default_text>
+                        <translations>
+                            <translation>
+                                <language>cs-CZ</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>en-US</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2745,6 +3861,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2773,6 +3897,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2792,6 +3924,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2815,6 +3955,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2836,6 +3984,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2855,6 +4011,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2880,6 +4044,14 @@
                         <language>sk-SK</language>
                         <approved>false</approved>
                     </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
                 </translations>
             </concept_node>
             <concept_node>
@@ -2899,6 +4071,14 @@
                     </translation>
                     <translation>
                         <language>sk-SK</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
@@ -2923,6 +4103,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2951,6 +4139,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -2970,6 +4166,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -2998,6 +4202,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -3017,6 +4229,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -3040,6 +4260,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -3059,6 +4287,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -3082,6 +4318,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -3101,6 +4345,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -3124,6 +4376,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -3143,6 +4403,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -3166,6 +4434,14 @@
                     </translation>
                     <translation>
                         <language>sk-SK</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
@@ -3192,6 +4468,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -3211,6 +4495,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -3234,6 +4526,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -3253,6 +4553,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -3276,6 +4584,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -3295,6 +4611,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -3318,6 +4642,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -3337,6 +4669,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -3360,6 +4700,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -3381,6 +4729,14 @@
                                 <language>sk-SK</language>
                                 <approved>false</approved>
                             </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
+                                <approved>false</approved>
+                            </translation>
                         </translations>
                     </concept_node>
                     <concept_node>
@@ -3400,6 +4756,14 @@
                             </translation>
                             <translation>
                                 <language>sk-SK</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>ru-RU</language>
+                                <approved>false</approved>
+                            </translation>
+                            <translation>
+                                <language>vi-VN</language>
                                 <approved>false</approved>
                             </translation>
                         </translations>
@@ -3425,6 +4789,14 @@
                         <language>sk-SK</language>
                         <approved>false</approved>
                     </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
                 </translations>
             </concept_node>
             <concept_node>
@@ -3446,6 +4818,14 @@
                         <language>sk-SK</language>
                         <approved>false</approved>
                     </translation>
+                    <translation>
+                        <language>ru-RU</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>vi-VN</language>
+                        <approved>false</approved>
+                    </translation>
                 </translations>
             </concept_node>
         </children>
@@ -3463,9 +4843,19 @@
             <source_file>en.json</source_file>
         </language>
         <language>
+            <code>ru-RU</code>
+            <source_id></source_id>
+            <source_file>ru.json</source_file>
+        </language>
+        <language>
             <code>sk-SK</code>
             <source_id></source_id>
             <source_file>sk.json</source_file>
+        </language>
+        <language>
+            <code>vi-VN</code>
+            <source_id></source_id>
+            <source_file>vi.json</source_file>
         </language>
     </languages>
     <translation_files>
@@ -3478,6 +4868,12 @@
         <translation_file>
             <file>sk.json</file>
         </translation_file>
+        <translation_file>
+            <file>ru.json</file>
+        </translation_file>
+        <translation_file>
+            <file>vi.json</file>
+        </translation_file>
     </translation_files>
     <editor_configuration>
         <save_empty_translations>true</save_empty_translations>
@@ -3489,7 +4885,7 @@
     </editor_configuration>
     <primary_language>cs-CZ</primary_language>
     <configuration>
-        <indent>space4</indent>
+        <indent>space2</indent>
         <format>namespaced-json</format>
         <support_arrays>true</support_arrays>
     </configuration>

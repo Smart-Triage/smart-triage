@@ -10,6 +10,13 @@ import { mapGetters } from 'vuex'
 
 export default {
   components: { Stepper },
+  head() {
+    return {
+      title: {
+        inner: this.$t('FORM.QUESTIONNAIRE')
+      }
+    }
+  },
   computed: {
     ...mapGetters('patients', ['currentPatient'])
   },

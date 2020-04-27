@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper">
-    <NavBar>
+    <NavBar slim>
       <template v-slot:right>
         <LocaleChanger short no-background></LocaleChanger>
       </template>
@@ -8,8 +8,15 @@
     <div class="page-content">
       <!-- HEADER -->
       <img
+        v-if="locale == 'cs' || locale == 'sk'"
         class="h-16 mx-auto"
         src="@/assets/img/logo.svg"
+        alt="Smart Triage logo"
+      />
+      <img
+        v-else
+        class="h-16 mx-auto"
+        src="@/assets/img/logo_en.svg"
         alt="Smart Triage logo"
       />
       <p class="mt-4 text-xl text-secondary font-semibold">
@@ -53,124 +60,120 @@
       <!--          {{ $t('HOME.HOW_IT_WORKS') }}-->
       <!--        </router-link>-->
       <!--      </div>-->
-    </div>
-    <div class="home-text home-h2-primary bg-white px-6 pb-6 mt-4 border-app">
-      <h2>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_H') }}</h2>
-      <p>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_P') }}</p>
-      <h2>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_H') }}</h2>
-      <p>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_P') }}</p>
-      <ol
-        class="list-decimal list-inside my-6 text-secondary font-semibold leading-loose"
+      <div class="home-text home-h2-primary bg-white px-6 pb-6 mt-4 border-app">
+        <h2>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_H') }}</h2>
+        <p>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_P') }}</p>
+        <h2>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_H') }}</h2>
+        <p>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_P') }}</p>
+        <ol
+          class="list-decimal list-inside my-6 text-secondary font-semibold leading-loose"
+        >
+          <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_1') }}</li>
+          <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_2') }}</li>
+          <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_3') }}</li>
+          <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_4') }}</li>
+        </ol>
+        <h2>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_H') }}</h2>
+        <p>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_P') }}</p>
+      </div>
+      <div class="home-text home-h2-secondary p-6 mt-4 border-app">
+        <h2>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_H') }}</h2>
+        <p>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_P') }}</p>
+        <img
+          class="my-8 mx-auto"
+          src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
+          alt="Hand holding phone scanning QR code"
+        />
+        <h2>{{ $t('HOME.PERSONAL_INFO.APP_H') }}</h2>
+        <p>{{ $t('HOME.PERSONAL_INFO.APP_P') }}</p>
+      </div>
+      <div
+        class="text-center w-full max-w-lg home-h2-secondary bg-white px-6 pb-4 mt-4 border-app"
       >
-        <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_1') }}</li>
-        <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_2') }}</li>
-        <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_3') }}</li>
-        <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_4') }}</li>
-      </ol>
-      <h2>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_H') }}</h2>
-      <p>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_P') }}</p>
-    </div>
-    <div class="home-text home-h2-secondary p-6 mt-4 border-app">
-      <h2>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_H') }}</h2>
-      <p>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_P') }}</p>
-      <img
-        class="my-8 mx-auto"
-        src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
-        alt="Hand holding phone scanning QR code"
-      />
-      <h2>{{ $t('HOME.PERSONAL_INFO.APP_H') }}</h2>
-      <p>{{ $t('HOME.PERSONAL_INFO.APP_P') }}</p>
-    </div>
-    <div
-      class="text-center w-full max-w-lg home-h2-secondary bg-white px-6 pb-4 mt-4 border-app"
-    >
-      <h2>{{ $t('HOME.AUTHORS.WHO_IS_BEHIND_THIS_APP') }}</h2>
-      <p>{{ $t('HOME.AUTHORS.US') }}</p>
-      <div class="authors-pictures">
-        <div>
-          <img
-            src="@/assets/img/avatar-lr.png"
-            alt="Hand holding phone scanning QR code"
-          />
-          <p>
-            <a href="https://www.linkedin.com/in/luborepka/">Ľuboš Repka</a>
-          </p>
+        <h2>{{ $t('HOME.AUTHORS.WHO_IS_BEHIND_THIS_APP') }}</h2>
+        <p>{{ $t('HOME.AUTHORS.US') }}</p>
+        <div class="authors-pictures">
+          <div>
+            <img
+              src="@/assets/img/avatar-lr.png"
+              alt="Hand holding phone scanning QR code"
+            />
+            <p>
+              <a href="https://www.linkedin.com/in/luborepka/">Ľuboš Repka</a>
+            </p>
+          </div>
+          <div>
+            <img
+              src="@/assets/img/avatar-tk.png"
+              alt="Hand holding phone scanning QR code"
+            />
+            <p>Tom Kuna</p>
+          </div>
         </div>
-        <div>
-          <img
-            src="@/assets/img/avatar-tk.png"
-            alt="Hand holding phone scanning QR code"
-          />
-          <p>Tom Kuna</p>
+        <div class="authors-pictures">
+          <div>
+            <img
+              src="@/assets/img/avatar-tt.png"
+              alt="Hand holding phone scanning QR code"
+            />
+            <p>
+              <a href="https://www.linkedin.com/in/tomastrejdl/"
+                >Tomáš Trejdl
+              </a>
+            </p>
+          </div>
+          <div>
+            <img
+              src="@/assets/img/avatar-vk.png"
+              alt="Hand holding phone scanning QR code"
+            />
+            <p>
+              <a href="https://www.linkedin.com/in/vasilkostin/"
+                >Vasil Kostin</a
+              >
+            </p>
+          </div>
         </div>
+        <p>{{ $t('HOME.AUTHORS.PARTNERS') }}</p>
+        <img
+          class="my-8 mx-auto"
+          src="@/assets/img/charles-university-logo.png"
+          alt="Charles University logo"
+        />
       </div>
-      <div class="authors-pictures">
-        <div>
-          <img
-            src="@/assets/img/avatar-tt.png"
-            alt="Hand holding phone scanning QR code"
-          />
-          <p>
-            <a
-              href="https://www.linkedin.com/in/tom%C3%A1%C5%A1-trejdl-081444156/"
-              >Tomáš Trejdl
-            </a>
-          </p>
+      <div
+        class="footer home-h2-secondary p-6 mt-4 border-app text-left w-full max-w-lg"
+      >
+        <img
+          class="mb-8 mx-auto "
+          src="@/assets/img/logo.svg"
+          alt="Smart Triage logo"
+        />
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.CONTACT') }}</a>
+        </p>
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.FAQ') }}</a>
+        </p>
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.FOR_HOSPITALS') }}</a>
+        </p>
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.FOR_EMPLOYEES') }}</a>
+        </p>
+        <div class="divider"></div>
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.ABOUT_US') }}</a>
+        </p>
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.PRIVACY_POLICY') }}</a>
+        </p>
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.TERMS_OF_SERVICE') }}</a>
+        </p>
+        <div class="copyright">
+          <p class="mx-auto mt-6">{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
         </div>
-        <div>
-          <img
-            src="@/assets/img/avatar-vk.png"
-            alt="Hand holding phone scanning QR code"
-          />
-          <p>
-            <a href="https://www.linkedin.com/in/vasilkostin/">Vasil Kostin</a>
-          </p>
-        </div>
-      </div>
-      <p>{{ $t('HOME.AUTHORS.PARTNERS') }}</p>
-      <img
-        class="my-8 mx-auto"
-        src="@/assets/img/charles-university-logo.png"
-        alt="Charles University logo"
-      />
-    </div>
-    <div
-      class="footer home-h2-secondary p-6 mt-4 border-app text-left w-full max-w-lg"
-    >
-      <img
-        class="mb-8 mx-auto "
-        src="@/assets/img/logo.svg"
-        alt="Smart Triage logo"
-      />
-      <p>
-        <a href="">{{ $t('HOME.FOOTER.CONTACT') }}</a>
-      </p>
-      <p>
-        <a href="">{{ $t('HOME.FOOTER.FAQ') }}</a>
-      </p>
-      <p>
-        <a href="">{{ $t('HOME.FOOTER.FOR_HOSPITALS') }}</a>
-      </p>
-      <p>
-        <a href="">{{ $t('HOME.FOOTER.FOR_EMPLOYEES') }}</a>
-      </p>
-      <p>
-        <router-link to="/settings">
-          {{ $t('HOME.SETTINGS') }}
-        </router-link>
-      </p>
-      <div class="divider"></div>
-      <p>
-        <a href="">{{ $t('HOME.FOOTER.ABOUT_US') }}</a>
-      </p>
-      <p>
-        <a href="">{{ $t('HOME.FOOTER.PRIVACY_POLICY') }}</a>
-      </p>
-      <p>
-        <a href="">{{ $t('HOME.FOOTER.TERMS_OF_SERVICE') }}</a>
-      </p>
-      <div class="copyright">
-        <p class="mx-auto mt-6">{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
       </div>
     </div>
   </div>
@@ -186,26 +189,28 @@ export default {
     PatientList,
     LocaleChanger
   },
-  data: () => ({
-    showModal: false
-  }),
   head() {
     return {
       title: {
-        inner: 'Home'
+        inner: this.$t('APP_TITLE'),
+        separator: ' ',
+        complement: ' '
       },
       meta: [
         {
           name: 'description',
-          content: `${this.appTitle} home page`,
+          content: `${this.$t('APP_TITLE')} home page`,
           id: 'desc'
         }
       ]
     }
   },
+  data: () => ({
+    showModal: false
+  }),
   computed: {
-    ...mapState('app', ['appTitle']),
-    ...mapState('patients', ['patients'])
+    ...mapState('patients', ['patients']),
+    ...mapState('settings', ['locale'])
   },
   mounted() {
     this.setAppMode('patient')
