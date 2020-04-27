@@ -1,8 +1,13 @@
 <template>
   <div class="page-wrapper">
+    <NavBar slim>
+      <template v-slot:right>
+        <LocaleChanger short no-background></LocaleChanger>
+      </template>
+    </NavBar>
     <div class="page-content">
       <img
-        class="h-16 my-4 mx-auto"
+        class="h-16 mb-2 mx-auto"
         src="@/assets/img/logo.svg"
         alt="Smart Triage logo"
       />
@@ -84,8 +89,12 @@ import { isNil } from 'lodash'
 import firebase from 'firebase/app'
 import KeyStore from '@/misc/KeyStore'
 import PublicKeysDB from '@/firebase/public-keys-db'
+import LocaleChanger from '@/components/LocaleChanger'
 
 export default {
+  components: {
+    LocaleChanger
+  },
   head() {
     return {
       title: {

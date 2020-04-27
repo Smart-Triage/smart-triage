@@ -1,10 +1,12 @@
 <template>
   <header
-    class="w-full h-12 flex justify-between items-center px-2 sm:px-8 pt-2"
+    class="w-full flex justify-between items-center px-2 sm:px-8"
     :class="{
       offline: !networkOnLine,
       'transparent-background': bgTransparent,
-      'sticky top-0': sticky
+      'sticky top-0': sticky,
+      'h-10': slim,
+      'h-12 pt-2': !slim
     }"
   >
     <!-- LEFT SLOT -->
@@ -37,7 +39,8 @@ export default {
   props: {
     backButton: { type: Boolean, default: false },
     bgTransparent: { type: Boolean, default: false },
-    sticky: { type: Boolean, default: false }
+    sticky: { type: Boolean, default: false },
+    slim: { type: Boolean, default: false }
   },
   computed: {
     ...mapState('app', ['networkOnLine'])

@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrapper">
-    <NavBar>
+    <NavBar slim>
       <template v-slot:right>
         <LocaleChanger short no-background></LocaleChanger>
       </template>
