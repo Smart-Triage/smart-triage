@@ -16,10 +16,10 @@ export default function validatePatient(
       const incommingKeys = Object.keys(patient)
       const requiredKeys = [
         'id',
-        'firstName',
-        'lastName',
-        'birthNumber',
-        'phoneNumber',
+        // 'firstName',
+        // 'lastName',
+        // 'birthNumber',
+        // 'phoneNumber',
         'answers',
         'termsAccepted',
         'validityTimestamp'
@@ -63,10 +63,10 @@ export default function validatePatient(
       if (scanningConfirmationCode) {
         if (
           currentPatient.id !== patient.id ||
-          currentPatient.firstName !== patient.firstName ||
-          currentPatient.lastName !== patient.lastName ||
-          currentPatient.birthNumber !== patient.birthNumber ||
-          currentPatient.phoneNumber !== patient.phoneNumber ||
+          // currentPatient.firstName !== patient.firstName ||
+          // currentPatient.lastName !== patient.lastName ||
+          // currentPatient.birthNumber !== patient.birthNumber ||
+          // currentPatient.phoneNumber !== patient.phoneNumber ||
           new Date(currentPatient.validityTimestamp).getTime() !==
             patient.validityTimestamp.getTime()
         ) {

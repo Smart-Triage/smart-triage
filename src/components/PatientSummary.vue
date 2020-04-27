@@ -4,6 +4,7 @@
       <ConfirmationBox :patient="patient"></ConfirmationBox>
     </div>
     <button
+      v-if="appMode == 'patient'"
       class="patient-item flex justify-between items-center cursor-pointer my-2 relative z-20"
       @click="patientInfoHidden = !patientInfoHidden"
     >
@@ -21,6 +22,7 @@
       </div>
     </button>
     <div
+      v-if="appMode == 'patient'"
       class="info-container text-left"
       :class="{ hideInfo: patientInfoHidden }"
     >
