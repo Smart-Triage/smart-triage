@@ -4,7 +4,7 @@
     "APP_SHORT_DESCRIPTION": "Tato aplikace byla vytvořena k urychlení triáže pacientů v nemocnicích během pandemie COVID-19.",
     "AUTHORS": "Autoři",
     "CREATED_ON_HACKATHON": "Tato aplikace byla vytvořena během online hackathonu Hack Košice Digital 2020.",
-    "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
+    "TRIAGE_DESCRIPTION": "Triáž je proces stanovení priority léčby pacientů na základě závažnosti jejich stavu nebo pravděpodobnosti zotavení s léčbou i bez léčby",
     "VERSION": "Verze"
   },
   "ADMIN": {
