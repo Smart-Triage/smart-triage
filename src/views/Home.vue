@@ -52,9 +52,6 @@
       <!--        <router-link to="/how-it-works">-->
       <!--          {{ $t('HOME.HOW_IT_WORKS') }}-->
       <!--        </router-link>-->
-      <!--        <router-link to="/settings">-->
-      <!--          {{ $t('HOME.SETTINGS') }}-->
-      <!--        </router-link>-->
       <!--      </div>-->
     </div>
     <div class="home-text home-h2-primary bg-white px-6 pb-6 mt-4 border-app">
@@ -156,6 +153,11 @@
       </p>
       <p>
         <a href="">{{ $t('HOME.FOOTER.FOR_EMPLOYEES') }}</a>
+      </p>
+      <p>
+        <router-link to="/settings">
+          {{ $t('HOME.SETTINGS') }}
+        </router-link>
       </p>
       <div class="divider"></div>
       <p>
