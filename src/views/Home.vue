@@ -8,8 +8,15 @@
     <div class="page-content">
       <!-- HEADER -->
       <img
+        v-if="locale == 'cs' || locale == 'sk'"
         class="h-16 mx-auto"
         src="@/assets/img/logo.svg"
+        alt="Smart Triage logo"
+      />
+      <img
+        v-else
+        class="h-16 mx-auto"
+        src="@/assets/img/logo_en.svg"
         alt="Smart Triage logo"
       />
       <p class="mt-4 text-xl text-secondary font-semibold">
@@ -205,7 +212,8 @@ export default {
     showModal: false
   }),
   computed: {
-    ...mapState('patients', ['patients'])
+    ...mapState('patients', ['patients']),
+    ...mapState('settings', ['locale'])
   },
   mounted() {
     this.setAppMode('patient')

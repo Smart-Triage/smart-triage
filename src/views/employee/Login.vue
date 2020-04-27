@@ -7,8 +7,15 @@
     </NavBar>
     <div class="page-content">
       <img
-        class="h-16 mb-2 mx-auto"
+        v-if="locale == 'cs' || locale == 'sk'"
+        class="h-16 mx-auto"
         src="@/assets/img/logo.svg"
+        alt="Smart Triage logo"
+      />
+      <img
+        v-else
+        class="h-16 mx-auto"
+        src="@/assets/img/logo_en.svg"
         alt="Smart Triage logo"
       />
       <p class="mb-4">
@@ -112,7 +119,8 @@ export default {
   }),
   computed: {
     ...mapState('authentication', ['user']),
-    ...mapState('app', ['networkOnLine'])
+    ...mapState('app', ['networkOnLine']),
+    ...mapState('settings', ['locale'])
   },
   watch: {
     user: {

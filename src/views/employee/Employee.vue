@@ -48,8 +48,15 @@
         class="header-info"
       >
         <img
+          v-if="locale == 'cs' || locale == 'sk'"
           class="h-16 mx-auto"
           src="@/assets/img/logo.svg"
+          alt="Smart Triage logo"
+        />
+        <img
+          v-else
+          class="h-16 mx-auto"
+          src="@/assets/img/logo_en.svg"
           alt="Smart Triage logo"
         />
         <p class="my-4">{{ $t('EMPLOYEE.WELCOME') }}</p>
@@ -242,6 +249,7 @@ export default {
     ...mapState('authentication', ['user']),
     ...mapGetters('employee', ['fullName']),
     ...mapState('employee', ['hospital']),
+    ...mapState('settings', ['locale']),
     qrCodeSize() {
       if (window.innerWidth < 400) return window.innerWidth * 0.85
       if (window.innerWidth < 500) return window.innerWidth * 0.8
