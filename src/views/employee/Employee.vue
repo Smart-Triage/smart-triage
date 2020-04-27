@@ -103,7 +103,7 @@
             </span>
           </template>
           <template v-slot:left>
-            <button class="icon-button" @click="showEmployeeHomepage">
+            <button class="icon-button" @click="closePatient">
               <ion-icon name="close-outline" size="large"></ion-icon>
             </button>
           </template>
@@ -286,6 +286,7 @@ export default {
     }
   },
   mounted() {
+    window.addEventListener('unload', this.deleteAllPatients)
     this.setAppMode('employee')
     const viewFromhash = window.location.hash.substr(1).trim()
     switch (viewFromhash) {
@@ -302,10 +303,17 @@ export default {
         break
     }
   },
+  beforeDestroy() {
+    window.removeEventListener('unload', this.someMethod)
+  },
   methods: {
     ...mapActions('settings', ['setAppMode']),
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
-    ...mapActions('patients', ['updateOrAddPatient', 'deletePatientById']),
+    ...mapActions('patients', [
+      'updateOrAddPatient',
+      'deletePatientById',
+      'deleteAllPatients'
+    ]),
     addPatient(patient) {
       this.scanning = false
       this.scannedAtLeastOnce = true
@@ -320,8 +328,9 @@ export default {
       this.showPatientSummary = false
       this.$router.push('')
     },
-    closePatient() {
-      this.deletePatientById(this.currentPatient.id)
+    async closePatient() {
+      await this.deleteAllPatients()
+      // this.deletePatientById(this.currentPatient.id)
       this.showEmployeeHomepage()
     },
     scan() {

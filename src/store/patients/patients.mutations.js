@@ -38,6 +38,8 @@ export default {
     state.patients.splice(index, 1)
   },
 
+  clearPatients: state => (state.patients = []),
+
   invalidatePatientFormById: (state, patientId, markAsInvalid = true) => {
     const index = state.patients.findIndex(patient => patient.id === patientId)
     state.patients[index].finished = false
