@@ -56,6 +56,7 @@
     "NotSupportedError": "Je vyžadovaný bezpečný kontext (HTTPS)",
     "OverconstrainedError": "Nainštalovaný fotoaparát nemožno použiť",
     "StreamApiNotSupportedError": "Nepodporovaný prehliadač",
+    "TRY_DIFFERENT_BROWSER": "Skúste využiť iný prehliadač. Odporúčame Google Chrome. Ak používate iPhone / iPad odporúčame využiť Safari",
     "WRONG_PATIENT": "Naskenoval/a ste neplatný QR kód. Uistite sa, že skenujete správneho pacienta a skúste to znova. Ak máte problémy, obráťte sa na personál nemocnice."
   },
   "FIRST_NAME": "Krstné meno",
@@ -205,6 +206,5 @@
     "YOU_HAVE_TO_ACCEPT_BTN": "Musíte súhlasiť s podmienkami",
     "YOU_HAVE_TO_ACCEPT_TXT": "Súhlasím, že všetky uvedené údaje sú pravdivé. Uvedenie nepravidvých informácií môže byť posudzované ako trestný čin"
   },
-  "TRY_DIFFERENT_BROWSER": "Skúste využiť iný prehliadač. Odporúčame Google Chrome. Ak používate iPhone / iPad odporúčame využiť Safari",
   "YES": "Áno"
 }

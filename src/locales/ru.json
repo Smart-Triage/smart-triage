@@ -56,6 +56,7 @@
     "NotSupportedError": "",
     "OverconstrainedError": "",
     "StreamApiNotSupportedError": "",
+    "TRY_DIFFERENT_BROWSER": "",
     "WRONG_PATIENT": ""
   },
   "FIRST_NAME": "Имя",
@@ -205,6 +206,5 @@
     "YOU_HAVE_TO_ACCEPT_BTN": "Вы должны согласиться с условиями",
     "YOU_HAVE_TO_ACCEPT_TXT": "Подтверждаю, что вся приведенная выше информация является правдой. Предоставление ложной информации является уголовным преступлением"
   },
-  "TRY_DIFFERENT_BROWSER": "",
   "YES": "Да"
 }
