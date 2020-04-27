@@ -62,10 +62,10 @@ export default {
       // eslint-disable-next-line no-alert
       const r = window.confirm(this.$t('ALERT.DELETE_ALL_DATA'))
       if (r === true) {
+        if (this.user) await firebase.auth().signOut()
+
         localStorage.clear()
         sessionStorage.clear()
-
-        if (this.user) await firebase.auth().signOut()
 
         if (window.indexedDB.databases !== undefined) {
           await window.indexedDB.databases().then(databases => {
