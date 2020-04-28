@@ -34,18 +34,20 @@
         </svg>
       </div>
     </qrcode-stream>
+
+    <qrcode-capture v-if="noStreamApiSupport" @decode="onDecode" />
   </div>
 </template>
 
 <script>
-import { QrcodeStream } from 'vue-qrcode-reader'
+import { QrcodeStream, QrcodeCapture } from 'vue-qrcode-reader'
 import { mapGetters } from 'vuex'
 
 import validatePatient from '@/misc/validateScannedData'
 import getFormStepsMixin from '@/mixins/getFormStepsMixin'
 
 export default {
-  components: { QrcodeStream },
+  components: { QrcodeStream, QrcodeCapture },
   mixins: [getFormStepsMixin],
   props: {
     scanningConfirmationCode: {
@@ -61,7 +63,8 @@ export default {
   data() {
     return {
       result: '',
-      error: ''
+      error: '',
+      noStreamApiSupport: false
     }
   },
   computed: {
@@ -94,7 +97,9 @@ export default {
       try {
         await promise
       } catch (error) {
-        this.error = error.name
+        if (error.name === 'StreamApiNotSupportedError') {
+          this.noStreamApiSupport = true
+        } else this.error = error.name
       }
     }
   }
