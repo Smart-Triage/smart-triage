@@ -171,10 +171,14 @@
           <a href="">{{ $t('HOME.FOOTER.ABOUT_US') }}</a>
         </p>
         <p>
-          <a href="">{{ $t('HOME.FOOTER.PRIVACY_POLICY') }}</a>
+          <a href="./privacy-policy/privacy-policy-cs.pdf">
+            {{ $t('HOME.FOOTER.PRIVACY_POLICY') }}
+          </a>
         </p>
         <p>
-          <a href="">{{ $t('HOME.FOOTER.TERMS_OF_SERVICE') }}</a>
+          <a href="./privacy-policy/privacy-policy-cs.pdf">
+            {{ $t('HOME.FOOTER.TERMS_OF_SERVICE') }}
+          </a>
         </p>
         <div class="copyright">
           <p class="mx-auto mt-6">{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
