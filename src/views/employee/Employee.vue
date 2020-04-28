@@ -195,7 +195,7 @@
           class="qrcode bg-white p-4 m-2"
           :value="signedPatient"
           :size="qrCodeSize"
-          level="M"
+          level="H"
         ></QrcodeVue>
         <button class="link btn-primary" @click="closePatient">
           {{ $t('EMPLOYEE.CLOSE_PATIENT') }}
