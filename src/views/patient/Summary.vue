@@ -46,7 +46,13 @@
 
         <div class="flex flex-row w-full justify-between">
           <p class="text-left text-xs">
-            {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
+            {{ $t('SUMMARY.PERSONAL_INFORMATION') }}. Viz
+            <a
+              href="./privacy-policy/privacy-policy-cs.pdf"
+              class="text-blue-500"
+            >
+              {{ $t('HOME.FOOTER.PRIVACY_POLICY') }}
+            </a>
           </p>
           <div>
             <input
