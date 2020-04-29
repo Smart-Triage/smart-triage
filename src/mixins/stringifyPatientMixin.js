@@ -6,10 +6,10 @@ export default {
           key =>
             [
               'id',
-              'firstName',
-              'lastName',
-              'birthNumber',
-              'phoneNumber',
+              // 'firstName',
+              // 'lastName',
+              // 'birthNumber',
+              // 'phoneNumber',
               'answers',
               'confirmed',
               'confirmation',

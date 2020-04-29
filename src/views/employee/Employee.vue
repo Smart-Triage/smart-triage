@@ -48,8 +48,15 @@
         class="header-info"
       >
         <img
+          v-if="locale == 'cs' || locale == 'sk'"
           class="h-16 mx-auto"
           src="@/assets/img/logo.svg"
+          alt="Smart Triage logo"
+        />
+        <img
+          v-else
+          class="h-16 mx-auto"
+          src="@/assets/img/logo_en.svg"
           alt="Smart Triage logo"
         />
         <p class="my-4">{{ $t('EMPLOYEE.WELCOME') }}</p>
@@ -96,7 +103,7 @@
             </span>
           </template>
           <template v-slot:left>
-            <button class="icon-button" @click="showEmployeeHomepage">
+            <button class="icon-button" @click="closePatient">
               <ion-icon name="close-outline" size="large"></ion-icon>
             </button>
           </template>
@@ -188,7 +195,7 @@
           class="qrcode bg-white p-4 m-2"
           :value="signedPatient"
           :size="qrCodeSize"
-          level="M"
+          level="H"
         ></QrcodeVue>
         <button class="link btn-primary" @click="closePatient">
           {{ $t('EMPLOYEE.CLOSE_PATIENT') }}
@@ -242,6 +249,7 @@ export default {
     ...mapState('authentication', ['user']),
     ...mapGetters('employee', ['fullName']),
     ...mapState('employee', ['hospital']),
+    ...mapState('settings', ['locale']),
     qrCodeSize() {
       if (window.innerWidth < 400) return window.innerWidth * 0.85
       if (window.innerWidth < 500) return window.innerWidth * 0.8
@@ -278,6 +286,7 @@ export default {
     }
   },
   mounted() {
+    window.addEventListener('unload', this.deleteAllPatients)
     this.setAppMode('employee')
     const viewFromhash = window.location.hash.substr(1).trim()
     switch (viewFromhash) {
@@ -294,10 +303,17 @@ export default {
         break
     }
   },
+  beforeDestroy() {
+    window.removeEventListener('unload', this.someMethod)
+  },
   methods: {
     ...mapActions('settings', ['setAppMode']),
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
-    ...mapActions('patients', ['updateOrAddPatient', 'deletePatientById']),
+    ...mapActions('patients', [
+      'updateOrAddPatient',
+      'deletePatientById',
+      'deleteAllPatients'
+    ]),
     addPatient(patient) {
       this.scanning = false
       this.scannedAtLeastOnce = true
@@ -312,8 +328,9 @@ export default {
       this.showPatientSummary = false
       this.$router.push('')
     },
-    closePatient() {
-      this.deletePatientById(this.currentPatient.id)
+    async closePatient() {
+      await this.deleteAllPatients()
+      // this.deletePatientById(this.currentPatient.id)
       this.showEmployeeHomepage()
     },
     scan() {

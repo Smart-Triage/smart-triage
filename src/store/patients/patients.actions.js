@@ -41,6 +41,14 @@ export default {
     })
   },
 
+  deleteAllPatients: async ({ commit }) => {
+    return new Promise(resolve => {
+      commit('clearPatients')
+      commit('setCurrentPatientId', '')
+      resolve()
+    })
+  },
+
   clearCurrentPatient: async ({ commit }) => {
     commit('setCurrentPatientId', '')
   },

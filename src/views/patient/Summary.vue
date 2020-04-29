@@ -46,7 +46,13 @@
 
         <div class="flex flex-row w-full justify-between">
           <p class="text-left text-xs">
-            {{ $t('SUMMARY.PERSONAL_INFORMATION') }}
+            {{ $t('SUMMARY.PERSONAL_INFORMATION') }}. Viz
+            <a
+              href="./privacy-policy/privacy-policy-cs.pdf"
+              class="text-blue-500"
+            >
+              {{ $t('HOME.FOOTER.PRIVACY_POLICY') }}
+            </a>
           </p>
           <div>
             <input
@@ -61,7 +67,7 @@
       </div>
 
       <!-- FEEDBACK -->
-      <portal to="modals">
+      <!-- <portal to="modals">
         <FeedbackModal
           :open="feedbackModalVisible"
           :liking-app="likingApp"
@@ -89,7 +95,7 @@
             <ion-icon name="thumbs-down-outline"></ion-icon>
           </button>
         </div>
-      </div>
+      </div> -->
 
       <!-- ACCEPT TERMS AND SHOW QR CODE -->
       <div
@@ -174,7 +180,7 @@ import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 import PatientSummary from '@/components/PatientSummary'
 import ModalWindow from '@/components/ModalWindow'
 import Constants from '@/misc/constants'
-import FeedbackModal from '@/components/modals/FeedbackModal'
+// import FeedbackModal from '@/components/modals/FeedbackModal'
 
 export default {
   head() {
@@ -184,7 +190,11 @@ export default {
       }
     }
   },
-  components: { PatientSummary, ModalWindow, FeedbackModal },
+  components: {
+    PatientSummary,
+    ModalWindow
+    // FeedbackModal
+  },
   data: () => ({
     allIsTrueAgreed: false,
     personalInfoAgreed: false,

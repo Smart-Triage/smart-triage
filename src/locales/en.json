@@ -56,6 +56,7 @@
     "NotSupportedError": "Secure context required (HTTPS)",
     "OverconstrainedError": "Installed cameras are not suitable",
     "StreamApiNotSupportedError": "Unsupported browser",
+    "TRY_DIFFERENT_BROWSER": "Try another browser. We recommend Google Chrome. If you use an iPhone / iPad, we recommend using Safari",
     "WRONG_PATIENT": "You have scanned an invalid QR code. Make sure you are scanning the correct patient and try again. If you have problems, contact the hospital staff."
   },
   "FIRST_NAME": "First name",
@@ -205,6 +206,5 @@
     "YOU_HAVE_TO_ACCEPT_BTN": "You have to accept the terms",
     "YOU_HAVE_TO_ACCEPT_TXT": "You have to accept the terms and you are telling the truth"
   },
-  "TRY_DIFFERENT_BROWSER": "Try another browser. We recommend Google Chrome. If you use an iPhone / iPad, we recommend using Safari",
   "YES": "Yes"
 }

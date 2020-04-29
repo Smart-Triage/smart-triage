@@ -4,7 +4,7 @@
     "APP_SHORT_DESCRIPTION": "Tato aplikace byla vytvořena k urychlení triáže pacientů v nemocnicích během pandemie COVID-19.",
     "AUTHORS": "Autoři",
     "CREATED_ON_HACKATHON": "Tato aplikace byla vytvořena během online hackathonu Hack Košice Digital 2020.",
-    "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
+    "TRIAGE_DESCRIPTION": "Triáž je proces stanovení priority léčby pacientů na základě závažnosti jejich stavu nebo pravděpodobnosti zotavení s léčbou i bez léčby",
     "VERSION": "Verze"
   },
   "ADMIN": {
@@ -56,6 +56,7 @@
     "NotSupportedError": "Je vyžadován bezpečný kontext (HTTPS)",
     "OverconstrainedError": "Nainstalovaný fotoaparát nelze použít",
     "StreamApiNotSupportedError": "Nepodporovaný prohlížeč",
+    "TRY_DIFFERENT_BROWSER": "Zkuste využít jiný prohlížeč. Doporučujeme Google Chrome. Pokud používáte iPhone/iPad doporučujeme využít Safari. Ujistěte se, že máte aktualizovaný operační systém i prohlížeč",
     "WRONG_PATIENT": "Naskenoval/a jste neplatný QR kód. Ujistěte se, že skenujete správného pacienta a zkuste to znovu. Pokud máte problémy, obraťte se na personál nemocnice."
   },
   "FIRST_NAME": "Křestní jméno",
@@ -205,6 +206,5 @@
     "YOU_HAVE_TO_ACCEPT_BTN": "Musíte souhlasit s podmínkami",
     "YOU_HAVE_TO_ACCEPT_TXT": "Souhlasím, že všechny uvedené údaje jsou pravdivé. Uvedení nepravidvých informací může být posuzováno jako trestný čin"
   },
-  "TRY_DIFFERENT_BROWSER": "Zkuste využít jiný prohlížeč. Doporučujeme Google Chrome. Pokud používáte iPhone/iPad doporučujeme využít Safari",
   "YES": "Ano"
 }

@@ -27,16 +27,28 @@ export default {
     })
   },
 
-  updatePatient: (state, patient) => {
-    const index = state.patients.findIndex(p => p.id === patient.id)
+  updatePatient: (state, newPatient) => {
+    const index = state.patients.findIndex(p => p.id === newPatient.id)
+    console.log('old: ', state.patients[index])
+    const mergedPatient = {
+      ...state.patients[index],
+      ...newPatient
+    }
     state.patients.splice(index, 1)
-    return state.patients.push(patient)
+    console.log('new: ', mergedPatient)
+    return state.patients.push(mergedPatient)
+
+    // const index = state.patients.findIndex(p => p.id === patient.id)
+    // state.patients.splice(index, 1)
+    // return state.patients.push(patient)
   },
 
   removePatientById: (state, patientId) => {
     const index = state.patients.findIndex(patient => patient.id === patientId)
     state.patients.splice(index, 1)
   },
+
+  clearPatients: state => (state.patients = []),
 
   invalidatePatientFormById: (state, patientId, markAsInvalid = true) => {
     const index = state.patients.findIndex(patient => patient.id === patientId)

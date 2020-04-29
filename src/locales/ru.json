@@ -4,7 +4,7 @@
     "APP_SHORT_DESCRIPTION": "Это приложение предназначено для ускорения триады пациентов в больницах во время пандемии COVID-19.",
     "AUTHORS": "Авторы",
     "CREATED_ON_HACKATHON": "Это приложение было создано во время онлайн-хакатона Hack Košice Digital 2020 и Hack The Crisis Slovakia.",
-    "TRIAGE_DESCRIPTION": "Triage is the process of determining the priority of patients' treatments based on the severity of their condition or likelyhood of recovery with and without treatment",
+    "TRIAGE_DESCRIPTION": "Триада - это процесс расстановки приоритетов лечения пациентов, основанный на серьезности их состояния или вероятности выздоровления с лечением или без него.",
     "VERSION": "Версия"
   },
   "ADMIN": {
@@ -56,6 +56,7 @@
     "NotSupportedError": "",
     "OverconstrainedError": "",
     "StreamApiNotSupportedError": "",
+    "TRY_DIFFERENT_BROWSER": "",
     "WRONG_PATIENT": ""
   },
   "FIRST_NAME": "Имя",
@@ -205,6 +206,5 @@
     "YOU_HAVE_TO_ACCEPT_BTN": "Вы должны согласиться с условиями",
     "YOU_HAVE_TO_ACCEPT_TXT": "Подтверждаю, что вся приведенная выше информация является правдой. Предоставление ложной информации является уголовным преступлением"
   },
-  "TRY_DIFFERENT_BROWSER": "",
   "YES": "Да"
 }

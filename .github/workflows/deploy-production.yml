@@ -1,4 +1,4 @@
-name: Deploy on production
+name: Deploy on dev server
 on:
   push:
     branches:
@@ -66,6 +66,6 @@ jobs:
       - name: Deploy project to firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --non-interactive --only hosting:prod
+          args: deploy --non-interactive --only hosting:dev
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

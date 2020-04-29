@@ -1,9 +1,21 @@
 <template>
   <div class="page-wrapper">
+    <NavBar slim>
+      <template v-slot:right>
+        <LocaleChanger short no-background></LocaleChanger>
+      </template>
+    </NavBar>
     <div class="page-content">
       <img
-        class="h-16 my-4 mx-auto"
+        v-if="locale == 'cs' || locale == 'sk'"
+        class="h-16 mx-auto"
         src="@/assets/img/logo.svg"
+        alt="Smart Triage logo"
+      />
+      <img
+        v-else
+        class="h-16 mx-auto"
+        src="@/assets/img/logo_en.svg"
         alt="Smart Triage logo"
       />
       <p class="mb-4">
@@ -30,20 +42,23 @@
       </p>
 
       <!-- Auth UI -->
-      <form class="w-full flex flex-col items-center" @submit="register">
+      <form
+        class="w-full flex flex-col items-center max-w-sm "
+        @submit="register"
+      >
         <div class="flex my-2">
           <input
             v-model="firstName"
             :placeholder="$t('FIRST_NAME')"
             type="text"
-            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app mr-2"
+            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal border-app mr-2"
             required
           />
           <input
             v-model="lastName"
             :placeholder="$t('LAST_NAME')"
             type="text"
-            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app ml-2"
+            class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal border-app ml-2"
             required
           />
         </div>
@@ -51,7 +66,7 @@
           v-model="registrationCode"
           :placeholder="$t('LOGIN.REGISTRATION_CODE')"
           type="text"
-          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal max-w-xs border-app m-2"
+          class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 py-2 px-4 block w-full appearance-none leading-normal border-app m-2"
           required
         />
 
@@ -84,8 +99,12 @@ import { isNil } from 'lodash'
 import firebase from 'firebase/app'
 import KeyStore from '@/misc/KeyStore'
 import PublicKeysDB from '@/firebase/public-keys-db'
+import LocaleChanger from '@/components/LocaleChanger'
 
 export default {
+  components: {
+    LocaleChanger
+  },
   head() {
     return {
       title: {
@@ -103,7 +122,8 @@ export default {
   }),
   computed: {
     ...mapState('authentication', ['user']),
-    ...mapState('app', ['networkOnLine'])
+    ...mapState('app', ['networkOnLine']),
+    ...mapState('settings', ['locale'])
   },
   watch: {
     user: {

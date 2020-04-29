@@ -27,7 +27,7 @@
         <QrcodeVue
           :value="stringifyPatient(currentPatient)"
           :size="qrCodeSize"
-          level="M"
+          level="H"
         ></QrcodeVue>
       </div>
 
