@@ -13,10 +13,10 @@
       </template>
     </NavBar>
     <div class="page-content">
-      <p class="text-xl leading-tight">
+      <!-- <p class="text-xl leading-tight">
         {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
-      </p>
-      <p class="my-4">
+      </p> -->
+      <p class="my-2">
         <strong>
           {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
         </strong>
@@ -27,8 +27,22 @@
         <QrcodeVue
           :value="stringifyPatient(currentPatient)"
           :size="qrCodeSize"
-          level="H"
+          :level="qrLevel"
         ></QrcodeVue>
+        <!-- <div class="w-full flex justify-around my-4">
+          <button class="px-2 py-1 rounded bg-white" @click="qrLevel = 'L'">
+            Level L
+          </button>
+          <button class="px-2 py-1 rounded bg-white" @click="qrLevel = 'M'">
+            Level M
+          </button>
+          <button class="px-2 py-1 rounded bg-white" @click="qrLevel = 'Q'">
+            Level Q
+          </button>
+          <button class="px-2 py-1 rounded bg-white" @click="qrLevel = 'H'">
+            Level H
+          </button>
+        </div> -->
       </div>
 
       <!-- CONFIRMATION BOX -->
@@ -38,7 +52,7 @@
 
       <router-link
         v-if="!isConfirmed(currentPatient)"
-        class="flex-shrink-0 flex items-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-6"
+        class="flex-shrink-0 flex items-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-4"
         to="/scan-confirmation-qr-code"
       >
         <ion-icon name="scan-outline"></ion-icon>
@@ -66,6 +80,9 @@ export default {
     }
   },
   mixins: [stringifyPatientMixin, isConfirmedMixin],
+  data: () => ({
+    qrLevel: 'H'
+  }),
   computed: {
     ...mapGetters('patients', ['currentPatient']),
     qrCodeSize() {

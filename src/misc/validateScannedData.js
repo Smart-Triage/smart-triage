@@ -14,21 +14,9 @@ export default function validatePatient(
 
       // Validate JSON schema
       const incommingKeys = Object.keys(patient)
-      const requiredKeys = [
-        'id',
-        // 'firstName',
-        // 'lastName',
-        // 'birthNumber',
-        // 'phoneNumber',
-        'answers',
-        'validityTimestamp'
-      ]
+      const requiredKeys = ['id', 'answers', 'validityTimestamp']
       // if (scanningConfirmationCode || verifying) requiredKeys.push('signature')
-      const optionalKeys = [
-        'confirmation',
-        'isCovidSuspected',
-        'measuredTemperature'
-      ]
+      const optionalKeys = ['confirmation']
 
       requiredKeys.forEach(key => {
         if (incommingKeys.indexOf(key) === -1)

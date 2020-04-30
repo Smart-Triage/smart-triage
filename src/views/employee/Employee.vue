@@ -141,7 +141,7 @@
         v-if="
           showPatientSummary &&
             currentPatient &&
-            currentPatient.isCovidSuspected === undefined
+            currentPatient.infectionSuspected === undefined
         "
         class="flex flex-col items-center pb-4 pt-4 bg-white rounded-t-xl"
       >
@@ -151,36 +151,36 @@
         <div class="w-full flex justify-around items-center my-2">
           <button
             :class="{
-              'bg-primary text-white': isCovidSuspected === true,
-              'bg-gray-300 text-black': isCovidSuspected !== true
+              'bg-primary text-white': infectionSuspected === true,
+              'bg-gray-300 text-black': infectionSuspected !== true
             }"
             class="flex icon-button px-12 py-2 rounded-full cursor-pointer"
-            @click="isCovidSuspected = true"
+            @click="infectionSuspected = true"
           >
             {{ $t('YES') }}
           </button>
 
           <button
             :class="{
-              'bg-primary text-white': isCovidSuspected === false,
-              'bg-gray-300 text-black': isCovidSuspected !== false
+              'bg-primary text-white': infectionSuspected === false,
+              'bg-gray-300 text-black': infectionSuspected !== false
             }"
             class="flex icon-button px-12 py-2 rounded-full cursor-pointer"
-            @click="isCovidSuspected = false"
+            @click="infectionSuspected = false"
           >
             {{ $t('NO') }}
           </button>
         </div>
         <button
           class="flex items-center px-8 py-2 mt-8 rounded-full bg-secondary text-white text-lg disabled:opacity-50"
-          :disabled="isCovidSuspected === null"
+          :disabled="infectionSuspected === null"
           @click="viewConfirmationQR"
         >
           <ion-icon
-            v-if="isCovidSuspected !== null"
+            v-if="infectionSuspected !== null"
             name="checkmark-outline"
           ></ion-icon>
-          <div v-if="isCovidSuspected !== null" class="ml-2">
+          <div v-if="infectionSuspected !== null" class="ml-2">
             {{ $t('EMPLOYEE.CONFIRM') }}
           </div>
           <div v-else>
@@ -193,10 +193,25 @@
         <h1>{{ $t('EMPLOYEE.PATIENT_CONFIRMATION_CODE') }}</h1>
         <QrcodeVue
           class="qrcode bg-white p-4 m-2"
-          :value="signedPatient"
+          :value="stringifiedPatient"
           :size="qrCodeSize"
-          level="H"
+          :level="qrLevel"
         ></QrcodeVue>
+        <!-- <div class="w-full flex justify-around my-4">
+          <button class="px-2 py-1 rounded bg-white" @click="qrLevel = 'L'">
+            Level L
+          </button>
+          <button class="px-2 py-1 rounded bg-white" @click="qrLevel = 'M'">
+            Level M
+          </button>
+          <button class="px-2 py-1 rounded bg-white" @click="qrLevel = 'Q'">
+            Level Q
+          </button>
+          <button class="px-2 py-1 rounded bg-white" @click="qrLevel = 'H'">
+            Level H
+          </button>
+        </div> -->
+
         <button class="link btn-primary" @click="closePatient">
           {{ $t('EMPLOYEE.CLOSE_PATIENT') }}
         </button>
@@ -213,8 +228,8 @@ import QrcodeVue from 'qrcode.vue'
 import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
 import QRScanner from '@/components/QRSanner'
 import PatientSummary from '@/components/PatientSummary'
-import KeyStore from '@/misc/KeyStore'
-import { str2ab, ab2str } from '@/misc/helpers'
+// import KeyStore from '@/misc/KeyStore'
+// import { str2ab, ab2str } from '@/misc/helpers'
 import FullScreenModal from '@/components/modals/FullScreenModal'
 import {
   getFormStepsMixin,
@@ -242,9 +257,11 @@ export default {
     showingConfirmationQR: false,
     scannedAtLeastOnce: false,
     showPatientSummary: false,
-    signedPatient: null,
+    // signedPatient: null,
     patientTemperature: null,
-    isCovidSuspected: null
+    infectionSuspected: null,
+    stringifiedPatient: null,
+    qrLevel: 'H'
   }),
   computed: {
     ...mapGetters('patients', ['currentPatient']),
@@ -260,7 +277,7 @@ export default {
   },
   watch: {
     $route(to) {
-      this.isCovidSuspected = null
+      this.infectionSuspected = null
       // Watch for url changes, and display correct view based on URL hash value
       const viewFromhash = to.hash.substr(1).trim()
       switch (viewFromhash) {
@@ -343,72 +360,71 @@ export default {
       await this.setCurrentPatientValueByKey({
         key: 'confirmation',
         value: {
-          confirmedByName: this.fullName,
-          confirmedById: this.user.id,
+          name: this.fullName,
+          id: this.user.id,
           timestamp: new Date(),
-          issuedForHospital: this.hospital
+          issuedFor: this.hospital,
+          infectionSuspected: this.infectionSuspected,
+          temperature: this.currentPatient.measuredTemperature
         }
-      })
-      await this.setCurrentPatientValueByKey({
-        key: 'isCovidSuspected',
-        value: this.isCovidSuspected
       })
 
       // SIGN THE CONFIRMATION
-      const signedData = await this.signConfirmation(
-        this.stringifyPatient(this.currentPatient)
-      )
-      if (signedData) {
-        this.signedPatient = JSON.stringify(signedData)
-        this.showingConfirmationQR = true
-        this.$router.push('#confirmation-qr-code')
-        return true
-      }
+      // const signedData = await this.signConfirmation(
+      //   this.stringifyPatient(this.currentPatient)
+      // )
+      // if (signedData) {
+      // this.signedPatient = JSON.stringify(signedData)
+      this.stringifiedPatient = this.stringifyPatient(this.currentPatient)
+      this.showingConfirmationQR = true
+      this.$router.push('#confirmation-qr-code')
+      return true
+      // }
 
       // eslint-disable-next-line no-alert
-      alert('Error signing confirmation')
-      return false
+      // alert('Error signing confirmation')
+      // return false
     },
-    async signConfirmation(dataToSign) {
-      const keyStore = new KeyStore()
-      await keyStore.open()
-      const keyFromStore = (await keyStore.listKeys()).find(
-        key => key.value.name === 'EMPLOYEE_PRIVATE_KEY'
-      )
+    // async signConfirmation(dataToSign) {
+    //   const keyStore = new KeyStore()
+    //   await keyStore.open()
+    //   const keyFromStore = (await keyStore.listKeys()).find(
+    //     key => key.value.name === 'EMPLOYEE_PRIVATE_KEY'
+    //   )
 
-      if (!keyFromStore) {
-        // eslint-disable-next-line no-alert
-        alert('Error: Private key not found')
-        return false
-      }
+    //   if (!keyFromStore) {
+    //     // eslint-disable-next-line no-alert
+    //     alert('Error: Private key not found')
+    //     return false
+    //   }
 
-      // console.log(keyFromStore)
-      // console.log('dataToSign: ', dataToSign)
+    //   // console.log(keyFromStore)
+    //   // console.log('dataToSign: ', dataToSign)
 
-      return window.crypto.subtle
-        .sign(
-          {
-            name: 'ECDSA',
-            hash: { name: 'SHA-256' } // can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
-          },
-          keyFromStore.value.privateKey, // from generateKey or importKey above
-          str2ab(dataToSign) // ArrayBuffer of data you want to sign
-        )
-        .then(signature => {
-          // returns an ArrayBuffer containing the signature
-          // console.log(new Uint8Array(signature))
-          const signedData = {
-            ...JSON.parse(dataToSign),
-            signature: ab2str(signature)
-          }
-          // console.log(signedData)
-          return signedData
-        })
-        .catch(err => {
-          console.error(err)
-          return false
-        })
-    },
+    //   return window.crypto.subtle
+    //     .sign(
+    //       {
+    //         name: 'ECDSA',
+    //         hash: { name: 'SHA-256' } // can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
+    //       },
+    //       keyFromStore.value.privateKey, // from generateKey or importKey above
+    //       str2ab(dataToSign) // ArrayBuffer of data you want to sign
+    //     )
+    //     .then(signature => {
+    //       // returns an ArrayBuffer containing the signature
+    //       // console.log(new Uint8Array(signature))
+    //       const signedData = {
+    //         ...JSON.parse(dataToSign),
+    //         signature: ab2str(signature)
+    //       }
+    //       // console.log(signedData)
+    //       return signedData
+    //     })
+    //     .catch(err => {
+    //       console.error(err)
+    //       return false
+    //     })
+    // },
     viewPatientSummary() {
       this.showPatientSummary = true
       this.$router.push('#patient-summary')

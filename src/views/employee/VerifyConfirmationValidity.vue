@@ -20,7 +20,7 @@
     >
       <div v-if="checkedPatient.isValid">
         This confirmation is valid and was issued by
-        {{ checkedPatient.confirmation.confirmedByName }}
+        {{ checkedPatient.confirmation.name }}
       </div>
       <div v-else>
         This confirmation is NOT valid
@@ -42,7 +42,7 @@ export default {
       // Fetch public key
       const publicKeysDB = new PublicKeysDB()
       const employeeKeyFromFirebase = await publicKeysDB.read(
-        patient.confirmation.confirmedById
+        patient.confirmation.id
       )
 
       const patientData = JSON.stringify(

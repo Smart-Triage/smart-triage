@@ -3,8 +3,9 @@
     <div
       class="w-14 h-14 flex justify-center items-center p-2 rounded-full border-4 font-bold"
       :class="{
-        'bg-green-400 border-green-500': !patient.isCovidSuspected,
-        'bg-red-400 border-red-500': patient.isCovidSuspected
+        'bg-green-400 border-green-500': !patient.confirmation
+          .infectionSuspected,
+        'bg-red-400 border-red-500': patient.confirmation.infectionSuspected
       }"
     >
       <ion-icon
@@ -17,8 +18,8 @@
     <div
       class="w-full bg-white text-black rounded-2xl px-4 py-4 my-4 border-4"
       :class="{
-        'border-green-400': !patient.isCovidSuspected,
-        'border-red-400': patient.isCovidSuspected
+        'border-green-400': !patient.confirmation.infectionSuspected,
+        'border-red-400': patient.confirmation.infectionSuspected
       }"
     >
       <div class="grid grid-cols-2 row-gap-6">
@@ -26,7 +27,7 @@
         <div class="flex flex-col items-start text-left leading-tight">
           <span>{{ $t('CB.CONFIRMED_BY') }}</span>
           <span class="text-secondary text-lg font-semibold">
-            {{ patient.confirmation.confirmedByName }}
+            {{ patient.confirmation.name }}
           </span>
         </div>
 
@@ -44,11 +45,11 @@
           <span
             class="text-lg font-semibold"
             :class="{
-              'text-secondary': patient.measuredTemperature <= 37,
-              'text-red-500': patient.measuredTemperature > 37
+              'text-secondary': patient.confirmation.temperature <= 37,
+              'text-red-500': patient.confirmation.temperature > 37
             }"
           >
-            {{ patient.measuredTemperature }}ºC
+            {{ patient.confirmation.temperature }}ºC
           </span>
         </div>
 
@@ -56,7 +57,7 @@
         <div class="flex flex-col items-end text-right leading-tight">
           <span>{{ $t('CB.IS_COVID_SUSPECTED') }}</span>
           <span
-            v-if="patient.isCovidSuspected"
+            v-if="patient.confirmation.infectionSuspected"
             class="text-primary text-lg font-semibold uppercase"
           >
             {{ $t('YES') }}
@@ -68,19 +69,19 @@
 
         <!-- FOR HOSPITAL -->
         <div
-          v-if="patient.confirmation.issuedForHospital"
+          v-if="patient.confirmation.issuedFor"
           class="col-span-2 flex justify-between items-center"
         >
           <div class="flex flex-col items-start text-left leading-tight">
             <span>{{ $t('CB.CONFIRMATION_ISSUED_FOR') }}</span>
             <span class="text-secondary text-lg font-semibold">
-              {{ getHospitalLongName(patient.confirmation.issuedForHospital) }}
+              {{ getHospitalLongName(patient.confirmation.issuedFor) }}
             </span>
           </div>
           <div class="flex justify-center items-center flex-grow-0">
             <img
               class="h-12 object-contain"
-              :src="getHospitalLogoPath(patient.confirmation.issuedForHospital)"
+              :src="getHospitalLogoPath(patient.confirmation.issuedFor)"
               alt="hospital logo"
             />
           </div>

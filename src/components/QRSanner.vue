@@ -76,7 +76,7 @@ export default {
 
       if (this.onlyValidPatient) {
         validatePatient(
-          result,
+          this.result,
           this.currentPatient,
           this.scanningConfirmationCode,
           this.verifying,
@@ -90,7 +90,7 @@ export default {
             console.error(err)
           })
       } else {
-        this.$emit('data', result)
+        this.$emit('data', this.result)
       }
     },
     async onInit(promise) {
