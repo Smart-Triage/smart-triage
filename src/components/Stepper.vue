@@ -24,7 +24,7 @@
         </template>
         <template v-slot:right>
           <router-link
-            v-if="currentPatient.finished"
+            v-if="isFinished(currentPatient)"
             class="skip-to-summary"
             :to="
               appMode === 'employee' ? '/employee#patient-summary' : '/summary'
@@ -158,12 +158,11 @@ import { mapGetters, mapMutations, mapState } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
-import getFormStepsMixin from '@/mixins/getFormStepsMixin'
-import isConfirmedMixin from '@/mixins/isConfirmedMixin'
+import { getFormStepsMixin, isConfirmedMixin, isFinishedMixin } from '@/mixins'
 
 export default {
   components: { ProgressBar, PatientForm },
-  mixins: [getFormStepsMixin, isConfirmedMixin],
+  mixins: [getFormStepsMixin, isConfirmedMixin, isFinishedMixin],
   data: () => ({
     currentStepNum: '0',
     visitedSteps: ['0'],

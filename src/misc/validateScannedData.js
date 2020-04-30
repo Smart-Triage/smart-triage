@@ -21,14 +21,12 @@ export default function validatePatient(
         // 'birthNumber',
         // 'phoneNumber',
         'answers',
-        'termsAccepted',
         'validityTimestamp'
       ]
-      if (scanningConfirmationCode || verifying) requiredKeys.push('signature')
+      // if (scanningConfirmationCode || verifying) requiredKeys.push('signature')
       const optionalKeys = [
         'confirmation',
         'isCovidSuspected',
-        'finished',
         'measuredTemperature'
       ]
 

@@ -13,9 +13,7 @@ export default {
               'answers',
               'confirmation',
               'isCovidSuspected',
-              'finished',
-              'signature',
-              'termsAccepted',
+              // 'signature',
               'measuredTemperature',
               'validityTimestamp'
             ].indexOf(key) > -1

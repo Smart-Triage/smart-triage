@@ -182,7 +182,7 @@ import PatientSummary from '@/components/PatientSummary'
 import ModalWindow from '@/components/ModalWindow'
 import Constants from '@/misc/constants'
 // import FeedbackModal from '@/components/modals/FeedbackModal'
-import isConfirmedMixin from '@/mixins/isConfirmedMixin'
+import { isConfirmedMixin, isFinishedMixin } from '@/mixins'
 
 export default {
   head() {
@@ -197,7 +197,7 @@ export default {
     ModalWindow
     // FeedbackModal
   },
-  mixins: [isConfirmedMixin],
+  mixins: [isConfirmedMixin, isFinishedMixin],
   data: () => ({
     allIsTrueAgreed: false,
     personalInfoAgreed: false,
@@ -214,14 +214,9 @@ export default {
   mounted() {
     if (this.currentPatient === undefined) {
       this.$router.push('/')
-    } else if (
-      !this.isExpired(this.currentPatient)
-      /* this.currentPatient.validityTimestamp.getTime() +
-        Constants.FORM_VALIDITY_PERIOD >
-      new Date().getTime() */
-    ) {
-      this.setCurrentPatientValueByKey({ key: 'finished', value: true })
-    } else {
+    } else if (!this.isFinished(this.currentPatient)) {
+      this.$router.push('/form')
+    } else if (this.isExpired(this.currentPatient)) {
       // 24 hour validity period ran out, inform the user and make him go back
       this.showValidityTimeoutModal = true
     }

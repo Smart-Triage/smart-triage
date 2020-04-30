@@ -216,9 +216,11 @@ import PatientSummary from '@/components/PatientSummary'
 import KeyStore from '@/misc/KeyStore'
 import { str2ab, ab2str } from '@/misc/helpers'
 import FullScreenModal from '@/components/modals/FullScreenModal'
-import getFormStepsMixin from '@/mixins/getFormStepsMixin'
-import hospitalDatabaseMixin from '@/mixins/hospitalDatabaseMixin'
-import stringifyPatientMixin from '@/mixins/stringifyPatientMixin'
+import {
+  getFormStepsMixin,
+  hospitalDatabaseMixin,
+  stringifyPatientMixin
+} from '@/mixins'
 
 export default {
   components: {

@@ -54,8 +54,7 @@
 import QrcodeVue from 'qrcode.vue'
 import { mapGetters } from 'vuex'
 import ConfirmationBox from '@/components/ConfirmationBox'
-import stringifyPatientMixin from '@/mixins/stringifyPatientMixin'
-import isConfirmedMixin from '@/mixins/isConfirmedMixin'
+import { stringifyPatientMixin, isConfirmedMixin } from '@/mixins'
 
 export default {
   components: { QrcodeVue, ConfirmationBox },

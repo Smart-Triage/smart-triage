@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import getFormStepsMixin from '@/mixins/getFormStepsMixin'
+import { getFormStepsMixin } from '@/mixins'
 
 export default {
   name: 'ProgressBar',

@@ -29,13 +29,11 @@ export default {
 
   updatePatient: (state, newPatient) => {
     const index = state.patients.findIndex(p => p.id === newPatient.id)
-    console.log('old: ', state.patients[index])
     const mergedPatient = {
       ...state.patients[index],
       ...newPatient
     }
     state.patients.splice(index, 1)
-    console.log('new: ', mergedPatient)
     return state.patients.push(mergedPatient)
 
     // const index = state.patients.findIndex(p => p.id === patient.id)
@@ -52,7 +50,6 @@ export default {
 
   invalidatePatientFormById: (state, patientId, markAsInvalid = true) => {
     const index = state.patients.findIndex(patient => patient.id === patientId)
-    state.patients[index].finished = false
     state.patients[index].answers = {}
     state.patients[index].invalid = markAsInvalid
     state.patients[index].visitedSteps = ['0']

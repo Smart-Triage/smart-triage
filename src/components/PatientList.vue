@@ -24,7 +24,7 @@
         <span v-if="isConfirmed(patient)">
           {{ $t('PATIENT_LIST.CONFIRMED') }}
         </span>
-        <span v-else-if="patient.finished && !isExpired(patient)">{{
+        <span v-else-if="isFinished(patient) && !isExpired(patient)">{{
           $t('PATIENT_LIST.FINISHED')
         }}</span>
         <span v-else-if="isExpired(patient)">{{
@@ -40,10 +40,10 @@
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
 import Constants from '@/misc/constants'
-import isConfirmedMixin from '@/mixins/isConfirmedMixin'
+import { isConfirmedMixin, isFinishedMixin } from '@/mixins'
 
 export default {
-  mixins: [isConfirmedMixin],
+  mixins: [isConfirmedMixin, isFinishedMixin],
   computed: {
     ...mapState('patients', ['patients'])
   },
@@ -69,7 +69,7 @@ export default {
         await this.invalidatePatientFormById(patient.id)
       }
       this.setCurrentPatientValueByKey({ key: 'invalid', value: false })
-      if (patient.finished) this.$router.push('/summary')
+      if (this.isFinished(patient)) this.$router.push('/summary')
       else this.$router.push('/form')
     },
     isExpired(patient) {

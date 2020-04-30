@@ -144,8 +144,7 @@
 <script>
 import { mapMutations, mapState } from 'vuex'
 import ConfirmationBox from '@/components/ConfirmationBox'
-import getFormStepsMixin from '@/mixins/getFormStepsMixin'
-import isConfirmedMixin from '@/mixins/isConfirmedMixin'
+import { getFormStepsMixin, isConfirmedMixin } from '@/mixins'
 
 export default {
   components: { ConfirmationBox },

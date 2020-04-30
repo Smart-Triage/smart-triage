@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import hospitalDatabaseMixin from '@/mixins/hospitalDatabaseMixin'
+import { hospitalDatabaseMixin } from '@/mixins'
 
 export default {
   mixins: [hospitalDatabaseMixin],
