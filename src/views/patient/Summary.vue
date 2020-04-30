@@ -18,7 +18,7 @@
 
     <div class="page-content">
       <img
-        v-if="!currentPatient.confirmed"
+        v-if="!isConfirmed(currentPatient)"
         class="mx-auto my-4"
         src="@/assets/img/home-page-welcome-img.png"
         alt=""
@@ -26,7 +26,7 @@
 
       <PatientSummary :patient="currentPatient"></PatientSummary>
 
-      <div v-if="!currentPatient.confirmed" class="items-center card">
+      <div v-if="!isConfirmed(currentPatient)" class="items-center card">
         <div class="flex flex-row w-full justify-between mb-2">
           <p class="text-left text-xs">
             {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
@@ -75,7 +75,7 @@
         ></FeedbackModal>
       </portal>
       <div
-        v-if="currentPatient.confirmed && !currentPatient.hasGivenFeedback"
+        v-if="isConfirmed(currentPatient) && !currentPatient.hasGivenFeedback"
         class="flex flex-col items-center bg-white rounded-2xl px-8 py-4 m-4"
       >
         {{ $t('SUMMARY.DO_YOU_LIKE_OUR_APP') }}?
@@ -100,14 +100,15 @@
       <!-- ACCEPT TERMS AND SHOW QR CODE -->
       <div
         v-if="
-          (!allIsTrueAgreed || !personalInfoAgreed) && !currentPatient.confirmed
+          (!allIsTrueAgreed || !personalInfoAgreed) &&
+            !isConfirmed(currentPatient)
         "
         class="btn-primary w-full max-w-sm flex justify-center mx-4 mb-8 p-8 not-active-qr weird-safari-button-fix"
       >
         {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
       </div>
       <button
-        v-else-if="!currentPatient.confirmed"
+        v-else-if="!isConfirmed(currentPatient)"
         class="w-full max-w-sm flex justify-center items-center bg-primary rounded-full text-white text-lg mx-4 mb-8 p-2 weird-safari-button-fix"
         @click="
           !isExpired(currentPatient)
@@ -119,7 +120,7 @@
         <div class="ml-2">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
       </button>
       <router-link
-        v-if="currentPatient.confirmed"
+        v-if="isConfirmed(currentPatient)"
         to="/patient-qr-code"
         class="w-full max-w-sm flex justify-center items-center bg-primary rounded-full text-white text-lg mx-4 mb-8 p-2 weird-safari-button-fix"
       >
@@ -131,7 +132,7 @@
         ><ion-icon name="person-add-outline"></ion-icon>
         <div class="button-text">Add another person</div>
       </router-link> -->
-      <ModalWindow v-if="showModal && !currentPatient.confirmed">
+      <ModalWindow v-if="showModal && !isConfirmed(currentPatient)">
         <template v-slot:header>
           <h2 class="p-0">{{ $t('SUMMARY.WARNING') }}</h2>
         </template>
@@ -181,6 +182,7 @@ import PatientSummary from '@/components/PatientSummary'
 import ModalWindow from '@/components/ModalWindow'
 import Constants from '@/misc/constants'
 // import FeedbackModal from '@/components/modals/FeedbackModal'
+import isConfirmedMixin from '@/mixins/isConfirmedMixin'
 
 export default {
   head() {
@@ -195,6 +197,7 @@ export default {
     ModalWindow
     // FeedbackModal
   },
+  mixins: [isConfirmedMixin],
   data: () => ({
     allIsTrueAgreed: false,
     personalInfoAgreed: false,
@@ -261,7 +264,7 @@ export default {
       }
       const validityTimestamp = new Date(patient.validityTimestamp)
       return (
-        !patient.confirmed &&
+        !this.isConfirmed(patient) &&
         (patient.invalid ||
           validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
             new Date().getTime())

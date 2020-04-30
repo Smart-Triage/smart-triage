@@ -1,13 +1,13 @@
 <template>
   <div
     class="page-wrapper"
-    :class="{ 'bg-confirmed': currentPatient.confirmed }"
+    :class="{ 'bg-confirmed': isConfirmed(currentPatient) }"
   >
     <NavBar bg-transparent>
       <template v-slot:left>
         <router-link
           to="/summary"
-          :class="{ 'text-white': currentPatient.confirmed }"
+          :class="{ 'text-white': isConfirmed(currentPatient) }"
           ><ion-icon name="close" size="large"></ion-icon
         ></router-link>
       </template>
@@ -32,12 +32,12 @@
       </div>
 
       <!-- CONFIRMATION BOX -->
-      <div v-if="isConfirmed" class="is-confirmed w-full mt-4">
+      <div v-if="isConfirmed(currentPatient)" class="is-confirmed w-full mt-4">
         <ConfirmationBox :patient="currentPatient"></ConfirmationBox>
       </div>
 
       <router-link
-        v-if="!currentPatient.confirmed"
+        v-if="!isConfirmed(currentPatient)"
         class="flex-shrink-0 flex items-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-6"
         to="/scan-confirmation-qr-code"
       >
@@ -55,6 +55,7 @@ import QrcodeVue from 'qrcode.vue'
 import { mapGetters } from 'vuex'
 import ConfirmationBox from '@/components/ConfirmationBox'
 import stringifyPatientMixin from '@/mixins/stringifyPatientMixin'
+import isConfirmedMixin from '@/mixins/isConfirmedMixin'
 
 export default {
   components: { QrcodeVue, ConfirmationBox },
@@ -65,16 +66,9 @@ export default {
       }
     }
   },
-  mixins: [stringifyPatientMixin],
+  mixins: [stringifyPatientMixin, isConfirmedMixin],
   computed: {
     ...mapGetters('patients', ['currentPatient']),
-    isConfirmed() {
-      return !!(
-        this.currentPatient.confirmation &&
-        this.currentPatient.confirmation.confirmedById.length > 1 &&
-        this.currentPatient.confirmation.timestamp
-      )
-    },
     qrCodeSize() {
       if (window.innerWidth < 400) return window.innerWidth * 0.85
       if (window.innerWidth < 500) return window.innerWidth * 0.8

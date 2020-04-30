@@ -339,10 +339,6 @@ export default {
     },
     async viewConfirmationQR() {
       await this.setCurrentPatientValueByKey({
-        key: 'confirmed',
-        value: true
-      })
-      await this.setCurrentPatientValueByKey({
         key: 'confirmation',
         value: {
           confirmedByName: this.fullName,

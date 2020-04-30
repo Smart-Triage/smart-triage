@@ -21,7 +21,9 @@
         </span>
       </div>
       <div class="patient-item-right">
-        <span v-if="patient.confirmed">{{ $t('PATIENT_LIST.CONFIRMED') }}</span>
+        <span v-if="isConfirmed(patient)">
+          {{ $t('PATIENT_LIST.CONFIRMED') }}
+        </span>
         <span v-else-if="patient.finished && !isExpired(patient)">{{
           $t('PATIENT_LIST.FINISHED')
         }}</span>
@@ -38,8 +40,10 @@
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex'
 import Constants from '@/misc/constants'
+import isConfirmedMixin from '@/mixins/isConfirmedMixin'
 
 export default {
+  mixins: [isConfirmedMixin],
   computed: {
     ...mapState('patients', ['patients'])
   },
@@ -74,7 +78,7 @@ export default {
       }
       const validityTimestamp = new Date(patient.validityTimestamp)
       return (
-        !patient.confirmed &&
+        !this.isConfirmed(patient) &&
         (patient.invalid ||
           validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
             new Date().getTime())

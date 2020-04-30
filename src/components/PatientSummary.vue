@@ -1,6 +1,6 @@
 <template>
   <div v-if="patient">
-    <div v-if="isConfirmed" class="is-confirmed">
+    <div v-if="isConfirmed(patient)" class="is-confirmed">
       <ConfirmationBox :patient="patient"></ConfirmationBox>
     </div>
     <button
@@ -50,7 +50,7 @@
       </div>
 
       <button
-        v-if="!patient.confirmed && appMode !== 'employee'"
+        v-if="!isConfirmed(patient) && appMode !== 'employee'"
         class="edit-btn"
         @click="edit('0')"
       >
@@ -134,7 +134,7 @@
           ></ion-icon>
         </div>
       </div>
-      <button v-if="!patient.confirmed" class="edit-btn" @click="edit('1')">
+      <button v-if="!isConfirmed(patient)" class="edit-btn" @click="edit('1')">
         {{ $t('EDIT') }}
       </button>
     </div>
@@ -145,24 +145,19 @@
 import { mapMutations, mapState } from 'vuex'
 import ConfirmationBox from '@/components/ConfirmationBox'
 import getFormStepsMixin from '@/mixins/getFormStepsMixin'
+import isConfirmedMixin from '@/mixins/isConfirmedMixin'
 
 export default {
   components: { ConfirmationBox },
-  mixins: [getFormStepsMixin],
+  mixins: [getFormStepsMixin, isConfirmedMixin],
   props: {
     patient: { type: Object, required: true }
   },
   data() {
     return {
-      patientInfoHidden:
-        this.patient.confirmation &&
-        this.patient.confirmation.confirmedById.length > 1 &&
-        this.patient.confirmation.timestamp,
+      patientInfoHidden: this.isConfirmed(this.patient),
       patientSymptomsHidden:
-        this.appMode === 'patient' ||
-        (this.patient.confirmation &&
-          this.patient.confirmation.confirmedById.length > 1 &&
-          this.patient.confirmation.timestamp)
+        this.appMode === 'patient' || this.isConfirmed(this.patient)
     }
   },
   computed: {
@@ -175,13 +170,6 @@ export default {
           stepsToShow.push(step)
       })
       return stepsToShow
-    },
-    isConfirmed() {
-      return !!(
-        this.patient.confirmation &&
-        this.patient.confirmation.confirmedById.length > 1 &&
-        this.patient.confirmation.timestamp
-      )
     }
   },
   methods: {

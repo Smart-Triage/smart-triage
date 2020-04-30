@@ -27,7 +27,6 @@ export default function validatePatient(
       if (scanningConfirmationCode || verifying) requiredKeys.push('signature')
       const optionalKeys = [
         'confirmation',
-        'confirmed',
         'isCovidSuspected',
         'finished',
         'measuredTemperature'

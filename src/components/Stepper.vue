@@ -159,10 +159,11 @@ import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
 import getFormStepsMixin from '@/mixins/getFormStepsMixin'
+import isConfirmedMixin from '@/mixins/isConfirmedMixin'
 
 export default {
   components: { ProgressBar, PatientForm },
-  mixins: [getFormStepsMixin],
+  mixins: [getFormStepsMixin, isConfirmedMixin],
   data: () => ({
     currentStepNum: '0',
     visitedSteps: ['0'],
@@ -184,7 +185,7 @@ export default {
     }
   },
   mounted() {
-    if (this.currentPatient.confirmed === true) {
+    if (this.isConfirmed(this.currentPatient)) {
       this.$router.push('/')
     }
 

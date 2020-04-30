@@ -11,7 +11,6 @@ export default {
               // 'birthNumber',
               // 'phoneNumber',
               'answers',
-              'confirmed',
               'confirmation',
               'isCovidSuspected',
               'finished',
