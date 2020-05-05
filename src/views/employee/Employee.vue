@@ -261,7 +261,7 @@ export default {
     patientTemperature: null,
     infectionSuspected: null,
     stringifiedPatient: null,
-    qrLevel: 'H'
+    qrLevel: 'M'
   }),
   computed: {
     ...mapGetters('patients', ['currentPatient']),

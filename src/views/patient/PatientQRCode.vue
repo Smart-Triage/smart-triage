@@ -81,7 +81,7 @@ export default {
   },
   mixins: [stringifyPatientMixin, isConfirmedMixin],
   data: () => ({
-    qrLevel: 'H'
+    qrLevel: 'M'
   }),
   computed: {
     ...mapGetters('patients', ['currentPatient']),
