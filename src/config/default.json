@@ -2,9 +2,7 @@
   "supportedLocales": [
     { "langName": "Česky", "langCode": "cs" },
     { "langName": "Slovenčina", "langCode": "sk" },
-    { "langName": "English", "langCode": "en" },
-    { "langName": "русский", "langCode": "ru" },
-    { "langName": "Tiếng Việt", "langCode": "vi" }
+    { "langName": "English", "langCode": "en" }
   ],
   "formSteps": {
     "cs": [
