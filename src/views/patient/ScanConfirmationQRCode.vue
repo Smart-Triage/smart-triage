@@ -6,12 +6,11 @@
         {{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}
       </p>
       <QRScanner
-        class="flex-grow my-6 py-6"
+        class="flex-grow"
         :only-valid-patient="true"
         :scanning-confirmation-code="true"
         @data="processConfirmation"
       ></QRScanner>
-      <loading class="mb-6" />
     </div>
   </div>
 </template>
@@ -19,11 +18,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import QRScanner from '@/components/QRSanner'
-import Loading from '../../components/Loading.vue'
 
 export default {
   components: {
-    Loading,
     QRScanner
   },
   head() {
