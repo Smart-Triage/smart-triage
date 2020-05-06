@@ -21,7 +21,7 @@
       </strong>
 
       <strong class="flex-shrink">
-        {{ getPatientFullName() }}
+        {{ `${currentPatient.firstName} ${currentPatient.lastName}` }}
       </strong>
       <!-- QR CODE -->
       <div class="bg-white p-4 mb-6 mt-2">
