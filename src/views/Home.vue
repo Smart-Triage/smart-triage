@@ -184,6 +184,14 @@
           <p class="mx-auto mt-6">{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
         </div>
       </div>
+      <footer>
+        <cookie-law
+          button-link="google.com"
+          button-link-text="More Info"
+          message="test"
+          theme="dark-lime"
+        ></cookie-law>
+      </footer>
     </div>
   </div>
 </template>
@@ -192,9 +200,11 @@
 import { mapState, mapActions } from 'vuex'
 import PatientList from '@/components/PatientList'
 import LocaleChanger from '@/components/LocaleChanger'
+import CookieLaw from 'vue-cookie-law'
 
 export default {
   components: {
+    CookieLaw,
     PatientList,
     LocaleChanger
   },
