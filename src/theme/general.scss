@@ -113,3 +113,22 @@ h2 {
 .bg-primary-color {
   background-color: $primary-color;
 }
+
+.Cookie{
+  background-color: white;
+  color: black;
+  border-top-left-radius:  30px;
+  border-top-right-radius:  30px;
+}
+
+.Cookie__button{
+  background-color: #f57b61 !important;
+  border-radius: 2em !important;
+}
+
+.link-text{
+  color: $secondary-color;
+  text-decoration: underline;
+}
+
+
