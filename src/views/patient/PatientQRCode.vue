@@ -16,14 +16,15 @@
       <!-- <p class="text-xl leading-tight">
         {{ $t('PATIENT_QR_CODE.FOLLOW_INSTRUCTIONS') }}
       </p> -->
-      <p class="my-2">
-        <strong>
-          {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
-        </strong>
-      </p>
+      <strong class="flex-grow">
+        {{ $t('PATIENT_QR_CODE.WHEN_ASKED_SHOW_THIS_CODE') }}
+      </strong>
 
+      <strong class="flex-shrink">
+        {{ `${currentPatient.firstName} ${currentPatient.lastName}` }}
+      </strong>
       <!-- QR CODE -->
-      <div class="bg-white p-4">
+      <div class="bg-white p-4 mb-6 mt-2">
         <QrcodeVue
           :value="stringifyPatient(currentPatient)"
           :size="qrCodeSize"
@@ -50,16 +51,18 @@
         <ConfirmationBox :patient="currentPatient"></ConfirmationBox>
       </div>
 
-      <router-link
-        v-if="!isConfirmed(currentPatient)"
-        class="flex-shrink-0 flex items-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-4"
-        to="/scan-confirmation-qr-code"
-      >
-        <ion-icon name="scan-outline"></ion-icon>
-        <span class="ml-2">
-          {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
-        </span>
-      </router-link>
+      <div class="flex-grow">
+        <router-link
+          v-if="!isConfirmed(currentPatient)"
+          class="flex-shrink-0 flex items-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-6"
+          to="/scan-confirmation-qr-code"
+        >
+          <ion-icon name="scan-outline"></ion-icon>
+          <span class="ml-2">
+            {{ $t('PATIENT_QR_CODE.SCAN_CONFIRMATION') }}
+          </span>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -68,7 +71,7 @@
 import QrcodeVue from 'qrcode.vue'
 import { mapGetters } from 'vuex'
 import ConfirmationBox from '@/components/ConfirmationBox'
-import { stringifyPatientMixin, isConfirmedMixin } from '@/mixins'
+import { isConfirmedMixin, stringifyPatientMixin } from '@/mixins'
 
 export default {
   components: { QrcodeVue, ConfirmationBox },
@@ -95,6 +98,11 @@ export default {
     if (!this.currentPatient) {
       this.$router.push('/')
     }
+  },
+  methods: {
+    getPatientFullName() {
+      return `${this.currentPatient.firstName} ${this.currentPatient.lastName}`
+    }
   }
 }
 </script>
@@ -102,16 +110,6 @@ export default {
 <style lang="scss" scoped>
 @import '@/theme/variables.scss';
 @import '@/theme/general.scss';
-
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 3rem;
-  height: 100%;
-  min-height: 100vh;
-}
 
 .button-qr-close {
   margin: 0 0 1em 0;
@@ -123,20 +121,6 @@ export default {
   align-items: center;
   justify-content: center;
   width: fit-content;
-}
-
-.home-page-top-img {
-  display: flex;
-  text-align: center;
-  align-items: center;
-  flex-direction: column;
-  h1 {
-    font-size: 1.6em;
-    padding: 1em 2em 0 2em;
-  }
-  img {
-    margin: 0;
-  }
 }
 
 .bg-confirmed {
