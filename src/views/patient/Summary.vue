@@ -132,7 +132,10 @@
         ><ion-icon name="person-add-outline"></ion-icon>
         <div class="button-text">Add another person</div>
       </router-link> -->
-      <ModalWindow v-if="showModal && !isConfirmed(currentPatient)">
+      <ModalWindow
+        v-if="showModal && !isConfirmed(currentPatient)"
+        :background-class="'bg-red-600'"
+      >
         <template v-slot:header>
           <h2 class="p-0">{{ $t('SUMMARY.WARNING') }}</h2>
         </template>
@@ -150,7 +153,10 @@
           </router-link>
         </template>
       </ModalWindow>
-      <ModalWindow v-if="showValidityTimeoutModal">
+      <ModalWindow
+        v-if="showValidityTimeoutModal"
+        :background-class="'bg-red-600'"
+      >
         <template v-slot:header>
           <h2 class="p-0">{{ $t('SUMMARY.VALIDITY_TIMEOUT') }}</h2>
         </template>

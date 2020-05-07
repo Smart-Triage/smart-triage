@@ -1,6 +1,7 @@
 <template>
-  <div class="page-wrapper smooth-opacity">
+  <div class="page-wrapper">
     <div
+      class="smooth-opacity"
       :class="{
         'opacity-50': !areCookiesAccepted
       }"
@@ -40,11 +41,16 @@
         </p>
 
         <!-- PATIENT LIST -->
-        <PatientList class="w-full my-1"></PatientList>
+        <PatientList v-if="cameraCheckPassed" class="w-full my-1"></PatientList>
 
         <!-- ACTIONS -->
         <div class="w-full">
-          <div v-if="patients.length === 0">
+          <div
+            v-if="
+              patients.length === 0 ||
+                (patients.length > 0 && !cameraCheckPassed)
+            "
+          >
             <button class="btn-primary" @click="createPatient">
               <ion-icon
                 class="btn-icon text-xl"
@@ -199,6 +205,26 @@
     <footer>
       <cookies-check @accepted="hideOverlay()" />
     </footer>
+    <div v-if="!cameraCheckPassed">
+      <qrcode-stream class="hidden" @init="onInit"></qrcode-stream>
+    </div>
+    <ModalWindow v-if="showCameraModal" :background-class="'bg-white'">
+      <template v-slot:header>
+        <h2 class="p-0 text-primary-black text-xl font-semibold">
+          {{ $t('HOME.COMPATIBILITY_MODAL.HEADER') }}
+        </h2>
+      </template>
+      <template v-slot:body>
+        <p class="text-primary-black text-base">
+          {{ $t('HOME.COMPATIBILITY_MODAL.TEXT') }}
+        </p>
+      </template>
+      <template v-slot:footer>
+        <button class="btn-primary mb-3" @click="showCameraModal = false">
+          {{ $t('HOME.COMPATIBILITY_MODAL.BUTTON') }}
+        </button>
+      </template>
+    </ModalWindow>
   </div>
 </template>
 
@@ -207,12 +233,17 @@ import { mapActions, mapState } from 'vuex'
 import PatientList from '@/components/PatientList'
 import LocaleChanger from '@/components/LocaleChanger'
 import CookiesCheck from '@/components/CookiesCheck'
+import { QrcodeStream } from 'vue-qrcode-reader'
+import isCompatiblePhoneAndBrowser from '@/misc/mobile-check-service'
+import ModalWindow from '@/components/ModalWindow'
 
 export default {
   components: {
+    ModalWindow,
     PatientList,
     LocaleChanger,
-    CookiesCheck
+    CookiesCheck,
+    QrcodeStream
   },
   head() {
     return {
@@ -231,7 +262,8 @@ export default {
     }
   },
   data: () => ({
-    showModal: false,
+    cameraCheckPassed: false,
+    showCameraModal: false,
     areCookiesAccepted: localStorage.getItem('cookie:accepted')
   }),
   computed: {
@@ -245,8 +277,27 @@ export default {
     ...mapActions('patients', ['createNewPatient']),
     ...mapActions('settings', ['setAppMode']),
     async createPatient() {
-      await this.createNewPatient()
-      this.$router.push('/form')
+      if (this.cameraCheckPassed) {
+        await this.createNewPatient()
+        this.$router.push('/form')
+      } else {
+        this.showCameraModal = true
+      }
+    },
+    async onInit(promise) {
+      try {
+        await promise
+        this.cameraCheckPassed = true
+      } catch (error) {
+        this.$log.error('QR Code Reader Problem:', error.name)
+        this.cameraCheckPassed = false
+        this.showCameraModal = true
+      } finally {
+        if (!isCompatiblePhoneAndBrowser()) {
+          this.showCameraModal = true
+          this.$log.error('QR Code Phone Problem')
+        }
+      }
     },
     hideOverlay() {
       this.areCookiesAccepted = true

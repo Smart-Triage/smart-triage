@@ -83,6 +83,11 @@
       "WHERE_IT_WORKS_H": "Where can I use this application?",
       "WHERE_IT_WORKS_P": "From 27.4. test operation is underway at trial site 4 (building S) at the Fakultní nemocnici Královské Vinohrady in Prague"
     },
+    "COMPATIBILITY_MODAL": {
+      "HEADER": "Unsupported phone/browser",
+      "TEXT": "To be able to use this application you have to use the curent version of Google Chrome (Safari on Apple devices)",
+      "BUTTON": "I understand"
+    },
     "AUTHORS": {
       "PARTNERS": "This project is under the auspices of Charles University",
       "US": "We are a team of students from the 2nd and 3rd Faculty of Medicine, Charles University and FIT CTU.",
