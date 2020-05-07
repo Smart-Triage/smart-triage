@@ -2,10 +2,11 @@
   <div class="page-wrapper">
     <NavBar sticky back-button></NavBar>
     <div class="page-content">
-      <p class="text-3xl leading-tight">
+      <p class="text-3xl leading-tight flex-grow my-6">
         {{ $t('SCAN_CONFIRMATION_QR_CODE.SCAN_CONFIRMATION_QR_CODE') }}
       </p>
       <QRScanner
+        class="flex-grow"
         :only-valid-patient="true"
         :scanning-confirmation-code="true"
         @data="processConfirmation"
