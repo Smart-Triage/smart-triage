@@ -1,7 +1,6 @@
 <template>
-  <div>
+  <div class="page-wrapper smooth-opacity">
     <div
-      class="page-wrapper smooth-opacity"
       :class="{
         'opacity-50': !areCookiesAccepted
       }"
