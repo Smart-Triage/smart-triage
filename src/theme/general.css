@@ -1,4 +1,0 @@
-sbody:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: File to import not found or unreadable: @/theme/variables.\A         on line 1 of general.scss\A \A 1: @import '@/theme/variables';\A 2: @import '@/theme/transitions';\A 3: \A 4: h1 {\A 5:   @apply text-4xl;\A 6: }"; }
