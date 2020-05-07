@@ -3,7 +3,7 @@
     <div
       class="page-wrapper smooth-opacity"
       :class="{
-        'opacity-50': !areCookiesAccepted,
+        'opacity-50': !areCookiesAccepted
       }"
     >
       <NavBar slim>
