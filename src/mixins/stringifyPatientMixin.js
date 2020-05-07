@@ -9,8 +9,23 @@ export default {
             ) > -1
         )
         .reduce((res, key) => Object.assign(res, { [key]: patient[key] }), {})
-
-      return JSON.stringify(filteredPatient)
+      return this.convertPatientToCSV(filteredPatient)
+    },
+    convertPatientToCSV(patientObj) {
+      // debugger
+      console.log()
+      let csvString = 'answers;'
+      Object.entries(patientObj.answers).forEach(
+        answer => (csvString += `${answer[1]};`)
+      )
+      csvString = csvString.slice(0, -1)
+      csvString += '\n'
+      delete patientObj.answers
+      Object.entries(patientObj).forEach(val => {
+        csvString += `${val[0]};${val[1]}\n`
+      })
+      csvString += `appVersion;${this.$store.getters.appVersion}\n`
+      return csvString
     }
   }
 }
