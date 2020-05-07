@@ -1,3 +1,27 @@
+function parsePatientCSVtoObject(data) {
+  console.log(data)
+  const patientObject = {}
+  const rowsArray = data.split('\n')
+  rowsArray.forEach(value => {
+    const parsedRow = value.split(';')
+    const key = parsedRow[0]
+    if (parsedRow.length === 2) {
+      // eslint-disable-next-line prefer-destructuring
+      patientObject[key] = parsedRow[1]
+    } else {
+      const multipleFieldKey = parsedRow.shift()
+      let fieldCounter = 1
+      const fieldObject = {}
+      parsedRow.forEach(fieldValue => {
+        fieldObject[fieldCounter] = fieldValue
+        fieldCounter += 1
+      })
+      patientObject[multipleFieldKey] = fieldObject
+    }
+  })
+  return patientObject
+}
+
 export default function validatePatient(
   data,
   currentPatient,
@@ -8,9 +32,7 @@ export default function validatePatient(
   return new Promise((resolve, reject) => {
     let patient
     try {
-      patient = JSON.parse(data)
-
-      // console.log(patient)
+      patient = parsePatientCSVtoObject(data)
 
       // Validate JSON schema
       const incommingKeys = Object.keys(patient)
