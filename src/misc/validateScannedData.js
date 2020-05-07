@@ -1,5 +1,4 @@
 function parsePatientCSVtoObject(data) {
-  console.log(data)
   const patientObject = {}
   const rowsArray = data.split('\n')
   rowsArray.forEach(value => {
