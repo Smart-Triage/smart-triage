@@ -1,23 +1,26 @@
 function parsePatientCSVtoObject(data) {
+  const keys = ['appVersion', 'answers', 'id', 'validityTimestamp']
+  let keyIndex = 0
   const patientObject = {}
   const rowsArray = data.split('\n')
   rowsArray.forEach(value => {
     const parsedRow = value.split(';')
-    const key = parsedRow[0]
-    if (parsedRow.length === 2) {
+    if (parsedRow.length === 1) {
       // eslint-disable-next-line prefer-destructuring
-      patientObject[key] = parsedRow[1]
+      patientObject[keys[keyIndex]] = parsedRow[0]
     } else {
-      const multipleFieldKey = parsedRow.shift()
       let fieldCounter = 1
       const fieldObject = {}
       parsedRow.forEach(fieldValue => {
         fieldObject[fieldCounter] = fieldValue
         fieldCounter += 1
       })
-      patientObject[multipleFieldKey] = fieldObject
+      patientObject[keys[keyIndex]] = fieldObject
     }
+    keyIndex += 1
   })
+  // eslint-disable-next-line radix
+  patientObject.validityTimestamp = parseInt(patientObject.validityTimestamp)
   return patientObject
 }
 
@@ -44,9 +47,6 @@ export default function validatePatient(
           throw Error(`Error: Missing key "${key}" in JSON`)
       })
 
-      // we want a timestamp in a proper object format, validation comes later on
-      patient.validityTimestamp = new Date(patient.validityTimestamp)
-
       const incommingAnswers = Object.keys(patient.answers)
       const requiredAnswers = getFormSteps
         .map(step => step.order)
@@ -69,12 +69,7 @@ export default function validatePatient(
       if (scanningConfirmationCode) {
         if (
           currentPatient.id !== patient.id ||
-          // currentPatient.firstName !== patient.firstName ||
-          // currentPatient.lastName !== patient.lastName ||
-          // currentPatient.birthNumber !== patient.birthNumber ||
-          // currentPatient.phoneNumber !== patient.phoneNumber ||
-          new Date(currentPatient.validityTimestamp).getTime() !==
-            patient.validityTimestamp.getTime()
+          currentPatient.validityTimestamp !== patient.validityTimestamp
         ) {
           reject(new Error('WRONG_PATIENT'))
         } else {

@@ -355,7 +355,7 @@ export default {
       ) {
         this.setCurrentPatientValueByKey({
           key: 'validityTimestamp',
-          value: new Date()
+          value: Math.floor(Date.now() / 1000)
         })
       }
 
