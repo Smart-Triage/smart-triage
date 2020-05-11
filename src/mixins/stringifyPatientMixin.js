@@ -19,9 +19,20 @@ export default {
       csvString = csvString.slice(0, -1)
       csvString += '\n'
       delete patientObj.answers
+      // eslint-disable-next-line no-unused-vars
+      let confirmationObj
+      if (patientObj.confirmation) {
+        confirmationObj = patientObj.confirmation
+        delete patientObj.confirmation
+      }
       Object.entries(patientObj).forEach(val => {
         csvString += `${val[1]}\n`
       })
+      if (confirmationObj) {
+        Object.entries(confirmationObj).forEach(val => {
+          csvString += `${val[1]}\n`
+        })
+      }
       return csvString.slice(0, -1)
     }
   }

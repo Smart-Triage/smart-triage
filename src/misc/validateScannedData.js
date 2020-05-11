@@ -1,9 +1,31 @@
 function parsePatientCSVtoObject(data) {
-  const keys = ['appVersion', 'answers', 'id', 'validityTimestamp']
+  const keys = [
+    'appVersion',
+    'answers',
+    'id',
+    'validityTimestamp',
+    'confirmation'
+  ]
+  const confirmationKeys = [
+    'name',
+    'id',
+    'timestamp',
+    'issuedFor',
+    'infectionSuspected',
+    'temperature'
+  ]
   let keyIndex = 0
+  let confirmationKeyIndex = 0
   const patientObject = {}
   const rowsArray = data.split('\n')
-  rowsArray.forEach(value => {
+  let confirmationRows
+  // -1 because of confirmation is another whole object
+  const patientRows = rowsArray.splice(0, keys.length - 1)
+  if (rowsArray.length > 4) {
+    confirmationRows = rowsArray.splice(0, confirmationKeys.length)
+  }
+  // parse patient part
+  patientRows.forEach(value => {
     const parsedRow = value.split(';')
     if (parsedRow.length === 1) {
       // eslint-disable-next-line prefer-destructuring
@@ -19,6 +41,17 @@ function parsePatientCSVtoObject(data) {
     }
     keyIndex += 1
   })
+  // parse confirmation part
+  if (confirmationRows) {
+    const confirmationObj = {}
+    confirmationRows.forEach(value => {
+      const parsedRow = value.split(';')
+      // eslint-disable-next-line prefer-destructuring
+      confirmationObj[confirmationKeys[confirmationKeyIndex]] = parsedRow[0]
+      confirmationKeyIndex += 1
+    })
+    patientObject[keys[keyIndex]] = confirmationObj
+  }
   // eslint-disable-next-line radix
   patientObject.validityTimestamp = parseInt(patientObject.validityTimestamp)
   return patientObject
@@ -35,7 +68,6 @@ export default function validatePatient(
     let patient
     try {
       patient = parsePatientCSVtoObject(data)
-
       // Validate JSON schema
       const incommingKeys = Object.keys(patient)
       const requiredKeys = ['id', 'answers', 'validityTimestamp']
