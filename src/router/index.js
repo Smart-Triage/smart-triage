@@ -46,6 +46,14 @@ const router = new Router({
       }
     },
     {
+      path: '/compatibility-check',
+      name: 'compatibility-check',
+      component: () => import('@/views/CompatibilityCheck.vue'),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
       path: '/summary',
       name: 'summary',
       component: () =>
