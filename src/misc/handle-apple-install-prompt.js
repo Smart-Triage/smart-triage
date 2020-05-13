@@ -15,9 +15,10 @@ if (isIosOnBrowser) {
   if (!isNil(addToHomeIosPromptLastDate)) {
     limitDate = new Date(parseInt(addToHomeIosPromptLastDate, 10))
     limitDate.setMonth(limitDate.getMonth() + 1)
+    limitDate = Math.floor(limitDate / 1000)
   }
 
-  if (isNil(limitDate) || now >= limitDate.getTime()) {
+  if (isNil(limitDate) || now >= limitDate) {
     store.commit('app/setShowAddToHomeScreenModalForApple', true)
   }
 }

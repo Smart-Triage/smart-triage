@@ -362,7 +362,7 @@ export default {
         value: {
           name: this.fullName,
           id: this.user.id,
-          timestamp: new Date(),
+          timestamp: Math.floor(Date.now() / 1000),
           issuedFor: this.hospital,
           infectionSuspected: this.infectionSuspected,
           temperature: this.currentPatient.measuredTemperature
