@@ -11,9 +11,9 @@
       <h1 class="flex-shrink font-bold text-3xl mx-2">
         {{ 'Aplikácia pre správne fungovanie vyžaduje prístup k fotoaparátu' }}
       </h1>
-      <div class="flex-grow mt-12 mb-5">
+      <div class="flex-grow mt-12">
         <div class="flex w-screen justify-between">
-          <button class="btn-primary" @click="$router.push('home')">
+          <button class="btn-primary btn-back" @click="$router.push('home')">
             {{ 'Späť' }}
           </button>
           <button class="btn-primary" @click="cameraCheckPassed = false">
