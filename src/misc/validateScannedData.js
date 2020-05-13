@@ -34,7 +34,7 @@ function parsePatientCSVtoObject(data) {
       let fieldCounter = 1
       const fieldObject = {}
       parsedRow.forEach(fieldValue => {
-        fieldObject[fieldCounter] = fieldValue
+        fieldObject[fieldCounter] = fieldValue === 'true'
         fieldCounter += 1
       })
       patientObject[keys[keyIndex]] = fieldObject
