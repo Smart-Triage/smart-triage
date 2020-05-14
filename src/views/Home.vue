@@ -144,55 +144,86 @@
               </p>
             </div>
           </div>
-          <p>{{ $t('HOME.AUTHORS.PARTNERS') }}</p>
+          <!-- <p>{{ $t('HOME.AUTHORS.PARTNERS') }}</p>
           <img
             class="my-8 mx-auto"
             src="@/assets/img/charles-university-logo.png"
             alt="Charles University logo"
-          />
-        </div>
-        <div
-          class="footer home-h2-secondary p-6 mt-4 border-app text-left w-full max-w-lg"
-        >
-          <img
-            class="mb-8 mx-auto "
-            src="@/assets/img/logo.svg"
-            alt="Smart Triage logo"
-          />
-          <p>
-            <a href="">{{ $t('HOME.FOOTER.CONTACT') }}</a>
-          </p>
-          <p>
-            <a href="">{{ $t('HOME.FOOTER.FAQ') }}</a>
-          </p>
-          <p>
-            <a href="">{{ $t('HOME.FOOTER.FOR_HOSPITALS') }}</a>
-          </p>
-          <p>
-            <a href="">{{ $t('HOME.FOOTER.FOR_EMPLOYEES') }}</a>
-          </p>
-          <p>
-            <router-link to="/settings">
-              {{ $t('HOME.SETTINGS') }}
-            </router-link>
-          </p>
-          <div class="divider"></div>
-          <p>
-            <a href="">{{ $t('HOME.FOOTER.ABOUT_US') }}</a>
-          </p>
-          <p>
-            <a href="./privacy-policy/privacy-policy-cs.pdf">
-              {{ $t('HOME.FOOTER.PRIVACY_POLICY') }}
+          /> -->
+
+          <!-- PARTNERS -->
+          <h2>{{ $t('HOME.PARTNERS_H') }}</h2>
+          <div class="w-full flex justify-around items-center my-8">
+            <a href="https://artinsolutions.com">
+              <img
+                src="@/assets/img/partners-logos/artin.png"
+                alt="Artin company logo"
+            /></a>
+
+            <a href="https://cuni.cz/">
+              <img
+                src="@/assets/img/charles-university-logo.png"
+                alt="Charles University logo"
+              />
             </a>
-          </p>
-          <p>
-            <a href="./privacy-policy/privacy-policy-cs.pdf">
-              {{ $t('HOME.FOOTER.TERMS_OF_SERVICE') }}
-            </a>
-          </p>
-          <div class="copyright">
-            <p class="mx-auto mt-6">{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
           </div>
+        </div>
+      </div>
+
+      <!-- CALL TO ACTION -->
+      <div class="w-full flex flex-col justify-center items-center mt-16">
+        <p class="text-xl text-secondary font-semibold">
+          {{ $t('HOME.FILL_FORM_IN_YOUR_PHONE') }}<br />
+          {{ $t('HOME.SHORTEN_THE_WAIT') }}
+        </p>
+        <button class="btn-primary mt-4" @click="createPatient">
+          <ion-icon class="btn-icon text-xl" name="create-outline"></ion-icon>
+          <span>{{ $t('HOME.FILL_FORM') }}</span>
+        </button>
+      </div>
+
+      <!-- FOOTER -->
+      <div
+        class="footer home-h2-secondary p-6 mt-4 border-app text-left w-full max-w-lg"
+      >
+        <img
+          class="h-12 mx-auto"
+          src="@/assets/img/logo.svg"
+          alt="Smart Triage logo"
+        />
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.CONTACT') }}</a>
+        </p>
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.FAQ') }}</a>
+        </p>
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.FOR_HOSPITALS') }}</a>
+        </p>
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.FOR_EMPLOYEES') }}</a>
+        </p>
+        <p>
+          <router-link to="/settings">
+            {{ $t('HOME.SETTINGS') }}
+          </router-link>
+        </p>
+        <div class="divider"></div>
+        <p>
+          <a href="">{{ $t('HOME.FOOTER.ABOUT_US') }}</a>
+        </p>
+        <p>
+          <a href="./privacy-policy/privacy-policy-cs.pdf">
+            {{ $t('HOME.FOOTER.PRIVACY_POLICY') }}
+          </a>
+        </p>
+        <p>
+          <a href="./privacy-policy/privacy-policy-cs.pdf">
+            {{ $t('HOME.FOOTER.TERMS_OF_SERVICE') }}
+          </a>
+        </p>
+        <div class="copyright">
+          <p class="mx-auto mt-6">{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
         </div>
       </div>
     </div>
