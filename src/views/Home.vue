@@ -87,6 +87,8 @@
         <h2>{{ $t('HOME.PERSONAL_INFO.APP_H') }}</h2>
         <p>{{ $t('HOME.PERSONAL_INFO.APP_P') }}</p>
       </div>
+
+      <!-- TEAM -->
       <div
         class="text-center w-full max-w-lg home-h2-secondary bg-white px-6 pb-4 mt-4 border-app"
       >
@@ -134,18 +136,43 @@
             </p>
           </div>
         </div>
-        <p>{{ $t('HOME.AUTHORS.PARTNERS') }}</p>
-        <img
-          class="my-8 mx-auto"
-          src="@/assets/img/charles-university-logo.png"
-          alt="Charles University logo"
-        />
+
+        <!-- PARTNERS -->
+        <h2>{{ $t('HOME.PARTNERS_H') }}</h2>
+        <div class="w-full flex justify-around items-center my-8">
+          <a href="https://artinsolutions.com">
+            <img
+              src="@/assets/img/partners-logos/artin.png"
+              alt="Artin company logo"
+          /></a>
+
+          <a href="https://cuni.cz/">
+            <img
+              src="@/assets/img/charles-university-logo.png"
+              alt="Charles University logo"
+            />
+          </a>
+        </div>
       </div>
+
+      <!-- CALL TO ACTION -->
+      <div class="m-8 mt-16">
+        <p class="text-xl text-secondary font-semibold">
+          {{ $t('HOME.FILL_FORM_IN_YOUR_PHONE') }}<br />
+          {{ $t('HOME.SHORTEN_THE_WAIT') }}
+        </p>
+        <button class="btn-primary mt-4" @click="createPatient">
+          <ion-icon class="btn-icon text-xl" name="create-outline"></ion-icon>
+          <span>{{ $t('HOME.FILL_FORM') }}</span>
+        </button>
+      </div>
+
+      <!-- FOOTER -->
       <div
         class="footer home-h2-secondary p-6 mt-4 border-app text-left w-full max-w-lg"
       >
         <img
-          class="mb-8 mx-auto "
+          class="h-12 mx-auto"
           src="@/assets/img/logo.svg"
           alt="Smart Triage logo"
         />
