@@ -76,12 +76,11 @@ export default {
       if (!patient.validityTimestamp) {
         return false
       }
-      const validityTimestamp = new Date(patient.validityTimestamp)
       return (
         !this.isConfirmed(patient) &&
         (patient.invalid ||
-          validityTimestamp.getTime() + Constants.FORM_VALIDITY_PERIOD <
-            new Date().getTime())
+          patient.validityTimestamp + Constants.FORM_VALIDITY_PERIOD <
+            Math.floor(Date.now() / 1000))
       )
     },
     checkAndProcessExpiration(patient) {
