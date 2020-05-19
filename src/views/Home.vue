@@ -1,6 +1,7 @@
 <template>
-  <div class="page-wrapper smooth-opacity">
+  <div class="page-wrapper">
     <div
+      class="smooth-opacity"
       :class="{
         'opacity-50': !areCookiesAccepted
       }"
@@ -45,7 +46,10 @@
         <!-- ACTIONS -->
         <div class="w-full">
           <div v-if="patients.length === 0">
-            <button class="btn-primary" @click="createPatient">
+            <button
+              class="btn-primary"
+              @click="$router.push('/compatibility-check')"
+            >
               <ion-icon
                 class="btn-icon text-xl"
                 name="create-outline"
@@ -262,7 +266,6 @@ export default {
     }
   },
   data: () => ({
-    showModal: false,
     areCookiesAccepted: localStorage.getItem('cookie:accepted')
   }),
   computed: {
@@ -275,12 +278,12 @@ export default {
   methods: {
     ...mapActions('patients', ['createNewPatient']),
     ...mapActions('settings', ['setAppMode']),
+    hideOverlay() {
+      this.areCookiesAccepted = true
+    },
     async createPatient() {
       await this.createNewPatient()
       this.$router.push('/form')
-    },
-    hideOverlay() {
-      this.areCookiesAccepted = true
     }
   }
 }

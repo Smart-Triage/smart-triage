@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div
-      v-for="patient in patients"
-      :key="patient.id"
-      class="patient-item"
-      @click="selectPatient(patient)"
-    >
-      <div class="patient-item-left">
+    <div v-for="patient in patients" :key="patient.id" class="patient-item">
+      <ion-icon
+        class="flex-shrink text-red-600"
+        name="trash"
+        @click="removePatient(key)"
+      ></ion-icon>
+      <div class="patient-item-left flex-grow" @click="selectPatient(patient)">
         <ion-icon name="person-outline"></ion-icon>
         <span
           v-if="
@@ -20,7 +20,7 @@
           {{ patient.firstName + ' ' + patient.lastName }}
         </span>
       </div>
-      <div class="patient-item-right">
+      <div class="patient-item-right" @click="selectPatient(patient)">
         <span v-if="isConfirmed(patient)">
           {{ $t('PATIENT_LIST.CONFIRMED') }}
         </span>
@@ -60,7 +60,8 @@ export default {
     ...mapMutations('patients', [
       'setCurrentPatientId',
       'setCurrentPatientFormStep',
-      'setCurrentPatientValueByKey'
+      'setCurrentPatientValueByKey',
+      'removePatientById'
     ]),
     ...mapActions('patients', ['invalidatePatientFormById']),
     async selectPatient(patient) {
@@ -87,6 +88,9 @@ export default {
       if (this.isExpired(patient)) {
         this.invalidatePatientFormById(patient.id)
       }
+    },
+    removePatient(id) {
+      this.removePatientById(id)
     }
   }
 }

@@ -2,7 +2,8 @@
   <div class="modal-mask">
     <div class="modal-wrapper">
       <div
-        class="modal-container flex flex-col items-center text-center bg-red-600"
+        class="modal-container flex flex-col items-center text-center"
+        :class="backgroundClass"
       >
         <div class="modal-header">
           <slot name="header"> </slot>
@@ -22,7 +23,10 @@
 
 <script>
 export default {
-  name: 'ModalWindow'
+  name: 'ModalWindow',
+  props: {
+    backgroundClass: String
+  }
 }
 </script>
 

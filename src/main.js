@@ -3,6 +3,7 @@ import UUID from 'vue-uuid'
 import moment from 'moment'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueLogger from 'vuejs-logger'
 
 import i18n from '@/plugins/i18n'
 import vueConfig from 'vue-config'
@@ -25,6 +26,19 @@ import 'pwacompat'
 import '@/theme/general.scss'
 import './assets/css/tailwind.css'
 
+const isProduction = process.env.NODE_ENV === 'production'
+
+const loggerOptions = {
+  isEnabled: true,
+  logLevel: isProduction ? 'error' : 'debug',
+  stringifyArguments: false,
+  showLogLevel: true,
+  showMethodName: false,
+  separator: ':',
+  showConsoleColors: true
+}
+
+Vue.use(VueLogger, loggerOptions)
 Vue.use(UUID)
 Vue.use(VueAxios, axios)
 Vue.use(vueConfig, config)
@@ -48,11 +62,3 @@ new Vue({
   i18n,
   render: h => h(App)
 }).$mount('#app')
-
-// eslint-disable-next-line no-console
-console.info(`
-🍱 This app was bootstrapped with bento-starter 🍱
-
-👉 https://bento-starter.netlify.com/
-
-`)

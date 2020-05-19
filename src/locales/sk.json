@@ -83,6 +83,11 @@
       "WHERE_IT_WORKS_H": "Kde môžem túto aplikáciu použiť?",
       "WHERE_IT_WORKS_P": "Od 27.4. prebieha testovacia prevádzka na triážním mieste 4 (budova S) vo Fakultnej nemocnici Královské Vinohrady v Prahe"
     },
+    "COMPATIBILITY_MODAL": {
+      "HEADER": "Nepodporovaný telefón/prehliadač",
+      "TEXT": "Pre využitie tejto aplikácie použite aktuálnu verziu prehliadača Google Chrome (na iPhone použite Safari)",
+      "BUTTON": "Rozumiem"
+    },
     "AUTHORS": {
       "PARTNERS": "Tento projekt je pod záštitou Univerzity Karlovej",
       "US": "Sme tím študentov z 2. a 3. LF UK a FIT ČVUT.",
