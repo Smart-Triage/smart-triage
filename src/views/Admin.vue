@@ -39,8 +39,8 @@ export default {
       const rootCertificate = forge.pki.createCertificate()
       rootCertificate.publicKey = rootKeyPair.publicKey
       rootCertificate.serialNumber = '01'
-      rootCertificate.validity.notBefore = new Date()
-      rootCertificate.validity.notAfter = new Date()
+      rootCertificate.validity.notBefore = Math.floor(Date.now() / 1000)
+      rootCertificate.validity.notAfter = Math.floor(Date.now() / 1000)
       rootCertificate.validity.notAfter.setFullYear(
         rootCertificate.validity.notBefore.getFullYear() + cfgRootValidityYears
       )
