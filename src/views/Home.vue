@@ -46,10 +46,7 @@
         <!-- ACTIONS -->
         <div class="w-full">
           <div v-if="patients.length === 0">
-            <button
-              class="btn-primary"
-              @click="$router.push('/compatibility-check')"
-            >
+            <button class="btn-primary" @click="cameraCheck()">
               <ion-icon
                 class="btn-icon text-xl"
                 name="create-outline"
@@ -284,6 +281,14 @@ export default {
     async createPatient() {
       await this.createNewPatient()
       this.$router.push('/form')
+    },
+    cameraCheck() {
+      // see if the camera access was granted already
+      if (localStorage.getItem('camera:enabled')) {
+        this.createPatient()
+      } else {
+        this.$router.push('compatibility-check')
+      }
     }
   }
 }

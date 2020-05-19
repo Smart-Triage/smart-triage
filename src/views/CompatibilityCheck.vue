@@ -84,6 +84,7 @@ export default {
         this.showCameraModal = true
         this.$log.error('QR Code Phone Problem')
       } else {
+        localStorage.setItem('camera:enabled', 'true')
         await this.createNewPatient()
         this.$router.push('/form')
       }
