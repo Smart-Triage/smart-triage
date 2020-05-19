@@ -7,8 +7,8 @@
 
 <script>
 import PatientFormStepper from '@/components/patient/PatientFormStepper'
-import { mapGetters, mapState } from 'vuex'
 import EmployeePatientFormStepper from '@/components/employee/EmployeePatientFormStepper'
+import { mapGetters, mapState } from 'vuex'
 
 export default {
   components: { EmployeePatientFormStepper, PatientFormStepper },

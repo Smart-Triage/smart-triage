@@ -56,22 +56,11 @@
             ></PatientForm>
           </div>
 
-          <div
-            v-if="step.answerType === 'boolean'"
-            class="boolean-answer-button"
-          >
-            <button
-              :class="{ 'button-active': answers[currentStepNum] == false }"
-              @click="next(false)"
-            >
-              {{ $t('NO') }}
-            </button>
-            <button
-              :class="{ 'button-active': answers[currentStepNum] == true }"
-              @click="next(true)"
-            >
-              {{ $t('YES') }}
-            </button>
+          <div v-if="step.answerType === 'boolean'">
+            <yes-no-component
+              :button-active="answers[currentStepNum]"
+              @next="next($event)"
+            />
           </div>
 
           <div v-if="step.answerType === 'slider'" class="slider-answer-slider">
@@ -150,10 +139,11 @@ import { mapGetters, mapMutations } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
+import YesNoComponent from '@/components/form-components/YesNoComponent'
 import { getFormStepsMixin, isConfirmedMixin, isFinishedMixin } from '@/mixins'
 
 export default {
-  components: { ProgressBar, PatientForm },
+  components: { YesNoComponent, ProgressBar, PatientForm },
   mixins: [getFormStepsMixin, isConfirmedMixin, isFinishedMixin],
   data: () => ({
     currentStepNum: '0',
@@ -397,7 +387,6 @@ export default {
   padding: 1rem;
 }
 
-.boolean-answer-button,
 .slider-answer-slider,
 .one-of-answer,
 .checkbox-answer {
