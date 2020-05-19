@@ -56,35 +56,15 @@
             ></PatientForm>
           </div>
 
-          <div
-            v-if="step.answerType === 'boolean'"
-            class="boolean-answer-button"
-          >
-            <button
-              :class="{ 'button-active': answers[currentStepNum] == false }"
-              @click="next(false)"
-            >
-              {{ $t('NO') }}
-            </button>
-            <button
-              :class="{ 'button-active': answers[currentStepNum] == true }"
-              @click="next(true)"
-            >
-              {{ $t('YES') }}
-            </button>
+          <div v-if="step.answerType === 'boolean'">
+            <yes-no-component
+              :button-active="answers[currentStepNum]"
+              @next="next($event)"
+            />
           </div>
 
-          <div v-if="step.answerType === 'slider'" class="slider-answer-slider">
-            <div class="slider-value">{{ temperatureValue }}</div>
-            <input
-              v-model="temperatureValue"
-              type="range"
-              min="36"
-              max="42"
-              step="0.1"
-              class="slider"
-            />
-            <button @click="next(temperatureValue)">{{ $t('NEXT') }}</button>
+          <div v-if="step.answerType === 'slider'">
+            <slider-component @next="next($event)" />
           </div>
 
           <div v-if="step.answerType === 'one-of'" class="one-of-answer">
@@ -150,15 +130,16 @@ import { mapGetters, mapMutations } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
+import YesNoComponent from '@/components/form-components/YesNoComponent'
+import SliderComponent from '@/components/form-components/SliderComponent'
 import { getFormStepsMixin, isConfirmedMixin, isFinishedMixin } from '@/mixins'
 
 export default {
-  components: { ProgressBar, PatientForm },
+  components: { SliderComponent, ProgressBar, PatientForm, YesNoComponent },
   mixins: [getFormStepsMixin, isConfirmedMixin, isFinishedMixin],
   data: () => ({
     currentStepNum: '0',
     visitedSteps: ['0'],
-    temperatureValue: 36.5,
     dataIsReady: false,
     answers: {}
   }),
@@ -422,41 +403,6 @@ export default {
 
 .hidden {
   display: none;
-}
-
-.slider-answer-slider {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 2rem;
-
-  .slider-value {
-    font-size: 1.2rem;
-  }
-
-  .slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 8px;
-    border-radius: 5px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
-    margin: 1rem 0 2rem;
-  }
-
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: $primary-color;
-    cursor: pointer;
-  }
 }
 
 .answer-active {

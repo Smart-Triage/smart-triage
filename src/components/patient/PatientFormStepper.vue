@@ -63,17 +63,8 @@
             />
           </div>
 
-          <div v-if="step.answerType === 'slider'" class="slider-answer-slider">
-            <div class="slider-value">{{ temperatureValue }}</div>
-            <input
-              v-model="temperatureValue"
-              type="range"
-              min="36"
-              max="42"
-              step="0.1"
-              class="slider"
-            />
-            <button @click="next(temperatureValue)">{{ $t('NEXT') }}</button>
+          <div v-if="step.answerType === 'slider'">
+            <slider-component @next="next($event)" />
           </div>
 
           <div v-if="step.answerType === 'one-of'" class="one-of-answer">
@@ -140,10 +131,11 @@ import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
 import YesNoComponent from '@/components/form-components/YesNoComponent'
+import SliderComponent from '@/components/form-components/SliderComponent'
 import { getFormStepsMixin, isConfirmedMixin, isFinishedMixin } from '@/mixins'
 
 export default {
-  components: { YesNoComponent, ProgressBar, PatientForm },
+  components: { YesNoComponent, ProgressBar, PatientForm, SliderComponent },
   mixins: [getFormStepsMixin, isConfirmedMixin, isFinishedMixin],
   data: () => ({
     currentStepNum: '0',
