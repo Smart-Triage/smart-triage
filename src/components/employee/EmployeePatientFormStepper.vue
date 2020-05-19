@@ -8,9 +8,7 @@
     >
       <NavBar sticky>
         <template v-slot:left>
-          <router-link
-            class="close"
-            :to="appMode === 'employee' ? '/employee#patient-summary' : '/'"
+          <router-link class="close" :to="'/employee#patient-summary'"
             ><ion-icon name="close" size="large"></ion-icon
           ></router-link>
         </template>
@@ -26,9 +24,7 @@
           <router-link
             v-if="isFinished(currentPatient)"
             class="skip-to-summary"
-            :to="
-              appMode === 'employee' ? '/employee#patient-summary' : '/summary'
-            "
+            :to="'/employee#patient-summary'"
             >{{ $t('FORM.SKIP_TO_SUMMARY') }}</router-link
           >
         </template>
@@ -131,11 +127,7 @@
 
           <div class="spacer"></div>
           <div v-if="currentStepNum !== '0'" class="buttons">
-            <button
-              v-if="!(appMode === 'employee' && isSecond)"
-              class="icon-button prev"
-              @click="prev()"
-            >
+            <button v-if="!isSecond" class="icon-button prev" @click="prev()">
               <ion-icon name="chevron-back-outline" size="large"></ion-icon>
             </button>
             <div class="spacer"></div>
@@ -154,7 +146,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
@@ -172,7 +164,6 @@ export default {
   }),
   computed: {
     ...mapGetters('patients', ['currentPatient']),
-    ...mapState('settings', ['appMode']),
     currentStep() {
       return this.getFormSteps.find(step => step.order === this.currentStepNum)
     },
@@ -348,11 +339,7 @@ export default {
       }
 
       // if end step is visited for the first time, save the timestamp with which the 24-hour timeout period will be initiated.
-      if (
-        this.currentStepNum === 'end' &&
-        !this.visitedSteps.includes('end') &&
-        this.appMode === 'patient'
-      ) {
+      if (this.currentStepNum === 'end' && !this.visitedSteps.includes('end')) {
         this.setCurrentPatientValueByKey({
           key: 'validityTimestamp',
           value: Math.floor(Date.now() / 1000)
@@ -369,9 +356,7 @@ export default {
 
       // When on last step navigate to summary
       if (this.currentStepNum === 'end')
-        this.$router.push(
-          this.appMode === 'employee' ? 'employee#patient-summary' : '/summary'
-        )
+        this.$router.push('employee#patient-summary')
       // Else update hash in URL with correct step number
       else this.$router.push(`#${this.currentStepNum}`)
     }

@@ -4,60 +4,6 @@
       <ConfirmationBox :patient="patient"></ConfirmationBox>
     </div>
     <button
-      v-if="appMode == 'patient'"
-      class="patient-item flex justify-between items-center cursor-pointer my-2 relative z-20"
-      @click="patientInfoHidden = !patientInfoHidden"
-    >
-      <div class="patient-item-left">
-        <ion-icon name="person-outline"></ion-icon>
-        <span>{{ $t('PATIENT_SUMMARY.PATIENT_INFO') }}</span>
-      </div>
-      <div class="patient-item-right">
-        <ion-icon
-          class="iconAccordion"
-          :name="
-            patientInfoHidden ? 'chevron-down-outline' : 'chevron-up-outline'
-          "
-        ></ion-icon>
-      </div>
-    </button>
-    <div
-      v-if="appMode == 'patient'"
-      class="info-container text-left"
-      :class="{ hideInfo: patientInfoHidden }"
-    >
-      <div class="flex flex-col border-b border-gray-700 my-1">
-        <span class="text-secondary">{{ $t('FULL_NAME') }}</span>
-        <span class="font-semibold text-xl">
-          {{ patient.firstName + ' ' + patient.lastName }}
-        </span>
-      </div>
-
-      <div class="flex flex-col border-b border-gray-700 my-1">
-        <span class="text-secondary">{{
-          $t('PERSONAL_IDENTIFICATION_NUMBER')
-        }}</span>
-        <span class="font-semibold text-xl">
-          {{ patient.birthNumber }}
-        </span>
-      </div>
-
-      <div class="flex flex-col border-b border-gray-700 my-1 py-1">
-        <span class="text-secondary">{{ $t('PHONE_NUMBER') }}</span>
-        <span class="font-semibold text-xl">
-          {{ patient.phoneNumber }}
-        </span>
-      </div>
-
-      <button
-        v-if="!isConfirmed(patient) && appMode !== 'employee'"
-        class="edit-btn"
-        @click="edit('0')"
-      >
-        {{ $t('EDIT') }}
-      </button>
-    </div>
-    <button
       class="patient-item flex justify-between items-center cursor-pointer my-2 relative z-20"
       @click="patientSymptomsHidden = !patientSymptomsHidden"
     >
@@ -88,9 +34,7 @@
           <div
             class="font-medium text-secondary"
             :class="{
-              'font-semibold':
-                appMode === 'employee' &&
-                step.highlightIf === patient.answers[step.order]
+              'font-semibold': step.highlightIf === patient.answers[step.order]
             }"
           >
             {{ step.question }}
@@ -121,10 +65,7 @@
           <span v-else>{{ patient.answers[step.order] }}</span>
         </div>
         <div
-          v-if="
-            appMode === 'employee' &&
-              step.highlightIf === patient.answers[step.order]
-          "
+          v-if="step.highlightIf === patient.answers[step.order]"
           class="flex items-center"
         >
           <ion-icon
@@ -142,7 +83,7 @@
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 import ConfirmationBox from '@/components/ConfirmationBox'
 import { getFormStepsMixin, isConfirmedMixin } from '@/mixins'
 
@@ -155,12 +96,10 @@ export default {
   data() {
     return {
       patientInfoHidden: this.isConfirmed(this.patient),
-      patientSymptomsHidden:
-        this.appMode === 'patient' || this.isConfirmed(this.patient)
+      patientSymptomsHidden: this.isConfirmed(this.patient)
     }
   },
   computed: {
-    ...mapState('settings', ['appMode']),
     formStepsToShow() {
       if (!this.patient) return []
       const stepsToShow = []
@@ -246,9 +185,11 @@ ion-icon {
     display: flex;
     margin-left: 0.5em;
     align-items: center;
+
     span {
       margin-left: 0.8em;
     }
+
     .patient-name {
       margin-left: 0.5rem;
     }
@@ -257,6 +198,7 @@ ion-icon {
   .patient-item-right {
     display: flex;
     align-items: center;
+
     ion-icon {
       margin-left: 1rem;
     }
