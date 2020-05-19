@@ -61,4 +61,21 @@ export default {
     cursor: pointer;
   }
 }
+
+button {
+  font-size: 1.1em;
+  background-color: $light-button-color;
+  border-radius: 2em;
+  border: none;
+  padding: 0.8em 2em;
+  margin: 0.5em;
+}
+
+.button-active {
+  background-color: $primary-color;
+}
+
+button:hover {
+  background-color: $dark-button-color;
+}
 </style>

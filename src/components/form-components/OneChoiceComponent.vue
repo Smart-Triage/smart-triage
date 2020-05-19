@@ -1,24 +1,22 @@
 <template>
-  <div>
+  <div class="one-of-answer">
     <button
-      :class="{ 'button-active': buttonActive === false }"
-      @click="$emit('next', false)"
+      v-for="option in options"
+      :key="option.value"
+      :class="{
+        'button-active': buttonActive === option.value
+      }"
+      @click="$emit('next', option.value)"
     >
-      {{ $t('NO') }}
-    </button>
-    <button
-      :class="{ 'button-active': buttonActive === true }"
-      @click="$emit('next', true)"
-    >
-      {{ $t('YES') }}
+      {{ option.text }}
     </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'YesNoComponent',
-  props: { buttonActive: [Boolean, String, Array] }
+  name: 'OneChoiceComponent',
+  props: { buttonActive: [String, Boolean, Array], options: Array }
 }
 </script>
 

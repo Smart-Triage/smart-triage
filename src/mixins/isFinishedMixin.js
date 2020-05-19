@@ -30,11 +30,8 @@ export default {
         //
         // Check answers
         patient.answers !== undefined &&
-        Object.keys(patient.answers).length ===
-          this.$config.formSteps[i18n.locale].length - 1 &&
-        !!Object.keys(patient.answers).find(
-          key => patient.answers[key] !== undefined
-        )
+        Object.keys(patient.answers).length >=
+          this.$config.formSteps[i18n.locale].requiredAnswers - 1
       )
     }
   }

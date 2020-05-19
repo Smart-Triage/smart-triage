@@ -67,42 +67,21 @@
             <slider-component @next="next($event)" />
           </div>
 
-          <div v-if="step.answerType === 'one-of'" class="one-of-answer">
-            <button
-              v-for="option in step.options"
-              :key="option.value"
-              :class="{
-                'button-active': answers[currentStepNum] === option.value
-              }"
-              @click="next(option.value)"
-            >
-              {{ option.text }}
-            </button>
+          <div v-if="step.answerType === 'one-of'">
+            <one-choice-component
+              :options="step.options"
+              :button-active="answers[currentStepNum]"
+              @next="next($event)"
+            />
           </div>
 
-          <div
-            v-if="currentStepNum == '5' && step.answerType === 'checkbox'"
-            class="checkbox-answer"
-          >
-            <div
-              v-for="option in step.options"
-              :key="currentPatient + option.value"
-              class="checkbox-wrapper"
-            >
-              <input
-                :id="option.value"
-                v-model="
-                  answers[currentStepNum].find(op => op.value === option.value)
-                    .isChecked
-                "
-                :value="option.value"
-                type="checkbox"
-                class="hideCheckbox"
-              />
-              <label :for="option.value">{{ option.text }}</label>
-            </div>
-
-            <button @click="next(step.options)">{{ $t('NEXT') }}</button>
+          <div v-if="currentStepNum == '5' && step.answerType === 'checkbox'">
+            <check-box-component
+              :checked-steps="answers[currentStepNum]"
+              :options="step.options"
+              :current-patient="currentPatient"
+              @next="next($event)"
+            />
           </div>
 
           <div class="spacer"></div>
@@ -132,10 +111,19 @@ import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
 import YesNoComponent from '@/components/form-components/YesNoComponent'
 import SliderComponent from '@/components/form-components/SliderComponent'
+import OneChoiceComponent from '@/components/form-components/OneChoiceComponent'
+import CheckBoxComponent from '@/components/form-components/CheckBoxComponent'
 import { getFormStepsMixin, isConfirmedMixin, isFinishedMixin } from '@/mixins'
 
 export default {
-  components: { SliderComponent, ProgressBar, PatientForm, YesNoComponent },
+  components: {
+    CheckBoxComponent,
+    OneChoiceComponent,
+    SliderComponent,
+    ProgressBar,
+    PatientForm,
+    YesNoComponent
+  },
   mixins: [getFormStepsMixin, isConfirmedMixin, isFinishedMixin],
   data: () => ({
     currentStepNum: '0',
@@ -168,6 +156,7 @@ export default {
       })
     } else if (this.currentPatient.visitedSteps.indexOf('end') > -1) {
       // Comming back to form after finishing, show form from beginning
+      //
       this.visitedSteps = ['0']
       this.currentStepNum = '0'
       this.setCurrentPatientValueByKey({
@@ -421,31 +410,6 @@ export default {
   text-align: center;
   font-size: 0.8em;
   padding: 1em 3em 0 3em;
-}
-
-.checkbox-answer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .checkbox-wrapper {
-    display: flex;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    padding: 0.5rem 1em;
-    margin: 0.5rem 0;
-    background: white;
-    border-radius: 10rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-
-    label {
-      margin-left: 0.5rem;
-    }
-  }
 }
 
 .question-box {

@@ -67,42 +67,21 @@
             <slider-component @next="next($event)" />
           </div>
 
-          <div v-if="step.answerType === 'one-of'" class="one-of-answer">
-            <button
-              v-for="option in step.options"
-              :key="option.value"
-              :class="{
-                'button-active': answers[currentStepNum] === option.value
-              }"
-              @click="next(option.value)"
-            >
-              {{ option.text }}
-            </button>
+          <div v-if="step.answerType === 'one-of'">
+            <one-choice-component
+              :options="step.options"
+              :button-active="answers[currentStepNum]"
+              @next="next($event)"
+            />
           </div>
 
-          <div
-            v-if="currentStepNum == '5' && step.answerType === 'checkbox'"
-            class="checkbox-answer"
-          >
-            <div
-              v-for="option in step.options"
-              :key="currentPatient + option.value"
-              class="checkbox-wrapper"
-            >
-              <input
-                :id="option.value"
-                v-model="
-                  answers[currentStepNum].find(op => op.value === option.value)
-                    .isChecked
-                "
-                :value="option.value"
-                type="checkbox"
-                class="hideCheckbox"
-              />
-              <label :for="option.value">{{ option.text }}</label>
-            </div>
-
-            <button @click="next(step.options)">{{ $t('NEXT') }}</button>
+          <div v-if="currentStepNum == '5' && step.answerType === 'checkbox'">
+            <check-box-component
+              :checked-steps="answers[currentStepNum]"
+              :options="step.options"
+              :current-patient="currentPatient"
+              @next="next($event)"
+            />
           </div>
 
           <div class="spacer"></div>
@@ -132,10 +111,19 @@ import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
 import YesNoComponent from '@/components/form-components/YesNoComponent'
 import SliderComponent from '@/components/form-components/SliderComponent'
+import OneChoiceComponent from '@/components/form-components/OneChoiceComponent'
+import CheckBoxComponent from '@/components/form-components/CheckBoxComponent'
 import { getFormStepsMixin, isConfirmedMixin, isFinishedMixin } from '@/mixins'
 
 export default {
-  components: { YesNoComponent, ProgressBar, PatientForm, SliderComponent },
+  components: {
+    YesNoComponent,
+    ProgressBar,
+    PatientForm,
+    SliderComponent,
+    OneChoiceComponent,
+    CheckBoxComponent
+  },
   mixins: [getFormStepsMixin, isConfirmedMixin, isFinishedMixin],
   data: () => ({
     currentStepNum: '0',
