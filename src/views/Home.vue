@@ -41,7 +41,10 @@
         </p>
 
         <!-- PATIENT LIST -->
-        <PatientList class="w-full my-1"></PatientList>
+        <PatientList
+          v-if="patients.length > 0"
+          class="w-full my-1"
+        ></PatientList>
 
         <!-- ACTIONS -->
         <div class="w-full">

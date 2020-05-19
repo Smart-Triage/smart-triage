@@ -4,7 +4,7 @@
       <ion-icon
         class="flex-shrink text-red-600"
         name="trash"
-        @click="removePatient(key)"
+        @click="removePatient(patient.id)"
       ></ion-icon>
       <div class="patient-item-left flex-grow" @click="selectPatient(patient)">
         <ion-icon name="person-outline"></ion-icon>
