@@ -1,11 +1,11 @@
 <template>
   <cookie-law>
     <div slot-scope="props" class="cookie-box">
-      <p class="text-secondary cookie-text pb-6">
+      <p class="text-secondary text-sm font-medium pb-6">
         {{ $t('HOME.FOOTER.COOKIES_INFO') }}
       </p>
       <div class="flex justify-between">
-        <div class="m-auto flex-grow text-left cookie-link">
+        <div class="m-auto flex-grow text-left text-xs">
           <a
             href="./privacy-policy/privacy-policy-cs.pdf"
             class="text-secondary underline"
@@ -45,11 +45,8 @@ export default {
   width: 100%;
 }
 
-.cookie-text {
-  font-size: 14px;
-}
-
-.cookie-link {
-  font-size: 13px;
+.Cookie--base {
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
 }
 </style>
