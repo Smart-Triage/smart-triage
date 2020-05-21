@@ -184,7 +184,7 @@
 
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
-import PatientSummary from '@/components/PatientSummary'
+import PatientSummary from '@/components/patient/PatientSummary'
 import ModalWindow from '@/components/ModalWindow'
 import Constants from '@/misc/constants'
 // import FeedbackModal from '@/components/modals/FeedbackModal'

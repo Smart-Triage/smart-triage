@@ -8,9 +8,7 @@
     >
       <NavBar sticky>
         <template v-slot:left>
-          <router-link
-            class="close"
-            :to="appMode === 'employee' ? '/employee#patient-summary' : '/'"
+          <router-link class="close" :to="'/'"
             ><ion-icon name="close" size="large"></ion-icon
           ></router-link>
         </template>
@@ -26,9 +24,7 @@
           <router-link
             v-if="isFinished(currentPatient)"
             class="skip-to-summary"
-            :to="
-              appMode === 'employee' ? '/employee#patient-summary' : '/summary'
-            "
+            :to="'/summary'"
             >{{ $t('FORM.SKIP_TO_SUMMARY') }}</router-link
           >
         </template>
@@ -60,82 +56,37 @@
             ></PatientForm>
           </div>
 
-          <div
-            v-if="step.answerType === 'boolean'"
-            class="boolean-answer-button"
-          >
-            <button
-              :class="{ 'button-active': answers[currentStepNum] == false }"
-              @click="next(false)"
-            >
-              {{ $t('NO') }}
-            </button>
-            <button
-              :class="{ 'button-active': answers[currentStepNum] == true }"
-              @click="next(true)"
-            >
-              {{ $t('YES') }}
-            </button>
-          </div>
-
-          <div v-if="step.answerType === 'slider'" class="slider-answer-slider">
-            <div class="slider-value">{{ temperatureValue }}</div>
-            <input
-              v-model="temperatureValue"
-              type="range"
-              min="36"
-              max="42"
-              step="0.1"
-              class="slider"
+          <div v-if="step.answerType === 'boolean'">
+            <yes-no-component
+              :button-active="answers[currentStepNum]"
+              @next="next($event)"
             />
-            <button @click="next(temperatureValue)">{{ $t('NEXT') }}</button>
           </div>
 
-          <div v-if="step.answerType === 'one-of'" class="one-of-answer">
-            <button
-              v-for="option in step.options"
-              :key="option.value"
-              :class="{
-                'button-active': answers[currentStepNum] === option.value
-              }"
-              @click="next(option.value)"
-            >
-              {{ option.text }}
-            </button>
+          <div v-if="step.answerType === 'slider'">
+            <slider-component @next="next($event)" />
           </div>
 
-          <div
-            v-if="currentStepNum == '5' && step.answerType === 'checkbox'"
-            class="checkbox-answer"
-          >
-            <div
-              v-for="option in step.options"
-              :key="currentPatient + option.value"
-              class="checkbox-wrapper"
-            >
-              <input
-                :id="option.value"
-                v-model="
-                  answers[currentStepNum].find(op => op.value === option.value)
-                    .isChecked
-                "
-                :value="option.value"
-                type="checkbox"
-                class="hideCheckbox"
-              />
-              <label :for="option.value">{{ option.text }}</label>
-            </div>
+          <div v-if="step.answerType === 'one-of'">
+            <one-choice-component
+              :options="step.options"
+              :button-active="answers[currentStepNum]"
+              @next="next($event)"
+            />
+          </div>
 
-            <button @click="next(step.options)">{{ $t('NEXT') }}</button>
+          <div v-if="currentStepNum == '5' && step.answerType === 'checkbox'">
+            <check-box-component
+              :checked-steps="answers[currentStepNum]"
+              :options="step.options"
+              :current-patient="currentPatient"
+              @next="next($event)"
+            />
           </div>
 
           <div class="spacer"></div>
           <div v-if="currentStepNum !== '0'" class="buttons">
-            <button
-              v-if="!(appMode === 'employee' && isSecond)"
-              class="icon-button prev"
-              @click="prev()"
-            >
+            <button v-if="!isSecond" class="icon-button prev" @click="prev()">
               <ion-icon name="chevron-back-outline" size="large"></ion-icon>
             </button>
             <div class="spacer"></div>
@@ -154,14 +105,25 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapState } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
+import YesNoComponent from '@/components/form-components/YesNoComponent'
+import SliderComponent from '@/components/form-components/SliderComponent'
+import OneChoiceComponent from '@/components/form-components/OneChoiceComponent'
+import CheckBoxComponent from '@/components/form-components/CheckBoxComponent'
 import { getFormStepsMixin, isConfirmedMixin, isFinishedMixin } from '@/mixins'
 
 export default {
-  components: { ProgressBar, PatientForm },
+  components: {
+    YesNoComponent,
+    ProgressBar,
+    PatientForm,
+    SliderComponent,
+    OneChoiceComponent,
+    CheckBoxComponent
+  },
   mixins: [getFormStepsMixin, isConfirmedMixin, isFinishedMixin],
   data: () => ({
     currentStepNum: '0',
@@ -172,7 +134,6 @@ export default {
   }),
   computed: {
     ...mapGetters('patients', ['currentPatient']),
-    ...mapState('settings', ['appMode']),
     currentStep() {
       return this.getFormSteps.find(step => step.order === this.currentStepNum)
     },
@@ -348,11 +309,7 @@ export default {
       }
 
       // if end step is visited for the first time, save the timestamp with which the 24-hour timeout period will be initiated.
-      if (
-        this.currentStepNum === 'end' &&
-        !this.visitedSteps.includes('end') &&
-        this.appMode === 'patient'
-      ) {
+      if (this.currentStepNum === 'end' && !this.visitedSteps.includes('end')) {
         this.setCurrentPatientValueByKey({
           key: 'validityTimestamp',
           value: Math.floor(Date.now() / 1000)
@@ -368,10 +325,7 @@ export default {
       })
 
       // When on last step navigate to summary
-      if (this.currentStepNum === 'end')
-        this.$router.push(
-          this.appMode === 'employee' ? 'employee#patient-summary' : '/summary'
-        )
+      if (this.currentStepNum === 'end') this.$router.push('/summary')
       // Else update hash in URL with correct step number
       else this.$router.push(`#${this.currentStepNum}`)
     }
@@ -413,7 +367,6 @@ export default {
   padding: 1rem;
 }
 
-.boolean-answer-button,
 .slider-answer-slider,
 .one-of-answer,
 .checkbox-answer {

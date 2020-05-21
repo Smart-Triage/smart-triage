@@ -109,7 +109,9 @@
           </template>
         </NavBar>
 
-        <PatientSummary :patient="currentPatient"></PatientSummary>
+        <EmployeePatientSummary
+          :patient="currentPatient"
+        ></EmployeePatientSummary>
 
         <div
           v-if="currentPatient && currentPatient.confirmation === undefined"
@@ -227,7 +229,7 @@
 import QrcodeVue from 'qrcode.vue'
 import { mapGetters, mapState, mapMutations, mapActions } from 'vuex'
 import QRScanner from '@/components/QRSanner'
-import PatientSummary from '@/components/PatientSummary'
+import EmployeePatientSummary from '@/components/employee/EmployeePatientSummary'
 // import KeyStore from '@/misc/KeyStore'
 // import { str2ab, ab2str } from '@/misc/helpers'
 import FullScreenModal from '@/components/modals/FullScreenModal'
@@ -240,7 +242,7 @@ import {
 export default {
   components: {
     QRScanner,
-    PatientSummary,
+    EmployeePatientSummary,
     QrcodeVue,
     FullScreenModal
   },
