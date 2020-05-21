@@ -35,7 +35,7 @@
         <div class="flex flex-col items-end text-right leading-tight">
           <span>{{ $t('CB.CONFIRMED_ON') }}</span>
           <span class="text-secondary text-lg font-semibold">
-            {{ patient.confirmation.timestamp | formatDate }}
+            {{ new Date(patient.confirmation.timestamp * 1000) | formatDate }}
           </span>
         </div>
 
@@ -49,7 +49,7 @@
               'text-red-500': patient.confirmation.temperature > 37
             }"
           >
-            {{ patient.confirmation.temperature }}ºC
+            {{ patient.confirmation.temperature | formatDate }}ºC
           </span>
         </div>
 
