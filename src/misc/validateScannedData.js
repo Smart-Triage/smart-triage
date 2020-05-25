@@ -1,4 +1,4 @@
-function parsePatientCSVtoObject(data) {
+function parsePatientCSVtoObject(data, formSteps) {
   const keys = [
     'appVersion',
     'answers',
@@ -36,9 +36,33 @@ function parsePatientCSVtoObject(data) {
       parsedRow.forEach(answerField => {
         const answer = answerField.split(',')
         if (answer.length === 2) {
-          answersObject[answer[0]] = answer[1] === 'true'
+          if (
+            formSteps.find(s => s.order === answer[0]).answerType === 'one-of'
+          ) {
+            // eslint-disable-next-line prefer-destructuring
+            answersObject[answer[0]] = answer[1]
+          } else {
+            answersObject[answer[0]] = answer[1] === 'true'
+          }
         } else {
-          const checkBoxObject = {}
+          const checkBoxObject = []
+          const stepOrder = answer.shift()
+          answer.forEach(checkBoxField => {
+            const checkboxAnswer = {}
+            const checkBoxInfo = checkBoxField.split('.')
+
+            // eslint-disable-next-line prefer-destructuring
+            checkboxAnswer.value = checkBoxInfo[0]
+            // eslint-disable-next-line prefer-destructuring
+            checkboxAnswer.isChecked = checkBoxInfo[1] === 'true'
+            // eslint-disable-next-line prefer-destructuring
+
+            checkboxAnswer.text = formSteps
+              .find(s => s.order === stepOrder)
+              .options.find(o => o.value === checkBoxInfo[0]).text
+            checkBoxObject.push(checkboxAnswer)
+          })
+          answersObject[stepOrder] = checkBoxObject
         }
       })
       patientObject[keys[keyIndex]] = answersObject
@@ -59,7 +83,7 @@ function parsePatientCSVtoObject(data) {
   }
   // eslint-disable-next-line radix
   patientObject.validityTimestamp = parseInt(patientObject.validityTimestamp)
-  console.log(patientObject.answers)
+
   return patientObject
 }
 
@@ -73,7 +97,7 @@ export default function validatePatient(
   return new Promise((resolve, reject) => {
     let patient
     try {
-      patient = parsePatientCSVtoObject(data)
+      patient = parsePatientCSVtoObject(data, getFormSteps)
       // Validate JSON schema
       const incommingKeys = Object.keys(patient)
       const requiredKeys = ['id', 'answers', 'validityTimestamp']
@@ -120,7 +144,6 @@ export default function validatePatient(
       }
     } catch (e) {
       reject(new Error('INVALID_QR_CODE'))
-      console.log(e)
     }
   })
 }
