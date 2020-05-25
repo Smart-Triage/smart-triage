@@ -24,6 +24,7 @@ function parsePatientCSVtoObject(data) {
   if (rowsArray.length > 4) {
     confirmationRows = rowsArray.splice(0, confirmationKeys.length)
   }
+
   // parse patient part
   patientRows.forEach(value => {
     const parsedRow = value.split(';')
@@ -31,16 +32,20 @@ function parsePatientCSVtoObject(data) {
       // eslint-disable-next-line prefer-destructuring
       patientObject[keys[keyIndex]] = parsedRow[0]
     } else {
-      let fieldCounter = 1
-      const fieldObject = {}
-      parsedRow.forEach(fieldValue => {
-        fieldObject[fieldCounter] = fieldValue === 'true'
-        fieldCounter += 1
+      const answersObject = {}
+      parsedRow.forEach(answerField => {
+        const answer = answerField.split(',')
+        if (answer.length === 2) {
+          answersObject[answer[0]] = answer[1] === 'true'
+        } else {
+          const checkBoxObject = {}
+        }
       })
-      patientObject[keys[keyIndex]] = fieldObject
+      patientObject[keys[keyIndex]] = answersObject
     }
     keyIndex += 1
   })
+
   // parse confirmation part
   if (confirmationRows) {
     const confirmationObj = {}
@@ -54,6 +59,7 @@ function parsePatientCSVtoObject(data) {
   }
   // eslint-disable-next-line radix
   patientObject.validityTimestamp = parseInt(patientObject.validityTimestamp)
+  console.log(patientObject.answers)
   return patientObject
 }
 
@@ -114,6 +120,7 @@ export default function validatePatient(
       }
     } catch (e) {
       reject(new Error('INVALID_QR_CODE'))
+      console.log(e)
     }
   })
 }

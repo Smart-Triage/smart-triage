@@ -5,7 +5,8 @@
     { "langName": "English", "langCode": "en" }
   ],
   "formSteps": {
-    "cs": {
+    "cs_old": {
+      "formId": 1,
       "requiredAnswers": 6,
       "questions": [
         {
@@ -57,7 +58,8 @@
         }
       ]
     },
-    "cs_old": {
+    "cs": {
+      "formId": 2,
       "requiredAnswers": 8,
       "questions": [
         {
@@ -193,7 +195,8 @@
         }
       ]
     },
-    "en": {
+    "en_old": {
+      "formId": 1,
       "requiredAnswers": 6,
       "questions": [
         {
@@ -245,7 +248,8 @@
         }
       ]
     },
-    "en_old": {
+    "en": {
+      "formId": 2,
       "requiredAnswers": 8,
       "questions": [
         {
@@ -377,7 +381,8 @@
         }
       ]
     },
-    "sk": {
+    "sk_old": {
+      "formId": 1,
       "requiredAnswers": 6,
       "questions": [
         {
@@ -429,7 +434,8 @@
         }
       ]
     },
-    "sk_old": {
+    "sk": {
+      "formId": 2,
       "requiredAnswers": 8,
       "questions": [
         {
