@@ -19,14 +19,18 @@ export default {
         patient.lastName.length > 0 &&
         //
         // Check birthNumber
-        patient.birthNumber !== undefined &&
-        typeof patient.birthNumber === 'string' &&
-        patient.birthNumber.length > 0 &&
+        // patient.birthNumber !== undefined &&
+        // typeof patient.birthNumber === 'string' &&
+        // patient.birthNumber.length > 0 &&
         //
         // Check phoneNumber
-        patient.phoneNumber !== undefined &&
-        typeof patient.phoneNumber === 'string' &&
-        patient.phoneNumber.length > 0 &&
+        // patient.phoneNumber !== undefined &&
+        // typeof patient.phoneNumber === 'string' &&
+        // patient.phoneNumber.length > 0 &&
+        // Check Birth Date
+        patient.birthDate !== undefined &&
+        typeof patient.birthDate === 'string' &&
+        patient.birthDate.length > 0 &&
         //
         // Check answers
         patient.answers !== undefined &&

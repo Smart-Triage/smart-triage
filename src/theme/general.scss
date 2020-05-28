@@ -1,5 +1,8 @@
 @import '@/theme/variables';
 @import '@/theme/transitions';
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
 
 h1 {
   @apply text-4xl;

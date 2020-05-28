@@ -175,6 +175,7 @@
   },
   "PERSONAL_IDENTIFICATION_NUMBER": "Số sinh",
   "PHONE_NUMBER": "Số điện thoại",
+  "BIRTH_DATE": "Date of birth",
   "SCAN_CONFIRMATION_QR_CODE": {
     "SCAN_CONFIRMATION_QR_CODE": "Bạn quét mã QR xác nhận đã nhận được từ nhân viên bệnh viện"
   },

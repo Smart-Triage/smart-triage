@@ -31,7 +31,7 @@
         </span>
       </div>
 
-      <div class="flex flex-col border-b border-gray-700 my-1">
+      <div v-if="patient.birthNumber" class="flex flex-col border-b border-gray-700 my-1">
         <span class="text-secondary">{{
           $t('PERSONAL_IDENTIFICATION_NUMBER')
         }}</span>
@@ -40,10 +40,17 @@
         </span>
       </div>
 
-      <div class="flex flex-col border-b border-gray-700 my-1 py-1">
+      <div v-if="patient.phoneNumber" class="flex flex-col border-b border-gray-700 my-1 py-1">
         <span class="text-secondary">{{ $t('PHONE_NUMBER') }}</span>
         <span class="font-semibold text-xl">
           {{ patient.phoneNumber }}
+        </span>
+      </div>
+
+      <div v-if="patient.birthDate" class="flex flex-col border-b border-gray-700 my-1 py-1">
+        <span class="text-secondary">{{ $t('PHONE_NUMBER') }}</span>
+        <span class="font-semibold text-xl">
+          {{ patient.birthDate | formatDateShort }}
         </span>
       </div>
 

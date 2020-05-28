@@ -182,6 +182,7 @@
   },
   "PERSONAL_IDENTIFICATION_NUMBER": "Rodné číslo",
   "PHONE_NUMBER": "Telefónne číslo",
+  "BIRTH_DATE": "Dátum narodenia",
   "SCAN_CONFIRMATION_QR_CODE": {
     "SCAN_CONFIRMATION_QR_CODE": "Naskenujte potvrdzovací QR kód od zdravotníka"
   },

@@ -175,6 +175,7 @@
   },
   "PERSONAL_IDENTIFICATION_NUMBER": "Идентификационный номер физического лица",
   "PHONE_NUMBER": "Номер телефона",
+  "BIRTH_DATE": "Date of birth",
   "SCAN_CONFIRMATION_QR_CODE": {
     "SCAN_CONFIRMATION_QR_CODE": "Отсканируйте подтверждающий QR-код от медицинского работника."
   },
