@@ -214,5 +214,8 @@
     "YOU_HAVE_TO_ACCEPT_BTN": "You have to accept the terms",
     "YOU_HAVE_TO_ACCEPT_TXT": "You have to accept the terms and you are telling the truth"
   },
-  "YES": "Yes"
+  "YES": "Yes",
+  "EDIT_MODAL": {
+    "SAVE_BUTTON": "Save"
+  }
 }

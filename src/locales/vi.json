@@ -207,5 +207,8 @@
     "YOU_HAVE_TO_ACCEPT_BTN": "Bạn phải đồng ý với điều kiện này.",
     "YOU_HAVE_TO_ACCEPT_TXT": "Tôi đồng ý rằng tất cả các dữ liệu  trên là đúng sự thật. Việc khai dữ liệu sai lệch có thể được coi là hành vi phạm tội."
   },
-  "YES": "Có"
+  "YES": "Có",
+  "EDIT_MODAL": {
+    "SAVE_BUTTON": "Save"
+  }
 }

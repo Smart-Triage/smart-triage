@@ -214,5 +214,8 @@
     "YOU_HAVE_TO_ACCEPT_BTN": "Musíte souhlasit s podmínkami",
     "YOU_HAVE_TO_ACCEPT_TXT": "Souhlasím, že všechny uvedené údaje jsou pravdivé. Uvedení nepravidvých informací může být posuzováno jako trestný čin"
   },
-  "YES": "Ano"
+  "YES": "Ano",
+  "EDIT_MODAL": {
+    "SAVE_BUTTON": "Uložit"
+  }
 }
