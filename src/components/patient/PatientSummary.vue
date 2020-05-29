@@ -114,27 +114,38 @@
               />
             </div>
           </div>
-          <span v-else-if="step.answerType === 'one-of'">
-            {{
-              getFormSteps
-                .find(s => s.order === step.order)
-                .options.find(o => o.value === patient.answers[step.order]).text
-            }}
-          </span>
-          <span v-else-if="step.answerType === 'checkbox'">
-            <span
-              v-for="option in patient.answers[step.order]"
-              :key="option.value"
-              >{{
-                option.isChecked
-                  ? getFormSteps
-                      .find(s => s.order === step.order)
-                      .options.find(o => o.value === option.value).text + ', '
-                  : ''
-              }}</span
-            >
-          </span>
-          <span v-else>{{ patient.answers[step.order] }}</span>
+          <div v-else-if="step.answerType === 'one-of'">
+            <span v-if="!editingAnswers">
+              {{
+                getFormSteps
+                  .find(s => s.order === step.order)
+                  .options.find(o => o.value === patient.answers[step.order])
+                  .text
+              }}
+            </span>
+            <one-choice-component
+              v-if="editingAnswers"
+              :button-active="answers[step.order]"
+              :small-buttons="true"
+              :options="step.options"
+              @next="edit($event, step.order)"
+            />
+          </div>
+          <div v-else-if="step.answerType === 'checkbox'">
+            <span v-if="!editingAnswers">
+              <span
+                v-for="option in patient.answers[step.order]"
+                :key="option.value"
+                >{{
+                  option.isChecked
+                    ? getFormSteps
+                        .find(s => s.order === step.order)
+                        .options.find(o => o.value === option.value).text + ', '
+                    : ''
+                }}</span
+              >
+            </span>
+          </div>
         </div>
       </div>
       <button
@@ -166,9 +177,15 @@ import { getFormStepsMixin, isConfirmedMixin } from '@/mixins'
 import PatientFormEditModal from '@/components/PatientFormEditModal'
 import YesNoComponent from '@/components/form-components/YesNoComponent'
 import { cloneDeep } from 'lodash'
+import OneChoiceComponent from '@/components/form-components/OneChoiceComponent'
 
 export default {
-  components: { YesNoComponent, PatientFormEditModal, ConfirmationBox },
+  components: {
+    OneChoiceComponent,
+    YesNoComponent,
+    PatientFormEditModal,
+    ConfirmationBox
+  },
   mixins: [getFormStepsMixin, isConfirmedMixin],
   props: {
     patient: { type: Object, required: true }
@@ -203,7 +220,15 @@ export default {
         case 'boolean':
           this.answers[num] = answer
           break
+        case 'string':
+          this.answers[num] = answer
+            .replace(/\s\s+/g, ' ') // replace multiple whitespaces with only one
+            .split(' ')
+            .join('')
+            .trim()
+          break
         default:
+          this.answers[num] = answer
           break
       }
     },
