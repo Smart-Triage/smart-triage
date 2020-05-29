@@ -102,9 +102,18 @@
           <div class="font-medium text-secondary">
             {{ step.question }}
           </div>
-          <span v-if="step.answerType === 'boolean'">{{
-            patient.answers[step.order] === true ? $t('YES') : $t('NO')
-          }}</span>
+          <div v-if="step.answerType === 'boolean'">
+            <span v-if="!editingAnswers">{{
+              patient.answers[step.order] === true ? $t('YES') : $t('NO')
+            }}</span>
+            <div v-if="editingAnswers">
+              <yes-no-component
+                :button-active="answers[step.order]"
+                :small-buttons="true"
+                @next="edit($event, step.order)"
+              />
+            </div>
+          </div>
           <span v-else-if="step.answerType === 'one-of'">
             {{
               getFormSteps
@@ -128,8 +137,19 @@
           <span v-else>{{ patient.answers[step.order] }}</span>
         </div>
       </div>
-      <button v-if="!isConfirmed(patient)" class="edit-btn" @click="edit('1')">
+      <button
+        v-if="!isConfirmed(patient) && !editingAnswers"
+        class="edit-btn"
+        @click="editingAnswers = true"
+      >
         {{ $t('EDIT') }}
+      </button>
+      <button
+        v-if="!isConfirmed(patient) && editingAnswers"
+        class="edit-btn"
+        @click="saveAnwers()"
+      >
+        {{ $t('SAVE') }}
       </button>
     </div>
     <patient-form-edit-modal
@@ -144,9 +164,11 @@ import { mapMutations } from 'vuex'
 import ConfirmationBox from '@/components/ConfirmationBox'
 import { getFormStepsMixin, isConfirmedMixin } from '@/mixins'
 import PatientFormEditModal from '@/components/PatientFormEditModal'
+import YesNoComponent from '@/components/form-components/YesNoComponent'
+import { cloneDeep } from 'lodash'
 
 export default {
-  components: { PatientFormEditModal, ConfirmationBox },
+  components: { YesNoComponent, PatientFormEditModal, ConfirmationBox },
   mixins: [getFormStepsMixin, isConfirmedMixin],
   props: {
     patient: { type: Object, required: true }
@@ -155,7 +177,9 @@ export default {
     return {
       patientInfoHidden: this.isConfirmed(this.patient),
       patientSymptomsHidden: this.isConfirmed(this.patient),
-      showPatientFormModal: false
+      showPatientFormModal: false,
+      editingAnswers: false,
+      answers: {}
     }
   },
   computed: {
@@ -169,16 +193,27 @@ export default {
       return stepsToShow
     }
   },
+  mounted() {
+    this.answers = cloneDeep(this.patient.answers)
+  },
   methods: {
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
-    edit(stepNum) {
-      const visitedSteps = ['0']
-      if (stepNum === '1') visitedSteps.push('1')
+    edit(answer, num) {
+      switch (typeof answer) {
+        case 'boolean':
+          this.answers[num] = answer
+          break
+        default:
+          break
+      }
+    },
+    saveAnwers() {
+      this.editingAnswers = false
       this.setCurrentPatientValueByKey({
-        key: 'visitedSteps',
-        value: visitedSteps
+        key: 'answers',
+        value: cloneDeep(this.answers)
       })
-      this.$router.push('/form')
+      this.answers = cloneDeep(this.patient.answers)
     }
   }
 }

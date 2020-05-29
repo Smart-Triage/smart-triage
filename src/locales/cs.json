@@ -215,6 +215,7 @@
     "YOU_HAVE_TO_ACCEPT_TXT": "Souhlasím, že všechny uvedené údaje jsou pravdivé. Uvedení nepravidvých informací může být posuzováno jako trestný čin"
   },
   "YES": "Ano",
+  "SAVE": "Uložit",
   "EDIT_MODAL": {
     "SAVE_BUTTON": "Uložit",
     "HEADER": "Editace pacienta"

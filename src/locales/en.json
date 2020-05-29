@@ -215,6 +215,7 @@
     "YOU_HAVE_TO_ACCEPT_TXT": "You have to accept the terms and you are telling the truth"
   },
   "YES": "Yes",
+  "SAVE": "Save",
   "EDIT_MODAL": {
     "SAVE_BUTTON": "Save",
     "HEADER": "Edit Patient"

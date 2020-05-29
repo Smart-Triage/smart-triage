@@ -11,7 +11,6 @@
         @submit="formSubmit"
       >
         <div class="form-wrapper">
-
           <div v-if="formFields.includes('firstName')" class="w-full">
             <label class="floating-label"> {{ $t('FIRST_NAME') }}</label>
             <input
