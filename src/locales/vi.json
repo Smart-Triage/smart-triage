@@ -209,6 +209,7 @@
   },
   "YES": "Có",
   "EDIT_MODAL": {
-    "SAVE_BUTTON": "Save"
+    "SAVE_BUTTON": "Save",
+    "HEADER": "Edit Patient"
   }
 }

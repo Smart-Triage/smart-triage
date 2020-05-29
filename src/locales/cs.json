@@ -216,6 +216,7 @@
   },
   "YES": "Ano",
   "EDIT_MODAL": {
-    "SAVE_BUTTON": "Uložit"
+    "SAVE_BUTTON": "Uložit",
+    "HEADER": "Editace pacienta"
   }
 }

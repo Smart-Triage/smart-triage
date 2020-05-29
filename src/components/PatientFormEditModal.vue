@@ -2,7 +2,7 @@
   <ModalWindow v-if="showPatientFormModal" :background-class="'bg-white'">
     <template v-slot:header>
       <h2 class="p-0 text-primary-black text-xl font-semibold">
-        {{ $t('HOME.COMPATIBILITY_MODAL.HEADER') }}
+        {{ $t('EDIT_MODAL.HEADER') }}
       </h2>
     </template>
     <template v-slot:body>
@@ -11,14 +11,6 @@
         @submit="formSubmit"
       >
         <div class="form-wrapper">
-          <div class="info-box text-sm text-center">
-            <p>{{ $t('FORM.INFORMATION_IS_SAFE') }}</p>
-            <p>
-              <strong>{{
-                $t('FORM.NO_DATA_IS_SENT_OVER_THE_INTERNET')
-              }}</strong>
-            </p>
-          </div>
 
           <div v-if="formFields.includes('firstName')" class="w-full">
             <label class="floating-label"> {{ $t('FIRST_NAME') }}</label>
