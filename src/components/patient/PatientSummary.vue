@@ -57,7 +57,7 @@
         v-if="patient.birthDate"
         class="flex flex-col border-b border-gray-700 my-1 py-1"
       >
-        <span class="text-secondary">{{ $t('PHONE_NUMBER') }}</span>
+        <span class="text-secondary">{{ $t('BIRTH_DATE') }}</span>
         <span class="font-semibold text-xl">
           {{ patient.birthDate | formatDateShort }}
         </span>
