@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import { cloneDeep } from 'lodash'
 import PatientForm from '@/components/PatientForm'
 import ProgressBar from '@/components/ProgressBar'
@@ -218,8 +218,13 @@ export default {
 
     this.dataIsReady = true
   },
+  async beforeDestroy() {
+    if (!this.currentPatient.firstName && !this.currentPatient.lastName)
+      await this.deletePatientById(this.currentPatient.id)
+  },
   methods: {
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
+    ...mapActions('patients', ['deletePatientById']),
     prev() {
       if (this.visitedSteps.length === 0) return
 
