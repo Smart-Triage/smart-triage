@@ -31,7 +31,10 @@
         </span>
       </div>
 
-      <div class="flex flex-col border-b border-gray-700 my-1">
+      <div
+        v-if="patient.birthNumber"
+        class="flex flex-col border-b border-gray-700 my-1"
+      >
         <span class="text-secondary">{{
           $t('PERSONAL_IDENTIFICATION_NUMBER')
         }}</span>
@@ -40,14 +43,31 @@
         </span>
       </div>
 
-      <div class="flex flex-col border-b border-gray-700 my-1 py-1">
+      <div
+        v-if="patient.phoneNumber"
+        class="flex flex-col border-b border-gray-700 my-1 py-1"
+      >
         <span class="text-secondary">{{ $t('PHONE_NUMBER') }}</span>
         <span class="font-semibold text-xl">
           {{ patient.phoneNumber }}
         </span>
       </div>
 
-      <button v-if="!isConfirmed(patient)" class="edit-btn" @click="edit('0')">
+      <div
+        v-if="patient.birthDate"
+        class="flex flex-col border-b border-gray-700 my-1 py-1"
+      >
+        <span class="text-secondary">{{ $t('PHONE_NUMBER') }}</span>
+        <span class="font-semibold text-xl">
+          {{ patient.birthDate | formatDateShort }}
+        </span>
+      </div>
+
+      <button
+        v-if="!isConfirmed(patient)"
+        class="edit-btn"
+        @click="showPatientFormModal = true"
+      >
         {{ $t('EDIT') }}
       </button>
     </div>
@@ -82,36 +102,79 @@
           <div class="font-medium text-secondary">
             {{ step.question }}
           </div>
-          <span v-if="step.answerType === 'boolean'">{{
-            patient.answers[step.order] === true ? $t('YES') : $t('NO')
-          }}</span>
-          <span v-else-if="step.answerType === 'one-of'">
-            {{
-              getFormSteps
-                .find(s => s.order === step.order)
-                .options.find(o => o.value === patient.answers[step.order]).text
-            }}
-          </span>
-          <span v-else-if="step.answerType === 'checkbox'">
-            <span
-              v-for="option in patient.answers[step.order]"
-              :key="option.value"
-              >{{
-                option.isChecked
-                  ? getFormSteps
-                      .find(s => s.order === step.order)
-                      .options.find(o => o.value === option.value).text + ', '
-                  : ''
-              }}</span
-            >
-          </span>
-          <span v-else>{{ patient.answers[step.order] }}</span>
+          <div v-if="step.answerType === 'boolean'">
+            <span v-if="!editingAnswers">{{
+              patient.answers[step.order] === true ? $t('YES') : $t('NO')
+            }}</span>
+            <div v-if="editingAnswers">
+              <yes-no-component
+                :button-active="answers[step.order]"
+                :small-buttons="true"
+                @next="edit($event, step.order)"
+              />
+            </div>
+          </div>
+          <div v-else-if="step.answerType === 'one-of'">
+            <span v-if="!editingAnswers">
+              {{
+                getFormSteps
+                  .find(s => s.order === step.order)
+                  .options.find(o => o.value === patient.answers[step.order])
+                  .text
+              }}
+            </span>
+            <one-choice-component
+              v-if="editingAnswers"
+              :button-active="answers[step.order]"
+              :small-buttons="true"
+              :options="step.options"
+              @next="edit($event, step.order)"
+            />
+          </div>
+          <div v-else-if="step.answerType === 'checkbox'">
+            <span v-if="!editingAnswers">
+              <span
+                v-for="option in patient.answers[step.order]"
+                :key="option.value"
+                >{{
+                  option.isChecked
+                    ? getFormSteps
+                        .find(s => s.order === step.order)
+                        .options.find(o => o.value === option.value).text + ', '
+                    : ''
+                }}</span
+              >
+            </span>
+            <div v-if="editingAnswers">
+              <check-box-component
+                :checked-steps="answers[step.order]"
+                :options="step.options"
+                :current-patient="patient"
+                :editable="true"
+              />
+            </div>
+          </div>
         </div>
       </div>
-      <button v-if="!isConfirmed(patient)" class="edit-btn" @click="edit('1')">
+      <button
+        v-if="!isConfirmed(patient) && !editingAnswers"
+        class="edit-btn"
+        @click="editingAnswers = true"
+      >
         {{ $t('EDIT') }}
       </button>
+      <button
+        v-if="!isConfirmed(patient) && editingAnswers"
+        class="edit-btn"
+        @click="saveAnwers()"
+      >
+        {{ $t('SAVE') }}
+      </button>
     </div>
+    <patient-form-edit-modal
+      :show-patient-form-modal="showPatientFormModal"
+      @hidePatientFormEditModal="showPatientFormModal = false"
+    />
   </div>
 </template>
 
@@ -119,9 +182,20 @@
 import { mapMutations } from 'vuex'
 import ConfirmationBox from '@/components/ConfirmationBox'
 import { getFormStepsMixin, isConfirmedMixin } from '@/mixins'
+import PatientFormEditModal from '@/components/PatientFormEditModal'
+import YesNoComponent from '@/components/form-components/YesNoComponent'
+import { cloneDeep } from 'lodash'
+import OneChoiceComponent from '@/components/form-components/OneChoiceComponent'
+import CheckBoxComponent from '@/components/form-components/CheckBoxComponent'
 
 export default {
-  components: { ConfirmationBox },
+  components: {
+    CheckBoxComponent,
+    OneChoiceComponent,
+    YesNoComponent,
+    PatientFormEditModal,
+    ConfirmationBox
+  },
   mixins: [getFormStepsMixin, isConfirmedMixin],
   props: {
     patient: { type: Object, required: true }
@@ -129,7 +203,10 @@ export default {
   data() {
     return {
       patientInfoHidden: this.isConfirmed(this.patient),
-      patientSymptomsHidden: this.isConfirmed(this.patient)
+      patientSymptomsHidden: this.isConfirmed(this.patient),
+      showPatientFormModal: false,
+      editingAnswers: false,
+      answers: {}
     }
   },
   computed: {
@@ -143,16 +220,35 @@ export default {
       return stepsToShow
     }
   },
+  mounted() {
+    this.answers = cloneDeep(this.patient.answers)
+  },
   methods: {
     ...mapMutations('patients', ['setCurrentPatientValueByKey']),
-    edit(stepNum) {
-      const visitedSteps = ['0']
-      if (stepNum === '1') visitedSteps.push('1')
+    edit(answer, num) {
+      switch (typeof answer) {
+        case 'boolean':
+          this.answers[num] = answer
+          break
+        case 'string':
+          this.answers[num] = answer
+            .replace(/\s\s+/g, ' ') // replace multiple whitespaces with only one
+            .split(' ')
+            .join('')
+            .trim()
+          break
+        default:
+          this.answers[num] = answer
+          break
+      }
+    },
+    saveAnwers() {
+      this.editingAnswers = false
       this.setCurrentPatientValueByKey({
-        key: 'visitedSteps',
-        value: visitedSteps
+        key: 'answers',
+        value: cloneDeep(this.answers)
       })
-      this.$router.push('/form')
+      this.answers = cloneDeep(this.patient.answers)
     }
   }
 }

@@ -1,13 +1,19 @@
 <template>
   <div>
     <button
-      :class="{ 'button-active': buttonActive === false }"
+      :class="{
+        'button-active': buttonActive === false,
+        'button-small': smallButtons
+      }"
       @click="$emit('next', false)"
     >
       {{ $t('NO') }}
     </button>
     <button
-      :class="{ 'button-active': buttonActive === true }"
+      :class="{
+        'button-active': buttonActive === true,
+        'button-small': smallButtons
+      }"
       @click="$emit('next', true)"
     >
       {{ $t('YES') }}
@@ -18,7 +24,10 @@
 <script>
 export default {
   name: 'YesNoComponent',
-  props: { buttonActive: [Boolean, String, Array] }
+  props: {
+    buttonActive: [Boolean, String, Array],
+    smallButtons: Boolean
+  }
 }
 </script>
 
@@ -40,5 +49,13 @@ button {
 
 button:hover {
   background-color: $dark-button-color;
+}
+
+.button-small {
+  font-size: 0.8em;
+  border-radius: 2em;
+  border: none;
+  padding: 0.5em 1.2em;
+  margin: 0.5em;
 }
 </style>

@@ -175,6 +175,7 @@
   },
   "PERSONAL_IDENTIFICATION_NUMBER": "Идентификационный номер физического лица",
   "PHONE_NUMBER": "Номер телефона",
+  "BIRTH_DATE": "Date of birth",
   "SCAN_CONFIRMATION_QR_CODE": {
     "SCAN_CONFIRMATION_QR_CODE": "Отсканируйте подтверждающий QR-код от медицинского работника."
   },
@@ -206,5 +207,10 @@
     "YOU_HAVE_TO_ACCEPT_BTN": "Вы должны согласиться с условиями",
     "YOU_HAVE_TO_ACCEPT_TXT": "Подтверждаю, что вся приведенная выше информация является правдой. Предоставление ложной информации является уголовным преступлением"
   },
-  "YES": "Да"
+  "YES": "Да",
+  "SAVE": "Save",
+  "EDIT_MODAL": {
+    "SAVE_BUTTON": "Save",
+    "HEADER": "Edit Patient"
+  }
 }

@@ -182,6 +182,7 @@
   },
   "PERSONAL_IDENTIFICATION_NUMBER": "Rodné číslo",
   "PHONE_NUMBER": "Telefónne číslo",
+  "BIRTH_DATE": "Dátum narodenia",
   "SCAN_CONFIRMATION_QR_CODE": {
     "SCAN_CONFIRMATION_QR_CODE": "Naskenujte potvrdzovací QR kód od zdravotníka"
   },
@@ -213,5 +214,10 @@
     "YOU_HAVE_TO_ACCEPT_BTN": "Musíte súhlasiť s podmienkami",
     "YOU_HAVE_TO_ACCEPT_TXT": "Súhlasím, že všetky uvedené údaje sú pravdivé. Uvedenie nepravidvých informácií môže byť posudzované ako trestný čin"
   },
-  "YES": "Áno"
+  "YES": "Áno",
+  "SAVE": "Uložiť",
+  "EDIT_MODAL": {
+    "SAVE_BUTTON": "Uložiť",
+    "HEADER": "Editácia pacienta"
+  }
 }

@@ -56,6 +56,13 @@ Vue.filter('formatDate', value => {
   return ''
 })
 
+Vue.filter('formatDateShort', value => {
+  if (value) {
+    return moment(String(value)).format('DD.MM.YYYY')
+  }
+  return ''
+})
+
 new Vue({
   router,
   store,

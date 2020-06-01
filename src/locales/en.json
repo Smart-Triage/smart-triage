@@ -182,6 +182,7 @@
   },
   "PERSONAL_IDENTIFICATION_NUMBER": "Personal identification number",
   "PHONE_NUMBER": "Phone number",
+  "BIRTH_DATE": "Date of birth",
   "SCAN_CONFIRMATION_QR_CODE": {
     "SCAN_CONFIRMATION_QR_CODE": "Scan confirmation code from hospital employee"
   },
@@ -213,5 +214,10 @@
     "YOU_HAVE_TO_ACCEPT_BTN": "You have to accept the terms",
     "YOU_HAVE_TO_ACCEPT_TXT": "You have to accept the terms and you are telling the truth"
   },
-  "YES": "Yes"
+  "YES": "Yes",
+  "SAVE": "Save",
+  "EDIT_MODAL": {
+    "SAVE_BUTTON": "Save",
+    "HEADER": "Edit Patient"
+  }
 }

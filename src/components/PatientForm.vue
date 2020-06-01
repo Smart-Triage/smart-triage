@@ -60,6 +60,18 @@
           @input="setPatientValueByKey('phoneNumber', $event.target.value)"
         />
       </div>
+
+      <div v-if="formFields.includes('birthDate')" class="w-full">
+        <label class="floating-label"> {{ $t('BIRTH_DATE') }}</label>
+        <input
+          placeholder=""
+          class="form-input"
+          type="date"
+          :value="currentPatient.birthDate"
+          required
+          @input="setPatientValueByKey('birthDate', $event.target.value)"
+        />
+      </div>
     </div>
     <button type="submit" class="btn-primary mb-4">{{ $t('NEXT') }}</button>
   </form>
@@ -131,6 +143,30 @@ export default {
       font: inherit;
       border-width: 0 0 1px 0;
       border-color: $secondary-text-color;
+    }
+
+    input[type='date'] {
+      position: relative;
+    }
+
+    input[type='date']::-webkit-calendar-picker-indicator {
+      color: transparent;
+      background: none;
+      z-index: 1;
+    }
+
+    input[type='date']:before {
+      background: none;
+      display: block;
+      font-family: 'FontAwesome', serif;
+      content: '\f073';
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 4px;
+      right: 6px;
+      color: $secondary-text-color;
     }
   }
 }

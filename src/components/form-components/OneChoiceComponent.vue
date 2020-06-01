@@ -4,7 +4,8 @@
       v-for="option in options"
       :key="option.value"
       :class="{
-        'button-active': buttonActive === option.value
+        'button-active': buttonActive === option.value,
+        'button-small': smallButtons
       }"
       @click="$emit('next', option.value)"
     >
@@ -16,7 +17,11 @@
 <script>
 export default {
   name: 'OneChoiceComponent',
-  props: { buttonActive: [String, Boolean, Array], options: Array }
+  props: {
+    buttonActive: [String, Boolean, Array],
+    options: Array,
+    smallButtons: Boolean
+  }
 }
 </script>
 
@@ -38,5 +43,13 @@ button {
 
 button:hover {
   background-color: $dark-button-color;
+}
+
+.button-small {
+  font-size: 0.8em;
+  border-radius: 2em;
+  border: none;
+  padding: 0.5em 1.2em;
+  margin: 0.5em;
 }
 </style>
