@@ -119,14 +119,28 @@
         <ion-icon name="qr-code-outline"></ion-icon>
         <div class="ml-2">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
       </button>
-      <router-link
-        v-if="isConfirmed(currentPatient)"
-        to="/patient-qr-code"
-        class="w-full max-w-sm flex justify-center items-center bg-primary rounded-full text-white text-lg mx-4 mb-8 p-2 weird-safari-button-fix"
-      >
-        <ion-icon name="qr-code-outline"></ion-icon>
-        <div class="button-text ml-2">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
-      </router-link>
+
+      <div class="flex-shrink w-full max-w-sm">
+        <router-link
+          v-if="isConfirmed(currentPatient)"
+          class="flex justify-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-2"
+          to="/scan-confirmation-qr-code"
+        >
+          <ion-icon name="scan-outline"></ion-icon>
+          <span class="ml-2">
+            {{ $t('Scan new Confirmation') }}
+          </span>
+        </router-link>
+
+        <router-link
+          v-if="isConfirmed(currentPatient)"
+          to="/patient-qr-code"
+          class="w-full max-w-sm flex justify-center items-center bg-primary rounded-full text-white text-lg mb-8 p-2 weird-safari-button-fix"
+        >
+          <ion-icon name="qr-code-outline"></ion-icon>
+          <div class="button-text ml-2">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
+        </router-link>
+      </div>
 
       <!-- <router-link to="/" class="link btn-primary icon-button"
         ><ion-icon name="person-add-outline"></ion-icon>

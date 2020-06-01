@@ -367,7 +367,10 @@ export default {
           timestamp: Math.floor(Date.now() / 1000),
           issuedFor: this.hospital,
           infectionSuspected: this.infectionSuspected,
-          temperature: this.currentPatient.measuredTemperature
+          temperature:
+            this.currentPatient.measuredTemperature !== undefined
+              ? this.currentPatient.measuredTemperature
+              : this.currentPatient.confirmation.temperature
         }
       })
 
@@ -378,6 +381,7 @@ export default {
       // if (signedData) {
       // this.signedPatient = JSON.stringify(signedData)
       this.stringifiedPatient = this.stringifyPatient(this.currentPatient)
+      console.log(this.stringifiedPatient)
       this.showingConfirmationQR = true
       this.$router.push('#confirmation-qr-code')
       return true
