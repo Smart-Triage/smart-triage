@@ -1,21 +1,42 @@
 <template>
   <div class="checkbox-answer">
-    <div
-      v-for="option in options"
-      :key="currentPatient + option.value"
-      class="checkbox-wrapper"
-    >
-      <input
-        :id="option.value"
-        v-model="checkedSteps.find(op => op.value === option.value).isChecked"
-        :value="option.value"
-        type="checkbox"
-        class="hideCheckbox"
-      />
-      <label :for="option.value">{{ option.text }}</label>
-    </div>
+    <div v-if="!editable">
+      <div
+        v-for="option in options"
+        :key="currentPatient + option.value"
+        class="checkbox-wrapper"
+      >
+        <input
+          :id="option.value"
+          v-model="checkedSteps.find(op => op.value === option.value).isChecked"
+          :value="option.value"
+          type="checkbox"
+          class="hideCheckbox"
+        />
+        <label :for="option.value">{{ option.text }}</label>
+      </div>
 
-    <button @click="$emit('next', checkedSteps)">{{ $t('NEXT') }}</button>
+      <button @click="$emit('next', checkedSteps)">
+        {{ $t('NEXT') }}
+      </button>
+    </div>
+    <div v-else>
+      <div
+        v-for="option in options"
+        :key="currentPatient + option.value"
+        class="checkbox-wrapper button-small"
+      >
+        <input
+          :id="option.value"
+          v-model="checkedSteps.find(op => op.value === option.value).isChecked"
+          :value="option.value"
+          type="checkbox"
+          class="hideCheckbox"
+          @click="$emit('next', checkedSteps)"
+        />
+        <label :for="option.value">{{ option.text }}</label>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -25,7 +46,8 @@ export default {
   props: {
     checkedSteps: [String, Boolean, Array],
     currentPatient: Object,
-    options: Array
+    options: Array,
+    editable: Boolean
   }
 }
 </script>
@@ -50,6 +72,14 @@ export default {
   button:hover {
     background-color: $dark-button-color;
   }
+}
+
+.button-small {
+  font-size: 0.8em;
+  border-radius: 2em;
+  border: none;
+  padding: 0.5em 1.2em;
+  margin: 0.5em;
 }
 
 .checkbox-answer {

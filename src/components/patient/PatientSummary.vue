@@ -145,6 +145,14 @@
                 }}</span
               >
             </span>
+            <div v-if="editingAnswers">
+              <check-box-component
+                :checked-steps="answers[step.order]"
+                :options="step.options"
+                :current-patient="patient"
+                :editable="true"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -178,9 +186,11 @@ import PatientFormEditModal from '@/components/PatientFormEditModal'
 import YesNoComponent from '@/components/form-components/YesNoComponent'
 import { cloneDeep } from 'lodash'
 import OneChoiceComponent from '@/components/form-components/OneChoiceComponent'
+import CheckBoxComponent from '@/components/form-components/CheckBoxComponent'
 
 export default {
   components: {
+    CheckBoxComponent,
     OneChoiceComponent,
     YesNoComponent,
     PatientFormEditModal,
