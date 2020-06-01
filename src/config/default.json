@@ -6,6 +6,7 @@
   ],
   "formSteps": {
     "cs": {
+      "formId": 1,
       "requiredAnswers": 6,
       "questions": [
         {
@@ -57,6 +58,7 @@
       ]
     },
     "cs_old": {
+      "formId": 2,
       "requiredAnswers": 8,
       "questions": [
         {
@@ -192,6 +194,7 @@
       ]
     },
     "en": {
+      "formId": 1,
       "requiredAnswers": 6,
       "questions": [
         {
@@ -243,6 +246,7 @@
       ]
     },
     "en_old": {
+      "formId": 2,
       "requiredAnswers": 8,
       "questions": [
         {
@@ -374,6 +378,7 @@
       ]
     },
     "sk": {
+      "formId": 1,
       "requiredAnswers": 6,
       "questions": [
         {
@@ -425,6 +430,7 @@
       ]
     },
     "sk_old": {
+      "formId": 2,
       "requiredAnswers": 8,
       "questions": [
         {
