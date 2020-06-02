@@ -123,19 +123,19 @@
       <div class="flex-shrink w-full max-w-sm">
         <router-link
           v-if="isConfirmed(currentPatient)"
-          class="flex justify-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-2"
+          class="flex justify-center bg-secondary text-lg text-white rounded-full px-8 py-3 my-4"
           to="/scan-confirmation-qr-code"
         >
           <ion-icon name="scan-outline"></ion-icon>
           <span class="ml-2">
-            {{ $t('Scan new Confirmation') }}
+            {{ $t('SUMMARY.SECONDARY_CONFIRMATION') }}
           </span>
         </router-link>
 
         <router-link
           v-if="isConfirmed(currentPatient)"
           to="/patient-qr-code"
-          class="w-full max-w-sm flex justify-center items-center bg-primary rounded-full text-white text-lg mb-8 p-2 weird-safari-button-fix"
+          class="w-full max-w-sm flex justify-center items-center bg-primary rounded-full text-white text-lg mb-8 p-2 mt-2 weird-safari-button-fix"
         >
           <ion-icon name="qr-code-outline"></ion-icon>
           <div class="button-text ml-2">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
