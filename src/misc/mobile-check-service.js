@@ -12,5 +12,8 @@ export default function isCompatiblePhoneAndBrowser() {
   ) {
     return false
   }
+  if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+    return false
+  }
   return true
 }
