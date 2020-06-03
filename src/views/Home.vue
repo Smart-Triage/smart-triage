@@ -7,37 +7,32 @@
       }"
     >
       <NavBar slim>
+        <template v-slot:left>
+          <Menu/>
+        </template>
+        <template v-slot:center>
+          <img
+            v-if="locale === 'cs' || locale === 'sk'"
+            class="h-8 mx-auto"
+            src="@/assets/img/logo.svg"
+            alt="Smart Triage logo"
+          />
+          <img
+            v-else
+            class="h-8 mx-auto"
+            src="@/assets/img/logo_en.svg"
+            alt="Smart Triage logo"
+          />
+        </template>
         <template v-slot:right>
           <LocaleChanger short no-background></LocaleChanger>
         </template>
       </NavBar>
       <div class="page-content">
         <!-- HEADER -->
-        <img
-          v-if="locale == 'cs' || locale == 'sk'"
-          class="h-16 mx-auto"
-          src="@/assets/img/logo.svg"
-          alt="Smart Triage logo"
-        />
-        <img
-          v-else
-          class="h-16 mx-auto"
-          src="@/assets/img/logo_en.svg"
-          alt="Smart Triage logo"
-        />
-        <p class="mt-4 text-xl text-secondary font-semibold">
+        <p class="mt-8 text-xl font-semibold">
           {{ $t('HOME.FILL_FORM_IN_YOUR_PHONE') }}<br />
           {{ $t('HOME.SHORTEN_THE_WAIT') }}
-        </p>
-        <img
-          class="h-32 my-8 mx-auto"
-          src="@/assets/img/home-page-welcome-img.png"
-          alt=""
-        />
-        <!-- <p>{{ $t('HOME.WELCOME') }}</p> -->
-        <!-- <h1 class="text-5xl">{{ $t('HOME.TITLE') }}</h1> -->
-        <p class="text-xl text-secondary font-semibold">
-          {{ $t('HOME.INFO') }}
         </p>
 
         <!-- PATIENT LIST -->
@@ -47,11 +42,11 @@
         ></PatientList>
 
         <!-- ACTIONS -->
-        <div class="w-full">
+        <div class="w-full my-12">
           <div v-if="patients.length === 0">
-            <button class="btn-primary" @click="cameraCheck()">
+            <button class="btn-primary text-2xl" @click="cameraCheck()">
               <ion-icon
-                class="btn-icon text-xl"
+                class="btn-icon text-2xl"
                 name="create-outline"
               ></ion-icon>
               <span>{{ $t('HOME.FILL_FORM') }}</span>
@@ -66,121 +61,84 @@
           </div>
         </div>
 
-        <!-- BOTTOM LINKS -->
-        <!--      <div class="bottom-link">-->
-        <!--        <router-link to="/how-it-works">-->
-        <!--          {{ $t('HOME.HOW_IT_WORKS') }}-->
-        <!--        </router-link>-->
-        <!--      </div>-->
-        <div
-          class="home-text home-h2-primary bg-white px-6 pb-6 mt-4 border-app"
-        >
-          <h2>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_H') }}</h2>
-          <p>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_P') }}</p>
-          <h2>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_H') }}</h2>
-          <p>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_P') }}</p>
-          <ol
-            class="list-decimal list-inside my-6 text-secondary font-semibold leading-loose"
-          >
-            <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_1') }}</li>
-            <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_2') }}</li>
-            <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_3') }}</li>
-            <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_4') }}</li>
-          </ol>
-          <h2>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_H') }}</h2>
-          <p>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_P') }}</p>
-        </div>
+        <p class="mb-12" v-html="$t('HOME.INFO')"></p>
+
+        <HomeAccordion>
+          <template v-slot:heading>
+            {{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_H') }}
+          </template>
+          <template v-slot:content>
+            <p>{{ $t('HOME.ABOUT_TRIAGE.WHAT_IS_TRIAGE_P') }}</p>
+          </template>
+        </HomeAccordion>
+
+        <HomeAccordion>
+          <template v-slot:heading>
+            {{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_H') }}
+          </template>
+          <template v-slot:content>
+            <p>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_P') }}</p>
+            <ol
+              class="list-decimal list-inside my-6 text-secondary font-semibold leading-loose"
+            >
+              <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_1') }}</li>
+              <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_2') }}</li>
+              <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_3') }}</li>
+              <li>{{ $t('HOME.ABOUT_TRIAGE.HOW_IT_WORKS_OL_4') }}</li>
+            </ol>
+          </template>
+        </HomeAccordion>
+
+        <HomeAccordion>
+          <template v-slot:heading>
+            {{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_H') }}
+          </template>
+          <template v-slot:content>
+            <p>{{ $t('HOME.ABOUT_TRIAGE.WHERE_IT_WORKS_P') }}</p>
+          </template>
+        </HomeAccordion>
+
         <div class="home-text home-h2-secondary p-6 mt-4 border-app">
           <h2>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_H') }}</h2>
-          <p>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_P') }}</p>
+          <p v-html="$t('HOME.PERSONAL_INFO.WHATS_HAPPENING_P')"></p>
           <img
             class="my-8 mx-auto"
             src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
             alt="Hand holding phone scanning QR code"
           />
           <h2>{{ $t('HOME.PERSONAL_INFO.APP_H') }}</h2>
-          <p>{{ $t('HOME.PERSONAL_INFO.APP_P') }}</p>
+          <p v-html="$t('HOME.PERSONAL_INFO.APP_P')"></p>
         </div>
-        <div
-          class="text-center w-full max-w-lg home-h2-secondary bg-white px-6 pb-4 mt-4 border-app"
-        >
-          <h2>{{ $t('HOME.AUTHORS.WHO_IS_BEHIND_THIS_APP') }}</h2>
-          <p>{{ $t('HOME.AUTHORS.US') }}</p>
-          <div class="authors-pictures">
-            <div>
-              <img
-                src="@/assets/img/avatar-lr.png"
-                alt="Hand holding phone scanning QR code"
-              />
-              <p>
-                <a href="https://www.linkedin.com/in/luborepka/">Ľuboš Repka</a>
-              </p>
-            </div>
-            <div>
-              <img
-                src="@/assets/img/avatar-tk.png"
-                alt="Hand holding phone scanning QR code"
-              />
-              <p>Tom Kuna</p>
-            </div>
-          </div>
-          <div class="authors-pictures">
-            <div>
-              <img
-                src="@/assets/img/avatar-tt.png"
-                alt="Hand holding phone scanning QR code"
-              />
-              <p>
-                <a href="https://www.linkedin.com/in/tomastrejdl/"
-                  >Tomáš Trejdl
-                </a>
-              </p>
-            </div>
-            <div>
-              <img
-                src="@/assets/img/avatar-vk.png"
-                alt="Hand holding phone scanning QR code"
-              />
-              <p>
-                <a href="https://www.linkedin.com/in/vasilkostin/"
-                  >Vasil Kostin</a
-                >
-              </p>
-            </div>
-          </div>
-          <!-- <p>{{ $t('HOME.AUTHORS.PARTNERS') }}</p>
-          <img
-            class="my-8 mx-auto"
-            src="@/assets/img/charles-university-logo.png"
-            alt="Charles University logo"
-          /> -->
+      </div>
 
-          <!-- PARTNERS -->
-          <h2>{{ $t('HOME.PARTNERS_H') }}</h2>
-          <div class="w-full flex justify-around items-center my-8">
-            <a href="https://artinsolutions.com">
-              <img
-                src="@/assets/img/partners-logos/artin.png"
-                alt="Artin company logo"
-            /></a>
+      <!-- PARTNERS -->
+      <div
+        class="text-center w-full max-w-lg home-h2-secondary bg-white px-6 py-4 my-8 border-app"
+      >
+        <h2>{{ $t('HOME.PARTNERS_H') }}</h2>
+        <div class="w-full flex justify-around items-center my-8">
+          <a href="https://artinsolutions.com">
+            <img
+              src="@/assets/img/partners-logos/artin.png"
+              alt="Artin company logo"
+          /></a>
 
-            <a href="https://cuni.cz/">
-              <img
-                src="@/assets/img/charles-university-logo.png"
-                alt="Charles University logo"
-              />
-            </a>
-          </div>
+          <a href="https://cuni.cz/">
+            <img
+              src="@/assets/img/charles-university-logo.png"
+              alt="Charles University logo"
+            />
+          </a>
         </div>
       </div>
 
       <!-- CALL TO ACTION -->
-      <div class="w-full flex flex-col justify-center items-center mt-16">
+      <div class="w-full flex flex-col justify-center items-center mt-16 text-center">
         <p class="text-xl text-secondary font-semibold">
           {{ $t('HOME.FILL_FORM_IN_YOUR_PHONE') }}<br />
           {{ $t('HOME.SHORTEN_THE_WAIT') }}
         </p>
-        <button class="btn-primary mt-4" @click="createPatient">
+        <button class="btn-primary text-2xl my-8" @click="createPatient">
           <ion-icon class="btn-icon text-xl" name="create-outline"></ion-icon>
           <span>{{ $t('HOME.FILL_FORM') }}</span>
         </button>
@@ -196,17 +154,16 @@
           alt="Smart Triage logo"
         />
         <p>
-          <a href="">{{ $t('HOME.FOOTER.CONTACT') }}</a>
+          <router-link to="/contact">
+            {{ $t('HOME.FOOTER.CONTACT') }}
+          </router-link>
         </p>
-        <p>
-          <a href="">{{ $t('HOME.FOOTER.FAQ') }}</a>
-        </p>
-        <p>
-          <a href="">{{ $t('HOME.FOOTER.FOR_HOSPITALS') }}</a>
-        </p>
-        <p>
-          <a href="">{{ $t('HOME.FOOTER.FOR_EMPLOYEES') }}</a>
-        </p>
+        <!--        <p>-->
+        <!--          <a href="">{{ $t('HOME.FOOTER.FOR_HOSPITALS') }}</a>-->
+        <!--        </p>-->
+        <!--        <p>-->
+        <!--          <a href="">{{ $t('HOME.FOOTER.FOR_EMPLOYEES') }}</a>-->
+        <!--        </p>-->
         <p>
           <router-link to="/settings">
             {{ $t('HOME.SETTINGS') }}
@@ -214,7 +171,9 @@
         </p>
         <div class="divider"></div>
         <p>
-          <a href="">{{ $t('HOME.FOOTER.ABOUT_US') }}</a>
+          <router-link to="/team">
+            {{ $t('HOME.FOOTER.ABOUT_US') }}
+          </router-link>
         </p>
         <p>
           <a href="./privacy-policy/privacy-policy-cs.pdf">
@@ -242,12 +201,16 @@ import { mapActions, mapState } from 'vuex'
 import PatientList from '@/components/PatientList'
 import LocaleChanger from '@/components/LocaleChanger'
 import CookiesCheck from '@/components/CookiesCheck'
+import HomeAccordion from '@/components/HomeAccordion'
+import Menu from '@/components/Menu'
 
 export default {
   components: {
     PatientList,
     LocaleChanger,
-    CookiesCheck
+    CookiesCheck,
+    HomeAccordion,
+    Menu
   },
   head() {
     return {
@@ -266,7 +229,9 @@ export default {
     }
   },
   data: () => ({
-    areCookiesAccepted: localStorage.getItem('cookie:accepted')
+    areCookiesAccepted: localStorage.getItem('cookie:accepted'),
+    whatIsTriageHidden: false,
+    howItWorksHidden: true
   }),
   computed: {
     ...mapState('patients', ['patients']),
