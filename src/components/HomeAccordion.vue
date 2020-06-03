@@ -103,4 +103,10 @@ export default {
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .info-container {
+    padding: 4em 1.2em 2em 1.2em;
+  }
+}
 </style>
