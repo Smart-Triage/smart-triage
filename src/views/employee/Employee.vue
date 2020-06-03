@@ -114,15 +114,31 @@
         ></EmployeePatientSummary>
 
         <div
-          v-if="currentPatient && currentPatient.confirmation === undefined"
+          v-if="currentPatient"
           class="temperature-input w-full rounded-full px-4 sm:px-8 py-2 mb-8 mt-2 flex items-center font-semibold"
         >
-          <label for="enter-temperature">
+          <label v-if="!currentPatient.confirmation" for="enter-temperature">
             {{ $t('EMPLOYEE.ENTER_TEMPERATURE') }}:
           </label>
           <input
+            v-if="!currentPatient.confirmation"
             id="enter-temperature"
             :value="currentPatient.measuredTemperature"
+            type="number"
+            min="36"
+            max="42"
+            step="0.1"
+            class="flex-grow p-2 rounded-full ml-4 text-center"
+            required
+            @input="setMeasuredTemperature($event.target.value)"
+          />
+          <label v-if="currentPatient.confirmation" for="edit-temperature">
+            {{ $t('EMPLOYEE.ENTER_TEMPERATURE') }}:
+          </label>
+          <input
+            v-if="currentPatient.confirmation"
+            id="edit-temperature"
+            :value="currentPatient.confirmation.temperature"
             type="number"
             min="36"
             max="42"
@@ -367,7 +383,10 @@ export default {
           timestamp: Math.floor(Date.now() / 1000),
           issuedFor: this.hospital,
           infectionSuspected: this.infectionSuspected,
-          temperature: this.currentPatient.measuredTemperature
+          temperature:
+            this.currentPatient.measuredTemperature !== undefined
+              ? this.currentPatient.measuredTemperature
+              : this.currentPatient.confirmation.temperature
         }
       })
 

@@ -79,6 +79,8 @@ function parsePatientCSVtoObject(data, formSteps) {
       confirmationObj[confirmationKeys[confirmationKeyIndex]] = parsedRow[0]
       confirmationKeyIndex += 1
     })
+    confirmationObj.infectionSuspected =
+      confirmationObj.infectionSuspected === 'true'
     patientObject[keys[keyIndex]] = confirmationObj
   }
   // eslint-disable-next-line radix

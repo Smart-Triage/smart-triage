@@ -49,7 +49,7 @@
               'text-red-500': patient.confirmation.temperature > 37
             }"
           >
-            {{ patient.confirmation.temperature | formatDate }}ºC
+            {{ patient.confirmation.temperature }}ºC
           </span>
         </div>
 
