@@ -123,6 +123,7 @@ export default {
   padding: 2rem 5rem 2rem 5rem;
   &__nav {
     position: relative;
+    margin-right: 25px;
   }
   &__navbar {
     display: flex;
