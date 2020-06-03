@@ -30,24 +30,15 @@
       </NavBar>
       <div class="page-content">
         <!-- HEADER -->
-        <p class="mt-8 text-xl font-semibold">
+        <p class="mt-12 text-xl font-semibold">
           {{ $t('HOME.FILL_FORM_IN_YOUR_PHONE') }}<br />
           {{ $t('HOME.SHORTEN_THE_WAIT') }}
         </p>
-        <img
-          class="h-32 my-8 mx-auto"
-          src="@/assets/img/home-page-welcome-img.png"
-          alt=""
-        />
-        <!-- <p>{{ $t('HOME.WELCOME') }}</p> -->
-        <!-- <h1 class="text-5xl">{{ $t('HOME.TITLE') }}</h1> -->
-        <p class="text-xl text-secondary font-semibold">
-          {{ $t('HOME.INFO') }}
-        </p>
+
         <!-- ACTIONS -->
         <div class="w-full">
           <router-link to="/person-list">
-            <button class="btn-primary text-2xl my-8">
+            <button class="btn-primary text-2xl my-12">
               <ion-icon
                 class="btn-icon text-2xl"
                 name="create-outline"
