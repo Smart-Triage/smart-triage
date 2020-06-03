@@ -46,6 +46,17 @@ const router = new Router({
       }
     },
     {
+      path: '/terms-agreement',
+      name: 'terms-agreement',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-form" */ '@/views/patient/TermsAgreement.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
       path: '/form',
       name: 'form',
       component: () =>
