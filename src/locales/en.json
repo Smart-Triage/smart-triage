@@ -212,7 +212,8 @@
     "WARNING": "Warning",
     "WARNING_TEXT": "We use this information to reduce the risk of transmitting COVID-19 infection in a healthcare facility. Providing false information may be considered a criminal offense.",
     "YOU_HAVE_TO_ACCEPT_BTN": "You have to accept the terms",
-    "YOU_HAVE_TO_ACCEPT_TXT": "You have to accept the terms and you are telling the truth"
+    "YOU_HAVE_TO_ACCEPT_TXT": "You have to accept the terms and you are telling the truth",
+    "SECONDARY_CONFIRMATION": "Scan Secondary Confirmation"
   },
   "YES": "Yes",
   "SAVE": "Save",
