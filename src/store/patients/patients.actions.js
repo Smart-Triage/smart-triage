@@ -1,10 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
 
 export default {
-  /**
-   * Create a product for current loggedin user
-   */
-  createNewPatient: async ({ state, commit }) => {
+  createNewPatient: async ({ state, commit }, isOwnerPatient) => {
     return new Promise(resolve => {
       // Only create new patient if the last patient is filled, if last patient is empty, use that one instead of creating a new one
       if (
@@ -16,6 +13,9 @@ export default {
           id: uuidv4()
         }
         commit('createNewPatient', newPatient)
+        if (isOwnerPatient) {
+          commit('setOwnerPatientId', newPatient.id)
+        }
         commit('setCurrentPatientId', newPatient.id)
       }
       resolve()

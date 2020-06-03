@@ -8,7 +8,7 @@
     >
       <NavBar slim>
         <template v-slot:left>
-          <Menu/>
+          <Menu />
         </template>
         <template v-slot:center>
           <img
@@ -34,34 +34,32 @@
           {{ $t('HOME.FILL_FORM_IN_YOUR_PHONE') }}<br />
           {{ $t('HOME.SHORTEN_THE_WAIT') }}
         </p>
-
-        <!-- PATIENT LIST -->
-        <PatientList
-          v-if="patients.length > 0"
-          class="w-full my-1"
-        ></PatientList>
-
+        <img
+          class="h-32 my-8 mx-auto"
+          src="@/assets/img/home-page-welcome-img.png"
+          alt=""
+        />
+        <!-- <p>{{ $t('HOME.WELCOME') }}</p> -->
+        <!-- <h1 class="text-5xl">{{ $t('HOME.TITLE') }}</h1> -->
+        <p class="text-xl text-secondary font-semibold">
+          {{ $t('HOME.INFO') }}
+        </p>
         <!-- ACTIONS -->
-        <div class="w-full my-12">
-          <div v-if="patients.length === 0">
-            <button class="btn-primary text-2xl" @click="cameraCheck()">
+        <div class="w-full">
+          <router-link to="/person-list">
+            <button class="btn-primary text-2xl my-8">
               <ion-icon
                 class="btn-icon text-2xl"
                 name="create-outline"
               ></ion-icon>
               <span>{{ $t('HOME.FILL_FORM') }}</span>
             </button>
-          </div>
-          <div v-else>
-            <button class="btn-primary" @click="createPatient">
-              <ion-icon class="btn-icon" name="person-add-outline"></ion-icon>
-              <span>{{ $t('HOME.FILL_FOR_ANOTHER_PERSON') }}</span>
-            </button>
-            <p class="my-1 text-secondary">{{ $t('HOME.NOT_GOING_ALONE') }}</p>
-          </div>
+          </router-link>
         </div>
 
-        <p class="mb-12" v-html="$t('HOME.INFO')"></p>
+        <p class="mb-12">
+          {{ $t('HOME.INFO') }}
+        </p>
 
         <HomeAccordion>
           <template v-slot:heading>
@@ -100,14 +98,14 @@
 
         <div class="home-text home-h2-secondary p-6 mt-4 border-app">
           <h2>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_H') }}</h2>
-          <p v-html="$t('HOME.PERSONAL_INFO.WHATS_HAPPENING_P')"></p>
+          <p>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_P') }}</p>
           <img
             class="my-8 mx-auto"
             src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
             alt="Hand holding phone scanning QR code"
           />
           <h2>{{ $t('HOME.PERSONAL_INFO.APP_H') }}</h2>
-          <p v-html="$t('HOME.PERSONAL_INFO.APP_P')"></p>
+          <p>{{ $t('HOME.PERSONAL_INFO.APP_P') }}</p>
         </div>
       </div>
 
@@ -133,15 +131,19 @@
       </div>
 
       <!-- CALL TO ACTION -->
-      <div class="w-full flex flex-col justify-center items-center mt-16 text-center">
+      <div
+        class="w-full flex flex-col justify-center items-center mt-16 text-center"
+      >
         <p class="text-xl text-secondary font-semibold">
           {{ $t('HOME.FILL_FORM_IN_YOUR_PHONE') }}<br />
           {{ $t('HOME.SHORTEN_THE_WAIT') }}
         </p>
-        <button class="btn-primary text-2xl my-8" @click="createPatient">
-          <ion-icon class="btn-icon text-xl" name="create-outline"></ion-icon>
-          <span>{{ $t('HOME.FILL_FORM') }}</span>
-        </button>
+        <router-link to="/person-list">
+          <button class="btn-primary text-2xl my-8">
+            <ion-icon class="btn-icon text-xl" name="create-outline"></ion-icon>
+            <span>{{ $t('HOME.FILL_FORM') }}</span>
+          </button>
+        </router-link>
       </div>
 
       <!-- FOOTER -->
@@ -198,7 +200,6 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import PatientList from '@/components/PatientList'
 import LocaleChanger from '@/components/LocaleChanger'
 import CookiesCheck from '@/components/CookiesCheck'
 import HomeAccordion from '@/components/HomeAccordion'
@@ -206,7 +207,6 @@ import Menu from '@/components/Menu'
 
 export default {
   components: {
-    PatientList,
     LocaleChanger,
     CookiesCheck,
     HomeAccordion,
@@ -249,14 +249,6 @@ export default {
     async createPatient() {
       await this.createNewPatient()
       this.$router.push('/form')
-    },
-    cameraCheck() {
-      // see if the camera access was granted already
-      if (localStorage.getItem('camera:enabled')) {
-        this.createPatient()
-      } else {
-        this.$router.push('compatibility-check')
-      }
     }
   }
 }

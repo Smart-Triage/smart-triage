@@ -2,7 +2,7 @@
   <div v-if="currentPatient" class="page-wrapper">
     <NavBar sticky>
       <template v-slot:left>
-        <router-link to="/home">
+        <router-link to="/person-list">
           <ion-icon name="close" size="large"></ion-icon>
         </router-link>
       </template>

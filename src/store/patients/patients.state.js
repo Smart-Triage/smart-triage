@@ -1,4 +1,5 @@
 export default {
   patients: [],
-  currentPatientId: ''
+  currentPatientId: '',
+  ownerPatientId: ''
 }

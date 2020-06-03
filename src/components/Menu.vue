@@ -6,9 +6,9 @@
           <transition name="slide-fade">
             <!-- Header Navigation Menu Icons -->
             <button
-              class="header--button"
               v-if="show"
               key="on"
+              class="header--button"
               @click="show = false"
             >
               <svg viewBox="0 0 24 24" class="header--icon">
@@ -21,9 +21,9 @@
               </svg>
             </button>
             <button
-              class="header--button"
               v-else
               key="off"
+              class="header--button"
               @click="show = true"
             >
               <svg viewBox="0 0 24 24" class="header--icon">
@@ -38,11 +38,7 @@
         </a>
         <!-- Dropdown Menu -->
         <transition name="dropdown">
-          <div
-            class="dropdown__menu"
-            v-bind:class="{ active: show }"
-            v-if="show"
-          >
+          <div v-if="show" class="dropdown__menu" :class="{ active: show }">
             <ul class="dropdown__menu-nav">
               <li class="dropdown__menu-item">
                 <router-link
