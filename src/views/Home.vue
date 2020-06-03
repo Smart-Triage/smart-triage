@@ -8,7 +8,7 @@
     >
       <NavBar slim>
         <template v-slot:left>
-          <Menu/>
+          <Menu />
         </template>
         <template v-slot:center>
           <img
@@ -47,7 +47,7 @@
         <!-- ACTIONS -->
         <div class="w-full">
           <router-link to="/person-list">
-            <button class="btn-primary">
+            <button class="btn-primary text-2xl my-8">
               <ion-icon
                 class="btn-icon text-2xl"
                 name="create-outline"
@@ -57,7 +57,9 @@
           </router-link>
         </div>
 
-        <p class="mb-12" v-html="$t('HOME.INFO')"></p>
+        <p class="mb-12">
+          {{ $t('HOME.INFO') }}
+        </p>
 
         <HomeAccordion>
           <template v-slot:heading>
@@ -129,7 +131,9 @@
       </div>
 
       <!-- CALL TO ACTION -->
-      <div class="w-full flex flex-col justify-center items-center mt-16 text-center">
+      <div
+        class="w-full flex flex-col justify-center items-center mt-16 text-center"
+      >
         <p class="text-xl text-secondary font-semibold">
           {{ $t('HOME.FILL_FORM_IN_YOUR_PHONE') }}<br />
           {{ $t('HOME.SHORTEN_THE_WAIT') }}
