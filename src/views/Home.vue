@@ -39,31 +39,17 @@
         <p class="text-xl text-secondary font-semibold">
           {{ $t('HOME.INFO') }}
         </p>
-
-        <!-- PATIENT LIST -->
-        <PatientList
-          v-if="patients.length > 0"
-          class="w-full my-1"
-        ></PatientList>
-
         <!-- ACTIONS -->
         <div class="w-full">
-          <div v-if="patients.length === 0">
-            <button class="btn-primary" @click="cameraCheck()">
+          <router-link to="/person-list">
+            <button class="btn-primary">
               <ion-icon
                 class="btn-icon text-xl"
                 name="create-outline"
               ></ion-icon>
               <span>{{ $t('HOME.FILL_FORM') }}</span>
             </button>
-          </div>
-          <div v-else>
-            <button class="btn-primary" @click="createPatient">
-              <ion-icon class="btn-icon" name="person-add-outline"></ion-icon>
-              <span>{{ $t('HOME.FILL_FOR_ANOTHER_PERSON') }}</span>
-            </button>
-            <p class="my-1 text-secondary">{{ $t('HOME.NOT_GOING_ALONE') }}</p>
-          </div>
+          </router-link>
         </div>
 
         <!-- BOTTOM LINKS -->
@@ -180,10 +166,12 @@
           {{ $t('HOME.FILL_FORM_IN_YOUR_PHONE') }}<br />
           {{ $t('HOME.SHORTEN_THE_WAIT') }}
         </p>
-        <button class="btn-primary mt-4" @click="createPatient">
-          <ion-icon class="btn-icon text-xl" name="create-outline"></ion-icon>
-          <span>{{ $t('HOME.FILL_FORM') }}</span>
-        </button>
+        <router-link to="/person-list">
+          <button class="btn-primary mt-4">
+            <ion-icon class="btn-icon text-xl" name="create-outline"></ion-icon>
+            <span>{{ $t('HOME.FILL_FORM') }}</span>
+          </button>
+        </router-link>
       </div>
 
       <!-- FOOTER -->
@@ -239,13 +227,11 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import PatientList from '@/components/PatientList'
 import LocaleChanger from '@/components/LocaleChanger'
 import CookiesCheck from '@/components/CookiesCheck'
 
 export default {
   components: {
-    PatientList,
     LocaleChanger,
     CookiesCheck
   },
@@ -284,14 +270,6 @@ export default {
     async createPatient() {
       await this.createNewPatient()
       this.$router.push('/form')
-    },
-    cameraCheck() {
-      // see if the camera access was granted already
-      if (localStorage.getItem('camera:enabled')) {
-        this.createPatient()
-      } else {
-        this.$router.push('compatibility-check')
-      }
     }
   }
 }

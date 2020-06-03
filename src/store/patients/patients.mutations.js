@@ -43,6 +43,9 @@ export default {
 
   removePatientById: (state, patientId) => {
     const index = state.patients.findIndex(patient => patient.id === patientId)
+    if (state.ownerPatientId === patientId) {
+      state.ownerPatientId = ''
+    }
     state.patients.splice(index, 1)
   },
 
@@ -54,5 +57,9 @@ export default {
     state.patients[index].invalid = markAsInvalid
     state.patients[index].visitedSteps = ['0']
     state.patients[index].validityTimestamp = undefined
+  },
+
+  setOwnerPatientId: (state, patientId) => {
+    state.ownerPatientId = patientId
   }
 }

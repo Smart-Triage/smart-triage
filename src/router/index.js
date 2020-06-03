@@ -35,6 +35,17 @@ const router = new Router({
       }
     },
     {
+      path: '/person-list',
+      name: 'person-list',
+      component: () =>
+        import(
+          /* webpackChunkName: "client-chunk-form" */ '@/views/PersonList.vue'
+        ),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
       path: '/form',
       name: 'form',
       component: () =>

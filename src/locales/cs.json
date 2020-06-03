@@ -219,5 +219,10 @@
   "EDIT_MODAL": {
     "SAVE_BUTTON": "Uložit",
     "HEADER": "Editace pacienta"
+  },
+  "PERSON_LIST": {
+    "HEADER": "Vyplňte formulář",
+    "FILL_OWNER": "Pro sebe",
+    "FILL_OTHER": "Pro jinou osobu"
   }
 }
