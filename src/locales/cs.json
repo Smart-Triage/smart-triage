@@ -108,14 +108,14 @@
       "COOKIES_INFO": "Používaním aplikace souhlasíte s používaním cookies"
     },
     "HOW_IT_WORKS": "Jak to funguje?",
-    "INFO": "Dotazník má platnost 24 hodin, můžete si ho tedy vyplnit v pohodlí domova",
+    "INFO": "Dotazník má <strong>platnost 24 hodin</strong>, <br> můžete si ho tedy vyplnit v pohodlí domova",
     "NOT_GOING_ALONE": "Lze vyplnit i pro více osob v jednom telefonu",
     "PARTNERS_H": "Partneři projektu",
     "PERSONAL_INFO": {
       "APP_H": "Aplikace",
-      "APP_P": "Chytrá triáž je webová aplikace, není potřeba nic stahovat ani instalovat. Dotazník lze vyplnit přímo zde, v internetovém prohlížeči. Pro operační systémy Android a Windows doporučujeme nejnovější verzi prohlížeče Google Chrome. Pokud máte zařízení s iOS (iPhone, iPad) doporučujeme prohlížeč Safari. Aplikace potřebuje pro svůj chod přístup k fotoaparátu.",
+      "APP_P": "Chytrá triáž je webová aplikace, <strong>není potřeba nic stahovat ani instalovat</strong>. Dotazník lze vyplnit přímo zde, v internetovém prohlížeči. Pro operační systémy Android a Windows doporučujeme nejnovější verzi prohlížeče Google Chrome. Pokud máte zařízení s iOS (iPhone, iPad) doporučujeme prohlížeč Safari. <strong>Aplikace potřebuje pro svůj chod přístup k fotoaparátu</strong>.",
       "WHATS_HAPPENING_H": "Co se děje s osobními údaji?",
-      "WHATS_HAPPENING_P": "Osobní údaje jsou uchovány ve vašem telefonu, žádná data se neodesílají přes internet. Vyplněný dotazník s osobními údaji předáváte pomocí QR kódu.  Zdravotnický personál tento kód naskenuje z displeje vašeho smartphonu, vyhodnotí vaše symptomy, vy si naskenujete potvrzovací kód a Vaše data jsou ihned odstraněna ze zařízení zdravotnického personálu."
+      "WHATS_HAPPENING_P": "Osobní údaje jsou <strong>uchovány ve vašem telefonu</strong>, žádná data se <strong>neodesílají přes internet</strong>. Vyplněný dotazník s osobními údaji předáváte pomocí QR kódu.  Zdravotnický personál tento kód naskenuje z displeje vašeho smartphonu, vyhodnotí vaše symptomy, vy si naskenujete potvrzovací kód a <strong>Vaše data jsou ihned odstraněna ze zařízení zdravotnického personálu</strong>."
     },
     "SETTINGS": "Nastavení",
     "SHORTEN_THE_WAIT": "a zkraťte si čekání ve frontě",

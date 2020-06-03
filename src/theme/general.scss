@@ -34,7 +34,7 @@ h2 {
 }
 
 .btn-primary {
-  background-color: $primary-color;
+  background-color: $primary-color-new;
   border-radius: 2em;
   font-family: 'Titillium Web', sans-serif;
   @apply px-6
@@ -76,7 +76,7 @@ h2 {
   .page-content {
     @apply flex-grow
     max-w-lg
-    mx-6
+    mx-2
     flex
     flex-col
     text-center
