@@ -8,7 +8,7 @@
     >
       <NavBar sticky>
         <template v-slot:left>
-          <router-link class="close" :to="'/'"
+          <router-link class="close" :to="'/person-list'"
             ><ion-icon name="close" size="large"></ion-icon
           ></router-link>
         </template>
