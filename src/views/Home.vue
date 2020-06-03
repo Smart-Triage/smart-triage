@@ -8,7 +8,7 @@
     >
       <NavBar slim>
         <template v-slot:left>
-          <ion-icon class="btn-icon text-2xl px-2" name="menu-outline"></ion-icon>
+          <Menu/>
         </template>
         <template v-slot:center>
           <img
@@ -200,13 +200,15 @@ import PatientList from '@/components/PatientList'
 import LocaleChanger from '@/components/LocaleChanger'
 import CookiesCheck from '@/components/CookiesCheck'
 import HomeAccordion from '@/components/HomeAccordion'
+import Menu from '@/components/Menu'
 
 export default {
   components: {
     PatientList,
     LocaleChanger,
     CookiesCheck,
-    HomeAccordion
+    HomeAccordion,
+    Menu
   },
   head() {
     return {
