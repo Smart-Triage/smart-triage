@@ -26,46 +26,6 @@
 
       <PatientSummary :patient="currentPatient"></PatientSummary>
 
-      <div v-if="!isConfirmed(currentPatient)" class="items-center card">
-        <div class="flex flex-row w-full justify-between mb-2">
-          <p class="text-left text-xs">
-            {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_TXT') }}
-          </p>
-
-          <div>
-            <input
-              id="agree2"
-              v-model="allIsTrueAgreed"
-              type="checkbox"
-              value="agree"
-              class="m-4 self-center"
-              @change="agreedToTerms()"
-            />
-          </div>
-        </div>
-
-        <div class="flex flex-row w-full justify-between">
-          <p class="text-left text-xs">
-            {{ $t('SUMMARY.PERSONAL_INFORMATION') }}. Viz
-            <a
-              href="./privacy-policy/privacy-policy-cs.pdf"
-              class="text-blue-500"
-            >
-              {{ $t('HOME.FOOTER.PRIVACY_POLICY') }}
-            </a>
-          </p>
-          <div>
-            <input
-              id="agree"
-              v-model="personalInfoAgreed"
-              type="checkbox"
-              value="agree"
-              class="m-4 self-center"
-            />
-          </div>
-        </div>
-      </div>
-
       <!-- FEEDBACK -->
       <!-- <portal to="modals">
         <FeedbackModal
@@ -96,19 +56,8 @@
           </button>
         </div>
       </div> -->
-
-      <!-- ACCEPT TERMS AND SHOW QR CODE -->
-      <div
-        v-if="
-          (!allIsTrueAgreed || !personalInfoAgreed) &&
-            !isConfirmed(currentPatient)
-        "
-        class="btn-primary w-full max-w-sm flex justify-center mx-4 mb-8 p-8 not-active-qr weird-safari-button-fix"
-      >
-        {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
-      </div>
       <button
-        v-else-if="!isConfirmed(currentPatient)"
+        v-if="!isConfirmed(currentPatient)"
         class="w-full max-w-sm flex justify-center items-center bg-primary rounded-full text-white text-lg mx-4 mb-8 p-2 weird-safari-button-fix"
         @click="
           !isExpired(currentPatient)
@@ -148,7 +97,7 @@
           <button class="btn-secondary mb-3" @click="showModal = false">
             {{ $t('BACK') }}
           </button>
-          <router-link to="/patient-qr-code" class="btn-primary">
+          <router-link to="/terms-agreement" class="btn-primary">
             <div class="button-text">{{ $t('SUMMARY.SHOW_QR_CODE') }}</div>
           </router-link>
         </template>
@@ -186,9 +135,9 @@
 import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 import PatientSummary from '@/components/patient/PatientSummary'
 import ModalWindow from '@/components/ModalWindow'
-import Constants from '@/misc/constants'
 // import FeedbackModal from '@/components/modals/FeedbackModal'
 import { isConfirmedMixin, isFinishedMixin } from '@/mixins'
+import Constants from '@/misc/constants'
 
 export default {
   head() {
@@ -207,9 +156,9 @@ export default {
   data: () => ({
     allIsTrueAgreed: false,
     personalInfoAgreed: false,
+    feedbackModalVisible: false,
     showModal: false,
     showValidityTimeoutModal: false,
-    feedbackModalVisible: false,
     likingApp: ''
   }),
   computed: {
@@ -259,6 +208,14 @@ export default {
         value: this.personalInfoAgreed
       })
     },
+    showFeedBackModal(like) {
+      this.likingApp = like
+      this.feedbackModalVisible = true
+    },
+    feedbackModalClosed() {
+      this.feedbackModalVisible = false
+      this.setCurrentPatientValueByKey({ key: 'hasGivenFeedback', value: true })
+    },
     isExpired(patient) {
       if (!patient.validityTimestamp) {
         return false
@@ -269,14 +226,6 @@ export default {
           patient.validityTimestamp + Constants.FORM_VALIDITY_PERIOD <
             Math.floor(Date.now() / 1000))
       )
-    },
-    showFeedBackModal(like) {
-      this.likingApp = like
-      this.feedbackModalVisible = true
-    },
-    feedbackModalClosed() {
-      this.feedbackModalVisible = false
-      this.setCurrentPatientValueByKey({ key: 'hasGivenFeedback', value: true })
     }
   }
 }

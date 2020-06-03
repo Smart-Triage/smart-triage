@@ -31,35 +31,52 @@
           type="checkbox"
           value="agree"
           class="m-4 self-center"
+          @change="agreedToTerms()"
         />
       </div>
-    </div></div
-></template>
+    </div>
+    <div
+      class="btn-primary w-full max-w-sm flex justify-center mx-4 mb-8 p-8 not-active-qr weird-safari-button-fix"
+    >
+      {{ $t('SUMMARY.YOU_HAVE_TO_ACCEPT_BTN') }}
+    </div>
+  </div>
+</template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapMutations, mapState } from 'vuex'
+import { isConfirmedMixin, isFinishedMixin } from '@/mixins'
 
 export default {
   name: 'TermsAgreement',
-  computed: {
-    ...mapState('patients', ['patients']),
-    ...mapGetters('patients', ['currentPatient'])
-  },
+  mixins: [isConfirmedMixin, isFinishedMixin],
   data: () => {
     return {
       personalInfoAgreed: false,
       allIsTrueAgreed: false
     }
   },
+  computed: {
+    ...mapState('patients', ['patients']),
+    ...mapGetters('patients', ['currentPatient'])
+  },
   methods: {
+    ...mapMutations('patients', ['setCurrentPatientValueByKey']),
     agreedToTerms() {
       this.setCurrentPatientValueByKey({
         key: 'termsAccepted',
         value: this.personalInfoAgreed
       })
+      if (this.personalInfoAgreed && this.allIsTrueAgreed) {
+        this.$router.push('/patient-qr-code')
+      }
     }
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.weird-safari-button-fix {
+  min-height: 3rem;
+}
+</style>
