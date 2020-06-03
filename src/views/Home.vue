@@ -154,7 +154,9 @@
           alt="Smart Triage logo"
         />
         <p>
-          <a href="">{{ $t('HOME.FOOTER.CONTACT') }}</a>
+          <router-link to="/contact">
+            {{ $t('HOME.FOOTER.CONTACT') }}
+          </router-link>
         </p>
         <!--        <p>-->
         <!--          <a href="">{{ $t('HOME.FOOTER.FOR_HOSPITALS') }}</a>-->
