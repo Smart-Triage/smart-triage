@@ -212,5 +212,10 @@
   "EDIT_MODAL": {
     "SAVE_BUTTON": "Save",
     "HEADER": "Edit Patient"
+  },
+  "PERSON_LIST": {
+    "HEADER": "Please, Fill Form",
+    "FILL_OWNER": "For yourself",
+    "FILL_OTHER": "For other persons"
   }
 }

@@ -1,51 +1,59 @@
 <template>
   <div>
-    <div v-for="patient in patients" :key="patient.id" class="patient-item">
-      <ion-icon
-        class="flex-shrink text-red-600"
-        name="trash"
-        @click="removePatient(patient.id)"
-      ></ion-icon>
-      <div class="patient-item-left flex-grow" @click="selectPatient(patient)">
-        <ion-icon name="person-outline"></ion-icon>
-        <span
-          v-if="
-            patient.firstName === undefined || patient.lastName === undefined
-          "
-          class="patient-name"
+    <div v-for="patient in patients" :key="patient.id">
+      <div
+        class="patient-item"
+        :class="{ 'owner-patient': patient.id === ownerPatientId }"
+      >
+        <ion-icon
+          class="flex-shrink text-red-600"
+          name="trash"
+          @click="removePatient(patient.id)"
+        ></ion-icon>
+        <div
+          class="patient-item-left flex-grow"
+          @click="selectPatient(patient)"
         >
-          _
-        </span>
-        <span v-else class="patient-name">
-          {{ patient.firstName + ' ' + patient.lastName }}
-        </span>
-      </div>
-      <div class="patient-item-right" @click="selectPatient(patient)">
-        <span v-if="isConfirmed(patient)">
-          {{ $t('PATIENT_LIST.CONFIRMED') }}
-        </span>
-        <span v-else-if="isFinished(patient) && !isExpired(patient)">{{
-          $t('PATIENT_LIST.FINISHED')
-        }}</span>
-        <span v-else-if="isExpired(patient)">{{
-          $t('PATIENT_LIST.VALIDITY_TIMEOUT')
-        }}</span>
-        <span v-else>{{ $t('PATIENT_LIST.NOT_FINISHED') }}</span>
-        <ion-icon name="arrow-forward-outline"></ion-icon>
+          <ion-icon name="person-outline"></ion-icon>
+          <span
+            v-if="
+              patient.firstName === undefined || patient.lastName === undefined
+            "
+            class="patient-name"
+          >
+            _
+          </span>
+          <span v-else class="patient-name">
+            {{ patient.firstName + ' ' + patient.lastName }}
+          </span>
+        </div>
+        <div class="patient-item-right" @click="selectPatient(patient)">
+          <span v-if="isConfirmed(patient)">
+            {{ $t('PATIENT_LIST.CONFIRMED') }}
+          </span>
+          <span v-else-if="isFinished(patient) && !isExpired(patient)">{{
+            $t('PATIENT_LIST.FINISHED')
+          }}</span>
+          <span v-else-if="isExpired(patient)">{{
+            $t('PATIENT_LIST.VALIDITY_TIMEOUT')
+          }}</span>
+          <span v-else>{{ $t('PATIENT_LIST.NOT_FINISHED') }}</span>
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 import Constants from '@/misc/constants'
 import { isConfirmedMixin, isFinishedMixin } from '@/mixins'
 
 export default {
   mixins: [isConfirmedMixin, isFinishedMixin],
   computed: {
-    ...mapState('patients', ['patients'])
+    ...mapState('patients', ['patients', 'ownerPatientId'])
   },
   mounted() {
     // I'm sorry, but why in the everliving fuck is for-of restricted? Why is this abomination of a syntax preferable?
@@ -108,6 +116,10 @@ ion-icon {
   padding: 1rem;
 }
 
+.owner-patient {
+  background-color: $main-text-color !important;
+}
+
 .patient-item {
   width: 100%;
   display: flex;
@@ -116,6 +128,7 @@ ion-icon {
   cursor: pointer;
   background-color: $secondary-color;
   color: white;
+  white-space: nowrap;
   padding: 1rem;
   margin: 1rem 0;
   border-radius: 10rem;
@@ -133,8 +146,9 @@ ion-icon {
   .patient-item-right {
     display: flex;
     align-items: center;
+    margin-left: 0.5rem;
     ion-icon {
-      margin-left: 1rem;
+      margin-left: 0.5rem;
     }
   }
 }
