@@ -13,7 +13,7 @@
     <div class="page-content">
       <div>
         <p class="mt-4 text-xl text-secondary font-semibold">
-          {{ $t('Vyplňte formulár') }}
+          {{ $t('PERSON_LIST.HEADER') }}
         </p>
         <div class="flex flex-row mt-5">
           <button
@@ -22,14 +22,14 @@
             @click="createPatient(true)"
           >
             <ion-icon class="btn-icon text-xl" name="create-outline"></ion-icon>
-            <span>{{ $t('Pre seba') }}</span>
+            <span>{{ $t('PERSON_LIST.FILL_OWNER') }}</span>
           </button>
           <button class="btn-primary mx-2" @click="createPatient(false)">
             <ion-icon
               class="btn-icon text-xl"
               name="person-add-outline"
             ></ion-icon>
-            <span>{{ $t('Pre inú osobu') }}</span>
+            <span>{{ $t('PERSON_LIST.FILL_OTHER') }}</span>
           </button>
         </div>
       </div>
