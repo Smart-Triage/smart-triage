@@ -54,6 +54,14 @@ const router = new Router({
       }
     },
     {
+      path: '/team',
+      name: 'team',
+      component: () => import('@/views/Team.vue'),
+      meta: {
+        authNotRequired: true
+      }
+    },
+    {
       path: '/summary',
       name: 'summary',
       component: () =>
