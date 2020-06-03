@@ -48,9 +48,7 @@
           </router-link>
         </div>
 
-        <p class="mb-12">
-          {{ $t('HOME.INFO') }}
-        </p>
+        <p class="mb-12" v-html="$t('HOME.INFO')"></p>
 
         <HomeAccordion>
           <template v-slot:heading>
@@ -89,14 +87,14 @@
 
         <div class="home-text home-h2-secondary p-6 mt-4 border-app">
           <h2>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_H') }}</h2>
-          <p>{{ $t('HOME.PERSONAL_INFO.WHATS_HAPPENING_P') }}</p>
+          <p v-html="$t('HOME.PERSONAL_INFO.WHATS_HAPPENING_P')"></p>
           <img
             class="my-8 mx-auto"
             src="@/assets/img/hand-holding-phone-scanning-qr-code.png"
             alt="Hand holding phone scanning QR code"
           />
           <h2>{{ $t('HOME.PERSONAL_INFO.APP_H') }}</h2>
-          <p>{{ $t('HOME.PERSONAL_INFO.APP_P') }}</p>
+          <p v-html="$t('HOME.PERSONAL_INFO.APP_P')"></p>
         </div>
       </div>
 
