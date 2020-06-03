@@ -99,7 +99,7 @@
       </div>
 
       <!-- PARTNERS -->
-      <partners/>
+      <partners />
 
       <!-- CALL TO ACTION -->
       <div
