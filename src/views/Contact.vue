@@ -6,11 +6,13 @@
         <h1 class="mb-6"></h1>
         <p>
           <strong>
-            V případe zájmu nás neváhejte kontaktovat
+            {{ $t('CONTACT_US') }}
           </strong>
         </p>
         <p>
-          <a href="mailto:info@nemocnice.online">info@nemocnice.online</a>
+          <a class="font-bold" href="mailto:info@nemocnice.online"
+            >info@nemocnice.online</a
+          >
         </p>
       </div>
     </div>
@@ -23,4 +25,11 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@import '@/theme/variables.scss';
+
+a {
+  color: $secondary-color;
+  text-decoration: underline;
+}
+</style>

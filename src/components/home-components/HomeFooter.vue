@@ -1,6 +1,6 @@
 <template>
   <div
-    class="footer home-h2-secondary p-6 mt-4 border-app text-left w-full max-w-lg"
+    class="footer text-center home-h2-secondary p-6 border-app text-left w-full max-w-lg"
   >
     <img
       class="h-12 mx-auto"
@@ -23,7 +23,7 @@
         {{ $t('HOME.SETTINGS') }}
       </router-link>
     </p>
-    <div class="divider"></div>
+    <div class="divider mx-auto"></div>
     <p>
       <router-link to="/team">
         {{ $t('HOME.FOOTER.ABOUT_US') }}
