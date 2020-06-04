@@ -16,9 +16,11 @@
         ></ion-icon>
       </div>
     </button>
-    <div class="info-container text-left" :class="{ hideInfo: isHidden }">
-      <slot name="content"> </slot>
-    </div>
+    <transition name="fade">
+      <div class="info-container text-left" :class="{ hideInfo: isHidden }">
+        <slot name="content"> </slot>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -55,6 +57,15 @@ export default {
   padding: 4em 2.5em 2em 2.5em;
   width: 100%;
   border-radius: 1.1em;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
 .edit-btn {
