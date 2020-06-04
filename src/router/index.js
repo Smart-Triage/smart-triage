@@ -59,10 +59,7 @@ const router = new Router({
     {
       path: '/form',
       name: 'form',
-      component: () =>
-        import(
-          /* webpackChunkName: "client-chunk-form" */ '@/views/patient/Form.vue'
-        ),
+      component: () => import('@/views/patient/Form.vue'),
       meta: {
         authNotRequired: true
       }
