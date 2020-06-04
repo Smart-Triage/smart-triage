@@ -1,5 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/firestore'
+import 'firebase/analytics'
 
 // The configuration below is not sensitive data. You can serenely add your config here
 const config = {
@@ -14,3 +16,4 @@ const config = {
 }
 
 firebase.initializeApp(config)
+firebase.analytics()

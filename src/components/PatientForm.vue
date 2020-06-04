@@ -17,6 +17,9 @@
           placeholder=""
           class="form-input"
           type="text"
+          minlength="2"
+          maxlength="20"
+          pattern="[A-Za-z]*"
           :value="currentPatient.firstName"
           required
           @input="setPatientValueByKey('firstName', $event.target.value)"
@@ -29,6 +32,9 @@
           placeholder=""
           class="form-input"
           type="text"
+          minlength="2"
+          maxlength="20"
+          pattern="[A-Za-z]*"
           :value="currentPatient.lastName"
           required
           @input="setPatientValueByKey('lastName', $event.target.value)"
@@ -41,6 +47,9 @@
         >
         <input
           placeholder=""
+          minlength="2"
+          maxlength="20"
+          pattern="[0-9]*"
           class="form-input"
           type="text"
           :value="currentPatient.birthNumber"
@@ -54,6 +63,9 @@
         <input
           placeholder=""
           class="form-input"
+          minlength="2"
+          maxlength="20"
+          pattern="[0-9]*"
           type="tel"
           :value="currentPatient.phoneNumber"
           required
@@ -68,6 +80,7 @@
           class="form-input"
           type="date"
           :value="currentPatient.birthDate"
+          :max="new Date().toISOString().split('T')[0]"
           required
           @input="setPatientValueByKey('birthDate', $event.target.value)"
         />
