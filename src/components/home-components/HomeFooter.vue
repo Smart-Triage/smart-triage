@@ -40,7 +40,9 @@
       </a>
     </p>
     <div class="copyright">
-      <p class="mx-auto mt-6">{{ $t('HOME.FOOTER.COPYRIGHT') }}</p>
+      <p class="mx-auto mt-6">
+        {{ $t('HOME.FOOTER.COPYRIGHT') + ' ' + new Date().getFullYear() }}
+      </p>
     </div>
   </div>
 </template>
