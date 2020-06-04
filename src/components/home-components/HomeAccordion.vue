@@ -36,15 +36,8 @@ export default {
 .hideInfo {
   overflow: hidden;
   height: 0;
-  padding: 0 !important;
-}
-
-.symptoms-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  align-self: flex-start;
-  padding: 0 3em;
+  padding: 0 2.5em 0 2.5em !important;
+  opacity: 0;
 }
 
 .info-container {
@@ -55,6 +48,9 @@ export default {
   padding: 4em 2.5em 2em 2.5em;
   width: 100%;
   border-radius: 1.1em;
+  max-height: 500px;
+  transition: padding-bottom 0.5s ease-in, padding-top 0.5s ease-in,
+    opacity 0.25s ease-in;
 }
 
 .edit-btn {

@@ -57,29 +57,18 @@
     /> -->
 
         <!-- PARTNERS -->
-        <h2>{{ $t('HOME.PARTNERS_H') }}</h2>
-        <div class="w-full flex justify-around items-center my-8">
-          <a href="https://artinsolutions.com">
-            <img
-              src="@/assets/img/partners-logos/artin.png"
-              alt="Artin company logo"
-          /></a>
-
-          <a href="https://cuni.cz/">
-            <img
-              src="@/assets/img/charles-university-logo.png"
-              alt="Charles University logo"
-            />
-          </a>
-        </div>
+        <partners />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Partners from '@/components/home-components/Partners'
+
 export default {
-  name: 'Team'
+  name: 'Team',
+  components: { Partners }
 }
 </script>
 
